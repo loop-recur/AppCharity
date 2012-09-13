@@ -14,7 +14,7 @@
         <target device="blackberry">false</target>
     </deployment-targets>
     <sdk-version>2.1.2.GA</sdk-version>
-    <id>com.appcelerator.appcharity</id>
+    <id>com.looprecur.appcharity</id>
     <name>appcharity</name>
     <version>1.0</version>
     <publisher>brian</publisher>
@@ -51,7 +51,4 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules>
-        <module platform="commonjs" version="2.3.0">ti.cloud</module>
-    </modules>
 </ti:app>

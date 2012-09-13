@@ -1,7 +1,7 @@
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Ti.UI.setBackgroundColor('#000');
 
-var Cloud = require('ti.cloud');
+var Cloud = require('commonjs/ti.cloud/2.3.0/ti.cloud');
 Cloud.debug = true;  // optional; if you add this line, set it to false for production
 
 
@@ -126,6 +126,23 @@ Ti.Network.registerForPushNotifications({
     }
 });
 Ti.API.info("\n\nPAST REGISTER");
+
+Cloud.Users.login({
+    login: 'drboolean',
+    password: '123456'
+}, function (e) {
+    if (e.success) {
+        var user = e.users[0];
+        alert('Success:\\n' +
+            'id: ' + user.id + '\\n' +
+            'first name: ' + user.first_name + '\\n' +
+            'last name: ' + user.last_name);
+    } else {
+        alert('Error:\\n' +
+            ((e.error && e.message) || JSON.stringify(e)));
+    }
+});
+
 
 button1.addEventListener('click', function(){
   Ti.API.info("\n\ndevice token: "+deviceToken);
