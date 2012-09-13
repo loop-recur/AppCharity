@@ -1,21 +1,41 @@
-// this sets the background color of the master UIView (when there are no windows/tab groups on it)
-Ti.UI.setBackgroundColor('#000');
+isAndroid = Ti.Platform.osname == 'android';
+isIPhone = Ti.Platform.osname == 'iphone';
+isMobileweb = Ti.Platform.osname == 'mobileweb';
+
+Ti.UI.setBackgroundColor('#FFF');
+
+if(isAndroid) {
+  var CloudPush = require('ti.cloudpush');
+  CloudPush.enabled = true;
+  CloudPush.debug = true;
+}
 
 var Cloud = require('ti.cloud');
 Cloud.debug = true;  // optional; if you add this line, set it to false for production
 
+Cloud.Users.login({
+    login: 'drboolean',
+    password: '123456'
+}, function (e) {
+    if (e.success) {
+        var user = e.users[0];
+        alert('Success:\\n' +
+            'id: ' + user.id + '\\n' +
+            'first name: ' + user.first_name + '\\n' +
+            'last name: ' + user.last_name);
+    } else {
+        alert('Error:\\n' +
+            ((e.error && e.message) || JSON.stringify(e)));
+    }
+});
 
-// create tab group
 var tabGroup = Ti.UI.createTabGroup();
 
-
-//
-// create base UI tab and root window
-//
 var win1 = Ti.UI.createWindow({  
     title:'Tab 1',
     backgroundColor:'#fff'
 });
+
 var tab1 = Ti.UI.createTab({  
     icon:'KS_nav_views.png',
     title:'Tab 1',
@@ -39,9 +59,6 @@ var button1 = Ti.UI.createButton({
 win1.add(label1);
 win1.add(button1);
 
-//
-// create controls tab and root window
-//
 var win2 = Ti.UI.createWindow({  
     title:'Tab 2',
     backgroundColor:'#fff'
@@ -62,16 +79,9 @@ var label2 = Ti.UI.createLabel({
 
 win2.add(label2);
 
-
-
-//
-//  add tabs
-//
 tabGroup.addTab(tab1);  
 tabGroup.addTab(tab2);  
 
-
-// open tab group
 tabGroup.open();
 // 
 // Cloud.KeyValues.get({
@@ -90,13 +100,8 @@ tabGroup.open();
 
 var deviceToken = "";
 
-
-Ti.API.info("\n\nSTARTING REGISTER");
-Ti.API.info(Ti.Network.NOTIFICATION_TYPE_BADGE);
-Ti.API.info(Ti.Network.NOTIFICATION_TYPE_ALERT);
-Ti.API.info(Ti.Network.NOTIFICATION_TYPE_SOUND);
-
-Ti.Network.registerForPushNotifications({
+if(isIPhone) {
+  Ti.Network.registerForPushNotifications({
     types: [
         Ti.Network.NOTIFICATION_TYPE_BADGE,
         Ti.Network.NOTIFICATION_TYPE_ALERT,
@@ -124,14 +129,25 @@ Ti.Network.registerForPushNotifications({
       Ti.API.info("messageCallback");
       Ti.API.info(e);
     }
-});
-Ti.API.info("\n\nPAST REGISTER");
+  });
+} else {
+    CloudPush.retrieveDeviceToken({
+      success: function(e) {
+        deviceToken = e.deviceToken;
+        alert('success '+e.deviceToken);
+      },
+      error: function(e) {
+        alert('There was an error '+e.error);
+      }
+    });
+}
 
 button1.addEventListener('click', function(){
   Ti.API.info("\n\ndevice token: "+deviceToken);
   Cloud.PushNotifications.subscribe({
       channel: 'main_group',
-      device_token: deviceToken
+      device_token: deviceToken,
+      type: isIPhone ? 'iphone' : 'android'
   }, function (e) {
       if (e.success) {
           alert('Success');
