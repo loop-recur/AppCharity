@@ -1,5 +1,5 @@
 Push = (function(debug){
-  var Cloud = require('commonjs/ti.cloud/2.3.0/ti.cloud');
+  var Cloud = require('../commonjs/ti.cloud/2.3.0/ti.cloud');
   Cloud.debug = true;  // optional; if you add this line, set it to false for production
   
   if(isAndroid) {
@@ -55,7 +55,7 @@ Push = (function(debug){
       register = function(channel, pushCallback) {
         var cb = isIPhone ? iphoneRegister : androidRegister;
         logInAsGenercUserToAvoidErrorHack(cb(pushCallback, subscribe(channel)));
-      },
+      };
       
-    return {register: register}
+    return {register: register};
 })();

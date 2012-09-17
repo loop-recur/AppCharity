@@ -1,3 +1,9 @@
+/****
+* Here we are mocking out the Titanium Framework. We are mocking out the components of the Framework so that we don't have to compile anything 
+* when we test using jasmine. The advantage of this is that the tests will be straight javascript and will be fast. The disadvantage of this is 
+* that we do not have end-to-end testing. So if there is a glitch in Titanium itself, we will not pick it up with these tests.
+****/
+
 alert = function(m) {
   log("alerting "+m);
 }
@@ -173,7 +179,7 @@ module.exports.mock = function() {
 		Platform: {osname: 'iphone', displayCaps: {platformHeight: 480, platformWidth: 320}, openURL: stub},
 		include: function(path) { require('../'+path.replace(/\.js$/, "")); },
 		API: {info: function(i){ console.log(i); }},
-		Media: {createSound:stub({play: stub})},
+		Media: {createSound:stub({play: stub}), showCamera:BaseViewStub({success: true})},
 		Utils: {md5HexDigest: stub},
 		UI: {
 			create2DMatrix: stub({rotate: stub}),

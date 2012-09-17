@@ -2,9 +2,11 @@ isIPhone = true;
 isAndroid = false;
 isMobileweb = true;
 
-Settings = {};
+require('../../initializers/init');
+init('../', true);
 
 require('../factory_definitions');
+
 
 Factory = function(name, props) {
 	props = (props || {});
