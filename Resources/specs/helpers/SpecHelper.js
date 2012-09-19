@@ -3,7 +3,8 @@ isAndroid = false;
 isMobileweb = true;
 
 Cloud = require('../../commonjs/ti.cloud/2.3.0/ti.cloud');
-require('../../initializers/init')('../', true);
+require('../../initializers/init');
+init('../', true);
 require('../factory_definitions');
 
 

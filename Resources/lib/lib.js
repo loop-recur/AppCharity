@@ -1,4 +1,5 @@
 module.exports = function(fancyRequire) {
   fancyRequire('scaler');
-  fancyRequire('push');
+  fancyRequire('fb_graph');
+  // fancyRequire('push');
 }
