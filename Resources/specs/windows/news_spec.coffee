@@ -1,16 +1,16 @@
 require('../helpers/SpecHelper');
 
-describe("Photo Upload button", () ->
+describe("Windows/News", () ->
   view_proxy = null
   
   beforeEach(() ->
-    spyOn(Ti.Media, 'showCamera').andCallFake((camera_options) -> camera_options.success())
+    # spyOn(FbGraph, 'getNewsFeed').andCallFake((camera_options) -> camera_options.success())
     view_proxy = Windows.PhotoGallery()
     view_proxy.photo_upload_btn.fireEvent('click')
   )
     
   it('should pull open the camera to take a new photo when clicked', () ->
-    expect(Ti.Media.showCamera).toHaveBeenCalled()
+    # expect(Ti.Media.showCamera).toHaveBeenCalled()
   )
     
 )

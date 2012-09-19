@@ -1,5 +1,4 @@
 Push = (function(debug){
-  var Cloud = require('../commonjs/ti.cloud/2.3.0/ti.cloud');
   Cloud.debug = true;  // optional; if you add this line, set it to false for production
   
   if(isAndroid) {
