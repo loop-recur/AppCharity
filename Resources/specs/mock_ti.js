@@ -8,10 +8,6 @@ alert = function(m) {
   log("alerting "+m);
 }
 
-console = {
-  log: function() {throw("YOU CAN'T CONSOLE LOG ON A PHONE")}
-}
-
 stub = function(obj){
 	if(obj) {
 		return function(){ return obj };
@@ -65,6 +61,12 @@ var baseStubPrototype = function() {
 		animate: function(obj, cb) {
 			for(p in obj) { this[p] = obj[p]; }
       if(cb) cb();
+		},
+		show: function() {
+		  this.visible = true;
+		},
+		hide: function() {
+		  this.visible = false;
 		}
 	};
 }
@@ -127,6 +129,24 @@ var Table = {
 	}
 }
 
+var TabGroup = {
+	open: function() {
+		this.fireEvent('open')
+	},
+	
+	close: function() {
+		this.fireEvent('close')
+	},
+
+  addTab: function(tab) {
+    this.add(tab);
+  },
+
+  setActiveTab: function(tab) {
+    this.activeTab = tab;
+  }
+};
+
 
 var TableViewSection = {
   add: function(r) {
@@ -162,6 +182,7 @@ var Geolocation = function() {
   }
 }
 
+
 module.exports.mock = function() {
 	Titanium = {
 		App: {
@@ -179,7 +200,7 @@ module.exports.mock = function() {
 		Platform: {osname: 'iphone', displayCaps: {platformHeight: 480, platformWidth: 320}, openURL: stub},
 		include: function(path) { require('../'+path.replace(/\.js$/, "")); },
 		API: {info: function(i){ console.log(i); }},
-		Media: {createSound:stub({play: stub}), showCamera:BaseViewStub({success: true})},
+		Media: {createSound:stub({play: stub}), showCamera:BaseViewStub()},
 		Utils: {md5HexDigest: stub},
 		UI: {
 			create2DMatrix: stub({rotate: stub}),
@@ -198,7 +219,9 @@ module.exports.mock = function() {
 			createPickerColumn: BaseViewStub(PickerColumn),
 			createTableView: BaseViewStub(Table),
 			createTableViewRow: BaseViewStub(),
-			createActivityIndicator: BaseViewStub({hide: stub, show: stub}),
+			createActivityIndicator: BaseViewStub(),
+			createTab: BaseViewStub(TabGroup),
+      createTabGroup: BaseViewStub(TabGroup),
 			createTableViewSection: BaseViewStub(TableViewSection),
 			iOS: {createToolbar: BaseViewStub()},
 			iPhone: {

@@ -1,3 +1,4 @@
+App = {};
 Config = {};
 Controllers = {};
 Models = {};
@@ -24,13 +25,12 @@ var fancyRequire = function(path) {
     },
 
     application = function(from) {
-      requireFrom(from, ['ui', 'windows']);
+      requireFrom(from, ['ui', 'controllers', 'views', 'windows']);
     };
 
 
 init = function(from, testing) {
-	if(testing) require('../specs/mock_ti').mock();
-	App = {};
+  if(testing) require('../specs/mock_ti').mock();  
   domain(from);
   application(from);
 }
