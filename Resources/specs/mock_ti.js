@@ -179,7 +179,7 @@ module.exports.mock = function() {
 		Platform: {osname: 'iphone', displayCaps: {platformHeight: 480, platformWidth: 320}, openURL: stub},
 		include: function(path) { require('../'+path.replace(/\.js$/, "")); },
 		API: {info: function(i){ console.log(i); }},
-		Media: {createSound:stub({play: stub}), showCamera:BaseViewStub({success: true})},
+		Media: {createSound:stub({play: stub}), showCamera:BaseViewStub({success: true}), openPhotoGallery:BaseViewStub({success: true})},
 		Utils: {md5HexDigest: stub},
 		UI: {
 			create2DMatrix: stub({rotate: stub}),
