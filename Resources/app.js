@@ -2,7 +2,11 @@ isAndroid = Ti.Platform.osname == 'android';
 isIPhone = Ti.Platform.osname == 'iphone';
 isMobileweb = Ti.Platform.osname == 'mobileweb';
 
+Cloud = require('./commonjs/ti.cloud/2.3.0/ti.cloud');
+
+// TODO: Begin basic template app. Delete and move everything later. 
 Ti.UI.setBackgroundColor('#FFF');
+
 
 var tabGroup = Ti.UI.createTabGroup();
 

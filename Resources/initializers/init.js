@@ -34,3 +34,5 @@ init = function(from, testing) {
   domain(from);
   application(from);
 }
+
+module.exports = init; 
