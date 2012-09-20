@@ -1,3 +1,4 @@
 module.exports = function(fancyRequire) {
-  fancyRequire('news_row');
+  fancyRequire('fb_news_row');
+  fancyRequire('twitter_news_row');
 }
