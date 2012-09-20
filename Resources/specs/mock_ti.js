@@ -202,6 +202,7 @@ module.exports.mock = function() {
 		API: {info: function(i){ console.log(i); }},
 		Media: {createSound:stub({play: stub}), showCamera:BaseViewStub()},
 		Utils: {md5HexDigest: stub},
+		Filesystem: {getFile: stub({exists:stub, read: stub})},
 		UI: {
 			create2DMatrix: stub({rotate: stub}),
 			createWindow: BaseViewStub(Window),

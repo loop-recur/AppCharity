@@ -4,7 +4,6 @@ FbGraph = (function() {
 	// from appcelerator fb stuff
 	var _showRequestResult = defn(function(cb, e) {
 		var s = '';
-		log(e);
 		if (e.success) {
 			if (_debug){s = "SUCCESS";}
 			if (e.result) {

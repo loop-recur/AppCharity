@@ -7,7 +7,6 @@ require('../../initializers/init');
 init('../', true);
 require('../factory_definitions');
 
-
 Factory = function(name, props) {
 	props = (props || {});
 	var obj = FactoryDefinitions[name](props);
