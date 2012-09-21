@@ -8,24 +8,37 @@ Controllers.News = function(view) {
     }
   }
   
+  var finishTwitter = function(tweets) {
+    state.tweet_rows = tweets.map(function(n){ return Views.TwitterNewsRow(n).row; });
+    PropertyCache.set('tweets', tweets);
+    tryTofinish();
+  }
+  
+  var finishFb = function(news) {
+    state.fb_rows = news.map(function(n){ return Views.FbNewsRow(n).row; });
+    PropertyCache.set('fb_news', news);
+    tryTofinish();
+  }
+  
   var getNews = function() {
-    FbGraph.getNewsFeed(function(news) {
-      state.fb_rows = news.map(function(n){ return Views.FbNewsRow(n).row; });
-      tryTofinish();
-    });
-    
-    Twitter.timeline({screen_name: "MSF_USA"}, function(tweets) {
-      state.tweet_rows = tweets.map(function(n){ return Views.TwitterNewsRow(n).row; });
-      tryTofinish();
-    });
+    FbGraph.getNewsFeed(finishFb);
+    Twitter.timeline({screen_name: "MSF_USA"}, finishTwitter);
+  }
+  
+  var getCachedNews = function() {
+    return PropertyCache.get('fb_news', finishFb) && PropertyCache.get('tweets', finishTwitter);
+  }
+  
+  var getNewsIfItsBeenLongEnough = function() {
+    getCachedNews() || getNews();
   }
   
   var openDetail = function(e) {
     var row = e.row;
-    var detail = (row.kind === "fb") ? Windows.FbNewsDetail(row.news) : Windows.TwitterNewsDetail(row.news);
+    var detail = (row.kind === "fb") ? Windows.FbNewsDetail(row.news) : Windows.TwitterNewsDetail(row.news)
     Windows.Application.news.open(detail.win);
   }
   
-  view.win.addEventListener('focus', getNews);
+  view.win.addEventListener('focus', getNewsIfItsBeenLongEnough);
   view.table.addEventListener('click', openDetail);
 }
