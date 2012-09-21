@@ -1,10 +1,18 @@
 Windows.News = function() {
   var self = {
-    win: UI.createWindow(),
+    win: UI.createWindow({
+      navBarHidden: true,
+      layout: 'vertical'
+    }),
     
-    table: UI.createTableView()
+    donate_banner: Views.TopBanner().view,
+
+    table: UI.createTableView({
+   	  width: Ti.UI.FILL 
+    })
   }
   
+  self.win.add(self.donate_banner);	 
   self.win.add(self.table);
   
   Controllers.News(self);
