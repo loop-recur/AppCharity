@@ -7,9 +7,7 @@ Windows.News = function() {
     
     donate_banner: Views.TopBanner().view,
 
-    table: UI.createTableView({
-   	  width: Ti.UI.FILL 
-    })
+    table: UI.createTableView()
   }
   
   self.win.add(self.donate_banner);	 

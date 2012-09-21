@@ -8,7 +8,7 @@ describe("Windows/News", () ->
   beforeEach(() ->
     spyOn(Windows, 'FbNewsDetail').andCallThrough()
     spyOn(Windows, 'TwitterNewsDetail').andCallThrough()
-    spyOn(FbGraph, 'getNewsFeed').andCallFake((cb) -> cb([fb_news]))
+    spyOn(FbGraph, 'getNewsFeed').andCallFake((uid, cb) -> cb([fb_news]))
     spyOn(Twitter, 'timeline').andCallFake((str, cb)-> cb([tweet]))
     view_proxy = Windows.News()
     view_proxy.win.open()

@@ -1,11 +1,11 @@
 require('../helpers/SpecHelper');
 
-describe("Windows/News", () ->
+describe("Windows/About", () ->
   view_proxy = null
   fb_page = Factory('fb_page')
   
   beforeEach(() ->
-    spyOn(FbGraph, 'getPage').andCallFake((cb) -> cb(fb_page))
+    spyOn(FbGraph, 'getPage').andCallFake((uid, cb) -> cb(fb_page))
     spyOn(Twitter, 'tweet').andCallFake((cb) -> cb({success: true}))
     spyOn(FbGraph, 'wallPost').andCallFake((cb) -> cb({success: true}))
     view_proxy = Windows.About()
@@ -13,8 +13,22 @@ describe("Windows/News", () ->
     view_proxy.win.fireEvent('focus')
   )
   
-  it("gets information from fb", () ->
-    expect(FbGraph.getPage).toHaveBeenCalled()
+  it('only gets the page after a certain amount of cache time', () ->
+    PropertyCache.setup({cache_time: 10000});
+    view_proxy.win.fireEvent('focus')
+    expect(FbGraph.getPage.callCount).toEqual(1)
+    PropertyCache.setup({cache_time: 1});
+    sleep(10)
+    view_proxy.win.fireEvent('focus')
+    expect(FbGraph.getPage.callCount).toEqual(2)
+  )
+  
+  it('doesnt put the page on there twice', () ->
+    PropertyCache.setup({cache_time: 1});
+    original_amount_of_elements_on_screen = view_proxy.win.children.length
+    sleep(10)
+    view_proxy.win.fireEvent('focus')
+    expect(view_proxy.win.children.length).toEqual(original_amount_of_elements_on_screen)
   )
   
   it("puts photo on the page", () ->

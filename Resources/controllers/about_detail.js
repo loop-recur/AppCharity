@@ -11,4 +11,3 @@ Controllers.AboutDetail = function(view, page) {
   view.tweet_button.addEventListener('click', tweet);
   view.fb_button.addEventListener('click', fb_share);
 }
-
