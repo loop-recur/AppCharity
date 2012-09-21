@@ -63,36 +63,6 @@ Views.TwitterNewsRow = function(news) {
   self.content_view.add(self.text);
   self.content_view.add(self.tweet_button);
   self.row.add(self.content_view);
-  
-  self.tweet_button.addEventListener('click', function(){
-    var accessTokenKey = Ti.App.Properties.getString('twitterAccessTokenKey'),
-           accessTokenSecret = Ti.App.Properties.getString('twitterAccessTokenSecret');
-    
-    var client = Twitter({consumerKey: "CgIDnN8kDKPu1uKhMK5Qg",
-             consumerSecret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI",
-             accessTokenKey:accessTokenKey,
-             accessTokenSecret:accessTokenSecret
-            });
-            
-    client.addEventListener('login', function(e) {
-         if (e.success) {
-           Ti.App.Properties.setString('twitterAccessTokenKey', e.accessTokenKey);
-           Ti.App.Properties.setString('twitterAccessTokenSecret', e.accessTokenSecret);
-
-           client.request("1/statuses/retweets/"+news.id+".json", {}, 'GET', function(e) {
-             if (e.success) {
-               log2("SUCCESS", e);
-             } else  {
-               log2("FAIL", e);
-             }
-           });
-         } else {
-           alert(e.error);
-         }
-       });
-       
-       client.authorize();
-  });
 
   return self;
 }

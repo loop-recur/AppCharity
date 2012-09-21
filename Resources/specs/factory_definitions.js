@@ -25,6 +25,29 @@ FactoryDefinitions = {
     }, props);
   },
   
+  fb_page: function(props){
+    return merge({
+      name: 'Doctors Without Borders/ Médecins Sans Frontières (MSF)',
+      is_published: true,
+      username: 'msf.english',
+      founded: '1971',
+      company_overview: 'MSF is an international medical humanitarian organization working in more than 60 countries to assist people whose survival is threatened by violence, neglect, or catastrophe. In 1999, MSF received the Nobel Peace Prize.',
+      mission: 'Page Guidelines:\n\nWelcome to the Doctors Without Borders/Médecins Sans Frontières (MSF) English-language Facebook page. We’re glad you are here. \n\nThis page provides a place to stay connected to our work in more than 60 countries around the world, help us raise awareness about the issues our teams in the field witness, and connect with other MSF supporters around the world.  The following guidelines are designed to help provide a quality environment for our fans. Please take a minute to read them and keep them in mind whenever you participate. \n\nBy using or accessing this page, you agree to comply with Facebook’s Terms and Conditions. While we are excited to hear from everyone, it is important to note that postings by fans to the MSF Facebook page do not necessarily reflect the opinions of MSF, nor does MSF confirm their accuracy. \n\nWe welcome all questions and commentary, including constructive feedback. We don’t take decisions on moderating posts lightly. But we do expect that participants post content and commentary that is both relevant and respectful to this community as a whole. MSF reserves the right to remove any posts that don’t adhere to our guidelines and to block anyone who violates them repeatedly. Specifically, we do not tolerate these kinds of posts: \n\n• Abusive, harassing, stalking, threatening or attacking others\n• Defamatory, offensive, obscene, vulgar or depicting violence \n• Hateful in language targeting race/ethnicity, religion, gender, nationality or political beliefs \n• Fraudulent, deceptive, misleading or unlawful\n• Trolling or deliberate disruption of discussion\n• Violations of any intellectual property rights \n• Spamming in nature\n• Commercial solicitation\n• Link baiting (embedding a link in your post to draw traffic to your own site)\n\n',
+      products: 'MSF Facebook pages in other languages\nhttp://www.facebook.com/medicossinfronteras.ong\nhttp://www.facebook.com/msf.italiano\nhttp://www.facebook.com/msf.greece\nhttp://www.facebook.com/lakareutangranser\nhttp://www.facebook.com/aerzteohnegrenzenMSF\nhttp://www.facebook.com/azg.belgie\nhttp://www.facebook.com/laegerudengraenser\n\nMSF on Twitter\nhttp://twitter.com/MSFAustralia\nhttp://www.twitter.com/MSF_Canada\nhttp://www.twitter.com/MSF_Ireland\nhttp://www.twitter.com/MSF_UK\nhttp://www.twitter.com/MSF_USA\nMore: http://twitter.com/MSF_USA/msf-offices/members\n\nMSF websites\nAustralia: http://www.msf.org.au\nCanada: http://www.msf.ca\nIreland: http://www.msf.ie \nUK: http://www.uk.msf.org\nUnited States: http://www.doctorswithoutborders.org\n\nMSF on Tumblr\nhttp://tumblr.doctorswithoutborders.org',
+      about: 'Doctors Without Borders/Médecins Sans Frontières (MSF) is a medical humanitarian organization assisting people in nearly 70 countries.',
+      talking_about_count: 7050,
+      category: 'Non-profit organization',
+      id: '33110852384',
+      link: 'http://www.facebook.com/msf.english',
+      likes: 479877,
+      cover: 
+       { cover_id: '10151022751997385',
+         source: 'http://sphotos-a.xx.fbcdn.net/hphotos-prn1/s720x720/551712_10151022751997385_326242902_n.jpg',
+         offset_y: 21
+       }
+      }, props);
+  },
+  
   tweet: function(props) {
     return merge({
         created_at: 'Wed Sep 19 15:10:11 +0000 2012',
