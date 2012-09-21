@@ -25,6 +25,19 @@ FactoryDefinitions = {
     }, props);
   },
   
+  fb_event: function(props) {
+    return merge({
+        eid: 25789302371,
+        name: 'Homebush: Refugee Camp In Your City',
+        pic_square: 'http://profile.ak.fbcdn.net/hprofile-ak-ash3/174598_25789302371_1715866_q.jpg',
+        start_time: 1220630400,
+        end_time: 1221004800,
+        pic_big: 'http://profile.ak.fbcdn.net/hprofile-ak-ash3/174598_25789302371_1715866_n.jpg',
+        description: 'Médecins Sans Frontières Australia is proud to announce the local launch of REFUGEE CAMP IN YOUR CITY.\n\nKicking off in Brisbane on August 27th, the CAMP is a full-scale model of a real refugee camp, and during 2008 and 2009 will travel to the heart of some of Australia and New Zealand\'s main cities.\n\nFree and open to the public, this interactive experience is a must for anyone interested in Médecins Sans Frontières, refugees, internally displaced people, or humanitarian work. \n\nTours through the CAMP will be hosted by returned International Field Staff, and along the way you\'ll see some of the actual material our teams use in the field.\n\nBooking for large group tours can now be made using the form on this link:\nhttp://www.msf.org.au/refugeecamp/\n\nWe would like to ask all the friends and supporters of Médecins Sans Frontières Australia to help us promote this event. If you know anyone you think might be interested, please feel free to invite them to REFUGEE CAMP IN YOUR CITY, or tell them all about it. \n\nLooking forward to seeing you there!\n\n(Alternate phone number: 02 8570 2615)\n\nREFUGEE CAMP SCHEDULE\n\nBRISBANE (South Bank – as part of Riverfestival 2008): 27-31 August\n\nWESTERN SYDNEY (The Overflow, Sydney Olympic Park): 5-9 September\n\nSYDNEY (Martin Place): 13-17 September\n\nCANBERRA (Glebe Park): 20-24 September\n\nMELBOURNE, ADELAIDE, PERTH, AUCKLAND, WELLINGTON 2009 (TBC)',
+        location: 'The Overflow at Sydney Olympic Park'
+      }, props);
+  },
+  
   fb_page: function(props){
     return merge({
       name: 'Doctors Without Borders/ Médecins Sans Frontières (MSF)',
