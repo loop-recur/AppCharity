@@ -26,7 +26,8 @@ FactoryDefinitions = {
   },
   
   tweet: function(props) {
-    return merge({ created_at: 'Wed Sep 19 15:10:11 +0000 2012',
+    return merge({
+        created_at: 'Wed Sep 19 15:10:11 +0000 2012',
         id: 248438845538983940,
         id_str: '248438845538983937',
         text: '@brantweezy We take non-medical people, too! See the full list here: http://t.co/YQ7SaFFT',

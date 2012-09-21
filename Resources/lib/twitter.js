@@ -256,6 +256,8 @@ Twitter = (function(global) {
       },
       failure: function(data) { 
         callback.call(self, {
+          url: url,
+          params: params,
           success: false,
           error: "Request failed",
           result: data
