@@ -33,7 +33,7 @@ Views.FbNewsRow = function(news) {
     }),
     
     time: UI.createLabel({
-      text: "16 hours ago",
+      text: news.created_time,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     }),
@@ -54,7 +54,7 @@ Views.FbNewsRow = function(news) {
       image: "",
       width: 10,
       height: 10
-    }),
+    })
   }
   
   self.title_view.add(self.title);

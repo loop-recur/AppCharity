@@ -9,7 +9,7 @@ FbGraph = (function() {
 			if (e.result) {
 				if (_debug) {s += "; " + e.result;}
 				var reply = JSON.parse(e.result);
-				var datum=reply.data;
+				var datum=reply.data || reply;
 				if (_debug) { Ti.API.info(typeof reply.data); Ti.API.info(JSON.stringify(datum));}
 				if(!datum) datum = [];
 				cb(datum);
@@ -46,6 +46,10 @@ FbGraph = (function() {
     });
 	}
 	
+	function getPage(cb) {
+		Ti.Facebook.requestWithGraphPath('msf.english/', {}, 'GET', _showRequestResult(cb));
+	}
+	
 	function getEvents(cb) {
     _authenticated(function() {
 			Ti.Facebook.requestWithGraphPath('msf.english/events', {}, 'GET', _showRequestResult(cb));
@@ -70,5 +74,9 @@ FbGraph = (function() {
 		});
 	}
 	
-	return {wallPost : wallPost, getWallPosts: getWallPosts, getNewsFeed: getNewsFeed, getEvents: getEvents}
+	return {wallPost : wallPost,
+	        getWallPosts: getWallPosts,
+	        getNewsFeed: getNewsFeed,
+	        getEvents: getEvents,
+	        getPage: getPage}
 })();

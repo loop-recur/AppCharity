@@ -1,5 +1,6 @@
 Twitter = (function(global) {
   var K = function(){}, isAndroid = Ti.Platform.osname === "android";
+  var global_config = {};
   
   /**
    * Twitter constructor function
@@ -29,15 +30,20 @@ Twitter = (function(global) {
       self = new K();
     }
     
+    var accessTokenKey = Ti.App.Properties.getString('twitterAccessTokenKey'),
+        accessTokenSecret = Ti.App.Properties.getString('twitterAccessTokenSecret');
+           
     if (!options) { options = {}; }
     self.windowTitle = options.windowTitle || "Twitter Authorization";
     self.consumerKey = options.consumerKey;
     self.consumerSecret = options.consumerSecret;
     self.authorizeUrl = "https://api.twitter.com/oauth/authorize";
-    self.accessTokenKey = options.accessTokenKey;
-    self.accessTokenSecret = options.accessTokenSecret;
+    self.accessTokenKey = options.accessTokenKey || accessTokenKey;
+    self.accessTokenSecret = options.accessTokenSecret || accessTokenSecret;
     self.authorized = false;
     self.listeners = {};
+    
+    log2("SELF", self)
     
     if (self.accessTokenKey && self.accessTokenSecret) {
       self.authorized = true;
@@ -48,6 +54,10 @@ Twitter = (function(global) {
     
     return self;
   };
+  
+  Twitter.setup = function(cfg) {
+    global_config = cfg;
+  }
   
   K.prototype = Twitter.prototype;
   
@@ -145,6 +155,11 @@ Twitter = (function(global) {
               accessTokenSecret: returnedParams.oauth_token_secret
             });
             
+            
+            Ti.App.Properties.setString('twitterAccessTokenKey', returnedParams.oauth_token);
+            Ti.App.Properties.setString('twitterAccessTokenSecret', returnedParams.oauth_token_secret);
+            self.authorized = true;
+            
             if (isAndroid) { // we have to wait until now to close the modal window on Android: http://developer.appcelerator.com/question/91261/android-probelm-with-httpclient
               webViewWindow.close();
             }
@@ -220,17 +235,87 @@ Twitter = (function(global) {
       xhr.open("GET", url);
     	xhr.send();
     }
-    
-    var parseTweets = function(resp) {
-      log2('resp' ,resp);
-    	r;
-    };
 
   	request(url, function(json){
-  	  var tweets = eval('(' + this.responseText + ')');
+  	  var tweets = eval('(' + this.responseText + ')'); // JSON.parse failed??
   	  callback(tweets);
   	});
   }
+  
+  /*
+   * Twitter.tweet Singleton method that delegates to client based on global config.  Configure global in .setup call
+   * We added this it was annoying to have to instantiate twitter all over the place and it was hard to spec.
+   */  
+  Twitter.tweet = function() {
+    var client = Twitter(global_config);
+    return client.tweet.apply(client, arguments);
+  }
+  
+  /*
+   * Tweet added by L/R.  Does a status update with just the text.  Authorizes first
+   * 
+   * @param {String} Tweet so should be under 140 or whatever it is
+   * @param {Function} get e.success passed to it to check if you succeeded or not.
+   */
+  Twitter.prototype.tweet = function(status, cb) {
+    var self = this;
+    self.authRequest(function(){ self.post("1.1/statuses/update.json", {status: status}, cb); }, cb);
+  }
+  
+  /*
+   * authRequest added by L/R.  Does a status update with just the text.  Authorizes first
+   * 
+   * @param {Function} Function to auth beforehand
+   * @param {Function} call the original callback if it fails
+   */
+  Twitter.prototype.authRequest = function(requestFun, callback) {
+    var self = this;
+    if(self.authorized) {
+      requestFun();
+    } else {
+      self.addEventListener('login', function(e) {
+        if(e.success) {
+          requestFun();
+        } else {
+          callback({success: false});
+        }
+      })
+      self.authorize();
+    }
+  }
+  
+  /*
+   * Make an authenticated Twitter API request.
+   * 
+   * @param {String} path the Twitter API path without leading forward slash. For example: `1/statuses/home_timeline.json`
+   * @param {Object} params  the parameters to send along with the API call
+   * @param {String} [httpVerb="GET"] the HTTP verb to use
+   * @param {Function} callback
+   */
+  Twitter.prototype.post = function(path, params, callback) {
+    var self = this, oauth = this.oauthClient, url = "https://api.twitter.com/" + path;
+    
+    log2("Posting to", path);
+    log2("with", params);
+    
+    oauth.post(path, params, function(data) {
+        callback.call(self, {
+          success: true,
+          error: false,
+          result: data
+        });
+      },
+      function(data) { 
+        callback.call(self, {
+          url: url,
+          params: params,
+          success: false,
+          error: "Request failed",
+          result: data
+        });
+      }
+    );
+  };
   
   /*
    * Make an authenticated Twitter API request.
@@ -256,6 +341,8 @@ Twitter = (function(global) {
       },
       failure: function(data) { 
         callback.call(self, {
+          url: url,
+          params: params,
           success: false,
           error: "Request failed",
           result: data

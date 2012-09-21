@@ -3,5 +3,7 @@ Windows.About = function() {
     win: UI.createWindow()
   }
   
+  Controllers.About(self);
+  
   return self;
 }
