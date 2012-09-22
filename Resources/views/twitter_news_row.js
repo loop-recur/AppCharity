@@ -1,7 +1,7 @@
 Views.TwitterNewsRow = function(news) {
   var self = {
     row: UI.createTableViewRow({
-      created: Date.parse(news.created_at),
+      created: new Date(news.created_at),
       news: news,
       kind: "twitter"
     }),
@@ -63,6 +63,6 @@ Views.TwitterNewsRow = function(news) {
   self.content_view.add(self.text);
   self.content_view.add(self.tweet_button);
   self.row.add(self.content_view);
-
+  
   return self;
 }
