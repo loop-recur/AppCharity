@@ -95,6 +95,6 @@ Views.TwitterNewsRow = function(news) {
 
   self.row.add(self.photo);
   self.row.add(self.content_view);
-
+  
   return self;
 }

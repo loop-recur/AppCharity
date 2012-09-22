@@ -1,7 +1,7 @@
 Views.FbNewsRow = function(news) {
   var self = {
     row: UI.createTableViewRow({
-      created: Date.parse(news.created_time),
+      created: new Date(news.created_time),
       news: news,
       kind: "fb"
     }),

@@ -2,7 +2,7 @@ Controllers.About = function(view) {
   
   var fillContent = function(page) {
     PropertyCache.set('fb_page', page);
-    if(view.detail){ view.remove(view.detail); }
+    if(view.detail){ view.win.remove(view.detail); }
     view.detail = Views.AboutDetail(page);
     view.win.add(view.detail.view);
   }
