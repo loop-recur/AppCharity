@@ -7,7 +7,10 @@ Windows.News = function() {
     
     donate_banner: Views.TopBanner().view,
 
-    table: UI.createTableView()
+    table: UI.createTableView({
+      backgroundImage: '/images/backgrounds/main_bg.png',
+      backgroundRepeat: true
+    })
   }
   
   self.win.add(self.donate_banner);	 
