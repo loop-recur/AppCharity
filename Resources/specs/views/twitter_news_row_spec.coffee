@@ -14,5 +14,5 @@ describe("Views/TwitterNewsRow", () ->
   
   it('adds the picture icon', () ->
     expect(view_proxy.photo.image).toEqual(tweet.user.profile_image_url);
-  )    
+  )
 )

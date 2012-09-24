@@ -48,9 +48,7 @@ Views.TwitterNewsRow = function(news) {
       height: Ti.UI.SIZE
     }),
     
-    tweet_button: UI.createButton({
-      title: "tweet"
-    })
+    twitter_actions: Views.TwitterActions(news)
   }
 
   self.title_view.add(self.title);
@@ -61,7 +59,7 @@ Views.TwitterNewsRow = function(news) {
 
   self.content_view.add(self.title_view);
   self.content_view.add(self.text);
-  self.content_view.add(self.tweet_button);
+  self.content_view.add(self.twitter_actions.view);
   self.row.add(self.content_view);
   
   return self;

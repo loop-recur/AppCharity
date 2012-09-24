@@ -217,6 +217,22 @@ Twitter = (function(global) {
   };
   
   /*
+   * Get client timeline added by L/R
+   * 
+   * Returns instantiated twitter client for making calls with.
+   */
+  _getClient = function() {
+    var accessTokenKey = Ti.App.Properties.getString('twitterAccessTokenKey'),
+           accessTokenSecret = Ti.App.Properties.getString('twitterAccessTokenSecret');
+    
+    return Twitter({consumerKey: global_config.consumerKey,
+             consumerSecret: global_config.consumerSecret,
+             accessTokenKey:accessTokenKey,
+             accessTokenSecret:accessTokenSecret
+            });
+  }
+  
+  /*
    * Hacky timeline added by L/R since we didn't want it to be an auth request
    * 
    * @param {Object} screen_name, timeout, limit - all optional except screen_name
@@ -243,31 +259,34 @@ Twitter = (function(global) {
   }
   
   /*
-   * Twitter.tweet Singleton method that delegates to client based on global config.  Configure global in .setup call
-   * We added this it was annoying to have to instantiate twitter all over the place and it was hard to spec.
-   */  
-  // Twitter.tweet = function() {
-  //   // var client = Twitter(global_config);
-  // 
-  // }
-  
-  /*
-   * Favorite added by L/R.  Does a status update with just the text.  Authorizes first
+   * Favorite added by L/R.  Favorites a tweet.  Pass in tweet.id_str for it to work correctly.  Authorizes first
    * 
+   * @param {String} Tweet id_str property to reply to
    * @param {String} Tweet so should be under 140 or whatever it is
    * @param {Function} get e.success passed to it to check if you succeeded or not.
    */
-  Twitter.favorite = function(id, cb) {
-    var accessTokenKey = Ti.App.Properties.getString('twitterAccessTokenKey'),
-           accessTokenSecret = Ti.App.Properties.getString('twitterAccessTokenSecret');
-    
-    var client = Twitter({consumerKey: global_config.consumerKey,
-             consumerSecret: global_config.consumerSecret,
-             accessTokenKey:accessTokenKey,
-             accessTokenSecret:accessTokenSecret
-            });
-            
-    client.authRequest(function(){ this.request("1.1/favorites/create.json", {id: id}, "POST", cb); }, cb);
+  Twitter.reply = function(id, status, cb) {
+    _getClient().authRequest(function(){ this.request("1.1/statuses/update.json", {status: status, in_reply_to_status_id: id}, "POST", cb); }, cb);
+  }
+  
+  /*
+   * Favorite added by L/R.  Favorites a tweet.  Authorizes first
+   * 
+   * @param {String} Tweet id_str property of tweet to favorite
+   * @param {Function} get e.success passed to it to check if you succeeded or not.
+   */
+  Twitter.favorite = function(id, cb) {        
+    _getClient().authRequest(function(){ this.request("1.1/favorites/create/"+id+".json", {id: id}, "POST", cb); }, cb);
+  }
+
+  /*
+   * Retweet added by L/R.  Retweets. Authorizes first
+   * 
+   * @param {String} Tweet id_str property to retweet
+   * @param {Function} get e.success passed to it to check if you succeeded or not.
+   */
+  Twitter.retweet = function(id, cb) {
+    _getClient().authRequest(function(){ this.request("1.1/statuses/retweet/"+id+".json", {id: id}, "POST", cb); }, cb);
   }
   
   /*
@@ -277,16 +296,7 @@ Twitter = (function(global) {
    * @param {Function} get e.success passed to it to check if you succeeded or not.
    */
   Twitter.tweet = function(status, cb) {
-    var accessTokenKey = Ti.App.Properties.getString('twitterAccessTokenKey'),
-           accessTokenSecret = Ti.App.Properties.getString('twitterAccessTokenSecret');
-    
-    var client = Twitter({consumerKey: global_config.consumerKey,
-             consumerSecret: global_config.consumerSecret,
-             accessTokenKey:accessTokenKey,
-             accessTokenSecret:accessTokenSecret
-            });
-            
-    client.authRequest(function(){ this.request("1.1/statuses/update.json", {status: status}, "POST", cb); }, cb);
+    _getClient().authRequest(function(){ this.request("1.1/statuses/update.json", {status: status}, "POST", cb); }, cb);
   }
   
   /*
