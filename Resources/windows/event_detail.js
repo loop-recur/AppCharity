@@ -52,8 +52,6 @@ Windows.EventDetail = function(event) {
       height: Ti.UI.SIZE
     }))
   };
-
-  }
   
   self.content_view.add(self.title);
   self.content_view.add(self.time);
@@ -69,4 +67,4 @@ Windows.EventDetail = function(event) {
   Controller.EventDetail(self);
 
   return self;
-}
+};
