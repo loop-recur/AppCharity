@@ -4,25 +4,25 @@ Windows.Application = (function() {
 
         events: UI.createTab({
           title: 'Events',
-          icon:'/images/nav_icons/home.png',
+          icon:'/images/icons/tab_cal.png',
           window: Windows.Events().win
         }),
 
         news: UI.createTab({
           title: 'News',
-          icon:'/images/nav_icons/stores.png',
+          icon:'/images/icons/tab_newsfeed.png',
           window: Windows.News().win
         }),
   
         photos: UI.createTab({
           title: 'Photos',
-          icon:'/images/nav_icons/account.png',
+          icon:'/images/icons/tab_photo.png',
           window: UI.createWindow()
         }),
         
         about: UI.createTab({
           title: 'About Us',
-          icon:'/images/nav_icons/account.png',
+          icon:'/images/icons/tab_about.png',
           window: Windows.About().win
         }),
 

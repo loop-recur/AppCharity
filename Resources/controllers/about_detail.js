@@ -1,7 +1,7 @@
 Controllers.AboutDetail = function(view, page) {
   
   var tweet = function() {
-    Twitter.tweet("I hate testing twitter apps with my real account", log);
+    Twitter.tweet("Okay, think we're good", log);
   }
   
   var fb_share = function() {
@@ -11,4 +11,3 @@ Controllers.AboutDetail = function(view, page) {
   view.tweet_button.addEventListener('click', tweet);
   view.fb_button.addEventListener('click', fb_share);
 }
-

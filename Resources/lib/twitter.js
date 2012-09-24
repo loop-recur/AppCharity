@@ -217,6 +217,22 @@ Twitter = (function(global) {
   };
   
   /*
+   * Get client timeline added by L/R
+   * 
+   * Returns instantiated twitter client for making calls with.
+   */
+  _getClient = function() {
+    var accessTokenKey = Ti.App.Properties.getString('twitterAccessTokenKey'),
+           accessTokenSecret = Ti.App.Properties.getString('twitterAccessTokenSecret');
+    
+    return Twitter({consumerKey: global_config.consumerKey,
+             consumerSecret: global_config.consumerSecret,
+             accessTokenKey:accessTokenKey,
+             accessTokenSecret:accessTokenSecret
+            });
+  }
+  
+  /*
    * Hacky timeline added by L/R since we didn't want it to be an auth request
    * 
    * @param {Object} screen_name, timeout, limit - all optional except screen_name
@@ -243,12 +259,34 @@ Twitter = (function(global) {
   }
   
   /*
-   * Twitter.tweet Singleton method that delegates to client based on global config.  Configure global in .setup call
-   * We added this it was annoying to have to instantiate twitter all over the place and it was hard to spec.
-   */  
-  Twitter.tweet = function() {
-    var client = Twitter(global_config);
-    return client.tweet.apply(client, arguments);
+   * Favorite added by L/R.  Favorites a tweet.  Pass in tweet.id_str for it to work correctly.  Authorizes first
+   * 
+   * @param {String} Tweet id_str property to reply to
+   * @param {String} Tweet so should be under 140 or whatever it is
+   * @param {Function} get e.success passed to it to check if you succeeded or not.
+   */
+  Twitter.reply = function(id, status, cb) {
+    _getClient().authRequest(function(){ this.request("1.1/statuses/update.json", {status: status, in_reply_to_status_id: id}, "POST", cb); }, cb);
+  }
+  
+  /*
+   * Favorite added by L/R.  Favorites a tweet.  Authorizes first
+   * 
+   * @param {String} Tweet id_str property of tweet to favorite
+   * @param {Function} get e.success passed to it to check if you succeeded or not.
+   */
+  Twitter.favorite = function(id, cb) {        
+    _getClient().authRequest(function(){ this.request("1.1/favorites/create/"+id+".json", {id: id}, "POST", cb); }, cb);
+  }
+
+  /*
+   * Retweet added by L/R.  Retweets. Authorizes first
+   * 
+   * @param {String} Tweet id_str property to retweet
+   * @param {Function} get e.success passed to it to check if you succeeded or not.
+   */
+  Twitter.retweet = function(id, cb) {
+    _getClient().authRequest(function(){ this.request("1.1/statuses/retweet/"+id+".json", {id: id}, "POST", cb); }, cb);
   }
   
   /*
@@ -257,9 +295,8 @@ Twitter = (function(global) {
    * @param {String} Tweet so should be under 140 or whatever it is
    * @param {Function} get e.success passed to it to check if you succeeded or not.
    */
-  Twitter.prototype.tweet = function(status, cb) {
-    var self = this;
-    self.authRequest(function(){ self.post("1.1/statuses/update.json", {status: status}, cb); }, cb);
+  Twitter.tweet = function(status, cb) {
+    _getClient().authRequest(function(){ this.request("1.1/statuses/update.json", {status: status}, "POST", cb); }, cb);
   }
   
   /*
@@ -269,53 +306,17 @@ Twitter = (function(global) {
    * @param {Function} call the original callback if it fails
    */
   Twitter.prototype.authRequest = function(requestFun, callback) {
-    var self = this;
-    if(self.authorized) {
-      requestFun();
-    } else {
-      self.addEventListener('login', function(e) {
-        if(e.success) {
-          requestFun();
-        } else {
-          callback({success: false});
-        }
-      })
-      self.authorize();
-    }
+    this.addEventListener('login', function(e) {
+       if (e.success) {
+         Ti.App.Properties.setString('twitterAccessTokenKey', e.accessTokenKey);
+         Ti.App.Properties.setString('twitterAccessTokenSecret', e.accessTokenSecret);
+        requestFun.call(this);
+       } else {
+         alert(e.error);
+       }
+     });
+    this.authorize();
   }
-  
-  /*
-   * Make an authenticated Twitter API request.
-   * 
-   * @param {String} path the Twitter API path without leading forward slash. For example: `1/statuses/home_timeline.json`
-   * @param {Object} params  the parameters to send along with the API call
-   * @param {String} [httpVerb="GET"] the HTTP verb to use
-   * @param {Function} callback
-   */
-  Twitter.prototype.post = function(path, params, callback) {
-    var self = this, oauth = this.oauthClient, url = "https://api.twitter.com/" + path;
-    
-    log2("Posting to", path);
-    log2("with", params);
-    
-    oauth.post(path, params, function(data) {
-        callback.call(self, {
-          success: true,
-          error: false,
-          result: data
-        });
-      },
-      function(data) { 
-        callback.call(self, {
-          url: url,
-          params: params,
-          success: false,
-          error: "Request failed",
-          result: data
-        });
-      }
-    );
-  };
   
   /*
    * Make an authenticated Twitter API request.

@@ -21,7 +21,7 @@ Controllers.News = function(view) {
   }
   
   var getNews = function() {
-    FbGraph.getNewsFeed(finishFb);
+    FbGraph.getNewsFeed('msf.english', finishFb);
     Twitter.timeline({screen_name: "MSF_USA"}, finishTwitter);
   }
   
