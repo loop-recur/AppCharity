@@ -5,15 +5,24 @@ Views.TwitterActions = function(tweet) {
     }),
     
     reply_button: UI.createView({
-      title: 'reply'
+      height: 17,
+      width: 26,
+      backgroundImage: '/images/icons/twitter_respond.png',
+      backgroundSelectedImage: '/images/icons/twitter_respond_p.png'
     }),
-    
+
     favorite_button: UI.createView({
-      title: 'favorite'
+      height: 22,
+      width: 21,
+      backgroundImage: '/images/icons/twitter_fav.png',
+      backgroundSelectedImage: '/images/icons/twitter_fav_p.png'
     }),
-    
+
     retweet_button: UI.createView({
-      title: 'retweet'
+      height: 15,
+      width: 26,
+      backgroundImage: '/images/icons/twitter_retweet.png',
+      backgroundSelectedImage: '/images/icons/twitter_retweet_p.png'
     }),
     
     tweet_button: UI.createView({
