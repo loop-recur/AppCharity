@@ -65,7 +65,6 @@ Views.EventRow = function(event) {
   self.cal_icon.add(self.day);
 
   self.row.add(self.cal_icon);
-  self.row.add(self.right_view);
-  
+
   return self;
 }
