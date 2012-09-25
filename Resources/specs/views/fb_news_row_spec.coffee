@@ -9,11 +9,12 @@ describe("Views/FbNewsRow", () ->
   )
     
   it('has a label with the name in it', () ->
-    expect(view_proxy.title.text).toEqual('some name');
+    log(fb_news)
+    expect(view_proxy.title.text).toEqual('some name')
   )
   
   it('adds the picture icon', () ->
-    expect(view_proxy.photo.image).toEqual(fb_news.picture);
+    expect(view_proxy.photo.image).toEqual(fb_news.picture)
   )
     
 )

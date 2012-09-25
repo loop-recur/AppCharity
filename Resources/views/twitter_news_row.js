@@ -49,7 +49,8 @@ Views.TwitterNewsRow = function(news) {
 
     tweet: UI.createLabel(merge(Style.p3, {
       text: news.text,
-      top: 5
+      top: 5,
+      width: Ti.UI.FILL
     })),
     
     twitter_actions: Views.TwitterActions(news)

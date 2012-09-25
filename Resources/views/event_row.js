@@ -1,10 +1,10 @@
 Views.EventRow = function(event) {
-  var self = {    
+  var self = {
     row: UI.createTableViewRow({
       start_time: new Date(event.start_time),
       event: event
     }),
-    
+
     cal_icon: UI.createImageView({
       image: '/images/icons/events_calendar.png',
       height: 41,
@@ -30,32 +30,32 @@ Views.EventRow = function(event) {
       left: 80,
       height: Ti.UI.SIZE
     }),
-    
+
     title: UI.createLabel(merge(Style.h1, {
       text: event.name,
       color: 'blue',
       height: Ti.UI.SIZE
     })),
-    
+
     time: UI.createLabel(merge(Style.p3, {
       text: new Date(event.start_time),
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     })),
-    
+
     location: UI.createLabel(merge(Style.p2, {
       text: event.location,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     })),
-    
+
     description: UI.createLabel(merge(Style.p2, {
       text: event.description,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     }))
-  }
-  
+  };
+
   self.content_view.add(self.title);
   self.content_view.add(self.time);
   self.content_view.add(self.location);
@@ -67,4 +67,4 @@ Views.EventRow = function(event) {
   self.row.add(self.cal_icon);
 
   return self;
-}
+};

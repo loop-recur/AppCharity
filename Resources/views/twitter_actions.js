@@ -6,7 +6,7 @@ Views.TwitterActions = function(tweet) {
       bottom: 5,
       height: Ti.UI.SIZE
     }),
-    
+
     reply: UI.createView({
       height: 17,
       width: 26,
@@ -32,7 +32,7 @@ Views.TwitterActions = function(tweet) {
       backgroundSelectedImage: '/images/icons/twitter_retweet_p.png',
       className: 'twitter_action'
     }),
-    
+
     tweet_button: UI.createView({
       height: 28,
       width: 56,
@@ -41,14 +41,14 @@ Views.TwitterActions = function(tweet) {
       backgroundSelectedImage: '/images/buttons/go_to_twitter_btn_p.png',
       className: 'twitter_action'
     })
-  }
+  };
 
   self.view.add(self.reply);
   self.view.add(self.favorite);
   self.view.add(self.retweet);
-  self.view.add(self.tweet);
+  self.view.add(self.tweet_button);
 
   Controllers.TwitterActions(self, tweet);
 
   return self;
-}
+};
