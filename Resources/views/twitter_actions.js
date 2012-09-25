@@ -1,7 +1,10 @@
 Views.TwitterActions = function(tweet) {
   var self = {
     view: UI.createView({
-      layout: 'horizontal'
+      layout: 'horizontal',
+      top: 5,
+      bottom: 5,
+      height: Ti.UI.SIZE
     }),
     
     reply_button: UI.createView({
@@ -14,6 +17,7 @@ Views.TwitterActions = function(tweet) {
     favorite_button: UI.createView({
       height: 22,
       width: 21,
+      left: 25,
       backgroundImage: '/images/icons/twitter_fav.png',
       backgroundSelectedImage: '/images/icons/twitter_fav_p.png'
     }),
@@ -21,12 +25,17 @@ Views.TwitterActions = function(tweet) {
     retweet_button: UI.createView({
       height: 15,
       width: 26,
+      left: 25,
       backgroundImage: '/images/icons/twitter_retweet.png',
       backgroundSelectedImage: '/images/icons/twitter_retweet_p.png'
     }),
     
     tweet_button: UI.createView({
-      title: 'tweet'
+      height: 28,
+      width: 56,
+      left: 25,
+      backgroundImage: '/images/buttons/go_to_twitter_btn.png',
+      backgroundSelectedImage: '/images/buttons/go_to_twitter_btn_p.png'
     })
   }
 

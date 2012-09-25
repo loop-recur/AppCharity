@@ -1,49 +1,56 @@
 Style = {
 
     h1: {
-      font:{fontFamily: (isAndroid ? 'DroidSans' : 'Helvetica Neue'), fontSize:24, fontWeight:'bold'},
+      font:{fontSize:24, fontWeight:'bold'},
       color:'#444',
-      height:'auto'
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
     },
 
     h2: {
-      font:{fontFamily: (isAndroid ? 'DroidSans' : 'Helvetica Neue'), fontSize:18, fontWeight:'bold'},
+      font:{fontSize:18, fontWeight:'bold'},
       color:'#444',
-      height:'auto'
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
     },
 
     h3: {
-      font:{fontFamily: (isAndroid ? 'DroidSans' : 'Helvetica Neue'), fontSize:14, fontWeight:'bold'},
+      font:{fontSize:14, fontWeight:'bold'},
       color:'#444',
-      height:'auto'
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
     },
 
     p1: {
-      font:{fontFamily: (isAndroid ? 'DroidSans' : 'Helvetica Neue'), fontSize:24, fontWeight:'regular'},
+      font:{fontSize:24, fontWeight:'regular'},
       color:'#444',
-      height:'auto'
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
     },
 
     p2: {
-      font:{fontFamily: (isAndroid ? 'DroidSans' : 'Helvetica Neue'), fontSize:14, fontWeight:'regular'},
+      font:{fontSize:18, fontWeight:'regular'},
       color:'#444',
-      height:'auto'
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
     },
 
     p3: {
-      font:{fontFamily: (isAndroid ? 'DroidSans' : 'Helvetica Neue'), fontSize:12, fontWeight:'regular'},
+      font:{fontSize:14, fontWeight:'regular'},
       color:'#444',
-      height:'auto'
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
     },
 
     subtitle: {
-        font:{fontFamily: (isAndroid ? 'DroidSans' : 'Helvetica Neue'), fontSize:11, fontWeight:'regular'},
+        font:{fontSize:11, fontWeight:'regular'},
         color:'#444',
-        height:'auto'
+        height: Ti.UI.SIZE,
+        width: Ti.UI.SIZE
     },
 
     deal_text: {
-      font:{fontFamily:'Helvetica Neue', fontSize:13, fontWeight:'bold'},
+      font:{fontSize:13, fontWeight:'bold'},
       color:'#197b30',
       shadowColor: '#eaeaea',
       shadowOffset: {x: 2, y: 2}
