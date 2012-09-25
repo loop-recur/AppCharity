@@ -4,6 +4,7 @@ Cloud = require('./commonjs/ti.cloud/2.3.0/ti.cloud');
 
 
 isAndroid = Ti.Platform.osname == 'android';
+isIPad = Ti.Platform.osname == 'ipad';
 isIPhone = Ti.Platform.osname == 'iphone';
 isMobileweb = Ti.Platform.osname == 'mobileweb';
 

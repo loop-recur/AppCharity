@@ -4,37 +4,43 @@ Views.TwitterActions = function(tweet) {
       layout: 'horizontal'
     }),
     
-    reply_button: UI.createView({
+    reply: UI.createView({
       height: 17,
       width: 26,
       backgroundImage: '/images/icons/twitter_respond.png',
-      backgroundSelectedImage: '/images/icons/twitter_respond_p.png'
+      backgroundSelectedImage: '/images/icons/twitter_respond_p.png',
+      className: 'twitter_action'
     }),
 
-    favorite_button: UI.createView({
+    favorite: UI.createView({
       height: 22,
       width: 21,
       backgroundImage: '/images/icons/twitter_fav.png',
-      backgroundSelectedImage: '/images/icons/twitter_fav_p.png'
+      backgroundSelectedImage: '/images/icons/twitter_fav_p.png',
+      className: 'twitter_action'
     }),
 
-    retweet_button: UI.createView({
+    retweet: UI.createView({
       height: 15,
       width: 26,
       backgroundImage: '/images/icons/twitter_retweet.png',
-      backgroundSelectedImage: '/images/icons/twitter_retweet_p.png'
+      backgroundSelectedImage: '/images/icons/twitter_retweet_p.png',
+      className: 'twitter_action'
     }),
     
-    tweet_button: UI.createView({
-      title: 'tweet'
+    tweet: UI.createView({
+      height: 15,
+      width: 26,
+      title: 'tweet',
+      className: 'twitter_action'
     })
   }
 
-  self.view.add(self.reply_button);
-  self.view.add(self.favorite_button);
-  self.view.add(self.retweet_button);
-  self.view.add(self.tweet_button);
-  
+  self.view.add(self.reply);
+  self.view.add(self.favorite);
+  self.view.add(self.retweet);
+  self.view.add(self.tweet);
+
   Controllers.TwitterActions(self, tweet);
 
   return self;
