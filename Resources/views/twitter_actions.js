@@ -33,7 +33,7 @@ Views.TwitterActions = function(tweet) {
       className: 'twitter_action'
     }),
 
-    tweet_button: UI.createView({
+    tweet_button: UI.createButton({
       height: 28,
       width: 56,
       left: 25,
