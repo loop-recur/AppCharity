@@ -5,4 +5,5 @@ module.exports = function(fancyRequire) {
   fancyRequire('about_detail');
   fancyRequire('photo_gallery');
   fancyRequire('twitter_actions');
+  fancyRequire('event_detail');
 }

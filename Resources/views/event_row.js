@@ -5,50 +5,66 @@ Views.EventRow = function(event) {
       event: event
     }),
     
-    date: UI.createLabel({
-      text: new Date(event.start_time),
-      top: 0,
-      left: 5,
-      width: 80,
-      height: 80
+    cal_icon: UI.createImageView({
+      image: '/images/icons/events_calendar.png',
+      height: 41,
+      width: 41,
+      square: true
     }),
-    
-    right_view: UI.createView({
+
+    month: UI.createLabel(merge(Style.h2, {
+      text: 'Oct'
+    })),
+
+    day: UI.createLabel({
+      text: '31',
+      font: {
+        fontFamily: 'Helvetica Neue',
+        fontSize: 32,
+        fontWeight: 'bold'
+      }
+    }),
+
+    content_view: UI.createView({
       layout: 'vertical',
       left: 80,
       height: Ti.UI.SIZE
     }),
     
-    title: UI.createLabel({
+    title: UI.createLabel(merge(Style.h1, {
       text: event.name,
       color: 'blue',
       height: Ti.UI.SIZE
-    }),
+    })),
     
-    time: UI.createLabel({
+    time: UI.createLabel(merge(Style.p3, {
       text: new Date(event.start_time),
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
-    }),
+    })),
     
-    location: UI.createLabel({
+    location: UI.createLabel(merge(Style.p2, {
       text: event.location,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
-    }),
+    })),
     
-    description: UI.createLabel({
+    description: UI.createLabel(merge(Style.p2, {
       text: event.description,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
-    })
+    }))
   }
   
-  self.right_view.add(self.title);
-  self.right_view.add(self.time);
-  self.right_view.add(self.location);
-  self.right_view.add(self.description);
-  self.row.add(self.date);
+  self.content_view.add(self.title);
+  self.content_view.add(self.time);
+  self.content_view.add(self.location);
+  self.content_view.add(self.description);
+
+  self.cal_icon.add(self.month);
+  self.cal_icon.add(self.day);
+
+  self.row.add(self.cal_icon);
   self.row.add(self.right_view);
   
   return self;

@@ -13,7 +13,8 @@ Views.TwitterNewsRow = function(news) {
       top: 0,
       left: 15,
       width: 60,
-      height: 80
+      height: 80,
+      square: true
     }),
     
     content_view: UI.createView({
@@ -27,7 +28,6 @@ Views.TwitterNewsRow = function(news) {
       layout: 'horizontal',
       height: Ti.UI.SIZE
     }),
-
 
     title: UI.createLabel({
       text: news.user.name,
