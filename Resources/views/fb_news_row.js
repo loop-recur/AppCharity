@@ -50,6 +50,7 @@ Views.FbNewsRow = function(news) {
 
     time: UI.createLabel(merge(Style.p3, {
       text: Date(news.created_time).slice(0, 10),
+      color: '#505050',
       left: 0,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
@@ -65,6 +66,7 @@ Views.FbNewsRow = function(news) {
 
     via: UI.createLabel(merge(Style.p3, {
       text: 'via',
+      color: '#505050',
       left: 2,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE

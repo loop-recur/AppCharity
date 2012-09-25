@@ -37,13 +37,13 @@ Views.TwitterNewsRow = function(news) {
 
     screen_name: UI.createLabel(merge(Style.p3, {
       text: "@"+news.user.screen_name,
-      color: '#ccc',
+      color: '#505050',
       left: 0
     })),
 
     date: UI.createLabel(merge(Style.p3, {
       text: news.created_at.slice(4, 10),
-      color: '#ccc',
+      color: '#505050',
       right: 0
     })),
 
