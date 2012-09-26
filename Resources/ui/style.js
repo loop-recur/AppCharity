@@ -1,4 +1,4 @@
-Style = {
+module.exports = {
     h1: {
       font: {fontSize: 24, fontWeight: 'bold'},
       color: '#444',

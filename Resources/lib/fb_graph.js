@@ -1,4 +1,4 @@
-FbGraph = (function() {
+module.exports = (function() {
 	var _debug = 1;
 	var access_token = "AAAEP95zi3bUBABZBI5H29tlvNTQZB8dEhWmUYpiZANGG5xEQcZBal3hgYBtsnKG9tlzaqZBRCZAucNdkg07mLwwZAJjih7umQlCmpD3PCXwSQZDZD";
 			
@@ -19,7 +19,9 @@ FbGraph = (function() {
 	  function getEventsFromEids(data){
 	    var eids = data.data.map(function(d){ return d.eid; }).join(",");
       var path = buildFQLPath(uid, "SELECT eid, name, pic_square, start_time, end_time, pic_big, description, location FROM event WHERE eid IN ("+eids+")");
-			manualRequest(path, compose(cb, '.data'));
+			manualRequest(path, function(r){
+			  cb(r.data);
+			});
   	}
 	  
     _authenticated(function() {
@@ -29,15 +31,19 @@ FbGraph = (function() {
 	}
 	
 	function getEvents(uid, cb) {
-	  manualRequest(uid+"/events", compose(cb, '.data', log2("EVENTS")));
+	  manualRequest(uid+"/events", function(r){
+	    cb(r.data);
+	  });
 	}
 	
 	function getNewsFeed(uid, cb) {
-	  manualRequest(uid+"/feed", compose(cb, '.data', log2("NEWS")));
+	  manualRequest(uid+"/feed", function(r){
+	    cb(r.data);
+	  });
 	}
 	
 	function getPage(uid, cb) {
-	  manualRequest(uid+"/", compose(cb, log2("PAGE")));
+	  manualRequest(uid+"/", cb);
 	}
 	
 	function wallPost(options, callback) {
@@ -52,8 +58,6 @@ FbGraph = (function() {
 		Ti.Facebook.addEventListener('login', function(e) {
 		  Ti.API.info("LOGGED IN CALLBACK");
 		  Ti.API.info(e);
-		  log(e);
-		  log(e.source);
 			fun();
 		});
 	}

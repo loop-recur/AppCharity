@@ -40,9 +40,15 @@ describe("Windows/News", () ->
     expect(Windows.TwitterNewsDetail).toHaveBeenCalledWith(tweet);
   )
   
-  
   it("doesn't open the detail when you try to click a twitter action", () ->
     view_proxy.table.fireEvent('click', {row: view_proxy.table.children[0], source: {className: "twitter_action"}});
     expect(Windows.TwitterNewsDetail).not.toHaveBeenCalledWith(tweet);
+  )
+  
+  it("scales the views for the screen", ()->
+    expect(view_proxy.table.top).toEqual(100)
+    Ti.Platform.displayCaps.platformHeight = 590;
+    view_proxy = Windows.News()
+    expect(view_proxy.table.top).toEqual(100)
   )
 )

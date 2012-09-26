@@ -1,4 +1,8 @@
-Views.EventRow = function(event) {
+var UI = require("/ui/proxies")
+, Style = require('/ui/style')
+, _ = require('/support/underscore');
+
+module.exports = function(event) {
   var self = {
     row: UI.createTableViewRow({
       start_time: new Date(event.start_time),
@@ -15,7 +19,7 @@ Views.EventRow = function(event) {
       square: true
     }),
 
-    month: UI.createLabel(merge(Style.h3, {
+    month: UI.createLabel(_.extend(Style.h3, {
       text: 'Oct',
       top: 2,
       height: Ti.UI.SIZE,
@@ -47,7 +51,7 @@ Views.EventRow = function(event) {
       width: 235
     }),
 
-    title: UI.createLabel(merge(Style.h3, {
+    title: UI.createLabel(_.extend(Style.h3, {
       text: event.name,
       color: 'blue',
       left: 0,
@@ -55,19 +59,19 @@ Views.EventRow = function(event) {
       width: Ti.UI.SIZE
     })),
 
-    time: UI.createLabel(merge(Style.p3, {
+    time: UI.createLabel(_.extend(Style.p3, {
       text: new Date(event.start_time),
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     })),
 
-    location: UI.createLabel(merge(Style.p3, {
+    location: UI.createLabel(_.extend(Style.p3, {
       text: event.location,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     })),
 
-    description: UI.createLabel(merge(Style.p3, {
+    description: UI.createLabel(_.extend(Style.p3, {
       text: event.description,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE

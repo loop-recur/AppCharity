@@ -1,4 +1,6 @@
-Windows.PhotoGallery = function(){
+var Cloud = require('/commonjs/ti.cloud/2.3.0/ti.cloud');
+
+module.exports = function(){
   var self = {
     photo_upload_btn: UI.createButton({title: "Upload a new photo"})
   };

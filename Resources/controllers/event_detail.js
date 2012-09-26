@@ -1,3 +1,3 @@
-Controllers.EventDetail = function(view) {
+module.exports = function(view) {
  
 }

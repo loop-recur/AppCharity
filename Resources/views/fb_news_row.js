@@ -1,4 +1,8 @@
-Views.FbNewsRow = function(news) {
+var UI = require("/ui/proxies")
+, Style = require('/ui/style')
+, _ = require('/support/underscore');
+
+module.exports = function(news) {
   var self = {
     row: UI.createTableViewRow({
       created: new Date(news.created_time),
@@ -33,7 +37,7 @@ Views.FbNewsRow = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    title: UI.createLabel(merge(Style.h3, {
+    title: UI.createLabel(_.extend(Style.h3, {
       text: (news.name ? news.name : news.from.name),
       color: 'blue',
       left: 0,
@@ -48,7 +52,7 @@ Views.FbNewsRow = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    time: UI.createLabel(merge(Style.p3, {
+    time: UI.createLabel(_.extend(Style.p3, {
       text: Date(news.created_time).slice(0, 10),
       color: '#505050',
       left: 0,
@@ -64,7 +68,7 @@ Views.FbNewsRow = function(news) {
       square: true
     }),
 
-    via: UI.createLabel(merge(Style.p3, {
+    via: UI.createLabel(_.extend(Style.p3, {
       text: 'via',
       color: '#505050',
       left: 2,
@@ -80,7 +84,7 @@ Views.FbNewsRow = function(news) {
       square: true
     }),
 
-    description: UI.createLabel(merge(Style.p3, {
+    description: UI.createLabel(_.extend(Style.p3, {
       text: news.description,
       left: 10,
       right: 10,

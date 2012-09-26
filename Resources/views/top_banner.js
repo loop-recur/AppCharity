@@ -1,4 +1,6 @@
-Views.TopBanner = function() {
+UI = require("/ui/proxies");
+
+module.exports = function() {
   var self = {
     view: UI.createView({
       top: 0,

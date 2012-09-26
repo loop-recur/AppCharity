@@ -2,10 +2,17 @@ isIPhone = true;
 isAndroid = false;
 isMobileweb = true;
 
-Cloud = require('../../commonjs/ti.cloud/2.3.0/ti.cloud');
-require('../../initializers/init');
-init('../', true);
-require('../factory_definitions');
+var oldRequire = require;
+require = function(path){
+  console.log('big fancy reequire', path);
+  var ti_path = __dirname.match(/.*\/Resources/)[0];
+  return oldRequire(ti_path+path);
+}
+
+require('/specs/mock_ti').mock();
+
+// require('/initializers/init').init(require);
+require('/specs/factory_definitions');
 
 Factory = function(name, props) {
 	props = (props || {});
@@ -14,9 +21,6 @@ Factory = function(name, props) {
 	return obj;
 }
 Factory.id = 0;
-
-notBlank = id;
-extractText = compose(join(','), filter(notBlank), map(or('.text', '.title')), '.children');
 
 expectThreaded = function(expectation, wait_time) {
 	wait_time = (wait_time || 50);
@@ -29,16 +33,6 @@ expectThreaded = function(expectation, wait_time) {
 	setTimeout(fullExpectation, wait_time);
 	asyncSpecWait();
 }
-
-thread = function(f){
-  f();
-}
-
-// make syncronous for tests
-map_p = defn(function(f, cb, xs) {
-  compose(cb, map(f))(xs);
-});
-
 
 sleep = function(millis) {
 	var date = new Date();

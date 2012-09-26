@@ -1,4 +1,7 @@
-Views.TwitterActions = function(tweet) {
+var UI = require("/ui/proxies")
+, TwitterActionsController = require("/controllers/twitter_actions");
+
+module.exports = function(tweet) {
   var self = {
     view: UI.createView({
       layout: 'horizontal',
@@ -48,7 +51,7 @@ Views.TwitterActions = function(tweet) {
   self.view.add(self.retweet);
   self.view.add(self.tweet_button);
 
-  Controllers.TwitterActions(self, tweet);
+  TwitterActionsController(self, tweet);
 
   return self;
 };

@@ -1,4 +1,9 @@
-Views.AboutDetail = function(page) {
+var UI = require("/ui/proxies")
+, Style = require('/ui/style')
+, _ = require('/support/underscore')
+, AboutDetailController = require("/controllers/about_detail");
+
+module.exports = function(page) {
   var self = {
     view: UI.createScrollView({
       height: Ti.UI.FILL,
@@ -6,7 +11,7 @@ Views.AboutDetail = function(page) {
       layout: 'vertical'
     }),
 
-    title: UI.createLabel(merge(Style.h1, {
+    title: UI.createLabel(_.extend(Style.h1, {
       text: 'About Us',
       top: 20,
       left: 20,
@@ -58,20 +63,20 @@ Views.AboutDetail = function(page) {
       backgroundSelectedImage: '/images/buttons/about_mobile_fb_share_btn_p.png'
     }),
 
-    overview: UI.createLabel(merge(Style.p3, {
+    overview: UI.createLabel(_.extend(Style.p3, {
       left: 20,
       right: 20,
       text: page.company_overview
     })),
 
-    about: UI.createLabel(merge(Style.p3, {
+    about: UI.createLabel(_.extend(Style.p3, {
       top: 20,
       left: 20,
       right: 20,
       text: page.about
     })),
 
-    mission: UI.createLabel(merge(Style.p3, {
+    mission: UI.createLabel(_.extend(Style.p3, {
       top: 20,
       left: 20,
       right: 20,
@@ -91,7 +96,7 @@ Views.AboutDetail = function(page) {
   self.view.add(self.about);
   self.view.add(self.mission);
 
-  Controllers.AboutDetail(self, page);
+  AboutDetailController(self, page);
 
   return self;
 };

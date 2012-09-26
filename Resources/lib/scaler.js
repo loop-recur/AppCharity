@@ -1,4 +1,6 @@
-Scaler = (function() {
+var _ = require("/support/underscore")
+
+module.exports = (function() {
 	var getHeight = function(height) {
 		return height / 480;
 	}
@@ -32,8 +34,8 @@ Scaler = (function() {
 				if(scaleables.heights.indexOf(p) >= 0) {
 					props.square ? props[p] = scaleWidth(props[p]) : props[p] = scaleHeight(props[p]);
 				}
-				if(isObj(props[p])) props[p] = scaleProps(props[p]);
-			} catch(e) { log("error scaling"); log(e);}
+				if(_.isObject(props[p])) props[p] = scaleProps(props[p]);
+			} catch(e) { }
 		}
 		return props;
 	}

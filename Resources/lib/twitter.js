@@ -1,4 +1,6 @@
-Twitter = (function(global) {
+var jsOAuth = require("/lib/jsOAuth-1.3.1");
+
+module.exports = (function(global) {
   var K = function(){}, isAndroid = Ti.Platform.osname === "android";
   var global_config = {};
   
@@ -42,8 +44,6 @@ Twitter = (function(global) {
     self.accessTokenSecret = options.accessTokenSecret || accessTokenSecret;
     self.authorized = false;
     self.listeners = {};
-    
-    log2("SELF", self)
     
     if (self.accessTokenKey && self.accessTokenSecret) {
       self.authorized = true;

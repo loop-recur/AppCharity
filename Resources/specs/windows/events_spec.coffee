@@ -5,10 +5,12 @@ describe("Windows/Events", () ->
   event1 = Factory('fb_event', {start_time: 1221004800})
   event2 = Factory('fb_event', {start_time: 1220630400})
   
+  EventsWindow = require('../../windows/events')
+  
   beforeEach(() ->
     spyOn(FbGraph, 'getEventsOlderThan2Weeks').andCallFake((id, uid, cb) -> cb([event1, event2]))
     spyOn(Windows, "EventDetail").andCallThrough()
-    view_proxy = Windows.Events()
+    view_proxy = EventsWindow()
     view_proxy.win.open()
     view_proxy.win.fireEvent('focus')
   )

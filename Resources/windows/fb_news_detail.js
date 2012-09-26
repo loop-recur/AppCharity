@@ -1,4 +1,4 @@
-Windows.FbNewsDetail = function(news) {
+module.exports = function(news) {
   var self = {
     win: UI.createWindow()
   }

@@ -1,4 +1,8 @@
-Windows.Events = function() {
+var UI = require("/ui/proxies")
+, EventsController = require("/controllers/events")
+, TopBanner = require("/views/top_banner");
+
+module.exports = function() {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
@@ -6,7 +10,7 @@ Windows.Events = function() {
       backgroundRepeat: true
     }),
 
-    donate_banner: Views.TopBanner().view,
+    donate_banner: TopBanner().view,
 
     top_shadow: UI.createView({
       top: 100,
@@ -42,7 +46,7 @@ Windows.Events = function() {
   self.win.add(self.bottom_shadow);
   self.win.add(self.table);
 
-  Controllers.Events(self);
+  EventsController(self);
 
   return self;
 };

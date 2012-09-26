@@ -1,4 +1,7 @@
-Windows.About = function() {
+var UI = require("/ui/proxies")
+, AboutController = require("/controllers/about");
+
+module.exports = function() {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
@@ -33,7 +36,7 @@ Windows.About = function() {
   self.win.add(self.side_shadow);
   self.win.add(self.bottom_shadow);
 
-  Controllers.About(self);
+  AboutController(self);
 
   return self;
 };

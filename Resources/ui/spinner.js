@@ -1,4 +1,6 @@
-Spinner = function(options) {
+var UI = require("/ui/proxies");
+
+module.exports = function(options) {
     var loadingView = Ti.UI.createView({
           width:Ti.UI.SIZE,
           height: Ti.UI.SIZE,

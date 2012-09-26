@@ -1,8 +1,5 @@
-Ti.Platform.openURL_ = (isMobileweb ? function(s){location.href = s; return s;} : function(s){ Ti.Platform.openURL(s); return s;})
-
-fireEvent_ = defn(function(name, obj) {
-	obj.fireEvent(name, {});
-});
+var UI = {}
+, Scaler = require('/lib/scaler');
 
 UI.createActivityIndicator = function(props){
 	var ind = Ti.UI.createActivityIndicator(props);
@@ -97,23 +94,14 @@ UI.createTableViewRow = function(props) {
 }
 
 UI.createTableViewSection = function(props) {
-  var section = Ti.UI.createTableViewSection(Scaler(props));
-  section = makeFirstClassAndComposable(section, 'add', 'remove');
-  
-  section.set_ = function(rs) {
-    map(section.remove_, (section.rows || []));
-    map(section.add_, rs);
-    return rs;
-  }
-  return section;
+  return Ti.UI.createTableViewSection(Scaler(props));
 }
 
 UI.createTextField = function(props) {
   if(props.softKeyboardOnFocus) {
     props.softKeyboardOnFocus = (isAndroid ? Ti.UI.Android[props.softKeyboardOnFocus] : 0);
   }
-	var text = Ti.UI.createTextField(Scaler(props));
-	return makeFirstClassAndComposable(text, 'focus', 'blur');
+	return Ti.UI.createTextField(Scaler(props));
 }
 
 UI.createToolbar = function(props) {
@@ -123,8 +111,7 @@ UI.createToolbar = function(props) {
 UI.createView = function(props) {	
 	var view = Ti.UI.createView(Scaler(props));
 	makeScalerFun(view, 'animate');
-	addOnceListener(view);
-	return makeFirstClassAndComposable(view, 'add', 'fireEvent');
+  return view;
 }
 
 UI.createWebView = function(props) {	
@@ -134,7 +121,7 @@ UI.createWebView = function(props) {
 UI.createWindow = function(props) {
 	var win = Ti.UI.createWindow(Scaler(props));
 	makeScalerFun(win, 'animate');
-	return makeFirstClassAndComposable(win, 'open', 'close', 'add', 'remove');
+	return win;
 }
 
 function addOnceListener(v) {
@@ -167,7 +154,9 @@ var overWriteFun = function(obj, name) {
 }
 
 function makeFirstClassAndComposable(/* obj, names */) {
-	var args = argsToList(arguments), obj = first(args), names = rest(args);
-	reduce(overWriteFun, obj, names);
+	var args = Array.prototype.slice.call(arguments), obj = args[0], names = args.slice(1,args.length);
+	names.reduce(overWriteFun, obj);
 	return obj;
 }
+
+module.exports = UI;

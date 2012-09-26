@@ -9,7 +9,6 @@ describe("Views/FbNewsRow", () ->
   )
     
   it('has a label with the name in it', () ->
-    log(fb_news)
     expect(view_proxy.title.text).toEqual('some name')
   )
   

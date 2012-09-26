@@ -1,4 +1,9 @@
-Windows.EventDetail = function(event) {
+var UI = require("/ui/proxies")
+, Style = require('/ui/style')
+, EventDetailController = require("/controllers/event_detail")
+, _ = require('/support/underscore');
+
+module.exports = function(event) {
   var self = {
     win: UI.createWindow(),
 
@@ -9,7 +14,7 @@ Windows.EventDetail = function(event) {
       square: true
     }),
 
-    month: UI.createLabel(merge(Style.h2, {
+    month: UI.createLabel(_.extend(Style.h2, {
       text: 'Oct'
     })),
 
@@ -28,25 +33,25 @@ Windows.EventDetail = function(event) {
       height: Ti.UI.SIZE
     }),
     
-    title: UI.createLabel(merge(Style.h1, {
+    title: UI.createLabel(_.extend(Style.h1, {
       text: event.name,
       color: 'blue',
       height: Ti.UI.SIZE
     })),
     
-    time: UI.createLabel(merge(Style.p3, {
+    time: UI.createLabel(_.extend(Style.p3, {
       text: new Date(event.start_time),
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     })),
     
-    location: UI.createLabel(merge(Style.p2, {
+    location: UI.createLabel(_.extend(Style.p2, {
       text: event.location,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     })),
     
-    description: UI.createLabel(merge(Style.p2, {
+    description: UI.createLabel(_.extend(Style.p2, {
       text: event.description,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
@@ -64,7 +69,7 @@ Windows.EventDetail = function(event) {
   self.win.add(self.cal_icon);
   self.win.add(self.right_view);
   
-  Controller.EventDetail(self);
+  EventDetailController(self);
 
   return self;
 };

@@ -1,4 +1,8 @@
-Views.TwitterNewsRow = function(news) {
+var UI = require("/ui/proxies")
+, Style = require('/ui/style')
+, _ = require('/support/underscore');
+
+module.exports = function(news) {
   var self = {
     row: UI.createTableViewRow({
       created: Date.parse(news.created_at),
@@ -30,24 +34,24 @@ Views.TwitterNewsRow = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    title: UI.createLabel(merge(Style.h2, {
+    title: UI.createLabel(_.extend(Style.h2, {
       text: news.user.name,
       left: 0
     })),
 
-    screen_name: UI.createLabel(merge(Style.p3, {
+    screen_name: UI.createLabel(_.extend(Style.p3, {
       text: "@"+news.user.screen_name,
       color: '#505050',
       left: 0
     })),
 
-    date: UI.createLabel(merge(Style.p3, {
+    date: UI.createLabel(_.extend(Style.p3, {
       text: news.created_at.slice(4, 10),
       color: '#505050',
       right: 0
     })),
 
-    tweet: UI.createLabel(merge(Style.p3, {
+    tweet: UI.createLabel(_.extend(Style.p3, {
       text: news.text,
       top: 5,
       width: Ti.UI.FILL

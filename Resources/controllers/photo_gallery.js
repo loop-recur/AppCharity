@@ -1,3 +1,3 @@
-Controllers.PhotoGallery = function(view_proxy){
+module.exports = function(view_proxy){
   
 }
