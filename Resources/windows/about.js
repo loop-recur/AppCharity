@@ -6,9 +6,7 @@ Windows.About = function() {
       backgroundRepeat: true
     }),
 
-    shadow: UI.BorderShadows({
-      top: 0,
-    }).view
+    shadow: UI.BorderShadows().view
   };
 
   self.win.add(self.shadow);
