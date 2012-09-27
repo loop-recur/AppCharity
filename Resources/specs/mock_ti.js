@@ -200,7 +200,7 @@ module.exports.mock = function() {
 		Platform: {osname: 'iphone', displayCaps: {platformHeight: 480, platformWidth: 320}, openURL: stub},
 		include: function(path) { require('../'+path.replace(/\.js$/, "")); },
 		API: {info: function(i){ console.log(i); }},
-		Media: {createSound:stub({play: stub}), showCamera:BaseViewStub()},
+		Media: {createSound:stub({play: stub}), showCamera:BaseViewStub(), openPhotoGallery:BaseViewStub()},
 		Utils: {md5HexDigest: stub},
 		Filesystem: {getFile: stub({exists:stub, read: stub})},
 		UI: {
