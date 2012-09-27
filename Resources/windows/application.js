@@ -17,7 +17,7 @@ Windows.Application = (function() {
         photos: UI.createTab({
           title: 'Photos',
           icon:'/images/icons/tab_photo.png',
-          window: UI.createWindow()
+          window: Windows.PhotoGallery().win
         }),
         
         about: UI.createTab({
