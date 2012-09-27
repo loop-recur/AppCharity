@@ -24,7 +24,7 @@ Views.TopBanner = function() {
   self.view.add(self.logo);
   self.view.add(self.donate_button);
   
-  // Controllers.TopBanner(self);
+  Controllers.TopBanner(self);
 
   return self;
 }; 
