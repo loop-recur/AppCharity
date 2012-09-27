@@ -221,7 +221,7 @@ Twitter = (function(global) {
    * 
    * Returns instantiated twitter client for making calls with.
    */
-  _getClient = function() {
+  var _getClient = function() {
     var accessTokenKey = Ti.App.Properties.getString('twitterAccessTokenKey'),
            accessTokenSecret = Ti.App.Properties.getString('twitterAccessTokenSecret');
     
@@ -275,8 +275,8 @@ Twitter = (function(global) {
    * @param {String} Tweet id_str property of tweet to favorite
    * @param {Function} get e.success passed to it to check if you succeeded or not.
    */
-  Twitter.favorite = function(id, cb) {        
-    _getClient().authRequest(function(){ this.request("1.1/favorites/create/"+id+".json", {id: id}, "POST", cb); }, cb);
+  Twitter.favorite = function(id, cb) {
+    _getClient().authRequest(function(){ this.request("1/favorites/create/"+id+".json", {id: id}, "POST", cb); }, cb);
   }
 
   /*
@@ -286,7 +286,7 @@ Twitter = (function(global) {
    * @param {Function} get e.success passed to it to check if you succeeded or not.
    */
   Twitter.retweet = function(id, cb) {
-    _getClient().authRequest(function(){ this.request("1.1/statuses/retweet/"+id+".json", {id: id}, "POST", cb); }, cb);
+    _getClient().authRequest(function(){ this.request("1/statuses/retweet/"+id+".json", {id: id}, "POST", cb); }, cb);
   }
   
   /*

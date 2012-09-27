@@ -1,0 +1,3 @@
+Controllers.EventDetail = function(view) {
+ 
+}

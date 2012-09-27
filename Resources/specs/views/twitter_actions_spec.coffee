@@ -13,13 +13,13 @@ describe("Views/TwitterActions", () ->
   )
   
   it('retweets the tweet', () ->
-    view_proxy.retweet_button.fireEvent('click')
+    view_proxy.retweet.fireEvent('click')
     expect(Twitter.retweet).toHaveBeenCalledWith(tweet.id_str, jasmine.any(Function));
     expect(UI.createAlertMessage).toHaveBeenCalledWith("You've successfully retweeted!");
   )
   
   it('favorites the tweet', () ->
-    view_proxy.favorite_button.fireEvent('click')
+    view_proxy.favorite.fireEvent('click')
     expect(Twitter.favorite).toHaveBeenCalledWith(tweet.id_str, jasmine.any(Function));
     expect(UI.createAlertMessage).toHaveBeenCalledWith("You've successfully favorited!");
   )

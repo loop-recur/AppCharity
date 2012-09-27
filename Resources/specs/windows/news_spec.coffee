@@ -39,4 +39,10 @@ describe("Windows/News", () ->
     view_proxy.table.fireEvent('click', {row: view_proxy.table.children[0]});
     expect(Windows.TwitterNewsDetail).toHaveBeenCalledWith(tweet);
   )
+  
+  
+  it("doesn't open the detail when you try to click a twitter action", () ->
+    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[0], source: {className: "twitter_action"}});
+    expect(Windows.TwitterNewsDetail).not.toHaveBeenCalledWith(tweet);
+  )
 )

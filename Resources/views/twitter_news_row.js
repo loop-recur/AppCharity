@@ -11,55 +11,57 @@ Views.TwitterNewsRow = function(news) {
     photo: UI.createImageView({
       image: news.user.profile_image_url,
       top: 0,
-      left: 15,
+      left: 10,
       width: 60,
-      height: 80
+      height: 80,
+      square: true
     }),
     
     content_view: UI.createView({
       layout: 'vertical',
       top: 10,
       left: 10,
-      height: Ti.UI.SIZE
+      right: 10,
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
     }),
 
     title_view: UI.createView({
-      layout: 'horizontal',
       height: Ti.UI.SIZE
     }),
 
-
-    title: UI.createLabel({
+    title: UI.createLabel(merge(Style.h2, {
       text: news.user.name,
-      height: Ti.UI.SIZE
-    }),
+      left: 0
+    })),
 
-    screen_name: UI.createLabel({
+    screen_name: UI.createLabel(merge(Style.p3, {
       text: "@"+news.user.screen_name,
-      color: '#ccc',
-      height: Ti.UI.SIZE
-    }),
+      color: '#505050',
+      left: 0
+    })),
 
-    date: UI.createLabel({
-      text: news.created_at,
-      height: Ti.UI.SIZE
-    }),
+    date: UI.createLabel(merge(Style.p3, {
+      text: news.created_at.slice(4, 10),
+      color: '#505050',
+      right: 0
+    })),
 
-    text: UI.createLabel({
+    tweet: UI.createLabel(merge(Style.p3, {
       text: news.text,
-      width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    }),
+      top: 5,
+      width: Ti.UI.FILL
+    })),
     
     twitter_actions: Views.TwitterActions(news)
   }
 
-  self.title_view.add(self.title);
+  self.title_view.add(self.screen_name);
   self.title_view.add(self.date);
 
+  self.content_view.add(self.title);
   self.content_view.add(self.title_view);
-  self.content_view.add(self.screen_name);
-  self.content_view.add(self.text);
+  self.content_view.add(self.tweet);
   self.content_view.add(self.twitter_actions.view);
 
   self.row.add(self.photo);

@@ -1,55 +1,89 @@
 Views.EventRow = function(event) {
-  var self = {    
+  var self = {
     row: UI.createTableViewRow({
       start_time: new Date(event.start_time),
+      layout: 'horizontal',
       event: event
     }),
-    
-    date: UI.createLabel({
-      text: new Date(event.start_time),
-      top: 0,
-      left: 5,
-      width: 80,
-      height: 80
+
+    cal_icon: UI.createImageView({
+      image: '/images/icons/events_calendar.png',
+      height: 60,
+      width: 50,
+      left: 10,
+      top: 15,
+      square: true
     }),
-    
-    right_view: UI.createView({
+
+    month: UI.createLabel(merge(Style.h3, {
+      text: 'Oct',
+      top: 2,
+      height: Ti.UI.SIZE,
+      font: {
+        fontFamily: 'Helvetica Neue',
+        fontSize: 6,
+        fontWeight: 'bold'
+      }
+    })),
+
+    day: UI.createLabel({
+      text: '31',
+      top: 13,
+      height: Ti.UI.SIZE,
+      font: {
+        fontFamily: 'Helvetica Neue',
+        fontSize: 30,
+        fontWeight: 'bold'
+      }
+    }),
+
+    content_view: UI.createView({
       layout: 'vertical',
-      left: 80,
-      height: Ti.UI.SIZE
+      left: 10,
+      right: 10,
+      top: 15,
+      bottom: 10,
+      height: Ti.UI.SIZE,
+      width: 235
     }),
-    
-    title: UI.createLabel({
+
+    title: UI.createLabel(merge(Style.h3, {
       text: event.name,
       color: 'blue',
-      height: Ti.UI.SIZE
-    }),
-    
-    time: UI.createLabel({
+      left: 0,
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
+    })),
+
+    time: UI.createLabel(merge(Style.p3, {
       text: new Date(event.start_time),
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
-    }),
-    
-    location: UI.createLabel({
+    })),
+
+    location: UI.createLabel(merge(Style.p3, {
       text: event.location,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
-    }),
-    
-    description: UI.createLabel({
+    })),
+
+    description: UI.createLabel(merge(Style.p3, {
       text: event.description,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
-    })
-  }
-  
-  self.right_view.add(self.title);
-  self.right_view.add(self.time);
-  self.right_view.add(self.location);
-  self.right_view.add(self.description);
-  self.row.add(self.date);
-  self.row.add(self.right_view);
-  
+    }))
+  };
+
+  self.content_view.add(self.title);
+  // self.content_view.add(self.time);
+  // self.content_view.add(self.location);
+  self.content_view.add(self.description);
+
+  self.cal_icon.add(self.month);
+  self.cal_icon.add(self.day);
+
+  self.row.add(self.cal_icon);
+  self.row.add(self.content_view);
+
   return self;
-}
+};
