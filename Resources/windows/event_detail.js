@@ -12,7 +12,7 @@ Windows.EventDetail = function(event) {
       top: 100
     }).view,
 
-    view: UI.createView({
+    view: UI.createScrollView({
       top: 100,
       height: Ti.UI.FILL,
       backgroundColor: 'transparent',
@@ -50,7 +50,7 @@ Windows.EventDetail = function(event) {
       }
     }),
 
-    content_view: UI.createScrollView({
+    content_view: UI.createView({
       layout: 'vertical',
       left: 10,
       right: 10,
