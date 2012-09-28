@@ -22,10 +22,8 @@ FbGraph = (function() {
 			manualRequest(path, compose(cb, '.data'));
   	}
 	  
-    _authenticated(function() {
-      var path = buildFQLPath(uid, "SELECT eid FROM event_member where uid="+numeric_id+" and start_time > 0");
-      manualRequest(path, getEventsFromEids);
-    });
+    var path = buildFQLPath(uid, "SELECT eid FROM event_member where uid="+numeric_id+" and start_time > 0");
+    manualRequest(path, getEventsFromEids);
 	}
 	
 	function getEvents(uid, cb) {

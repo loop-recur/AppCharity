@@ -15,7 +15,8 @@ describe("Photo Gallery", () ->
     beforeEach(() ->
       spyOn(Ti.Media, 'showCamera').andCallFake((camera_options) -> camera_options.success({media: photo}))
       view_proxy.photo_upload_btn.fireEvent('click')
-    )  
+      view_proxy.confirmation.fireEvent('click', {index: 0})
+    )
 
     it('should pull open the camera to take a new photo when clicked', () ->
       expect(Ti.Media.showCamera).toHaveBeenCalled()
@@ -28,12 +29,10 @@ describe("Photo Gallery", () ->
     
   
   describe("Photo selected from Phone via personal Photo Gallery", () ->
-
     beforeEach(() ->
       spyOn(Ti.Media, 'openPhotoGallery').andCallFake((gallery_options) -> gallery_options.success({media: photo}))
-      #TODO: This test does not match the comp yet. It is unknown the exact mechanism for a photo to come from a photo gallery. For now we assume an additional button.
-      # This should change later once a decision has been made.
-      view_proxy.photo_picker_btn.fireEvent('click')
+      view_proxy.photo_upload_btn.fireEvent('click')
+      view_proxy.confirmation.fireEvent('click', {index: 1})
     )  
 
     it('should open up the phone photo picker when the photo gallery button is pressed', () -> 
@@ -45,25 +44,12 @@ describe("Photo Gallery", () ->
     )
   )
   
-  describe("PhotoGrid photos", () -> 
-  
-    it("should allow deletion of a photo", () -> 
-    
-    )
-  
-    it("should allow scrolling when there are multiple photos to show", () ->
-      
-    )
-  
-  )
-  
   
   describe('Photo Grid', () ->
   
     beforeEach(() ->
       spyOn(Cloud.Photos, 'query').andCallFake((query_args, cb) -> cb(Factory('photo_query_response')))
     )
-  
   
     it('should attempt to get photos on window focus', () -> 
       view_proxy.win.fireEvent('focus')    

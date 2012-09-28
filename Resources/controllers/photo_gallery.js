@@ -2,71 +2,48 @@ Controllers.PhotoGallery = function(view_proxy){
   
   var logInAsGenercUserToAvoidErrorHack = function(cb) {
     Cloud.Users.login({login: 'drboolean', password: '123456'}, function (e) {
-      e.success ? cb() : alert('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
+      e.success ? cb() : alert('Error Logging in to Server');
     });
   }
   
   var getCloudPhotos = function(cb){
-    Cloud.Photos.query({
-        page: 1,
-        per_page: 20
-    }, function (e) {
-        if (e.success) {
-          cb(e.photos);
-        } else {
-            alert('Error:\\n' +
-                ((e.error && e.message) || JSON.stringify(e)));
-        }
-    });    
+    Cloud.Photos.query({page: 1, per_page: 20}, function (e) {
+      e.success ? cb(e.photos) : alert('Error Getting photos!');
+    });
   };
   
-  var cloudPhotoUrlExtractor = function(cloud_photo, style){
-    var style = (style || "small_240");
-    return cloud_photo.urls[style];
-  }
-  
   var makeImageViewFromCloudPhoto = function(cloud_photo){
-    return Ti.UI.createImageView({image: cloudPhotoUrlExtractor(cloud_photo, "small_240")});
+    return Ti.UI.createImageView({image: cloud_photo.urls.small_240});
   }
   
   var makePhotoGrid = function(e){
     getCloudPhotos(function(cloud_photos){
-      view_proxy.photo_grid = Grid(makeImageViewFromCloudPhoto, {top: 80}, {left_padding:5, top_padding:5}, cloud_photos);
-      view_proxy.win.add(view_proxy.photo_grid);
+      view_proxy.photo_grid = Grid(makeImageViewFromCloudPhoto, {top: 0}, {left_padding:2, top_padding:2}, cloud_photos);
+      view_proxy.view.add(view_proxy.photo_grid);
+      self.view.add(self.photo_upload_btn);
     });
   };
   
   var uploadPhotoToACS = function(e){
     logInAsGenercUserToAvoidErrorHack(function(){
-      Cloud.Photos.create({
-          photo: e.media
-      }, function (e) {
-          if (e.success) {
-              var photo = e.photos[0];
-              alert('Success:\\n' +
-                  'id: ' + photo.id + '\\n' +
-                  'filename: ' + photo.filename + '\\n' +
-                  'size: ' + photo.size,
-                  'updated_at: ' + photo.updated_at);
-          } else {
-              alert('Error:\\n' +
-                  ((e.error && e.message) || JSON.stringify(e)));
-          }
+      Cloud.Photos.create({ photo: e.media }, function (e) {
+        var photo = e.success ? e.photos[0] : alert('Error Uploading Photo');
       });
     });
-    
+  }
+  
+  var showCamera = function(e){
+    Ti.Media.showCamera({success: uploadPhotoToACS, error: function(){ alert("Could not show camera.") } });
+  }
+  
+  var showGallery = function(e){
+    Ti.Media.openPhotoGallery({success: uploadPhotoToACS, error: function(){ alert("Could not show photo picker gallery.") } });
   }
   
   view_proxy.photo_upload_btn.addEventListener("click", function(e){
-    Ti.Media.showCamera({success: uploadPhotoToACS, error: function(){alert("Could not show camera.")} });
+    view_proxy.confirmation = Confirm("Add a photo", [{name: "Take a photo", callback: showCamera }, {name: "Choose a photo", callback: showGallery}])
   });
-  
-  view_proxy.photo_picker_btn.addEventListener("click", function(e){
-    Ti.Media.openPhotoGallery({success: uploadPhotoToACS, error: function(){alert("Could not show photo picker gallery.")} });
-  });
-  
-  view_proxy.win.addEventListener('focus', function(e){
-    makePhotoGrid(e);
-  })
+    
+  view_proxy.win.addEventListener('focus', makePhotoGrid);
   
 }
