@@ -15,8 +15,8 @@ Controllers.Events = function(view) {
   }
   
   var openDetail = function(e) {
-    var win = Windows.EventDetail(e.row.event).win;
-    Windows.Application.events.open(win);
+    var detail = Windows.EventDetail(e.row.event);
+    Windows.Application.events.open(detail.win);
   }
   
   view.win.addEventListener('focus', getEventsIfItsBeenLongEnough);
