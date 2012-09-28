@@ -133,14 +133,15 @@ FactoryDefinitions = {
             updated_at: '2012-09-24T22:42:24+0000',
             processed: true,
             user: [{}],
-            urls: [{ square_75: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_square_75.jpeg',
+            urls: {
+              square_75: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_square_75.jpeg',
               thumb_100: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_thumb_100.jpeg',
               small_240: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_small_240.jpeg',
               medium_500: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_medium_500.jpeg',
               medium_640: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_medium_640.jpeg',
               large_1024: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_large_1024.jpeg',
-              original: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_original.jpeg' }],
-            content_type: 'image/jpeg' } ],
+              original: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_original.jpeg' },
+            content_type: 'image/jpeg' }],
        success: true,
        error: false,
        meta: 

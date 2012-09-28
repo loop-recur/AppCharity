@@ -30,13 +30,9 @@ Controllers.PhotoGallery = function(view_proxy){
   }
   
   var makePhotoGrid = function(e){
-    var pgrid = view_proxy.photo_grid;
     getCloudPhotos(function(cloud_photos){
-      log("cloud_photos = ", cloud_photos);
-      cloud_photos.map(function(cphoto){
-        var iview = makeImageViewFromCloudPhoto(cphoto);
-        pgrid.add(iview);
-      })
+      view_proxy.photo_grid = Grid(makeImageViewFromCloudPhoto, {top: 80}, {left_padding:5, top_padding:5}, cloud_photos);
+      view_proxy.win.add(view_proxy.photo_grid);
     });
   };
   

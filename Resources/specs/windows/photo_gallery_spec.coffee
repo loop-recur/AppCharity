@@ -24,12 +24,6 @@ describe("Photo Gallery", () ->
     it('should upload the camera taken photo to the ACS cloud', () -> 
       expect(Cloud.Photos.create).toHaveBeenCalledWith({photo: photo}, jasmine.any(Function))
     )
-      
-    it("should show the photo in the photo grid after it is uploaded", () ->
-      
-    )
-    
-  
   )
     
   
@@ -73,12 +67,8 @@ describe("Photo Gallery", () ->
   
     it('should attempt to get photos on window focus', () -> 
       view_proxy.win.fireEvent('focus')    
-      expect(view_proxy.photo_grid.children[0].image).toEqual('http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_small_240.jpeg')
+      expect(view_proxy.photo_grid.children[0].children[0].image).toEqual('http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_small_240.jpeg')
     )
-   
-   
-    
-    
   )  
     
 )
