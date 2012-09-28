@@ -49,11 +49,15 @@ describe("Photo Gallery", () ->
   
     beforeEach(() ->
       spyOn(Cloud.Photos, 'query').andCallFake((query_args, cb) -> cb(Factory('photo_query_response')))
+      view_proxy.win.fireEvent('focus')    
     )
   
     it('should attempt to get photos on window focus', () -> 
-      view_proxy.win.fireEvent('focus')    
       expect(view_proxy.photo_grid.children[0].children[0].image).toEqual('http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_small_240.jpeg')
+    )
+
+    it('expects the last item in the grid to be photo_upload_btn', () ->
+      expect(view_proxy.photo_grid.children[0].children[1].backgroundImage).toEqual('/images/buttons/photo_grid_add_btn_sml.png')
     )
   )  
     
