@@ -5,12 +5,12 @@ Views.TwitterNewsRow = function(news) {
       backgroundColor: 'transparent',
       news: news,
       layout: 'horizontal',
-      kind: "twitter"
+      className: "twitter_row"
     }),
 
     photo: UI.createImageView({
       image: news.user.profile_image_url,
-      top: 0,
+      top: 10,
       left: 10,
       width: 60,
       height: 80,
@@ -23,7 +23,7 @@ Views.TwitterNewsRow = function(news) {
       left: 10,
       right: 10,
       height: Ti.UI.SIZE,
-      width: Ti.UI.SIZE
+      width: 220
     }),
 
     title_view: UI.createView({
