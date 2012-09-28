@@ -6,6 +6,7 @@ describe("Photo Gallery", () ->
   
   beforeEach(() ->
     spyOn(Cloud.Photos, 'create')
+    spyOn(Cloud.Users, 'login').andCallFake((credentials, callback) -> callback({success: true}))
     view_proxy = Windows.PhotoGallery()
   )
   
@@ -59,9 +60,26 @@ describe("Photo Gallery", () ->
     it("should allow scrolling when there are multiple photos to show", () ->
       
     )
-    
   
   )
+  
+  
+  describe('Photo Grid', () ->
+  
+    beforeEach(() ->
+      spyOn(Cloud.Photos, 'query').andCallFake((query_args, cb) -> cb(Factory('photo_query_response')))
+    )
+  
+  
+    it('should attempt to get photos on window focus', () -> 
+      view_proxy.win.fireEvent('focus')    
+      expect(view_proxy.photo_grid.children[0].image).toEqual('http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_small_240.jpeg')
+    )
+   
+   
+    
+    
+  )  
     
 )
 

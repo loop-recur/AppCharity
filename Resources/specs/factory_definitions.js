@@ -121,5 +121,36 @@ FactoryDefinitions = {
         retweeted: false,
         possibly_sensitive: false
         }, props);
+  },
+  
+  photo_query_response: function(){
+    return { photos: 
+        [ { id: '5060e1ca18897b7d71031f20',
+            filename: '99d6780.jpeg',
+            size: 31561,
+            md5: '9c901e72afeb4ebc75e2b117e1038943',
+            created_at: '2012-09-24T22:42:19+0000',
+            updated_at: '2012-09-24T22:42:24+0000',
+            processed: true,
+            user: [{}],
+            urls: [{ square_75: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_square_75.jpeg',
+              thumb_100: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_thumb_100.jpeg',
+              small_240: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_small_240.jpeg',
+              medium_500: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_medium_500.jpeg',
+              medium_640: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_medium_640.jpeg',
+              large_1024: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_large_1024.jpeg',
+              original: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_original.jpeg' }],
+            content_type: 'image/jpeg' } ],
+       success: true,
+       error: false,
+       meta: 
+        { code: 200,
+          status: 'ok',
+          method_name: 'queryPhoto',
+          page: 1,
+          per_page: 20,
+          total_pages: 1,
+          total_results: 1 } }
   }
+          
 }
