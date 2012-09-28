@@ -14,6 +14,7 @@ Windows.EventDetail = function(event) {
 
     view: UI.createScrollView({
       top: 100,
+      contentHeight: 'auto',
       height: Ti.UI.FILL,
       backgroundColor: 'transparent',
       layout: 'horizontal'
@@ -96,8 +97,6 @@ Windows.EventDetail = function(event) {
       bottom: 10
     }))
   };
-
-  log(JSON.stringify(event));
 
   self.content_view.add(self.title);
   self.content_view.add(self.time);

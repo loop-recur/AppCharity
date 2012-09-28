@@ -39,8 +39,8 @@ Windows.FbNewsDetail = function(news) {
       top: 10,
       left: 10,
       right: 10,
-      width: Ti.UI.FILL,
-      height: Ti.UI.SIZE
+      width: Ti.UI.SIZE,
+      height: 220 
     }),
 
     title: UI.createLabel(merge(Style.h3, {

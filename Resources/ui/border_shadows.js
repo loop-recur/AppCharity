@@ -17,7 +17,6 @@ UI.BorderShadows = function(props) {
       top: 20,
       bottom: 20,
       backgroundImage: '/images/shadow/screen_shadow_sides_repeat.png',
-      backgroundRepeat: true,
       width: Ti.UI.FILL,
       height: Ti.UI.FILL
     }),

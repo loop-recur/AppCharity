@@ -25,7 +25,7 @@ Views.AboutDetail = function(page) {
     photo: UI.createImageView({
       image: page.cover.source,
       borderColor: '#fff',
-      borderRadius: 0,
+      borderRadius: 0.1,
       borderWidth: 5,
       top: 0,
       left: 0,
@@ -38,7 +38,7 @@ Views.AboutDetail = function(page) {
       layout: 'vertical',
       left: 10,
       height: Ti.UI.SIZE,
-      width: Ti.UI.FILL
+      width: Ti.UI.SIZE
     }),
 
     tweet_button: UI.createButton({
