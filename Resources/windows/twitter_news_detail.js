@@ -23,7 +23,7 @@ Windows.TwitterNewsDetail = function(news) {
       top: 10,
       left: 10,
       width: 60,
-      height: 80,
+      height: 60,
       square: true
     }),
     

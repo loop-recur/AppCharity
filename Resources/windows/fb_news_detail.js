@@ -30,7 +30,7 @@ Windows.FbNewsDetail = function(news) {
       top: 0,
       left: 10,
       width: 60,
-      height: 80,
+      height: 60,
       square: true
     }),
 
