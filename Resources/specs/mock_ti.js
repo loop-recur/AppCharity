@@ -204,6 +204,7 @@ module.exports.mock = function() {
 		Utils: {md5HexDigest: stub},
 		Filesystem: {getFile: stub({exists:stub, read: stub})},
 		UI: {
+		  createAlertDialog: BaseViewStub(),
 			create2DMatrix: stub({rotate: stub}),
 			createWindow: BaseViewStub(Window),
 			createView: BaseViewStub(),

@@ -20,10 +20,10 @@ Windows.TwitterNewsDetail = function(news) {
 
     photo: UI.createImageView({
       image: news.user.profile_image_url,
-      top: 0,
+      top: 10,
       left: 10,
       width: 60,
-      height: 80,
+      height: 60,
       square: true
     }),
     
@@ -33,7 +33,7 @@ Windows.TwitterNewsDetail = function(news) {
       left: 10,
       right: 10,
       height: Ti.UI.SIZE,
-      width: Ti.UI.SIZE
+      width: 220
     }),
 
     title_view: UI.createView({

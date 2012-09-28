@@ -5,7 +5,8 @@ Views.FbNewsRow = function(news) {
       news: news,
       backgroundColor: 'transparent',
       layout: 'vertical',
-      kind: 'fb'
+      kind: 'fb',
+      className: 'fb_row'
     }),
 
     header_view: UI.createView({
@@ -20,7 +21,7 @@ Views.FbNewsRow = function(news) {
       top: 0,
       left: 10,
       width: 60,
-      height: 80,
+      height: 60,
       square: true
     }),
 
@@ -29,7 +30,7 @@ Views.FbNewsRow = function(news) {
       top: 10,
       left: 10,
       right: 10,
-      width: Ti.UI.FILL,
+      width: 220,
       height: Ti.UI.SIZE
     }),
 

@@ -34,9 +34,14 @@ Controllers.News = function(view) {
   }
   
   var openDetail = function(e) {
-    if((e.source && e.source.className) == "twitter_action") return;
+    if((e.source && e.source.className) == "twitter_action") {
+      return;
+    }
+
     var row = e.row;
+    log(row);
     var detail = (row.kind === "fb") ? Windows.FbNewsDetail(row.news) : Windows.TwitterNewsDetail(row.news)
+    log(row.news);
     Windows.Application.news.open(detail.win);
   }
   
