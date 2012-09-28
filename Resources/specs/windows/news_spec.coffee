@@ -1,4 +1,4 @@
-require('../helpers/SpecHelper');
+require('../helpers/SpecHelper')
 
 describe("Windows/News", () ->
   view_proxy = null
@@ -16,11 +16,11 @@ describe("Windows/News", () ->
   )
   
   it('only gets news after a certain amount of cache time', () ->
-    PropertyCache.setup({cache_time: 10000});
+    PropertyCache.setup({cache_time: 10000})
     view_proxy.win.fireEvent('focus')
     expect(FbGraph.getNewsFeed.callCount).toEqual(1)
     expect(Twitter.timeline.callCount).toEqual(1)
-    PropertyCache.setup({cache_time: 1});
+    PropertyCache.setup({cache_time: 1})
     sleep(10)
     view_proxy.win.fireEvent('focus')
     expect(FbGraph.getNewsFeed.callCount).toEqual(2)
@@ -28,21 +28,29 @@ describe("Windows/News", () ->
   )
     
   it('populates the table with sorted news', () ->
-    expect(view_proxy.table.children.length).toEqual(2);
-    expect(view_proxy.table.children[0].news).toEqual(tweet);
-    expect(view_proxy.table.children[1].news).toEqual(fb_news);
+    expect(view_proxy.table.children.length).toEqual(2)
+    expect(view_proxy.table.children[0].news).toEqual(fb_news)
+    expect(view_proxy.table.children[1].news).toEqual(tweet)
   )
   
   it('takes you to the correct news detail page when you click the table', () ->
-    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[1]});
-    expect(Windows.FbNewsDetail).toHaveBeenCalledWith(fb_news);
-    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[0]});
-    expect(Windows.TwitterNewsDetail).toHaveBeenCalledWith(tweet);
+    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[0]})
+    expect(Windows.FbNewsDetail).toHaveBeenCalledWith(fb_news)
+    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[1]})
+    expect(Windows.TwitterNewsDetail).toHaveBeenCalledWith(tweet)
   )
   
   
   it("doesn't open the detail when you try to click a twitter action", () ->
-    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[0], source: {className: "twitter_action"}});
-    expect(Windows.TwitterNewsDetail).not.toHaveBeenCalledWith(tweet);
+    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[0], source: {className: "twitter_action"}})
+    expect(Windows.TwitterNewsDetail).not.toHaveBeenCalledWith(tweet)
+  )
+
+  it('formats the date correctly', () ->
+    fb_news_date_format = DateFormatter.date('2012-09-07T20:26:48+0000', {formatted: true})
+    expect(view_proxy.table.data[0].children[0].children[1].children[1].children[0].text).toEqual(fb_news_date_format)
+    tweet_date_format = DateFormatter.date('2012-09-07T20:25:48+0000', {formatted: true})
+    expect(view_proxy.table.data[1].children[1].children[1].children[1].text).toEqual(tweet_date_format)
+
   )
 )
