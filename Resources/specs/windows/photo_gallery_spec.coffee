@@ -10,7 +10,7 @@ describe("Photo Gallery", () ->
     view_proxy = Windows.PhotoGallery()
   )
   
-  describe("Photo taken with Camera", () -> 
+  xdescribe("Photo taken with Camera", () -> 
 
     beforeEach(() ->
       spyOn(Ti.Media, 'showCamera').andCallFake((camera_options) -> camera_options.success({media: photo}))
@@ -28,7 +28,7 @@ describe("Photo Gallery", () ->
   )
     
   
-  describe("Photo selected from Phone via personal Photo Gallery", () ->
+  xdescribe("Photo selected from Phone via personal Photo Gallery", () ->
     beforeEach(() ->
       spyOn(Ti.Media, 'openPhotoGallery').andCallFake((gallery_options) -> gallery_options.success({media: photo}))
       view_proxy.photo_upload_btn.fireEvent('click')
@@ -51,9 +51,18 @@ describe("Photo Gallery", () ->
       spyOn(Cloud.Photos, 'query').andCallFake((query_args, cb) -> cb(Factory('photo_query_response')))
     )
   
-    it('should attempt to get photos on window focus', () -> 
+    xit('should attempt to get photos on window focus', () -> 
       view_proxy.win.fireEvent('focus')    
       expect(view_proxy.photo_grid.children[0].children[0].image).toEqual('http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_small_240.jpeg')
+    )
+    
+    it('doesnt put the page on there twice from focus', () ->
+      view_proxy.win.fireEvent('focus')
+      PropertyCache.setup({cache_time: 1});
+      original_amount_of_elements_on_screen = view_proxy.win.children.length
+      sleep(10)
+      view_proxy.win.fireEvent('focus')
+      expect(view_proxy.win.children.length).toEqual(original_amount_of_elements_on_screen)
     )
   )  
     

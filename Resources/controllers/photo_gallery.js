@@ -18,6 +18,7 @@ Controllers.PhotoGallery = function(view_proxy){
   
   var makePhotoGrid = function(e){
     getCloudPhotos(function(cloud_photos){
+      log('adding grid');
       view_proxy.photo_grid = Grid(makeImageViewFromCloudPhoto, {top: 0}, {left_padding:2, top_padding:2}, cloud_photos);
       view_proxy.view.add(view_proxy.photo_grid);
       self.view.add(self.photo_upload_btn);
