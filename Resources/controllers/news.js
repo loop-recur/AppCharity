@@ -4,7 +4,7 @@ Controllers.News = function(view) {
   var tryTofinish = function() {
     if(state.fb_rows && state.tweet_rows) {
       var all_rows = state.fb_rows.concat(state.tweet_rows);
-      view.table.setData(sortBy('.created', all_rows));
+      view.table.setData(all_rows.sort(function(a,b) { return a.created < b.created; }));
     }
   }
   

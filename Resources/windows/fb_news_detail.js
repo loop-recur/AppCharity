@@ -59,7 +59,7 @@ Windows.FbNewsDetail = function(news) {
     }),
 
     time: UI.createLabel(merge(Style.p3, {
-      text: Date(news.created_time).slice(0, 10),
+      text: DateFormatter.date(news.created_time, {formatted: true}),
       color: '#505050',
       left: 0,
       width: Ti.UI.SIZE,

@@ -1,7 +1,7 @@
 Views.FbNewsRow = function(news) {
   var self = {
     row: UI.createTableViewRow({
-      created: new Date(news.created_time),
+      created: DateFormatter.date(news.created_time, {parsed: true}),
       news: news,
       backgroundColor: 'transparent',
       layout: 'vertical',
@@ -50,7 +50,7 @@ Views.FbNewsRow = function(news) {
     }),
 
     time: UI.createLabel(merge(Style.p3, {
-      text: Date(news.created_time).slice(0, 10),
+      text: DateFormatter.date(news.created_time, {formatted: true}),
       color: '#505050',
       left: 0,
       width: Ti.UI.SIZE,
