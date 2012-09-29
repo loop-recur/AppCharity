@@ -26,6 +26,11 @@ var fancyRequire = function(path) {
 
     application = function(from) {
       requireFrom(from, ['ui', 'controllers', 'views', 'windows']);
+    },
+
+    subscribePushNotifications = function() {
+      var channel = Ti.App.id;
+      Push.subscribe(channel);
     };
 
 
@@ -33,4 +38,5 @@ init = function(from, testing) {
   if(testing) require('../specs/mock_ti').mock();  
   domain(from);
   application(from);
-}
+  subscribePushNotifications();
+};
