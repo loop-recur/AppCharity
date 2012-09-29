@@ -6,5 +6,6 @@ module.exports = function(fancyRequire) {
   fancyRequire('news');
   fancyRequire('about');
   fancyRequire('photo_gallery');
-  fancyRequire('application'); 
+  fancyRequire('application');
+  fancyRequire('slideshow');
 }

@@ -9,6 +9,10 @@ Windows.PhotoGallery = function() {
     
     donate_banner: Views.TopBanner().view,
 
+    shadow: UI.BorderShadows({
+      top: 100,
+    }).view,
+
     photo_upload_btn: UI.createButton({
       width: 107,
       height: 107,
@@ -19,6 +23,7 @@ Windows.PhotoGallery = function() {
   };
   
   self.win.add(self.donate_banner);
+  self.win.add(self.shadow);
 
   Controllers.PhotoGallery(self);
 
