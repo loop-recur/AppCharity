@@ -59,7 +59,7 @@ Windows.FbNewsDetail = function(news) {
     }),
 
     time: UI.createLabel(merge(Style.p3, {
-      text: DateFormatter.date(news.created_time, {formatted: true}),
+      text: DateFormatter.date(news.created_time, {formatted: true, fb: true}),
       color: '#505050',
       left: 0,
       width: Ti.UI.SIZE,
@@ -127,4 +127,4 @@ Windows.FbNewsDetail = function(news) {
   self.win.add(self.view);
 
   return self;
-}
+};

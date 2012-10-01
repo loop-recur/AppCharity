@@ -2,8 +2,8 @@ require('../helpers/SpecHelper')
 
 describe("Windows/News", () ->
   view_proxy = null
-  fb_news = Factory('fb_news', {name: 'some name', created_time: '2012-09-07T20:26:48+0000'})
-  tweet = Factory('tweet', {text: 'some tweet', created_at: '2012-09-07T20:25:48+0000'})
+  fb_news = Factory('fb_news', {name: 'some name', created_time: '2012-09-07T20:24:48+0000'})
+  tweet = Factory('tweet', {text: 'some tweet', created_at: 'Wed Sep 07 20:23:48 +0000 2012'})
   
   beforeEach(() ->
     spyOn(Windows, 'FbNewsDetail').andCallThrough()
@@ -29,15 +29,15 @@ describe("Windows/News", () ->
     
   it('populates the table with sorted news', () ->
     expect(view_proxy.table.children.length).toEqual(2)
-    expect(view_proxy.table.children[0].news).toEqual(fb_news)
-    expect(view_proxy.table.children[1].news).toEqual(tweet)
+    expect(view_proxy.table.children[0].news).toEqual(tweet)
+    expect(view_proxy.table.children[1].news).toEqual(fb_news)
   )
   
   it('takes you to the correct news detail page when you click the table', () ->
     view_proxy.table.fireEvent('click', {row: view_proxy.table.children[0]})
-    expect(Windows.FbNewsDetail).toHaveBeenCalledWith(fb_news)
-    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[1]})
     expect(Windows.TwitterNewsDetail).toHaveBeenCalledWith(tweet)
+    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[1]})
+    expect(Windows.FbNewsDetail).toHaveBeenCalledWith(fb_news)
   )
   
   
@@ -47,10 +47,9 @@ describe("Windows/News", () ->
   )
 
   it('formats the date correctly', () ->
-    fb_news_date_format = DateFormatter.date('2012-09-07T20:26:48+0000', {formatted: true})
-    expect(view_proxy.table.data[0].children[0].children[1].children[1].children[0].text).toEqual(fb_news_date_format)
-    tweet_date_format = DateFormatter.date('2012-09-07T20:25:48+0000', {formatted: true})
-    expect(view_proxy.table.data[1].children[1].children[1].children[1].text).toEqual(tweet_date_format)
-
+    tweet_date_format = DateFormatter.date(tweet.created_at, {formatted: true})
+    expect(view_proxy.table.data[0].children[1].children[1].children[1].text).toEqual(tweet_date_format)
+    fb_news_date_format = DateFormatter.date(fb_news.created_time, {formatted: true, fb: true})
+    expect(view_proxy.table.data[1].children[0].children[1].children[1].children[0].text).toEqual(fb_news_date_format)
   )
 )

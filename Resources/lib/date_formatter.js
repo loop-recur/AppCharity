@@ -11,9 +11,9 @@ DateFormatter = (function() {
         parsed_date = new Date(year, month, day, hour, min, sec);
 
     if(opts && opts.parsed) {
-      parsed_date = Date.parse(parsed_date);
+      parsed_date = opts.fb ? Date.parse(parsed_date) : Date.parse(date_str);
     } else if (opts && opts.formatted) {
-      parsed_date = parsed_date.toString().slice(0,10);
+      parsed_date = opts.fb ? parsed_date.toString().slice(0,10) : date_str.slice(0,10);
     }
 
     return parsed_date;
