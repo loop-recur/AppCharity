@@ -4,7 +4,8 @@ Views.TwitterActions = function(tweet) {
       layout: 'horizontal',
       top: 5,
       bottom: 5,
-      height: Ti.UI.SIZE
+      height: Ti.UI.SIZE,
+      id: 'twitter_action'
     }),
 
     reply: UI.createView({
@@ -12,7 +13,7 @@ Views.TwitterActions = function(tweet) {
       width: 26,
       backgroundImage: '/images/icons/twitter_respond.png',
       backgroundSelectedImage: '/images/icons/twitter_respond_p.png',
-      className: 'twitter_action'
+      id: 'twitter_action'
     }),
 
     favorite: UI.createView({
@@ -21,7 +22,7 @@ Views.TwitterActions = function(tweet) {
       left: 25,
       backgroundImage: '/images/icons/twitter_fav.png',
       backgroundSelectedImage: '/images/icons/twitter_fav_p.png',
-      className: 'twitter_action'
+      id: 'twitter_action'
     }),
 
     retweet: UI.createView({
@@ -30,7 +31,7 @@ Views.TwitterActions = function(tweet) {
       left: 25,
       backgroundImage: '/images/icons/twitter_retweet.png',
       backgroundSelectedImage: '/images/icons/twitter_retweet_p.png',
-      className: 'twitter_action'
+      id: 'twitter_action'
     }),
 
     tweet_button: UI.createButton({
@@ -39,7 +40,7 @@ Views.TwitterActions = function(tweet) {
       left: 25,
       backgroundImage: '/images/buttons/go_to_twitter_btn.png',
       backgroundSelectedImage: '/images/buttons/go_to_twitter_btn_p.png',
-      className: 'twitter_action'
+      id: 'twitter_action'
     })
   };
 

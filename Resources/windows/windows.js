@@ -8,4 +8,5 @@ module.exports = function(fancyRequire) {
   fancyRequire('photo_gallery');
   fancyRequire('application');
   fancyRequire('slideshow');
+  fancyRequire('tweet');
 }
