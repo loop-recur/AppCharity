@@ -16,13 +16,15 @@ Controllers.PhotoGallery = function(view){
     squares.push(view.photo_upload_btn);
     view.photo_grid = Grid({top: 0}, {left_padding:2, top_padding:2}, squares);
     view.win.add(view.photo_grid);
+    Ti.App.fireEvent('hide_activity');
   };
   
   var getCloudPhotos = function(){
+    Ti.App.fireEvent('show_activity');
     Cloud.Photos.query({page: 1, per_page: 20}, function (e) {
       if(e.success) {
         PropertyCache.set('cloud_photos', e.photos);
-        makePhotoGrid(e.photos)
+        makePhotoGrid(e.photos);
       } else {
         alert('Error Getting photos!');
       }
@@ -30,9 +32,11 @@ Controllers.PhotoGallery = function(view){
   };
   
   var uploadPhotoToACS = function(e){
+    Ti.App.fireEvent('show_activity');
     logInAsGenercUserToAvoidErrorHack(function(){
       Cloud.Photos.create({ photo: e.media }, function (e) {
         var photo = e.success ? e.photos[0] : alert('Error Uploading Photo');
+        Ti.App.fireEvent('hide_activity');
       });
     });
   }

@@ -4,7 +4,7 @@ Controllers = {};
 Models = {};
 Views = {};
 UI = {};
-Windows = {};
+Windows = {IPad : {}};
 Helpers = {};
 
 var fancyRequire = function(path) {

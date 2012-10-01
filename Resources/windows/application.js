@@ -5,7 +5,7 @@ Windows.Application = (function() {
         events: UI.createTab({
           title: 'Events',
           icon:'/images/icons/tab_cal.png',
-          window: Windows.Events().win
+          window: (isIPad ? Windows.IPad.Events().win : Windows.Events().win)
         }),
 
         news: UI.createTab({

@@ -7,10 +7,14 @@ FbGraph = (function() {
 	}
 	
 	function manualRequest(url, fun) {
+	  Ti.App.fireEvent('show_activity');
 	  url = "https://graph.facebook.com/"+ url;
 	  url = url + "&access_token="+access_token;
   	var xhr = Ti.Network.createHTTPClient({});
-  	xhr.onload = function() { fun(JSON.parse(this.responseText)); };
+  	xhr.onload = function() {
+  	  fun(JSON.parse(this.responseText));
+  	  Ti.App.fireEvent('hide_activity');
+  	};
     xhr.open("GET", url);
   	xhr.send();
   }

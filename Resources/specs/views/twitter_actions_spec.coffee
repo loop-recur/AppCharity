@@ -23,4 +23,11 @@ describe("Views/TwitterActions", () ->
     expect(Twitter.favorite).toHaveBeenCalledWith(tweet.id_str, jasmine.any(Function));
     expect(UI.createAlertMessage).toHaveBeenCalledWith("You've successfully favorited!");
   )
+  
+  it('opens a window for the user to tweet with', () ->
+    view_proxy.reply.fireEvent('click')
+    view_proxy.tweet_view.submit.fireEvent('click')
+    expect(Twitter.favorite).toHaveBeenCalledWith(tweet.id_str, jasmine.any(Function));
+    expect(UI.createAlertMessage).toHaveBeenCalledWith("You've successfully replied!");
+  )
 )

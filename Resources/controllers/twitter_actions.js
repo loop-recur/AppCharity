@@ -7,7 +7,6 @@ Controllers.TwitterActions = function(view, tweet){
   }
   
   var favorite = function(e) {
-    log("FAV!");
     Twitter.favorite(tweet.id_str, function(e) {
       if(e.success) UI.createAlertMessage("You've successfully favorited!");
     });

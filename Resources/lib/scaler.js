@@ -44,5 +44,5 @@ Scaler = (function() {
 		return scaleProps(props);
 	}
 	
-	return (scale_width_factor > 1) ? scale : function(id){ return id };
+	return (scale_width_factor > 1 && !isIPad) ? scale : function(id){ return id };
 })();
