@@ -8,21 +8,20 @@ Grid = function(grid_attributes, attrs, xs) {
 
 	var grid_view = Ti.UI.createScrollView(merge({
 		width: Ti.UI.FILL,
-		contentWidth: 'auto',
-		contentHeight: 'auto',
+		contentWidth: 310,
 		showHorizontalScrollIndicator: false,
+		layout: 'vertical',
 		showVerticalScrollIndicator: true
 	}, grid_attributes)),
 
 		createRow = function(top, group) {
 			var row = Ti.UI.createView({
-				height: attrs.row_height,
-				top: top,
+				layout: 'horizontal',
+				height: Ti.UI.SIZE,
 				backgroundColor: 'transparent'
 			});
 
 			var addItem = function(left, view) {
-				view.left = left;
 				row.add(view);
 				return left + attrs.item_width + attrs.left_padding;
 			}

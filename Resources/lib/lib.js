@@ -6,5 +6,5 @@ module.exports = function(fancyRequire) {
   fancyRequire('twitter');
   fancyRequire('grid');
   fancyRequire('date_formatter');
-  // fancyRequire('push');
-}
+  fancyRequire('push');
+};
