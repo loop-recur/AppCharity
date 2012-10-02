@@ -3,8 +3,8 @@ Controllers.News = function(view) {
   
   var tryTofinish = function() {
     if(state.fb_rows && state.tweet_rows) {
-      var all_rows = state.fb_rows.concat(state.tweet_rows);
-      view.table.setData(sortBy('.created', all_rows));
+      var all_rows = sortBy('.created', state.fb_rows.concat(state.tweet_rows));
+      view.table.setData(all_rows);
     }
   }
   
@@ -34,14 +34,10 @@ Controllers.News = function(view) {
   }
   
   var openDetail = function(e) {
-    if((e.source && e.source.className) == "twitter_action") {
-      return;
-    }
+    if((e.source && e.source.id) == "twitter_action") { return; }
 
     var row = e.row;
-    log(row);
     var detail = (row.kind === "fb") ? Windows.FbNewsDetail(row.news) : Windows.TwitterNewsDetail(row.news)
-    log(row.news);
     Windows.Application.news.open(detail.win);
   }
   

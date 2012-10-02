@@ -53,6 +53,11 @@ Style = {
       color: '#197b30',
       shadowColor: '#eaeaea',
       shadowOffset: {x: 2, y: 2}
+    },
+    
+    ipad: {
+      top_banner: {
+        width: "100%"
+      }
     }
-
 };

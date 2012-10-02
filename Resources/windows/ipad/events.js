@@ -6,7 +6,7 @@ Windows.IPad.Events = function() {
       backgroundRepeat: true
     }),
     
-    split_view: SplitView("Events"),
+    split_view: SplitView(),
 
     donate_banner: Views.TopBanner().view,
 
@@ -16,18 +16,20 @@ Windows.IPad.Events = function() {
 
     table: UI.createTableView({
       top: 100,
-      backgroundColor: 'transparent'
+      backgroundColor: "#d7dadf"
     })
   };
 
   self.win.add(self.shadow);
-  self.win.add(self.table);
   
   self.split_view.open();
   self.win.add(self.split_view);
-  self.split_view.detailView.add(self.donate_banner);
+  
+  self.win.add(self.donate_banner);
+  self.split_view.detailView.add(self.shadow);
+  self.split_view.masterView.add(self.table);
 
-  Controllers.Events(self);
+  Controllers.IPad.Events(self);
 
   return self;
 };

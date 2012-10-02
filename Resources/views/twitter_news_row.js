@@ -1,7 +1,7 @@
 Views.TwitterNewsRow = function(news) {
   var self = {
     row: UI.createTableViewRow({
-      created: Date.parse(news.created_at),
+      created: DateFormatter.date(news.created_at, {parsed: true}),
       backgroundColor: 'transparent',
       news: news,
       layout: 'horizontal',
@@ -22,8 +22,7 @@ Views.TwitterNewsRow = function(news) {
       top: 10,
       left: 10,
       right: 10,
-      height: Ti.UI.SIZE,
-      width: 220
+      height: Ti.UI.SIZE
     }),
 
     title_view: UI.createView({
@@ -42,7 +41,7 @@ Views.TwitterNewsRow = function(news) {
     })),
 
     date: UI.createLabel(merge(Style.p3, {
-      text: news.created_at.slice(4, 10),
+      text: DateFormatter.date(news.created_at, {formatted: true}),
       color: '#505050',
       right: 0
     })),

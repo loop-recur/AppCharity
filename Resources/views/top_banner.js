@@ -1,6 +1,7 @@
 Views.TopBanner = function() {
   var self = {
     view: UI.createView({
+      style_id: 'top_banner',
       top: 0,
       width: 320,
       height: 100,

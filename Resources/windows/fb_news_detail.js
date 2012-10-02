@@ -39,13 +39,13 @@ Windows.FbNewsDetail = function(news) {
       top: 10,
       left: 10,
       right: 10,
-      width: Ti.UI.SIZE,
-      height: 220 
+      width: "85%",
+      height: Ti.UI.SIZE
     }),
 
     title: UI.createLabel(merge(Style.h3, {
       text: (news.name ? news.name : news.from.name),
-      color: 'blue',
+      color: '#667dad',
       left: 0,
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE
@@ -59,7 +59,7 @@ Windows.FbNewsDetail = function(news) {
     }),
 
     time: UI.createLabel(merge(Style.p3, {
-      text: Date(news.created_time).slice(0, 10),
+      text: DateFormatter.date(news.created_time, {formatted: true, fb: true}),
       color: '#505050',
       left: 0,
       width: Ti.UI.SIZE,
@@ -127,4 +127,4 @@ Windows.FbNewsDetail = function(news) {
   self.win.add(self.view);
 
   return self;
-}
+};

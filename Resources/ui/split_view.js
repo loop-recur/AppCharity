@@ -1,13 +1,15 @@
-SplitView = function(title) { 
-    var win = UI.createWindow({
-        barColor : 'black',
-        title : title
-    });
+SplitView = function(detail_props, master_props) { 
+  detail_props = detail_props || {};
+  master_props = master_props || {};
+  
+    var win = UI.createWindow(merge({
+        barColor : 'black'
+    }, detail_props));
     
-    var win2 = UI.createWindow({
+    var win2 = UI.createWindow(merge({
         barColor : 'black',
         title : 'Menu'
-    });
+    }, master_props));
  
     var nav = Ti.UI.iPhone.createNavigationGroup({
         window : win

@@ -71,7 +71,7 @@ describe("Photo Gallery", () ->
     )
     
     it('should attempt to get photos on window focus', () -> 
-      expect(view_proxy.photo_grid.children[0].children[0].image).toEqual('http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_small_240.jpeg')
+      expect(view_proxy.photo_grid.children[0].children[0].image).toEqual('http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_large_1024.jpeg')
     )
 
     it('expects the last item in the grid to be photo_upload_btn', () ->

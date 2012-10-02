@@ -1,4 +1,5 @@
 module.exports = function(fancyRequire) {
+  fancyRequire('ipad/events');
   fancyRequire('events');
   fancyRequire('news');
   fancyRequire('about');
@@ -7,4 +8,5 @@ module.exports = function(fancyRequire) {
   fancyRequire('twitter_actions');
   fancyRequire('event_detail');
   fancyRequire('top_banner');
+  fancyRequire('slideshow');
 }

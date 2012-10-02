@@ -7,5 +7,7 @@ module.exports = function(fancyRequire) {
   fancyRequire('about');
   fancyRequire('photo_gallery');
   fancyRequire('ipad/events');
-  fancyRequire('application'); 
+  fancyRequire('application');
+  fancyRequire('slideshow');
+  fancyRequire('tweet');
 }

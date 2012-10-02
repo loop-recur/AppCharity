@@ -121,6 +121,8 @@ UI.createToolbar = function(props) {
 }
 
 UI.createView = function(props) {	
+  props = mergeStyle(props);
+
 	var view = Ti.UI.createView(Scaler(props));
 	makeScalerFun(view, 'animate');
 	addOnceListener(view);
@@ -170,4 +172,11 @@ function makeFirstClassAndComposable(/* obj, names */) {
 	var args = argsToList(arguments), obj = first(args), names = rest(args);
 	reduce(overWriteFun, obj, names);
 	return obj;
+}
+
+function mergeStyle(props) {
+  if(props.style_id && Style[Ti.Platform.osname] && Style[Ti.Platform.osname][props.style_id]) {
+    props = merge(props, Style[Ti.Platform.osname][props.style_id]);
+  }
+  return props;
 }

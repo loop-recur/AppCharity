@@ -1,3 +1,4 @@
+isIPad = false;
 isIPhone = true;
 isAndroid = false;
 isMobileweb = true;

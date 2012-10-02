@@ -33,7 +33,7 @@ Windows.TwitterNewsDetail = function(news) {
       left: 10,
       right: 10,
       height: Ti.UI.SIZE,
-      width: 220
+      width: "85%"
     }),
 
     title_view: UI.createView({
@@ -52,7 +52,7 @@ Windows.TwitterNewsDetail = function(news) {
     })),
 
     date: UI.createLabel(merge(Style.p3, {
-      text: news.created_at.slice(4, 10),
+      text: DateFormatter.date(news.created_at, {formatted: true}),
       color: '#505050',
       right: 0
     })),

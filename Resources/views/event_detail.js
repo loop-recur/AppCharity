@@ -1,9 +1,11 @@
-Views.EventRow = function(event) {
+Views.EventDetail = function(event) {
   var self = {
-    row: UI.createTableViewRow({
-      start_time: new Date(event.start_time),
-      layout: 'horizontal',
-      event: event
+    view: UI.createScrollView({
+      top: 100,
+      contentHeight: 'auto',
+      height: Ti.UI.FILL,
+      backgroundColor: 'transparent',
+      layout: 'horizontal'
     }),
 
     cal_icon: UI.createImageView({
@@ -42,19 +44,18 @@ Views.EventRow = function(event) {
       left: 10,
       right: 10,
       top: 15,
-      bottom: 10,
       height: Ti.UI.SIZE,
-      width: 235
+      width: "85%"
     }),
 
     title: UI.createLabel(merge(Style.h3, {
-      text: event.name,
-      color: '#667dad',
       left: 0,
+      color: '#667dad',
+      text: event.name,
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE
     })),
-    
+
     time: UI.createLabel(merge(Style.p3, {
       top: 5,
       left: 0,
@@ -63,29 +64,39 @@ Views.EventRow = function(event) {
       height: Ti.UI.SIZE
     })),
 
+    image: UI.createImageView({
+      image: event.pic_big,
+      height: 120
+    }),
+
     location: UI.createLabel(merge(Style.p3, {
+      top: 5,
+      left: 0,
       text: event.location,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     })),
 
     description: UI.createLabel(merge(Style.p3, {
+      top: 5,
       text: event.description,
       width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
+      height: Ti.UI.SIZE,
+      bottom: 10
     }))
   };
 
   self.content_view.add(self.title);
   self.content_view.add(self.time);
-  // self.content_view.add(self.location);
-  // self.content_view.add(self.description);
+  self.content_view.add(self.image);
+  self.content_view.add(self.location);
+  self.content_view.add(self.description);
 
   self.cal_icon.add(self.month);
   self.cal_icon.add(self.day);
 
-  self.row.add(self.cal_icon);
-  self.row.add(self.content_view);
+  self.view.add(self.cal_icon);
+  self.view.add(self.content_view);
 
   return self;
 };
