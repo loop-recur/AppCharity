@@ -26,7 +26,8 @@ Controllers.PhotoGallery = function(view_proxy){
   }
   
   var makeImageViewFromCloudPhoto = function(cloud_photo){
-    return Ti.UI.createImageView({image: cloudPhotoUrlExtractor(cloud_photo, "small_240")});
+    var view = Ti.UI.createImageView({image: cloudPhotoUrlExtractor(cloud_photo, "small_240")});
+    view.addEventListener('longpress', function(e){ showDeleteIcon(e)});
   }
   
   var makePhotoGrid = function(e){

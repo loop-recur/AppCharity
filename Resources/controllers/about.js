@@ -1,15 +1,33 @@
-Controllers.About = function(view) {
+Controllers.About = function(view_proxy) {
+  var detail_view_proxy = view_proxy.detail_view_proxy;
   
-  var fillContent = function(page) {
-    PropertyCache.set('fb_page', page);
-    if(view.detail){ view.win.remove(view.detail); }
-    view.detail = Views.AboutDetail(page);
-    view.win.add(view.detail.view);
-  }
+  // Callback, passed to AboutUsFetcher
+  var setTitle = function(value){
+    detail_view_proxy.title.text = value;
+  };
 
-  var getNewsIfItsBeenLongEnough = function() {
-    PropertyCache.get('fb_page', fillContent) || FbGraph.getPage('msf.english', fillContent);
+  // Callback, passed to AboutUsFetcher
+  var setContent = function(value){
+    detail_view_proxy.content.text = value;
+  };
+
+  // Callback, passed to AboutUsFetcher
+  var setImage = function(value){
+    detail_view_proxy.photo.image = value;
+  };
+    
+  // Callback, passed to AboutUsFetcher and expecting an object literal of items needed to build the submenu.
+  var setSubmenu = function(hash){
+    
+  }; 
+   
+  var updateMenuAndContent = function(nav_number){
+    var fetcher = AboutUsFetcher(nav_number);
+    fetcher.fetchTitle(setTitle);
+    fetcher.fetchContent(setContent);
+    fetcher.fetchImageUrl(setImage);
+    // fetcher.fetchSubmenuHash(setSubmenu);
   }
   
-  view.win.addEventListener('focus', getNewsIfItsBeenLongEnough);
+  view_proxy.win.addEventListener('focus', function(e){ updateMenuAndContent(1); });
 }
