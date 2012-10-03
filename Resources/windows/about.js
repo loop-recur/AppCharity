@@ -6,6 +6,7 @@ Windows.About = function() {
       backgroundRepeat: true
     }),
     shadow: UI.BorderShadows().view, 
+    submenu_items: [],
     detail_view_proxy: Views.AboutDetail()
   };
 

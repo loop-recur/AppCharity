@@ -5,5 +5,6 @@ module.exports = function(fancyRequire) {
   fancyRequire('property_cache');
   fancyRequire('twitter');
   fancyRequire('grid');
+  fancyRequire('about_us_fetcher');
   // fancyRequire('push');
 }

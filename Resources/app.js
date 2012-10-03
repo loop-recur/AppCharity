@@ -15,4 +15,5 @@ init();
 
 PropertyCache.setup({cache_time: 120000});
 Twitter.setup({consumerKey: "CgIDnN8kDKPu1uKhMK5Qg", consumerSecret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI"});
+
 Windows.Application.open();
