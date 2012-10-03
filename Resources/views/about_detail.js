@@ -1,4 +1,4 @@
-Views.AboutDetail = function(page) {
+Views.AboutDetail = function() {
   var self = {
     view: UI.createScrollView({
       height: Ti.UI.FILL,
@@ -23,7 +23,7 @@ Views.AboutDetail = function(page) {
     }),
 
     photo: UI.createImageView({
-      image: page.cover.source,
+      // image: page.cover.source,
       borderColor: '#fff',
       borderRadius: 0.1,
       borderWidth: 5,
@@ -58,25 +58,11 @@ Views.AboutDetail = function(page) {
       backgroundSelectedImage: '/images/buttons/about_mobile_fb_share_btn_p.png'
     }),
 
-    overview: UI.createLabel(merge(Style.p3, {
+    content: UI.createLabel(merge(Style.p3, {
       left: 20,
-      right: 20,
-      text: page.company_overview
+      right: 20
     })),
 
-    about: UI.createLabel(merge(Style.p3, {
-      top: 20,
-      left: 20,
-      right: 20,
-      text: page.about
-    })),
-
-    mission: UI.createLabel(merge(Style.p3, {
-      top: 20,
-      left: 20,
-      right: 20,
-      text: page.mission
-    }))
   };
 
   self.view.add(self.title);
@@ -87,11 +73,9 @@ Views.AboutDetail = function(page) {
   self.profile_view.add(self.share_view);
   self.view.add(self.profile_view);
 
-  self.view.add(self.overview);
-  self.view.add(self.about);
-  self.view.add(self.mission);
+  self.view.add(self.content);
 
-  Controllers.AboutDetail(self, page);
+  Controllers.AboutDetail(self);
 
   return self;
 };

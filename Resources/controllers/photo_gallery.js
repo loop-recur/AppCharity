@@ -43,7 +43,12 @@ Controllers.PhotoGallery = function(view) {
         var photo = e.success ? e.photos[0] : alert('Error Uploading Photo');
       })
     })
-  }
+  };
+    
+  var makeImageViewFromCloudPhoto = function(cloud_photo){
+    var view = Ti.UI.createImageView({image: cloudPhotoUrlExtractor(cloud_photo, "small_240")});
+    view.addEventListener('longpress', function(e){ showDeleteIcon(e)});
+  };
 
   var getCacheOrMakeGrid = function() {
     PropertyCache.get('cloud_photos', makePhotoGrid) || getCloudPhotos();
