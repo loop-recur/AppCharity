@@ -7,5 +7,4 @@ module.exports = function(fancyRequire) {
   fancyRequire('grid');
   fancyRequire('date_formatter');
   fancyRequire('push');
-  fancyRequire('about_us_fetcher');
 };
