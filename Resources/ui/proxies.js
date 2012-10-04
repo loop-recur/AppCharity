@@ -30,6 +30,7 @@ UI.createButtonBar = function(props) {
 };
 
 UI.createImageView = function(props) {
+  props = mergeStyle(props);
 	return Ti.UI.createImageView(Scaler(props));
 }
 

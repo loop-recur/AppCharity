@@ -78,6 +78,16 @@ Style = {
       photo_upload_button: {
         backgroundImage: '/images/buttons/photo_grid_add_btn_med.png',
         backgroundSelectedImage: '/images/buttons/photo_grid_add_btn_med_p.png'
+      },
+      
+      about_photo_container: {
+        width: 300,
+        height: 213,
+        backgroundImage: "/images/backgrounds/about_tablet_featured_img_bg.png",
+      },
+      
+      about_photo: {
+        top: 8
       }
     }
 };
