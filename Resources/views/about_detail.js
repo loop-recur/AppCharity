@@ -20,7 +20,7 @@ Views.AboutDetail = function() {
       left: 20,
       right: 20,
       width: Ti.UI.FILL,
-      height: 130
+      height: Ti.UI.SIZE
     }),
 
     photo: UI.createImageView({
@@ -29,9 +29,7 @@ Views.AboutDetail = function() {
       borderWidth: 5,
       top: 0,
       left: 0,
-      width: 150,
-      height: 110,
-      square: true
+      width: "45%"
     }),
 
     share_view: UI.createView({
@@ -61,8 +59,7 @@ Views.AboutDetail = function() {
     content: UI.createLabel(merge(Style.p3, {
       left: 20,
       right: 20
-    })),
-
+    }))
   };
 
   self.view.add(self.title);
