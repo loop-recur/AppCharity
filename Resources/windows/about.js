@@ -7,6 +7,12 @@ Windows.About = function() {
       backgroundRepeat: true
     }),
     
+    vert_view: UI.createView({
+      layout: 'vertical'
+    }),
+    
+    donate_banner: Views.TopBanner().view,
+    
     shadow: UI.BorderShadows().view,
     
     subnav: UI.createView({
@@ -17,10 +23,13 @@ Windows.About = function() {
     
     detail_view_proxy: Views.AboutDetail()
   };
-
+  
+  if(isIPad) self.vert_view.add(self.donate_banner);
+  self.vert_view.add(self.subnav);
+  self.vert_view.add(self.detail_view_proxy.view);
   self.win.add(self.shadow);
-  self.win.add(self.detail_view_proxy.view);
-  self.win.add(self.subnav);
+  self.win.add(self.vert_view);
+  
   
   self.addSubNavItem = function(page, left, idx, width) {
     var nav_item = UI.createView({

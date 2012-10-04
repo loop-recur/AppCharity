@@ -11,6 +11,7 @@ describe("Windows/About", () ->
     about_page2 = Factory('about_us_subpage', {title: "Mission"})
     spyOn(Cloud.Objects, 'query').andCallFake((query, cb) -> cb({success: true, AboutUsPage: [about_page1, about_page2]}))
     spyOn(Twitter, 'tweet').andCallFake((cb) -> cb({success: true}))
+    spyOn(FbGraph, 'wallPost').andCallFake((cb) -> cb({success: true}))
     view_proxy = Windows.About()
     detail_view_proxy = view_proxy.detail_view_proxy
     PropertyCache.setup({cache_time: 10000})
@@ -44,7 +45,7 @@ describe("Windows/About", () ->
     expect(Twitter.tweet).toHaveBeenCalled()
   )
   
-  xit("adds a fb share button to the page", () ->
+  it("adds a fb share button to the page", () ->
     detail_view_proxy.fb_button.fireEvent('click')
     expect(FbGraph.wallPost).toHaveBeenCalled()
   )

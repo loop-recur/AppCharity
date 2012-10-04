@@ -57,7 +57,37 @@ Style = {
     
     ipad: {
       top_banner: {
-        width: "100%"
+        width: "100%",
+        backgroundImage: '/images/backgrounds/logo_donate_bar_tablet_bg.png'
+      },
+      
+      twitter_share_button: {
+        backgroundImage: '/images/buttons/about_tablet_twitter_share_btn.png',
+        backgroundSelectedImage: '/images/buttons/about_tablet_twitter_share_btn_p.png',
+        width: 247,
+        height: 37
+      },
+      
+      fb_share_button: {
+        width: 247,
+        height: 37,
+        backgroundImage: '/images/buttons/about_tablet_fb_share_btn.png',
+        backgroundSelectedImage: '/images/buttons/about_tablet_fb_share_btn_p.png'
+      },
+      
+      photo_upload_button: {
+        backgroundImage: '/images/buttons/photo_grid_add_btn_med.png',
+        backgroundSelectedImage: '/images/buttons/photo_grid_add_btn_med_p.png'
+      },
+      
+      about_photo_container: {
+        width: 300,
+        height: 213,
+        backgroundImage: "/images/backgrounds/about_tablet_featured_img_bg.png",
+      },
+      
+      about_photo: {
+        top: 8
       }
     }
 };

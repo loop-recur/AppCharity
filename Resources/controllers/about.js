@@ -78,7 +78,7 @@ Controllers.About = function(view_proxy) {
       return last_left+nav_item.width;
     }, 0);
     subnav[0].fireEvent('click');
-    Ti.App.fireEvent('hide_activity');  
+    Ti.App.fireEvent('hide_activity');
   }
   
   var populatePage = function() {
