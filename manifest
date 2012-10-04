@@ -1,8 +1,8 @@
-#appname: appcharity
-#publisher: brian
-#url: http://appcelerator.com
-#image: appicon.png
-#appid: com.looprecur.appcharity
-#desc: undefined
-#type: ipad
-#guid: 0b9b6d77-8feb-401f-96be-caeee73367d9
+#appname:appcharity
+#publisher:loop/recur
+#url:http://appcelerator.com
+#image:appicon.png
+#appid:com.looprecur.appcharity
+#desc:Appcelerator Charity App
+#type:mobile
+#guid:0b9b6d77-8feb-401f-96be-caeee73367d9

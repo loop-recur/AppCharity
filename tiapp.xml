@@ -9,18 +9,18 @@
     <deployment-targets>
         <target device="mobileweb">false</target>
         <target device="iphone">true</target>
-        <target device="ipad">true</target>
+        <target device="ipad">false</target>
         <target device="android">true</target>
         <target device="blackberry">false</target>
     </deployment-targets>
     <sdk-version>2.1.2.GA</sdk-version>
     <id>com.looprecur.appcharity</id>
     <name>appcharity</name>
-    <version>1.0</version>
-    <publisher>brian</publisher>
+    <version>0.1</version>
+    <publisher>loop/recur</publisher>
     <url>http://appcelerator.com</url>
-    <description>not specified</description>
-    <copyright>2012 by brian</copyright>
+    <description>Appcelerator Charity App</description>
+    <copyright>2012 by loop/recur</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
@@ -45,14 +45,14 @@
     <android xmlns:android="http://schemas.android.com/apk/res/android">
         <tool-api-level>15</tool-api-level>
         <uses-sdk android:minSdkVersion="8"/>
-        <service android:name="com.appcelerator.cloud.push.PushService" />
+        <service android:name="com.appcelerator.cloud.push.PushService"/>
         <manifest android:installLocation="auto">
-            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.INTERNET" />
-            <uses-permission android:name="android.permission.VIBRATE" />
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.VIBRATE"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
         </manifest>
     </android>
     <mobileweb>
