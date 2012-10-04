@@ -1,5 +1,22 @@
 Controllers.About = function(view_proxy) {
+  var subnav = [];
   var detail_view_proxy = view_proxy.detail_view_proxy;
+  
+  var fetchAllSubpageData = function(cb){
+    Ti.App.fireEvent('show_activity');
+    Cloud.Objects.query({
+        classname: 'AboutUsPage',
+        page: 1,
+        per_page: 10
+    }, function (e) {
+        if (e.success) {
+          PropertyCache.set('pages', e.AboutUsPage);
+          cb(e.AboutUsPage);
+        } else {
+          alert(JSON.stringify(e));
+        }
+    });
+  };
   
   // Callback, passed to AboutUsFetcher
   var setTitle = function(value){
@@ -19,15 +36,54 @@ Controllers.About = function(view_proxy) {
   // Callback, passed to AboutUsFetcher and expecting an object literal of items needed to build the submenu.
   var setSubmenu = function(hash){
     
-  }; 
-   
-  var updateMenuAndContent = function(nav_number){
-    var fetcher = AboutUsFetcher(nav_number);
-    fetcher.fetchTitle(setTitle);
-    fetcher.fetchContent(setContent);
-    fetcher.fetchImageUrl(setImage);
-    // fetcher.fetchSubmenuHash(setSubmenu);
+  };
+  
+  var setPage = function(page) {
+    setImage(page.photo.urls.medium_640);
+    setTitle(page.title);
+    setContent(page.content);
   }
   
-  view_proxy.win.addEventListener('focus', function(e){ updateMenuAndContent(1); });
+  var updateSubMenu = function(idx) {
+    var nav_item = subnav[idx];
+    var nav_item_width = Ti.Platform.displayCaps.platformWidth / 2.2;
+    
+    var room_left = Ti.Platform.displayCaps.platformWidth - nav_item_width;
+
+    var width = room_left / (subnav.length-1);
+    
+    subnav.map(function(s, i){
+      var left = (idx < i) ? (nav_item_width + ((i-1) * width)) : (width * i);
+      
+      if(i == idx) {
+        s.animate({width: nav_item_width, left: left});
+      } else {
+        s.animate({width: width, left: left});
+      }
+    });
+    // subnav
+  }
+   
+  var updateMenuAndContent = function(pages){
+    subnav = [];
+    view_proxy.subnav.children.map(function(c){ view_proxy.subnav.remove(c); });
+    var width = Ti.Platform.displayCaps.platformWidth / pages.length;
+    pages.reduce(function(last_left, page, idx) {
+      var nav_item = view_proxy.addSubNavItem(page, last_left, idx, width);
+      nav_item.addEventListener('click', function(e){
+        setPage(page);
+        updateSubMenu(idx);
+      });
+      subnav.push(nav_item);
+      return last_left+nav_item.width;
+    }, 0);
+    subnav[0].fireEvent('click');
+    Ti.App.fireEvent('hide_activity');  
+  }
+  
+  var populatePage = function() {
+    PropertyCache.get('pages', updateMenuAndContent) || fetchAllSubpageData(updateMenuAndContent)
+  }
+  
+  view_proxy.win.addEventListener('focus', populatePage);
 }

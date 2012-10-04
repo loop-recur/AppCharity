@@ -3,14 +3,14 @@ FactoryDefinitions = {
   about_us_subpage: function(props){
     return merge({ user: 
        { id: '50511f70025afe168b023567',
-         first_name: 'Brian',
-         last_name: 'Lonsdorf',
+         first_name: 'Bubba',
+         last_name: 'Jones',
          created_at: '2012-09-12T23:49:04+0000',
          updated_at: '2012-10-03T19:27:03+0000',
          external_accounts: [],
          confirmed_at: '2012-09-12T23:49:04+0000',
-         username: 'drboolean',
-         email: 'brian@looprecur.com',
+         username: 'bubbaj',
+         email: 'bubbaj@looprecur.com',
          admin: 'true' },
       page_id: 1,
       title: 'About Us',
