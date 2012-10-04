@@ -68,8 +68,7 @@ Controllers.About = function(view_proxy) {
       pages.reduce(function(last_left, page, idx) {
         var nav_item = view_proxy.addSubNavItem(page, last_left, idx, width);
         nav_item.addEventListener('click', function(e){
-          log2('source', e.source)
-          setPage(e.source.page);
+          setPage(page);
           updateSubMenu(idx);
         });
         subnav.push(nav_item);
