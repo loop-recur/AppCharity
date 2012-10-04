@@ -51,12 +51,7 @@ Controllers.About = function(view_proxy) {
     var width = room_left / (subnav.length-1);
     
     subnav.map(function(s, i){
-      
-      if(idx < i) {
-        var left = nav_item_width + ((i-1) * width);
-      } else {
-        var left = (width * i);
-      }
+      var left = (idx < i) ? (nav_item_width + ((i-1) * width)) : (width * i);
       
       if(i == idx) {
         s.animate({width: nav_item_width, left: left});

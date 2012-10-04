@@ -39,9 +39,18 @@ Windows.About = function() {
     
     var title_label = UI.createLabel({
       text: page.title,
+      top: 5,
+      bottom: 5,
+      left: 5,
+      right: 5,
       page: page,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
+    });
+    
+    var scroll = UI.createScrollView({
+      showHorizontalScrollIndicator:false,
+      showVerticalScrollIndicator:false
     });
     
     var mask = UI.createView({
@@ -56,7 +65,8 @@ Windows.About = function() {
       image: page.photo.urls.medium_640
     });
     
-    nav_item.add(img);
+    scroll.add(img);
+    nav_item.add(scroll);
     nav_item.add(mask);
     
     title_view.add(title_label);
