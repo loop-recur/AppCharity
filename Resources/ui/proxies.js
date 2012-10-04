@@ -21,6 +21,7 @@ UI.createAlertMessage = function(message) {
 }
 
 UI.createButton = function(props) {
+  props = mergeStyle(props);
   return Ti.UI.createButton(Scaler(props));
 };
 
