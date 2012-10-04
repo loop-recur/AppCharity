@@ -17,7 +17,7 @@ Views.TopBanner = function() {
     }),
     
     logo: UI.createImageView({
-      left: "3%",
+      left: "4%",
       image: '/images/placeholder_logo.png'
     }),
     

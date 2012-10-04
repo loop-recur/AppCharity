@@ -20,6 +20,7 @@ Controllers.PhotoGallery = function(view) {
     view.win.add(view.photo_grid);
 
     view.photo_grid.addEventListener('click', function(e) {
+      if(e.source.index == 'undefined') return;
       Windows.Application.photos.open(Windows.Slideshow(all_photos, e.source.index).win);
     });
     Ti.App.fireEvent('hide_activity');

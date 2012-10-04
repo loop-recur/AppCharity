@@ -1,5 +1,5 @@
 Windows.PhotoGallery = function() {
-  var photo_size = (Ti.Platform.displayCaps.platformWidth / 3.1);
+  var photo_size = (Ti.Platform.displayCaps.platformWidth / 3);
 
   var self = {
     win: UI.createWindow({
@@ -19,7 +19,8 @@ Windows.PhotoGallery = function() {
       height: photo_size,
       square: true,
       backgroundImage: '/images/buttons/photo_grid_add_btn_sml.png',
-      backgroundSelectedImage: '/images/buttons/photo_grid_add_btn_sml_p.png'
+      backgroundSelectedImage: '/images/buttons/photo_grid_add_btn_sml_p.png',
+      style_id: 'photo_upload_button'
     })
   };
   
@@ -27,15 +28,13 @@ Windows.PhotoGallery = function() {
   self.win.add(self.shadow);
   
   self.makeImageViewFromCloudPhoto = function(cloud_photo, index) {
-    return UI.createImageView({
-      index: index,
+    return UI.CroppedImage({
       height: photo_size,
       width: photo_size,
-      top: 5,
-      left: 2,
-      right: 2,
-      bottom: 5,
-      image: cloud_photo.urls.large_1024
+      index: index,
+      top: 1,
+      bottom: 1,
+      image: (isIPad ? cloud_photo.urls.medium_640 : cloud_photo.urls.small_240)
     });
   }
 

@@ -29,7 +29,7 @@ Controllers.Slideshow = function(vp, screens, current_index) {
       },
 
       updateWinTitle = function() {
-        vp.win.title = 'slideshow ' + String(current_index + 1) + screens_len;
+        vp.win.title = vp.win.title.replace(/\d+/, String(current_index + 1));
       },
 
       showNextScreen = function(e) {
