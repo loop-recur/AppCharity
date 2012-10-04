@@ -2,6 +2,7 @@ Views.AboutDetail = function() {
   var self = {
     view: UI.createScrollView({
       height: Ti.UI.FILL,
+      top: 120,
       backgroundColor: 'transparent',
       layout: 'vertical'
     }),
@@ -23,7 +24,6 @@ Views.AboutDetail = function() {
     }),
 
     photo: UI.createImageView({
-      // image: page.cover.source,
       borderColor: '#fff',
       borderRadius: 0.1,
       borderWidth: 5,

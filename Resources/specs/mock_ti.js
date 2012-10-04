@@ -56,7 +56,9 @@ var baseStubPrototype = function() {
 			this.children.splice(this.children.indexOf(v), 1);
 		},
 		fireEvent: function(name, e) {
-			EventRegistry.fire(this, name, e)
+		  e = (e || {});
+		  e.source = (e.source || this);
+			EventRegistry.fire(this, name, e);
 		},
 		animate: function(obj, cb) {
 			for(p in obj) { this[p] = obj[p]; }
