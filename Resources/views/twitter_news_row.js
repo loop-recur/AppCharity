@@ -22,7 +22,8 @@ Views.TwitterNewsRow = function(news) {
       top: 10,
       left: 10,
       right: 10,
-      height: Ti.UI.SIZE
+      height: Ti.UI.SIZE,
+      width: '70%'
     }),
 
     title_view: UI.createView({
@@ -53,7 +54,7 @@ Views.TwitterNewsRow = function(news) {
     })),
     
     twitter_actions: Views.TwitterActions(news)
-  }
+  };
 
   self.title_view.add(self.screen_name);
   self.title_view.add(self.date);
@@ -67,4 +68,4 @@ Views.TwitterNewsRow = function(news) {
   self.row.add(self.content_view);
   
   return self;
-}
+};

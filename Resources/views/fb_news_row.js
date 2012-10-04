@@ -30,7 +30,7 @@ Views.FbNewsRow = function(news) {
       top: 10,
       left: 10,
       right: 10,
-      width: "85%",
+      width: "70%",
       height: Ti.UI.SIZE
     }),
 
