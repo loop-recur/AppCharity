@@ -1,6 +1,12 @@
 Windows.Application = (function() {
 	var self = {
         tab_group: Ti.UI.createTabGroup({}),
+        
+        about: UI.createTab({
+          title: 'About Us',
+          icon:'/images/icons/tab_about.png',
+          window: Windows.About().win
+        }),
 
         events: UI.createTab({
           title: 'Events',
@@ -19,12 +25,6 @@ Windows.Application = (function() {
           icon:'/images/icons/tab_photo.png',
           window: Windows.PhotoGallery().win
         }),
-        
-        about: UI.createTab({
-          title: 'About Us',
-          icon:'/images/icons/tab_about.png',
-          window: Windows.About().win
-        }),
 
         spinner: Spinner()
       };
@@ -32,10 +32,10 @@ Windows.Application = (function() {
 	self.open = function() {
 	  Ti.App.addEventListener('show_activity', self.spinner.showLoading);
     Ti.App.addEventListener('hide_activity', self.spinner.hideLoading);
+		self.tab_group.addTab(self.about);
 		self.tab_group.addTab(self.events);
 		self.tab_group.addTab(self.news);
 		self.tab_group.addTab(self.photos);
-		self.tab_group.addTab(self.about);
 		self.tab_group.add(self.spinner);
 		self.tab_group.open();
 	};

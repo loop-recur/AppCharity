@@ -27,7 +27,7 @@ Views.FbNewsRow = function(news) {
 
     title_view: UI.createView({
       layout: 'vertical',
-      top: 10,
+      top: 0,
       left: 10,
       right: 10,
       width: "70%",

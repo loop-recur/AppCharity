@@ -25,29 +25,34 @@ Windows.About = function() {
   self.addSubNavItem = function(page, left, idx, width) {
     var nav_item = UI.createView({
       width: width,
-      page: page,
       left: left
     });
     
     var title_view = UI.createView({
       backgroundColor: "white",
       bottom:30,
-      page: page,
       width: Ti.UI.FILL,
       height: Ti.UI.SIZE
     });
     
     var title_label = UI.createLabel({
       text: page.title,
-      page: page,
+      top: 5,
+      bottom: 5,
+      left: 5,
+      right: 5,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
+    });
+    
+    var scroll = UI.createScrollView({
+      showHorizontalScrollIndicator:false,
+      showVerticalScrollIndicator:false
     });
     
     var mask = UI.createView({
       backgroundColor: colors[idx],
       opacity: 0.3,
-      page: page,
       width: Ti.UI.FILL,
       height: Ti.UI.FILL
     });
@@ -56,7 +61,8 @@ Windows.About = function() {
       image: page.photo.urls.medium_640
     });
     
-    nav_item.add(img);
+    scroll.add(img);
+    nav_item.add(scroll);
     nav_item.add(mask);
     
     title_view.add(title_label);

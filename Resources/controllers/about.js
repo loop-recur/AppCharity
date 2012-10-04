@@ -3,12 +3,14 @@ Controllers.About = function(view_proxy) {
   var detail_view_proxy = view_proxy.detail_view_proxy;
   
   var fetchAllSubpageData = function(cb){
+    Ti.App.fireEvent('show_activity');
     Cloud.Objects.query({
         classname: 'AboutUsPage',
         page: 1,
         per_page: 10
     }, function (e) {
         if (e.success) {
+          PropertyCache.set('pages', e.AboutUsPage);
           cb(e.AboutUsPage);
         } else {
           alert(JSON.stringify(e));
@@ -51,12 +53,7 @@ Controllers.About = function(view_proxy) {
     var width = room_left / (subnav.length-1);
     
     subnav.map(function(s, i){
-      
-      if(idx < i) {
-        var left = nav_item_width + ((i-1) * width);
-      } else {
-        var left = (width * i);
-      }
+      var left = (idx < i) ? (nav_item_width + ((i-1) * width)) : (width * i);
       
       if(i == idx) {
         s.animate({width: nav_item_width, left: left});
@@ -67,22 +64,26 @@ Controllers.About = function(view_proxy) {
     // subnav
   }
    
-  var updateMenuAndContent = function(){
-    fetchAllSubpageData(function(pages){
-      var width = Ti.Platform.displayCaps.platformWidth / pages.length;
-      pages.reduce(function(last_left, page, idx) {
-        var nav_item = view_proxy.addSubNavItem(page, last_left, idx, width);
-        nav_item.addEventListener('click', function(e){
-          log2('source', e.source)
-          setPage(e.source.page);
-          updateSubMenu(idx);
-        });
-        subnav.push(nav_item);
-        return last_left+nav_item.width;
-      }, 0);
-      subnav[0].fireEvent('click');
-    });
+  var updateMenuAndContent = function(pages){
+    subnav = [];
+    view_proxy.subnav.children.map(function(c){ view_proxy.subnav.remove(c); });
+    var width = Ti.Platform.displayCaps.platformWidth / pages.length;
+    pages.reduce(function(last_left, page, idx) {
+      var nav_item = view_proxy.addSubNavItem(page, last_left, idx, width);
+      nav_item.addEventListener('click', function(e){
+        setPage(page);
+        updateSubMenu(idx);
+      });
+      subnav.push(nav_item);
+      return last_left+nav_item.width;
+    }, 0);
+    subnav[0].fireEvent('click');
+    Ti.App.fireEvent('hide_activity');
   }
   
-  view_proxy.win.addEventListener('focus', updateMenuAndContent);
+  var populatePage = function() {
+    PropertyCache.get('pages', updateMenuAndContent) || fetchAllSubpageData(updateMenuAndContent)
+  }
+  
+  view_proxy.win.addEventListener('focus', populatePage);
 }

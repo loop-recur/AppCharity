@@ -3,6 +3,15 @@ isIPhone = true;
 isAndroid = false;
 isMobileweb = true;
 
+SpecHelper = {
+  switchPlatform: function(platform, bool){
+    if(platform == "Android") isAndroid = bool;
+    if(platform == "IPhone") isIPhone = bool;
+    if(platform == "IPad") isIPad = bool;
+    if(platform == "Mobileweb") isMobileweb = bool;
+  }
+};
+
 Cloud = require('../../commonjs/ti.cloud/2.3.0/ti.cloud');
 require('../../initializers/init');
 init('../', true);

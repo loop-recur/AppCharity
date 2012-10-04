@@ -20,7 +20,7 @@ Views.AboutDetail = function() {
       left: 20,
       right: 20,
       width: Ti.UI.FILL,
-      height: 130
+      height: Ti.UI.SIZE
     }),
 
     photo: UI.createImageView({
@@ -29,9 +29,7 @@ Views.AboutDetail = function() {
       borderWidth: 5,
       top: 0,
       left: 0,
-      width: 150,
-      height: 110,
-      square: true
+      width: "45%"
     }),
 
     share_view: UI.createView({
@@ -46,7 +44,8 @@ Views.AboutDetail = function() {
       height: 37,
       square: true,
       backgroundImage: '/images/buttons/about_mobile_twitter_share_btn.png',
-      backgroundSelectedImage: '/images/buttons/about_mobile_twitter_share_btn_p.png'
+      backgroundSelectedImage: '/images/buttons/about_mobile_twitter_share_btn_p.png',
+      style_id: 'twitter_share_button'
     }),
 
     fb_button: UI.createButton({
@@ -55,14 +54,14 @@ Views.AboutDetail = function() {
       height: 37,
       square: true,
       backgroundImage: '/images/buttons/about_mobile_fb_share_btn.png',
-      backgroundSelectedImage: '/images/buttons/about_mobile_fb_share_btn_p.png'
+      backgroundSelectedImage: '/images/buttons/about_mobile_fb_share_btn_p.png',
+      style_id: 'fb_share_button'
     }),
 
     content: UI.createLabel(merge(Style.p3, {
       left: 20,
       right: 20
-    })),
-
+    }))
   };
 
   self.view.add(self.title);
