@@ -25,14 +25,12 @@ Windows.About = function() {
   self.addSubNavItem = function(page, left, idx, width) {
     var nav_item = UI.createView({
       width: width,
-      page: page,
       left: left
     });
     
     var title_view = UI.createView({
       backgroundColor: "white",
       bottom:30,
-      page: page,
       width: Ti.UI.FILL,
       height: Ti.UI.SIZE
     });
@@ -43,7 +41,6 @@ Windows.About = function() {
       bottom: 5,
       left: 5,
       right: 5,
-      page: page,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     });
@@ -56,7 +53,6 @@ Windows.About = function() {
     var mask = UI.createView({
       backgroundColor: colors[idx],
       opacity: 0.3,
-      page: page,
       width: Ti.UI.FILL,
       height: Ti.UI.FILL
     });

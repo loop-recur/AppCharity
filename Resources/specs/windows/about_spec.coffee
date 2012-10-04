@@ -25,19 +25,19 @@ describe("Windows/About", () ->
   #   view_proxy.win.fireEvent('focus')
   # )
 
-  it("puts photo on the page", () ->
+  it("puts photo on the page", ()->
     expect(detail_view_proxy.photo.image).toEqual("http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/c1/ab/506c90c79e73795f3b000292/charity1_medium_640.jpeg");
   )
   
-  it("puts content from ACS on the page", () ->
+  it("puts content from ACS on the page", ()->
     expect(detail_view_proxy.content.text).toMatch('This is copy that we have for the About Us page.');
   )
   
-  it("puts title from ACS on the page", () ->
+  it("puts title from ACS on the page", ()->
     expect(detail_view_proxy.title.text).toMatch('About Us');
   )
     
-  it("adds a tweet button to the page", () ->
+  it("adds a tweet button to the page", ()->
     detail_view_proxy.tweet_button.fireEvent('click')
     expect(Twitter.tweet).toHaveBeenCalled()
   )
@@ -64,5 +64,14 @@ describe("Windows/About", () ->
     expect(view_proxy.subnav.children[0].left).toEqual(0)
     expect(view_proxy.subnav.children[1].left).toEqual(145.45454545454544)
   )
+
+  it('only shows 2 subnav items on first window focus', ()->
+    expect(view_proxy.subnav.children.length).toEqual(2)
+  )
   
-)
+  it('still only shows the original 2 subnav items on window focus and does not duplicate them each time the window is focused on', ()->
+    view_proxy.win.fireEvent('focus')
+    expect(view_proxy.subnav.children.length).toEqual(2)
+  )
+  
+)  
