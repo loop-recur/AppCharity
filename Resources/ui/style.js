@@ -27,20 +27,6 @@ Style = {
       width: Ti.UI.SIZE
     },
 
-    p1: {
-      font: {fontSize: 24, fontWeight: 'regular'},
-      color: '#444',
-      height: Ti.UI.SIZE,
-      width: Ti.UI.SIZE
-    },
-
-    p2: {
-      font: {fontSize: 18, fontWeight: 'regular'},
-      color: '#444',
-      height: Ti.UI.SIZE,
-      width: Ti.UI.SIZE
-    },
-
     p3: {
       font: {fontSize: 12, fontWeight: 'regular'},
       color: '#999999',
@@ -62,20 +48,6 @@ Style = {
       width: Ti.UI.SIZE
     },
 
-    subtitle: {
-        font: {fontSize: 11, fontWeight: 'regular'},
-        color: '#444',
-        height: Ti.UI.SIZE,
-        width: Ti.UI.SIZE
-    },
-
-    deal_text: {
-      font: {fontSize: 13, fontWeight: 'bold'},
-      color: '#197b30',
-      shadowColor: '#eaeaea',
-      shadowOffset: {x: 2, y: 2}
-    },
-    
     ipad: {
       top_banner: {
         width: "100%",
@@ -97,8 +69,8 @@ Style = {
       },
       
       photo_upload_button: {
-        backgroundImage: '/images/buttons/photo_grid_add_btn_med.png',
-        backgroundSelectedImage: '/images/buttons/photo_grid_add_btn_med_p.png'
+        backgroundImage: '/images/buttons/photo_grid_add_btn_lrg.png',
+        backgroundSelectedImage: '/images/buttons/photo_grid_add_btn_lrg_p.png'
       },
       
       about_photo_container: {
