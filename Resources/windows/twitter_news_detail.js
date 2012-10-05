@@ -11,8 +11,17 @@ Windows.TwitterNewsDetail = function(news) {
       top: 100
     }).view,
 
+    back_btn: UI.createButton({
+      backgroundImage: '/images/buttons/big_back.png',
+      backgroundSelectedImage: '/images/buttons/big_back_p.png',
+      height: 36,
+      width: 302,
+      zIndex: 25,
+      top: 110
+  }),
+
     view: UI.createView({
-      top: 100,
+      top: 146,
       backgroundColor: 'transparent',
       layout: 'horizontal'
     }),
@@ -65,8 +74,6 @@ Windows.TwitterNewsDetail = function(news) {
     twitter_actions: Views.TwitterActions(news)
   };
 
-  log(JSON.stringify(news));
-
   self.title_view.add(self.screen_name);
   self.title_view.add(self.date);
 
@@ -80,7 +87,9 @@ Windows.TwitterNewsDetail = function(news) {
   
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
+  self.win.add(self.back_btn);
   self.win.add(self.view);
+  Controllers.TwitterNewsDetail(self);
 
   return self;
-}
+};

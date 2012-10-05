@@ -135,5 +135,6 @@ Windows.FbNewsDetail = function(news) {
   self.win.add(self.back_btn);
   self.win.add(self.view);
 
+  Controllers.FbNewsDetail(self);
   return self;
 };

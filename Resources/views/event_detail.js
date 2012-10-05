@@ -1,7 +1,7 @@
 Views.EventDetail = function(event) {
   var self = {
     view: UI.createScrollView({
-      top: 100,
+      top: 136,
       contentHeight: 'auto',
       height: Ti.UI.FILL,
       width: Ti.UI.FILL,
