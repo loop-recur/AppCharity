@@ -12,7 +12,8 @@ Views.EventRow = function(event) {
       width: 50,
       left: 10,
       top: 15,
-      square: true
+      square: true,
+      bottom: 15
     }),
 
     month: UI.createLabel(merge(Style.h3, {
