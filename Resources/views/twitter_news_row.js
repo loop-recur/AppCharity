@@ -22,12 +22,12 @@ Views.TwitterNewsRow = function(news) {
       top: 10,
       left: 10,
       right: 10,
-      height: Ti.UI.SIZE,
-      width: '70%'
+      height: Ti.UI.SIZE
     }),
 
     title_view: UI.createView({
-      height: Ti.UI.SIZE
+      height: Ti.UI.SIZE,
+      layout: 'horizontal'
     }),
 
     title: UI.createLabel(merge(Style.h2, {
@@ -37,8 +37,8 @@ Views.TwitterNewsRow = function(news) {
 
     screen_name: UI.createLabel(merge(Style.p3, {
       text: "@"+news.user.screen_name,
-      color: '#505050',
-      left: 0
+      left: 0,
+      width: 30
     })),
 
     date: UI.createLabel(merge(Style.p3, {
@@ -56,10 +56,10 @@ Views.TwitterNewsRow = function(news) {
     twitter_actions: Views.TwitterActions(news)
   };
 
+  self.title_view.add(self.title);
   self.title_view.add(self.screen_name);
   self.title_view.add(self.date);
 
-  self.content_view.add(self.title);
   self.content_view.add(self.title_view);
   self.content_view.add(self.tweet);
   self.content_view.add(self.twitter_actions.view);

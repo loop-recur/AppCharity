@@ -55,17 +55,13 @@ describe("Windows/About", () ->
     expect(detail_view_proxy.title.text).toMatch("Mission")
   )
   
-  it("evenly distributes the other subnav", ()->
-    expect(view_proxy.subnav.children[1].width).toEqual(174.54545454545456)
+  it("evenly distributes the subnav", ()->
+    expect(view_proxy.subnav.children[1].width).toEqual(160)
   )
   
-  it("makes the main subnav large", ()->
-    expect(view_proxy.subnav.children[0].width).toEqual(145.45454545454544)
-  )
-  
-  it("moves the subnav into the correct positions", ()->
-    expect(view_proxy.subnav.children[0].left).toEqual(0)
-    expect(view_proxy.subnav.children[1].left).toEqual(145.45454545454544)
+  it("leaves the mask from the other subnav, but not the main", ()->
+    expect(view_proxy.subnav.children[1].mask.opacity).toEqual(0.3)
+    expect(view_proxy.subnav.children[0].mask.opacity).toEqual(0)
   )
 
   it('only shows 2 subnav items on first window focus', ()->

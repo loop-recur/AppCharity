@@ -34,16 +34,15 @@ Views.FbNewsRow = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    title: UI.createLabel(merge(Style.h3, {
+    title: UI.createLabel(merge(Style.h4, {
       text: (news.name ? news.name : news.from.name),
-      color: '#667dad',
-      left: 0,
-      height: Ti.UI.SIZE,
-      width: Ti.UI.SIZE
+      top: 0,
+      left: 0
     })),
 
     time_and_place: UI.createView({
       layout: 'horizontal',
+      top: 3,
       left: 0,
       width: Ti.UI.FILL,
       height: Ti.UI.SIZE
@@ -51,7 +50,6 @@ Views.FbNewsRow = function(news) {
 
     time: UI.createLabel(merge(Style.p3, {
       text: DateFormatter.date(news.created_time, {formatted: true, fb: true}),
-      color: '#505050',
       left: 0,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
@@ -67,7 +65,6 @@ Views.FbNewsRow = function(news) {
 
     via: UI.createLabel(merge(Style.p3, {
       text: 'via',
-      color: '#505050',
       left: 2,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
@@ -81,8 +78,9 @@ Views.FbNewsRow = function(news) {
       square: true
     }),
 
-    description: UI.createLabel(merge(Style.p3, {
+    description: UI.createLabel(merge(Style.p5, {
       text: news.description,
+      top: 5,
       left: 10,
       right: 10,
       bottom: 10,

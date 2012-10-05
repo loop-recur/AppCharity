@@ -62,7 +62,8 @@ Views.AboutDetail = function() {
       style_id: 'fb_share_button'
     }),
 
-    content: UI.createLabel(merge(Style.p3, {
+    content: UI.createLabel(merge(Style.p4, {
+      top: 10,
       left: 20,
       right: 20
     }))

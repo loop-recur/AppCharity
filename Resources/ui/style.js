@@ -1,14 +1,14 @@
 Style = {
     h1: {
-      font: {fontSize: 24, fontWeight: 'bold'},
-      color: '#444',
+      font: {fontWeight: 'normal', fontFamily: 'Georgia', fontSize: 30, fontStyle: 'italic'},
+      color: "#707070",
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE
     },
 
     h2: {
-      font: {fontSize: 18, fontWeight: 'bold'},
-      color: '#444',
+      font:{fontFamily:'Helvetica Neue', fontSize:12, fontWeight:'bold'},
+      color: '#363636',
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE
     },
@@ -16,6 +16,13 @@ Style = {
     h3: {
       font: {fontSize: 14, fontWeight: 'bold'},
       color: '#444',
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
+    },
+    
+    h4: {
+      font: {fontWeight: 'bold', fontFamily: 'Lucida Grande', fontSize: 13},
+      color: '#3b5998',
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE
     },
@@ -35,8 +42,22 @@ Style = {
     },
 
     p3: {
-      font: {fontSize: 14, fontWeight: 'regular'},
-      color: '#444',
+      font: {fontSize: 12, fontWeight: 'regular'},
+      color: '#999999',
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
+    },
+    
+    p4: {
+      font: {fontWeight: 'normal', fontFamily: 'Georgia', fontSize: 18, fontStyle: 'italic'},
+      color: "#707070",
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
+    },
+    
+    p5: {
+      font:{fontFamily:'Helvetica medium', fontSize:13},
+      color: '#444444',
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE
     },
