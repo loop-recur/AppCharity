@@ -23,7 +23,12 @@ Controllers.TwitterActions = function(view, tweet){
     Windows.Application.news.open(view.tweet_view.win);
   }
   
+  var openTwitterPage = function() {
+    Ti.Platform.openURL('http://www.twitter.com/MSF_USA');
+  }
+  
   view.retweet.addEventListener('click', retweet);
   view.favorite.addEventListener('click', favorite);
   view.reply.addEventListener('click', reply);
+  view.tweet_button.addEventListener('click', openTwitterPage);
 }

@@ -4,7 +4,6 @@ Views.TwitterNewsRow = function(news) {
       created: DateFormatter.date(news.created_at, {parsed: true}),
       backgroundColor: 'transparent',
       news: news,
-      layout: 'horizontal',
       className: "twitter_row"
     }),
 
@@ -12,22 +11,23 @@ Views.TwitterNewsRow = function(news) {
       image: news.user.profile_image_url,
       top: 10,
       left: 10,
-      width: 60,
-      height: 60,
+      width: 40,
+      height: 40,
       square: true
     }),
     
     content_view: UI.createView({
       layout: 'vertical',
       top: 10,
-      left: 10,
+      left: 60,
       right: 10,
       height: Ti.UI.SIZE,
-      width: '70%'
+      style_id: 'news_container'
     }),
 
     title_view: UI.createView({
-      height: Ti.UI.SIZE
+      height: Ti.UI.SIZE,
+      layout: 'horizontal'
     }),
 
     title: UI.createLabel(merge(Style.h2, {
@@ -37,35 +37,48 @@ Views.TwitterNewsRow = function(news) {
 
     screen_name: UI.createLabel(merge(Style.p3, {
       text: "@"+news.user.screen_name,
-      color: '#505050',
-      left: 0
+      left: 5,
+      width: 55,
+      height: 15,
+      ellipsize: true
     })),
 
     date: UI.createLabel(merge(Style.p3, {
-      text: DateFormatter.date(news.created_at, {formatted: true}),
-      color: '#505050',
+      text: DateFormatter.date(news.created_at, {twitter: true}),
+      left: 10,
       right: 0
     })),
 
     tweet: UI.createLabel(merge(Style.p3, {
       text: news.text,
       top: 5,
+      left: 0,
       width: Ti.UI.FILL
     })),
     
     twitter_actions: Views.TwitterActions(news)
   };
 
+  self.title_view.add(self.title);
   self.title_view.add(self.screen_name);
   self.title_view.add(self.date);
 
-  self.content_view.add(self.title);
   self.content_view.add(self.title_view);
   self.content_view.add(self.tweet);
   self.content_view.add(self.twitter_actions.view);
 
   self.row.add(self.photo);
   self.row.add(self.content_view);
+  
+  if(isIPad) {
+    self.photo.top = 25;
+    self.tweet.width = "70%";
+    var tweet_btn = self.twitter_actions.tweet_button;
+    self.twitter_actions.view.remove(tweet_btn);
+    tweet_btn.left = null;
+    tweet_btn.right = 60;
+    self.row.add(tweet_btn);
+  }
   
   return self;
 };

@@ -18,6 +18,8 @@ DateFormatter = (function() {
       parsed_date = opts.fb ? Date.parse(parsed_date) : Date.parse(date_str);
     } else if (opts && opts.formatted) {
       parsed_date = opts.fb ? parsed_date.toString().slice(0,10) : Date(date_str).slice(0,10);
+    } else if (opts && opts.twitter) {
+      parsed_date = Date(date_str).slice(4,10);
     } else if (opts && opts.month) {
       parsed_date = Date(date_str).slice(4,7);
     } else if (opts && opts.day) {

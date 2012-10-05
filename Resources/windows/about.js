@@ -1,5 +1,6 @@
 Windows.About = function() {
-  var colors = ['red', 'green', 'yellow', 'blue', 'white']
+  var COLORS = ['red', 'green', 'yellow', 'blue', 'white'];
+  
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
@@ -39,18 +40,19 @@ Windows.About = function() {
     
     var title_view = UI.createView({
       backgroundColor: "white",
-      bottom:30,
-      width: Ti.UI.FILL,
+      bottom:24,
+      width: 120,
       height: Ti.UI.SIZE
     });
     
     var title_label = UI.createLabel({
       text: page.title,
       top: 5,
+      font: {fontWeight: 'normal'},
       bottom: 5,
       left: 5,
       right: 5,
-      width: Ti.UI.SIZE,
+      width: 120,
       height: Ti.UI.SIZE
     });
     
@@ -60,7 +62,7 @@ Windows.About = function() {
     });
     
     var mask = UI.createView({
-      backgroundColor: colors[idx],
+      backgroundColor: COLORS[idx],
       opacity: 0.3,
       width: Ti.UI.FILL,
       height: Ti.UI.FILL
@@ -81,6 +83,8 @@ Windows.About = function() {
     
     self.subnav.add(nav_item);
     
+    nav_item.mask = mask;
+    nav_item.title = title_label;
     return nav_item;
   };
 

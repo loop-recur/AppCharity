@@ -45,23 +45,10 @@ Controllers.About = function(view_proxy) {
   }
   
   var updateSubMenu = function(idx) {
-    var nav_item = subnav[idx];
-    var nav_item_width = Ti.Platform.displayCaps.platformWidth / 2.2;
-    
-    var room_left = Ti.Platform.displayCaps.platformWidth - nav_item_width;
-
-    var width = room_left / (subnav.length-1);
-    
     subnav.map(function(s, i){
-      var left = (idx < i) ? (nav_item_width + ((i-1) * width)) : (width * i);
-      
-      if(i == idx) {
-        s.animate({width: nav_item_width, left: left});
-      } else {
-        s.animate({width: width, left: left});
-      }
+      var opacity = (i == idx) ? 0 : 0.3;
+      s.mask.animate({opacity: opacity});
     });
-    // subnav
   }
    
   var updateMenuAndContent = function(pages){
@@ -82,7 +69,7 @@ Controllers.About = function(view_proxy) {
   }
   
   var populatePage = function() {
-    PropertyCache.get('pages', updateMenuAndContent) || fetchAllSubpageData(updateMenuAndContent)
+    PropertyCache.get('pages', updateMenuAndContent) || fetchAllSubpageData(updateMenuAndContent);
   }
   
   view_proxy.win.addEventListener('focus', populatePage);
