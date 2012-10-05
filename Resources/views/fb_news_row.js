@@ -4,31 +4,31 @@ Views.FbNewsRow = function(news) {
       created: DateFormatter.date(news.created_time, {parsed: true, fb: true}),
       news: news,
       backgroundColor: 'transparent',
-      layout: 'vertical',
       kind: 'fb',
       className: 'fb_row'
     }),
-
-    header_view: UI.createView({
-      layout: 'horizontal',
-      top: 10,
+    
+    container_view: UI.createView({
+      layout: 'vertical',
       height: Ti.UI.SIZE,
-      width: Ti.UI.FILL
+      left: 10,
+      top: 10,
+      style_id: 'news_container'
     }),
 
     photo: UI.createImageView({
       image: news.picture,
-      top: 0,
+      top: 10,
       left: 10,
-      width: 60,
-      height: 60,
+      width: 40,
+      height: 40,
       square: true
     }),
 
     title_view: UI.createView({
       layout: 'vertical',
       top: 0,
-      left: 10,
+      left: 0,
       right: 10,
       width: "70%",
       height: Ti.UI.SIZE
@@ -37,7 +37,8 @@ Views.FbNewsRow = function(news) {
     title: UI.createLabel(merge(Style.h4, {
       text: (news.name ? news.name : news.from.name),
       top: 0,
-      left: 0
+      left: 0,
+      height: Ti.UI.SIZE
     })),
 
     time_and_place: UI.createView({
@@ -81,13 +82,29 @@ Views.FbNewsRow = function(news) {
     description: UI.createLabel(merge(Style.p5, {
       text: news.description,
       top: 5,
-      left: 10,
+      left: 0,
       right: 10,
       bottom: 10,
       height: Ti.UI.SIZE,
       width: Ti.UI.FILL
     }))
   };
+  
+  if(isIPad) {
+    var fb_button = UI.createButton({
+      height: 29,
+      width: 56,
+      right: 60,
+      backgroundImage: '/images/buttons/go_to_fb_btn.png',
+      backgroundSelectedImage: '/images/buttons/go_to_fb_btn_p.png',
+      id: 'twitter_action'
+    });
+    self.description.width = "70%";
+    self.row.add(fb_button);
+    fb_button.addEventListener('click', function(){
+      Ti.Platform.openURL('http://www.facebook.com/msf.english');
+    });
+  }
 
   self.title_view.add(self.title);
   self.time_and_place.add(self.time);
@@ -96,11 +113,23 @@ Views.FbNewsRow = function(news) {
   self.time_and_place.add(self.fb_icon);
   self.title_view.add(self.time_and_place);
 
-  self.header_view.add(self.photo);
-  self.header_view.add(self.title_view);
 
-  self.row.add(self.header_view);
-  self.row.add(self.description);
+  if(isIPad) {
+    self.photo.top = 25;
+    self.container_view.add(self.title_view);
+    self.container_view.add(self.description);
+    self.row.add(self.photo);
+  } else {
+    self.title_view.left = 50;
+    self.photo.left = 0;
+    var top_view = UI.createView({ height: Ti.UI.SIZE, left:0 });
+    top_view.add(self.photo);
+    top_view.add(self.title_view)
+    self.container_view.add(top_view);
+    self.container_view.add(self.description);
+  }
+  
+  self.row.add(self.container_view);
    
   return self;
 };

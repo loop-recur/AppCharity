@@ -58,19 +58,8 @@ Views.EventRow = function(event) {
     time: UI.createLabel(merge(Style.p3, {
       top: 5,
       left: 0,
+      color: "#444444",
       text: DateFormatter.date(event.start_time, {formatted: true}),
-      width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
-
-    location: UI.createLabel(merge(Style.p3, {
-      text: event.location,
-      width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
-
-    description: UI.createLabel(merge(Style.p3, {
-      text: event.description,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     }))
@@ -78,8 +67,6 @@ Views.EventRow = function(event) {
 
   self.content_view.add(self.title);
   self.content_view.add(self.time);
-  // self.content_view.add(self.location);
-  // self.content_view.add(self.description);
 
   self.cal_icon.add(self.month);
   self.cal_icon.add(self.day);

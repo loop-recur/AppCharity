@@ -109,6 +109,12 @@ Style = {
       
       about_photo: {
         top: 8
+      },
+      
+      news_container: {
+        top: 25,
+        left: 65,
+        bottom: 25
       }
     }
 };
