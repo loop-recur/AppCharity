@@ -72,8 +72,32 @@ Push = (function(debug){
               });
             };
         platformRegister(pushCallback, registeredCallback);
+      },
+      
+      addAndroidSettingsEvent = function(win) {
+        var _openPreferences = function() {
+              Titanium.UI.Android.openPreferences();
+              setTimeout(function(){
+                var dialog = Ti.UI.createAlertDialog({ title:'Settings', message:'Settings were saved...', ok:'OK' });
+     
+                dialog.show();
+                dialog.addEventListener('click', function(e){
+                  if(Ti.App.Properties.getBool('push_enabled')) {
+                    subscribe(Ti.App.id);
+                  } else {
+                    unsubscribe();
+                  }
+                });
+              }, 200);
+            };
+        if(isAndroid) {
+          win.activity.onCreateOptionsMenu = function(e) {
+            var settings = e.menu.add({title: 'Settings'});
+            settings.addEventListener('click', _openPreferences);
+          };
+        }
       };
 
-    return {subscribe: subscribe, unsubscribe: unsubscribe};
+    return {subscribe: subscribe, unsubscribe: unsubscribe, addAndroidSettingsEvent: addAndroidSettingsEvent};
 })();
 

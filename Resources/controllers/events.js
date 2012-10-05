@@ -21,4 +21,7 @@ Controllers.Events = function(view) {
   
   view.win.addEventListener('focus', getEventsIfItsBeenLongEnough);
   view.table.addEventListener('click', openDetail);
+  
+  Push.addAndroidSettingsEvent(view.win);
+
 }

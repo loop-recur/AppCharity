@@ -43,4 +43,7 @@ Controllers.News = function(view) {
   
   view.win.addEventListener('focus', getNewsIfItsBeenLongEnough);
   view.table.addEventListener('click', openDetail);
-}
+
+  Push.addAndroidSettingsEvent(view.win);
+
+};
