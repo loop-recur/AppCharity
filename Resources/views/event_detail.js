@@ -4,8 +4,21 @@ Views.EventDetail = function(event) {
       top: 100,
       contentHeight: 'auto',
       height: Ti.UI.FILL,
+      width: Ti.UI.FILL,
       backgroundColor: 'transparent',
-      layout: 'horizontal'
+      layout: 'vertical'
+    }),
+
+    title_date_view: UI.createView({
+      layout: 'vertical',
+      height: Ti.UI.SIZE
+    }),
+
+    cal_view: UI.createView({
+      layout: 'horizontal',
+      width: Ti.UI.FILL,
+      top: 15,
+      height: Ti.UI.SIZE
     }),
 
     cal_icon: UI.createView({
@@ -13,7 +26,6 @@ Views.EventDetail = function(event) {
       height: 60,
       width: 50,
       left: 10,
-      top: 15,
       square: true
     }),
 
@@ -45,11 +57,11 @@ Views.EventDetail = function(event) {
       right: 10,
       top: 15,
       height: Ti.UI.SIZE,
-      width: "85%"
+      width: Ti.UI.FILL
     }),
 
     title: UI.createLabel(merge(Style.h3, {
-      left: 0,
+      left: 5,
       color: '#667dad',
       text: event.name,
       height: Ti.UI.SIZE,
@@ -58,7 +70,7 @@ Views.EventDetail = function(event) {
 
     time: UI.createLabel(merge(Style.p3, {
       top: 5,
-      left: 0,
+      left: 5,
       text: DateFormatter.date(event.start_time, {formatted: true}),
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
@@ -86,16 +98,18 @@ Views.EventDetail = function(event) {
     }))
   };
 
-  self.content_view.add(self.title);
-  self.content_view.add(self.time);
   self.content_view.add(self.image);
   self.content_view.add(self.location);
   self.content_view.add(self.description);
 
   self.cal_icon.add(self.month);
   self.cal_icon.add(self.day);
+  self.cal_view.add(self.cal_icon);
 
-  self.view.add(self.cal_icon);
+  self.title_date_view.add(self.title);
+  self.title_date_view.add(self.time);
+  self.cal_view.add(self.title_date_view);
+  self.view.add(self.cal_view);
   self.view.add(self.content_view);
 
   return self;

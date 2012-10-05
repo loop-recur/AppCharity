@@ -12,6 +12,15 @@ Windows.FbNewsDetail = function(news) {
       top: 100
     }).view,
 
+    back_btn: UI.createButton({
+      backgroundImage: '/images/buttons/big_back.png',
+      backgroundSelectedImage: '/images/buttons/big_back_p.png',
+      height: 36,
+      width: 302,
+      zIndex: 25,
+      top: 110
+    }),
+
     view: UI.createScrollView({
       top: 100,
       backgroundColor: 'transparent',
@@ -20,7 +29,7 @@ Windows.FbNewsDetail = function(news) {
 
     header_view: UI.createView({
       layout: 'horizontal',
-      top: 10,
+      top: 46,
       height: Ti.UI.SIZE,
       width: Ti.UI.FILL
     }),
@@ -115,7 +124,7 @@ Windows.FbNewsDetail = function(news) {
   self.time_and_place.add(self.fb_icon);
   self.title_view.add(self.time_and_place);
 
-  self.header_view.add(self.photo);
+  if(news.picture) { self.header_view.add(self.photo); }
   self.header_view.add(self.title_view);
 
   self.view.add(self.header_view);
@@ -124,6 +133,7 @@ Windows.FbNewsDetail = function(news) {
 
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
+  self.win.add(self.back_btn);
   self.win.add(self.view);
 
   return self;
