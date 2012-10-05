@@ -66,6 +66,5 @@ Controllers.PhotoGallery = function(view) {
     view.confirmation = Confirm('Add a photo', [{name: 'Take a photo', callback: showCamera }, {name: 'Choose a photo', callback: showGallery}]);
   })
 
-  view.win.addEventListener('focus', getCacheOrMakeGrid);
-
-}
+  Push.addAndroidSettingsEvent(view.win);
+};

@@ -86,4 +86,7 @@ Controllers.About = function(view_proxy) {
   }
   
   view_proxy.win.addEventListener('focus', populatePage);
-}
+
+  Push.addAndroidSettingsEvent(view_proxy.win);
+};
+
