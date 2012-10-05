@@ -72,14 +72,38 @@ Views.EventDetail = function(event) {
     location: UI.createLabel(merge(Style.p3, {
       top: 5,
       left: 0,
-      text: event.location,
+      text: "@ "+event.location,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     })),
+    
+    show_map_view: UI.createView({
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE,
+      left:0
+    }),
+    
+    show_map_parens: UI.createLabel({
+      text: '(                  )',
+      left:0,
+      font: {fontSize: 13},
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
+    }),
+    
+    show_map: UI.createLabel({
+      text: "show map",
+      left:4,
+      color: '#d9dee4',
+      font: {fontSize: 13, fontWeight: 'bold'},
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
+    }),
 
     description: UI.createLabel(merge(Style.p3, {
       top: 5,
       text: event.description,
+      color: "black",
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE,
       bottom: 10
@@ -88,8 +112,11 @@ Views.EventDetail = function(event) {
 
   self.content_view.add(self.title);
   self.content_view.add(self.time);
-  self.content_view.add(self.image);
   self.content_view.add(self.location);
+  self.show_map_view.add(self.show_map_parens);
+  self.show_map_view.add(self.show_map);
+  // self.content_view.add(self.show_map_view);
+  self.content_view.add(self.image);
   self.content_view.add(self.description);
 
   self.cal_icon.add(self.month);
