@@ -8,7 +8,7 @@ Views.EventRow = function(event) {
 
     cal_icon: UI.createView({
       backgroundImage: '/images/icons/events_calendar.png',
-      height: 60,
+      height: 55,
       width: 50,
       left: 10,
       top: 15,

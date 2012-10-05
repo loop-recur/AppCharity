@@ -1,5 +1,5 @@
 Windows.About = function() {
-  var COLORS = ['red', 'green', 'yellow', 'blue', 'white'];
+  var COLORS = ['red', 'blue', 'yellow', 'green', 'orange'];
   
   var self = {
     win: UI.createWindow({
@@ -62,8 +62,8 @@ Windows.About = function() {
     });
     
     var mask = UI.createView({
-      backgroundColor: COLORS[idx],
-      opacity: 0.3,
+      backgroundImage: "/images/backgrounds/about_nav_overlay_"+COLORS[idx]+".png",
+      opacity: 0.7,
       width: Ti.UI.FILL,
       height: Ti.UI.FILL
     });

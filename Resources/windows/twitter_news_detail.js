@@ -18,10 +18,12 @@ Windows.TwitterNewsDetail = function(news) {
       width: 302,
       zIndex: 25,
       top: 110
-  }),
+    }),
 
     view: UI.createView({
       top: 146,
+      left: 10,
+      right: 10,
       backgroundColor: 'transparent',
       layout: 'horizontal'
     }),
@@ -38,8 +40,8 @@ Windows.TwitterNewsDetail = function(news) {
     content_view: UI.createView({
       layout: 'vertical',
       top: 10,
-      left: 10,
-      right: 10,
+      left: "5%",
+      right: "5%",
       height: Ti.UI.SIZE,
       width: "85%"
     }),
@@ -80,14 +82,23 @@ Windows.TwitterNewsDetail = function(news) {
   self.content_view.add(self.title);
   self.content_view.add(self.title_view);
   self.content_view.add(self.tweet);
+  
+  self.twitter_actions.view.top = 15;
   self.content_view.add(self.twitter_actions.view);
 
-  self.view.add(self.photo);
+  // self.view.add(self.photo);
   self.view.add(self.content_view);
   
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
-  self.win.add(self.back_btn);
+  
+  if(isIPad){
+    self.back_btn.top = 20;
+    self.back_btn.left = "5%";
+    self.view.add(self.back_btn);
+  } else {
+    self.win.add(self.back_btn);
+  }
   self.win.add(self.view);
   Controllers.TwitterNewsDetail(self);
 

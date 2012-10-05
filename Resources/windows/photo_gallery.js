@@ -1,5 +1,6 @@
 Windows.PhotoGallery = function() {
   var photo_size = (Ti.Platform.displayCaps.platformWidth / 3);
+  if(isIPad) photo_size = 340;
 
   var self = {
     win: UI.createWindow({
