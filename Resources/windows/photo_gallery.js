@@ -11,10 +11,10 @@ Windows.PhotoGallery = function() {
     donate_banner: Views.TopBanner().view,
 
     shadow: UI.BorderShadows({
-      top: 100,
+      top: 100
     }).view,
 
-    photo_upload_btn: UI.createButton({
+    photo_upload_btn: Ti.UI.createButton({
       width: photo_size,
       height: photo_size,
       square: true,
@@ -36,7 +36,7 @@ Windows.PhotoGallery = function() {
       bottom: 1,
       image: (isIPad ? cloud_photo.urls.medium_640 : cloud_photo.urls.small_240)
     });
-  }
+  };
 
   Controllers.PhotoGallery(self);
 

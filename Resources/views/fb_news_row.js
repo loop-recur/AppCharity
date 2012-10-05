@@ -4,8 +4,7 @@ Views.FbNewsRow = function(news) {
       created: DateFormatter.date(news.created_time, {parsed: true, fb: true}),
       news: news,
       backgroundColor: 'transparent',
-      kind: 'fb',
-      className: 'fb_row'
+      kind: 'fb'
     }),
     
     container_view: UI.createView({
@@ -16,8 +15,8 @@ Views.FbNewsRow = function(news) {
       style_id: 'news_container'
     }),
 
-    photo: UI.createImageView({
-      image: news.picture,
+    photo: UI.createView({
+      backgroundImage: (isIPhone ? news.picture : '/images/icons/MSF-twitter-icon.png'),
       top: 10,
       left: 10,
       width: 40,
@@ -120,10 +119,10 @@ Views.FbNewsRow = function(news) {
     self.container_view.add(self.description);
     self.row.add(self.photo);
   } else {
-    var top_view = UI.createView({ height: Ti.UI.SIZE, left:0 });
+    var top_view = UI.createView({ height: Ti.UI.SIZE, left:0, layout: 'horizontal'});
     if(news.picture) { 
       top_view.add(self.photo);
-      self.title_view.left = 50;
+      self.title_view.left = 10;
     }
     self.photo.left = 0;
     top_view.add(self.title_view);

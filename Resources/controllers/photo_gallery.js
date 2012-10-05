@@ -14,7 +14,7 @@ Controllers.PhotoGallery = function(view) {
     var squares = cloud_photos.map(view.makeImageViewFromCloudPhoto);
     var squares_with_btn = squares.concat(view.photo_upload_btn);
     view.photo_grid = Grid({
-      top: 100
+      top: (isAndroid ? 275 : 100)
     },{left_padding: 2, top_padding: 2}, squares_with_btn);
     
     view.win.add(view.photo_grid);

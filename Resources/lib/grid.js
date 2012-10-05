@@ -11,20 +11,23 @@ Grid = function(grid_attributes, attrs, xs) {
 		contentWidth: 310,
 		showHorizontalScrollIndicator: false,
 		layout: 'vertical',
-		showVerticalScrollIndicator: true
+		showVerticalScrollIndicator: true,
+    height: Ti.UI.FILL,
+    contentHeight: 'auto'
 	}, grid_attributes)),
 
 		createRow = function(top, group) {
 			var row = Ti.UI.createView({
 				layout: 'horizontal',
 				height: Ti.UI.SIZE,
+				//height: '33%',
 				backgroundColor: 'transparent'
 			});
 
 			var addItem = function(left, view) {
 				row.add(view);
 				return left + attrs.item_width + attrs.left_padding;
-			}
+			};
 
 			group.reduce(addItem, 0);
 
