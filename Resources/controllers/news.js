@@ -45,5 +45,4 @@ Controllers.News = function(view) {
   view.table.addEventListener('click', openDetail);
 
   Push.addAndroidSettingsEvent(view.win);
-
 };

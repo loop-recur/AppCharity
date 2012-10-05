@@ -30,7 +30,7 @@ Views.FbNewsRow = function(news) {
       top: 0,
       left: 0,
       right: 10,
-      width: "70%",
+      width: (news.picture ? "70%" : "100%"),
       height: Ti.UI.SIZE
     }),
 
@@ -120,11 +120,13 @@ Views.FbNewsRow = function(news) {
     self.container_view.add(self.description);
     self.row.add(self.photo);
   } else {
-    self.title_view.left = 50;
-    self.photo.left = 0;
     var top_view = UI.createView({ height: Ti.UI.SIZE, left:0 });
-    top_view.add(self.photo);
-    top_view.add(self.title_view)
+    if(news.picture) { 
+      top_view.add(self.photo);
+      self.title_view.left = 50;
+    }
+    self.photo.left = 0;
+    top_view.add(self.title_view);
     self.container_view.add(top_view);
     self.container_view.add(self.description);
   }
