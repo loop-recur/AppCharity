@@ -21,7 +21,7 @@ Controllers.PhotoGallery = function(view) {
     var squares_with_btn = squares.concat(view.photo_upload_btn);
 
     view.photo_grid = Grid({
-      top: (isAndroid ? 275 : 100)
+      top: 100
     },{left_padding: 2, top_padding: 2}, squares_with_btn);
     
     view.win.add(view.photo_grid);

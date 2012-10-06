@@ -6,7 +6,7 @@ Grid = function(grid_attributes, attrs, xs) {
 		row_height: 100
 	}, attrs);
 
-	var grid_view = Ti.UI.createScrollView(merge({
+	var grid_view = UI.createScrollView(merge({
 		width: Ti.UI.FILL,
 		contentWidth: 310,
 		showHorizontalScrollIndicator: false,

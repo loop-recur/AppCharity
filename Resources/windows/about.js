@@ -48,6 +48,7 @@ Windows.About = function() {
     var title_label = UI.createLabel({
       text: page.title,
       top: 5,
+      color: "black",
       font: {fontWeight: 'normal'},
       bottom: 5,
       left: 5,

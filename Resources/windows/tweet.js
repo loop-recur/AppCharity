@@ -101,15 +101,17 @@ Windows.Tweet = function(user, cb) {
     self.win.close();
   });
   
-  self.text_field.addEventListener('blur', function() {
-    self.table.scrollToTop(0);
-  });
-  
-  row2.addEventListener('click', function(e) {
-    if(e.source.id != "text_field") {
-      self.text_field.blur();
-    }
-  });
+  if(!isAndroid) {
+    self.text_field.addEventListener('blur', function() {
+      self.table.scrollToTop(0);
+    });
+
+    row2.addEventListener('click', function(e) {
+      if(e.source.id != "text_field") {
+        self.text_field.blur();
+      }
+    }); 
+  }
 
   return self;
 };

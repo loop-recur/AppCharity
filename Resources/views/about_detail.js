@@ -68,6 +68,8 @@ Views.AboutDetail = function() {
       right: 20
     }))
   };
+  
+  if(isAndroid) self.photo.width = Scaler({width: 280});
 
   self.view.add(self.title);
 

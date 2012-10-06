@@ -30,6 +30,7 @@ Views.EventRow = function(event) {
     day: UI.createLabel({
       text: DateFormatter.date(event.start_time, {day: true}),
       top: 13,
+      color: "black",
       height: Ti.UI.SIZE,
       font: {
         fontFamily: 'Helvetica Neue',
