@@ -18,7 +18,7 @@ Views.TopBanner = function() {
     }),
     
     logo: UI.createImageView({
-      left: "2%",
+      left: (isAndroid ? "5%" : "2%"),
       width: 165,
       height: 50,
       image: '/images/top_logo.png'
