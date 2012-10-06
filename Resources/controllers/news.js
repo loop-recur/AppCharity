@@ -30,6 +30,7 @@ Controllers.News = function(view) {
   }
   
   var getNewsIfItsBeenLongEnough = function() {
+    if(PropertyCache.get('fb_news', id) && state.fb_rows) return;
     getCachedNews() || getNews();
   }
   
@@ -42,5 +43,7 @@ Controllers.News = function(view) {
   }
   
   view.win.addEventListener('focus', getNewsIfItsBeenLongEnough);
-  view.table.addEventListener('click', openDetail);
-}
+  if(!isIPad) view.table.addEventListener('click', openDetail);
+
+  Push.addAndroidSettingsEvent(view.win);
+};

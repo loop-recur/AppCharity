@@ -9,16 +9,19 @@ Views.TopBanner = function() {
     }),
     
     blurb: UI.createLabel({
-      text: '"yadda yadda yadda"',
-      color: "#999",
-      top: "15%",
+      text: '"Doctors Without Borders/Médecins Sans Frontières (MSF) is a medical humanitarian organization assisting people in nearly 70 countries."',
+      top: 25,
+      font: {fontWeight: 'normal', fontFamily: 'Georgia', fontSize: 15, fontStyle: 'italic'},
+      color: "#707070",
       textAlign: "center",
       width: "50%"
     }),
     
     logo: UI.createImageView({
-      left: "4%",
-      image: '/images/placeholder_logo.png'
+      left: (isAndroid ? "5%" : "2%"),
+      width: 165,
+      height: 50,
+      image: '/images/top_logo.png'
     }),
     
     donate_button: UI.createButton({

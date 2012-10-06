@@ -2,8 +2,7 @@ Windows.TwitterNewsDetail = function(news) {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
-      backgroundImage: '/images/backgrounds/main_bg.png',
-      backgroundRepeat: true
+      backgroundColor: "#f5f1f1"
     }),
 
     donate_banner: Views.TopBanner().view,
@@ -12,8 +11,19 @@ Windows.TwitterNewsDetail = function(news) {
       top: 100
     }).view,
 
+    back_btn: UI.createButton({
+      backgroundImage: '/images/buttons/big_back.png',
+      backgroundSelectedImage: '/images/buttons/big_back_p.png',
+      height: 36,
+      width: 302,
+      zIndex: 25,
+      top: 110
+    }),
+
     view: UI.createView({
-      top: 100,
+      top: 146,
+      left: 10,
+      right: 10,
       backgroundColor: 'transparent',
       layout: 'horizontal'
     }),
@@ -30,8 +40,8 @@ Windows.TwitterNewsDetail = function(news) {
     content_view: UI.createView({
       layout: 'vertical',
       top: 10,
-      left: 10,
-      right: 10,
+      left: "5%",
+      right: "5%",
       height: Ti.UI.SIZE,
       width: "85%"
     }),
@@ -66,22 +76,31 @@ Windows.TwitterNewsDetail = function(news) {
     twitter_actions: Views.TwitterActions(news)
   };
 
-  log(JSON.stringify(news));
-
   self.title_view.add(self.screen_name);
   self.title_view.add(self.date);
 
   self.content_view.add(self.title);
   self.content_view.add(self.title_view);
   self.content_view.add(self.tweet);
+  
+  self.twitter_actions.view.top = 15;
   self.content_view.add(self.twitter_actions.view);
 
-  self.view.add(self.photo);
+  // self.view.add(self.photo);
   self.view.add(self.content_view);
   
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
+  
+  if(isIPad){
+    self.back_btn.top = 20;
+    self.back_btn.left = "5%";
+    self.view.add(self.back_btn);
+  } else {
+    self.win.add(self.back_btn);
+  }
   self.win.add(self.view);
+  Controllers.TwitterNewsDetail(self);
 
   return self;
-}
+};

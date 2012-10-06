@@ -8,11 +8,12 @@ Views.EventRow = function(event) {
 
     cal_icon: UI.createView({
       backgroundImage: '/images/icons/events_calendar.png',
-      height: 60,
+      height: 55,
       width: 50,
       left: 10,
       top: 15,
-      square: true
+      square: true,
+      bottom: 15
     }),
 
     month: UI.createLabel(merge(Style.h3, {
@@ -29,6 +30,7 @@ Views.EventRow = function(event) {
     day: UI.createLabel({
       text: DateFormatter.date(event.start_time, {day: true}),
       top: 13,
+      color: "black",
       height: Ti.UI.SIZE,
       font: {
         fontFamily: 'Helvetica Neue',
@@ -58,19 +60,8 @@ Views.EventRow = function(event) {
     time: UI.createLabel(merge(Style.p3, {
       top: 5,
       left: 0,
+      color: "#444444",
       text: DateFormatter.date(event.start_time, {formatted: true}),
-      width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
-
-    location: UI.createLabel(merge(Style.p3, {
-      text: event.location,
-      width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
-
-    description: UI.createLabel(merge(Style.p3, {
-      text: event.description,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     }))
@@ -78,8 +69,6 @@ Views.EventRow = function(event) {
 
   self.content_view.add(self.title);
   self.content_view.add(self.time);
-  // self.content_view.add(self.location);
-  // self.content_view.add(self.description);
 
   self.cal_icon.add(self.month);
   self.cal_icon.add(self.day);

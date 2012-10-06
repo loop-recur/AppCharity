@@ -9,6 +9,7 @@ Controllers.About = function(view_proxy) {
         page: 1,
         per_page: 10
     }, function (e) {
+      log2("E", e);
         if (e.success) {
           PropertyCache.set('pages', e.AboutUsPage);
           cb(e.AboutUsPage);
@@ -32,12 +33,7 @@ Controllers.About = function(view_proxy) {
   var setImage = function(value){
     detail_view_proxy.photo.image = value;
   };
-    
-  // Callback, passed to AboutUsFetcher and expecting an object literal of items needed to build the submenu.
-  var setSubmenu = function(hash){
-    
-  };
-  
+
   var setPage = function(page) {
     setImage(page.photo.urls.medium_640);
     setTitle(page.title);
@@ -45,23 +41,10 @@ Controllers.About = function(view_proxy) {
   }
   
   var updateSubMenu = function(idx) {
-    var nav_item = subnav[idx];
-    var nav_item_width = Ti.Platform.displayCaps.platformWidth / 2.2;
-    
-    var room_left = Ti.Platform.displayCaps.platformWidth - nav_item_width;
-
-    var width = room_left / (subnav.length-1);
-    
     subnav.map(function(s, i){
-      var left = (idx < i) ? (nav_item_width + ((i-1) * width)) : (width * i);
-      
-      if(i == idx) {
-        s.animate({width: nav_item_width, left: left});
-      } else {
-        s.animate({width: width, left: left});
-      }
+      var opacity = (i == idx) ? 0 : 0.7;
+      s.mask.animate({opacity: opacity});
     });
-    // subnav
   }
    
   var updateMenuAndContent = function(pages){
@@ -82,8 +65,12 @@ Controllers.About = function(view_proxy) {
   }
   
   var populatePage = function() {
-    PropertyCache.get('pages', updateMenuAndContent) || fetchAllSubpageData(updateMenuAndContent)
+    // if(PropertyCache.get('pages', id) && subnav.length) return;
+    PropertyCache.get('pages', updateMenuAndContent) || fetchAllSubpageData(updateMenuAndContent);
   }
   
   view_proxy.win.addEventListener('focus', populatePage);
-}
+
+  Push.addAndroidSettingsEvent(view_proxy.win);
+};
+

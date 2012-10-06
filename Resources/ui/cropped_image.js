@@ -1,19 +1,23 @@
 UI.CroppedImage = function(props) {
-  var view = UI.createView(props),
+  var view = Ti.UI.createView(props),
     
-    click_blocker = UI.createView(props),
+    click_blocker = Ti.UI.createView(props),
   
-    scroller = UI.createScrollView({
+    scroller = Ti.UI.createScrollView({
       showHorizontalScrollIndicator:false,
       showVerticalScrollIndicator:false
     }),
     
-    image = UI.createImageView({
+    image = Ti.UI.createImageView({
       image: props.image,
       index: props.index
     });
 
-  
+    if(isAndroid) {
+      image.width = props.width;
+      image.height = props.height;
+    }
+
   scroller.add(image);
   view.add(scroller);
   view.add(click_blocker);

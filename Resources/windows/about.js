@@ -1,5 +1,6 @@
 Windows.About = function() {
-  var colors = ['red', 'green', 'yellow', 'blue', 'white']
+  var COLORS = ['red', 'blue', 'yellow', 'green', 'orange'];
+  
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
@@ -32,42 +33,44 @@ Windows.About = function() {
   
   
   self.addSubNavItem = function(page, left, idx, width) {
-    var nav_item = UI.createView({
+    var nav_item = Ti.UI.createView({
       width: width,
       left: left
     });
     
     var title_view = UI.createView({
       backgroundColor: "white",
-      bottom:30,
-      width: Ti.UI.FILL,
+      bottom:24,
+      width: 120,
       height: Ti.UI.SIZE
     });
     
     var title_label = UI.createLabel({
       text: page.title,
       top: 5,
+      color: "black",
+      font: {fontWeight: 'normal'},
       bottom: 5,
       left: 5,
       right: 5,
-      width: Ti.UI.SIZE,
+      width: 120,
       height: Ti.UI.SIZE
     });
     
-    var scroll = UI.createScrollView({
-      showHorizontalScrollIndicator:false,
-      showVerticalScrollIndicator:false
+    var scroll = UI.createView({
+      height: Ti.UI.FILL,
+      width: Ti.UI.FILL
     });
     
     var mask = UI.createView({
-      backgroundColor: colors[idx],
-      opacity: 0.3,
+      backgroundImage: "/images/backgrounds/about_nav_overlay_"+COLORS[idx]+".png",
+      opacity: 0.7,
       width: Ti.UI.FILL,
       height: Ti.UI.FILL
     });
     
-    var img = UI.createImageView({
-      image: page.photo.urls.medium_640
+    var img = UI.createView({
+      backgroundImage: page.photo.urls.medium_640
     });
     
     scroll.add(img);
@@ -81,6 +84,8 @@ Windows.About = function() {
     
     self.subnav.add(nav_item);
     
+    nav_item.mask = mask;
+    nav_item.title = title_label;
     return nav_item;
   };
 

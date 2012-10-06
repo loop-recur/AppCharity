@@ -1,19 +1,32 @@
 Views.EventDetail = function(event) {
   var self = {
     view: UI.createScrollView({
-      top: 100,
+      top: 136,
       contentHeight: 'auto',
       height: Ti.UI.FILL,
-      backgroundColor: 'transparent',
-      layout: 'horizontal'
+      width: Ti.UI.FILL,
+      backgroundColor: 'transparent'
+    }),
+    
+    content_view: UI.createView({
+      left: 70,
+      top: 15,
+      right: 10,
+      layout: 'vertical'
+    }),
+
+    cal_view: UI.createView({
+      layout: 'horizontal',
+      width: Ti.UI.FILL,
+      top: 15,
+      height: Ti.UI.SIZE
     }),
 
     cal_icon: UI.createView({
       backgroundImage: '/images/icons/events_calendar.png',
-      height: 60,
+      height: 55,
       width: 50,
       left: 10,
-      top: 15,
       square: true
     }),
 
@@ -39,15 +52,6 @@ Views.EventDetail = function(event) {
       }
     }),
 
-    content_view: UI.createView({
-      layout: 'vertical',
-      left: 10,
-      right: 10,
-      top: 15,
-      height: Ti.UI.SIZE,
-      width: "85%"
-    }),
-
     title: UI.createLabel(merge(Style.h3, {
       left: 0,
       color: '#667dad',
@@ -65,6 +69,8 @@ Views.EventDetail = function(event) {
     })),
 
     image: UI.createImageView({
+      top: 10,
+      bottom: 10,
       image: event.pic_big,
       height: 120
     }),
@@ -72,30 +78,60 @@ Views.EventDetail = function(event) {
     location: UI.createLabel(merge(Style.p3, {
       top: 5,
       left: 0,
-      text: event.location,
+      text: "@ "+event.location,
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     })),
+    
+    show_map_view: UI.createView({
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE,
+      left:0
+    }),
+    
+    show_map_parens: UI.createLabel({
+      text: '(                  )',
+      left:0,
+      font: {fontSize: 13},
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
+    }),
+    
+    show_map: UI.createLabel({
+      text: "show map",
+      left:4,
+      color: '#d9dee4',
+      font: {fontSize: 13, fontWeight: 'bold'},
+      height: Ti.UI.SIZE,
+      width: Ti.UI.SIZE
+    }),
 
     description: UI.createLabel(merge(Style.p3, {
       top: 5,
       text: event.description,
+      color: "black",
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE,
       bottom: 10
     }))
   };
 
-  self.content_view.add(self.title);
-  self.content_view.add(self.time);
-  self.content_view.add(self.image);
-  self.content_view.add(self.location);
-  self.content_view.add(self.description);
-
   self.cal_icon.add(self.month);
   self.cal_icon.add(self.day);
-
-  self.view.add(self.cal_icon);
+  self.cal_view.add(self.cal_icon);
+  self.view.add(self.cal_view);
+  
+  
+  // self.show_map_view.add(self.show_map_parens);
+  // self.show_map_view.add(self.show_map);
+  // self.content_view.add(self.show_map_view);
+  
+  self.content_view.add(self.title);
+  self.content_view.add(self.time);
+  self.content_view.add(self.location);
+  self.content_view.add(self.description);
+  self.content_view.add(self.image);
+  
   self.view.add(self.content_view);
 
   return self;

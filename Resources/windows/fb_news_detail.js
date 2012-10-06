@@ -2,8 +2,7 @@ Windows.FbNewsDetail = function(news) {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
-      backgroundImage: '/images/backgrounds/main_bg.png',
-      backgroundRepeat: true
+      backgroundColor: "#f5f1f1"
     }),
 
     donate_banner: Views.TopBanner().view,
@@ -12,15 +11,26 @@ Windows.FbNewsDetail = function(news) {
       top: 100
     }).view,
 
+    back_btn: UI.createButton({
+      backgroundImage: '/images/buttons/big_back.png',
+      backgroundSelectedImage: '/images/buttons/big_back_p.png',
+      height: 36,
+      width: 302,
+      zIndex: 25,
+      top: 110
+    }),
+
     view: UI.createScrollView({
       top: 100,
+      left: "5%",
+      right: "5%",
       backgroundColor: 'transparent',
       layout: 'vertical'
     }),
 
     header_view: UI.createView({
       layout: 'horizontal',
-      top: 10,
+      top: 46,
       height: Ti.UI.SIZE,
       width: Ti.UI.FILL
     }),
@@ -94,6 +104,7 @@ Windows.FbNewsDetail = function(news) {
       text: news.message,
       left: 10,
       right: 10,
+      color: 'black',
       top: 10,
       bottom: 10,
       height: Ti.UI.SIZE
@@ -103,6 +114,7 @@ Windows.FbNewsDetail = function(news) {
       text: news.description,
       left: 10,
       right: 10,
+      color: 'black',
       height: Ti.UI.SIZE,
       width: Ti.UI.FILL
     }))
@@ -115,7 +127,7 @@ Windows.FbNewsDetail = function(news) {
   self.time_and_place.add(self.fb_icon);
   self.title_view.add(self.time_and_place);
 
-  self.header_view.add(self.photo);
+  // if(news.picture) { self.header_view.add(self.photo); }
   self.header_view.add(self.title_view);
 
   self.view.add(self.header_view);
@@ -124,7 +136,17 @@ Windows.FbNewsDetail = function(news) {
 
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
+
+  if(isIPad){
+    self.back_btn.top = 20;
+    self.back_btn.left = 0;
+    self.view.add(self.back_btn);
+  } else {
+    self.win.add(self.back_btn);
+  }
+  
   self.win.add(self.view);
 
+  Controllers.FbNewsDetail(self);
   return self;
 };

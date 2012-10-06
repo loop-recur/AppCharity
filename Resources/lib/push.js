@@ -1,6 +1,5 @@
 Push = (function(debug){
   if(isMobileweb) { return {unsubscribe: id, subscribe: id}; }
-  var Cloud = require('ti.cloud');
   Cloud.debug = true;  // optional; if you add this line, set it to false for production
   
   if(isAndroid) {
@@ -24,7 +23,10 @@ Push = (function(debug){
                 Ti.Network.NOTIFICATION_TYPE_SOUND
             ], success:registeredCallback,
             error: function(e){ Ti.API.info("=========PUSH ERROR\n\n\n"); Ti.API.info(e); },
-            callback: pushCallback ? pushCallback : id
+            callback: function(){
+              Ti.UI.iPhone.appBadge = null;
+              pushCallback ? pushCallback() : id();
+            }
           }); 
         });
       },
@@ -72,8 +74,32 @@ Push = (function(debug){
               });
             };
         platformRegister(pushCallback, registeredCallback);
+      },
+      
+      addAndroidSettingsEvent = function(win) {
+        var _openPreferences = function() {
+              Titanium.UI.Android.openPreferences();
+              setTimeout(function(){
+                var dialog = Ti.UI.createAlertDialog({ title:'Settings', message:'Settings were saved...', ok:'OK' });
+     
+                dialog.show();
+                dialog.addEventListener('click', function(e){
+                  if(Ti.App.Properties.getBool('push_enabled')) {
+                    subscribe(Ti.App.id);
+                  } else {
+                    unsubscribe();
+                  }
+                });
+              }, 200);
+            };
+        if(isAndroid) {
+          win.activity.onCreateOptionsMenu = function(e) {
+            var settings = e.menu.add({title: 'Settings'});
+            settings.addEventListener('click', _openPreferences);
+          };
+        }
       };
 
-    return {subscribe: subscribe, unsubscribe: unsubscribe};
+    return {subscribe: subscribe, unsubscribe: unsubscribe, addAndroidSettingsEvent: addAndroidSettingsEvent};
 })();
 

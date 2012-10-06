@@ -11,6 +11,7 @@ Controllers.Events = function(view) {
   }
   
   var getEventsIfItsBeenLongEnough = function() {
+    if(PropertyCache.get('fb_events', id) && view.table.data && view.table.data[0]) return;
     PropertyCache.get('fb_events', populateTable) || getEvents();
   }
   
@@ -21,4 +22,7 @@ Controllers.Events = function(view) {
   
   view.win.addEventListener('focus', getEventsIfItsBeenLongEnough);
   view.table.addEventListener('click', openDetail);
+  
+  Push.addAndroidSettingsEvent(view.win);
+
 }

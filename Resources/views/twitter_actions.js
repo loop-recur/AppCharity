@@ -37,7 +37,7 @@ Views.TwitterActions = function(tweet) {
     tweet_button: UI.createButton({
       height: 28,
       width: 56,
-      left: 25,
+      left: 50,
       backgroundImage: '/images/buttons/go_to_twitter_btn.png',
       backgroundSelectedImage: '/images/buttons/go_to_twitter_btn_p.png',
       id: 'twitter_action'
