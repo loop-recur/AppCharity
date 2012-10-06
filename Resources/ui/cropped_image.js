@@ -10,10 +10,13 @@ UI.CroppedImage = function(props) {
     
     image = Ti.UI.createImageView({
       image: props.image,
-      index: props.index,
-      width: props.width,
-      height: props.height
+      index: props.index
     });
+
+    if(isAndroid) {
+      image.width = props.width;
+      image.height = props.height;
+    }
 
   scroller.add(image);
   view.add(scroller);
