@@ -56,9 +56,9 @@ Windows.About = function() {
       height: Ti.UI.SIZE
     });
     
-    var scroll = UI.createScrollView({
-      showHorizontalScrollIndicator:false,
-      showVerticalScrollIndicator:false
+    var scroll = UI.createView({
+      height: Ti.UI.FILL,
+      width: Ti.UI.FILL
     });
     
     var mask = UI.createView({
@@ -68,14 +68,8 @@ Windows.About = function() {
       height: Ti.UI.FILL
     });
     
-    var img = UI.createImageView({
-      image: page.photo.urls.medium_640,
-      height: '100%',
-      width: '100%',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0
+    var img = UI.createView({
+      backgroundImage: page.photo.urls.medium_640
     });
     
     scroll.add(img);
