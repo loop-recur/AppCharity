@@ -30,6 +30,7 @@ Controllers.News = function(view) {
   }
   
   var getNewsIfItsBeenLongEnough = function() {
+    if(PropertyCache.get('fb_news', id) && state.fb_rows) return;
     getCachedNews() || getNews();
   }
   
