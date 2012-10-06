@@ -1,6 +1,5 @@
 Push = (function(debug){
   if(isMobileweb) { return {unsubscribe: id, subscribe: id}; }
-  var Cloud = require('ti.cloud');
   Cloud.debug = true;  // optional; if you add this line, set it to false for production
   
   if(isAndroid) {
@@ -24,7 +23,10 @@ Push = (function(debug){
                 Ti.Network.NOTIFICATION_TYPE_SOUND
             ], success:registeredCallback,
             error: function(e){ Ti.API.info("=========PUSH ERROR\n\n\n"); Ti.API.info(e); },
-            callback: pushCallback ? pushCallback : id
+            callback: function(){
+              Ti.UI.iPhone.appBadge = null;
+              pushCallback ? pushCallback() : id();
+            }
           }); 
         });
       },
