@@ -33,12 +33,7 @@ Controllers.About = function(view_proxy) {
   var setImage = function(value){
     detail_view_proxy.photo.image = value;
   };
-    
-  // Callback, passed to AboutUsFetcher and expecting an object literal of items needed to build the submenu.
-  var setSubmenu = function(hash){
-    
-  };
-  
+
   var setPage = function(page) {
     setImage(page.photo.urls.medium_640);
     setTitle(page.title);
@@ -70,6 +65,7 @@ Controllers.About = function(view_proxy) {
   }
   
   var populatePage = function() {
+    // if(PropertyCache.get('pages', id) && subnav.length) return;
     PropertyCache.get('pages', updateMenuAndContent) || fetchAllSubpageData(updateMenuAndContent);
   }
   
