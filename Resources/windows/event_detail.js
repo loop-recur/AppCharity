@@ -2,8 +2,7 @@ Windows.EventDetail = function(event) {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
-      backgroundImage: '/images/backgrounds/main_bg.png',
-      backgroundRepeat: true
+      backgroundColor: "#f5f1f1"
     }),
 
     donate_banner: Views.TopBanner().view,

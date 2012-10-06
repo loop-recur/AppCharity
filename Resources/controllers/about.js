@@ -9,6 +9,7 @@ Controllers.About = function(view_proxy) {
         page: 1,
         per_page: 10
     }, function (e) {
+      log2("E", e);
         if (e.success) {
           PropertyCache.set('pages', e.AboutUsPage);
           cb(e.AboutUsPage);
@@ -46,7 +47,7 @@ Controllers.About = function(view_proxy) {
   
   var updateSubMenu = function(idx) {
     subnav.map(function(s, i){
-      var opacity = (i == idx) ? 0 : 0.3;
+      var opacity = (i == idx) ? 0 : 0.7;
       s.mask.animate({opacity: opacity});
     });
   }

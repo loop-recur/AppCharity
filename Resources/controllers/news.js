@@ -42,7 +42,7 @@ Controllers.News = function(view) {
   }
   
   view.win.addEventListener('focus', getNewsIfItsBeenLongEnough);
-  view.table.addEventListener('click', openDetail);
+  if(!isIPad) view.table.addEventListener('click', openDetail);
 
   Push.addAndroidSettingsEvent(view.win);
 };

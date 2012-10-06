@@ -93,7 +93,7 @@ Views.FbNewsRow = function(news) {
     var fb_button = UI.createButton({
       height: 29,
       width: 56,
-      right: 60,
+      right: 100,
       backgroundImage: '/images/buttons/go_to_fb_btn.png',
       backgroundSelectedImage: '/images/buttons/go_to_fb_btn_p.png',
       id: 'twitter_action'
