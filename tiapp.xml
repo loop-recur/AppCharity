@@ -41,7 +41,7 @@
         </orientations>
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
-        <tool-api-level>16</tool-api-level>
+       <tool-api-level>15</tool-api-level>
         <uses-sdk android:minSdkVersion="8"/>
         <service android:name="com.appcelerator.cloud.push.PushService"/>
         <manifest android:installLocation="auto">

@@ -26,6 +26,7 @@ Controllers.About = function(view_proxy) {
 
   // Callback, passed to AboutUsFetcher
   var setContent = function(value){
+    value = value.replace(/\\n?/g, '');
     detail_view_proxy.content.text = value;
   };
 
@@ -38,14 +39,14 @@ Controllers.About = function(view_proxy) {
     setImage(page.photo.urls.medium_640);
     setTitle(page.title);
     setContent(page.content);
-  }
+  };
   
   var updateSubMenu = function(idx) {
     subnav.map(function(s, i){
       var opacity = (i == idx) ? 0 : 0.7;
       s.mask.animate({opacity: opacity});
     });
-  }
+  };
    
   var updateMenuAndContent = function(pages){
     subnav = [];
