@@ -10,7 +10,7 @@ Push = (function(debug){
   }
   
   var logInAsGenericUserToAvoidErrorHack = function(cb) {
-        Cloud.Users.login({login: 'drboolean', password: '123456'}, function (e) {
+        Cloud.Users.login({login: 'appcharity', password: '123456'}, function (e) {
           e.success ? cb() : log('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
         });
       },

@@ -15,8 +15,8 @@ Views.FbNewsRow = function(news) {
       style_id: 'news_container'
     }),
 
-    photo: UI.createView({
-      backgroundImage: (isIPhone ? news.picture : '/images/icons/MSF-twitter-icon.png'),
+    photo: UI.createImageView({
+      image: (isIPhone ? news.picture : '/images/icons/MSF-twitter-icon.png'),
       top: 10,
       left: 10,
       width: 40,

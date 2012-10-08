@@ -28,14 +28,14 @@ FactoryDefinitions = {
          processed: true,
          user: 
           { id: '50511f70025afe168b023567',
-            first_name: 'Brian',
-            last_name: 'Lonsdorf',
+            first_name: 'App',
+            last_name: 'Charity',
             created_at: '2012-09-12T23:49:04+0000',
             updated_at: '2012-10-03T19:27:03+0000',
             external_accounts: [],
             confirmed_at: '2012-09-12T23:49:04+0000',
-            username: 'drboolean',
-            email: 'brian@looprecur.com',
+            username: 'appcharity',
+            email: 'appcharity@looprecur.com',
             admin: 'true' },
          urls: 
           { square_75: 'http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/c1/ab/506c90c79e73795f3b000292/charity1_square_75.jpeg',
