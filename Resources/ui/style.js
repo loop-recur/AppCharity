@@ -69,6 +69,8 @@ Style = {
       },
       
       photo_upload_button: {
+        width: 340,
+        height: 340,
         backgroundImage: '/images/buttons/photo_grid_add_btn_lrg.png',
         backgroundSelectedImage: '/images/buttons/photo_grid_add_btn_lrg_p.png'
       },

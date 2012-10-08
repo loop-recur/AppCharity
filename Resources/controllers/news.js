@@ -1,11 +1,9 @@
 Controllers.News = function(view) {
-  var state = {};
+  var state = {fb_rows: [], tweet_rows: []};
   
   var tryTofinish = function() {
-    if(state.fb_rows && state.tweet_rows) {
-      var all_rows = sortBy('.created', state.fb_rows.concat(state.tweet_rows));
-      view.table.setData(all_rows);
-    }
+    var all_rows = sortBy('.created', state.fb_rows.concat(state.tweet_rows));
+    view.table.setData(all_rows);
   }
   
   var finishTwitter = function(tweets) {
