@@ -9,11 +9,27 @@ Windows.Tweet = function(user, cb) {
     
     donate_banner: Views.TopBanner().view,
     
-    shadow: UI.BorderShadows().view,
+    shadow: UI.BorderShadows({top: 100}).view,
 
-    table: UI.createTableView({
+    view: UI.createView({
       top: 100,
-      backgroundColor: 'transparent'
+      layout: 'vertical'
+    }),
+
+    button_view: UI.createView({
+      width: Ti.UI.FILL, 
+      height: Ti.UI.SIZE
+    }),
+    
+    text_view: UI.createView({
+      width: Ti.UI.FILL, 
+      height: Ti.UI.SIZE
+    }),
+
+    separator_view: UI.createView({
+      height: 1,
+      width: Ti.UI.FILL,
+      backgroundColor: '#CCC'
     }),
     
     cancel_button: UI.createButton({
@@ -65,27 +81,20 @@ Windows.Tweet = function(user, cb) {
 			paddingRight:10,
 			paddingTop:2
     })
-  }
+  };
   
-  var row1 = UI.createTableViewRow({
-    height: 50
-  });
-  
-  var row2 = UI.createTableViewRow({
-    height: 320
-  });
-  
-  row1.add(self.cancel_button);
-  row1.add(self.reply_text);
-  row1.add(self.tweet_button);
-
-  row2.add(self.text_field);
+  self.button_view.add(self.cancel_button);
+  self.button_view.add(self.reply_text);
+  self.button_view.add(self.tweet_button);
+  self.text_view.add(self.text_field);
 
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
-  self.win.add(self.table);
+  self.win.add(self.view);
 
-  self.table.setData([row1, row2]);
+  self.view.add(self.button_view);
+  self.view.add(self.separator_view);
+  self.view.add(self.text_view);
   
   self.cancel_button.addEventListener('click', function() {
     self.win.close();
@@ -102,11 +111,7 @@ Windows.Tweet = function(user, cb) {
   });
   
   if(!isAndroid) {
-    self.text_field.addEventListener('blur', function() {
-      self.table.scrollToTop(0);
-    });
-
-    row2.addEventListener('click', function(e) {
+    self.view.addEventListener('click', function(e) {
       if(e.source.id != "text_field") {
         self.text_field.blur();
       }
