@@ -77,6 +77,7 @@ Views.TwitterNewsRow = function(news) {
     tweet_btn.left = null;
     tweet_btn.right = 100;
     self.row.add(tweet_btn);
+    self.row.selectionStyle = Ti.UI.iPhone.TableViewCellSelectionStyle.NONE;
   }
   
   return self;
