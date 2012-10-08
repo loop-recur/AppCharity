@@ -118,6 +118,7 @@ Views.FbNewsRow = function(news) {
     self.container_view.add(self.title_view);
     self.container_view.add(self.description);
     self.row.add(self.photo);
+    self.row.selectionStyle = Ti.UI.iPhone.TableViewCellSelectionStyle.NONE;
   } else {
     var top_view = UI.createView({ height: Ti.UI.SIZE, left:0, layout: 'horizontal'});
     if(news.picture) { 

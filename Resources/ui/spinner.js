@@ -1,5 +1,5 @@
 Spinner = function(options) {
-    var loadingView = Ti.UI.createView({
+    var loadingView = UI.createView({
           width:Ti.UI.SIZE,
           height: Ti.UI.SIZE,
           backgroundColor: '#333',
@@ -9,20 +9,20 @@ Spinner = function(options) {
           zIndex: 300
         }),
 
-        activityView = Ti.UI.createView({
+        activityView = UI.createView({
           width:Ti.UI.SIZE, 
           height:70,
           top:0
         }),
 
-        activityIndicator = Titanium.UI.createActivityIndicator({
-          style: (isIPhone ? Ti.UI.iPhone.ActivityIndicatorStyle.BIG : ''),
+        activityIndicator = UI.createActivityIndicator({
+          style: (isAndroid ? '' : Ti.UI.iPhone.ActivityIndicatorStyle.BIG),
           left:5,
           height:'auto',
           width:'auto'
         }),
 
-        loadingLabel = Ti.UI.createLabel({
+        loadingLabel = UI.createLabel({
           left:45,
           height:'auto',
           width:'auto',
@@ -37,13 +37,13 @@ Spinner = function(options) {
 
     loadingView.showLoading = function(arg) {
         activityIndicator.show();
-        if(isIPhone) { loadingView.show();}
+        if(!isAndroid) { loadingView.show();}
         return arg;
     };
 
     loadingView.hideLoading = function(arg) {
         activityIndicator.hide();
-        if(isIPhone) { loadingView.hide(); }
+        if(!isAndroid) { loadingView.hide(); }
         return arg;
     };
 
