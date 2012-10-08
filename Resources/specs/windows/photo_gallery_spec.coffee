@@ -26,6 +26,10 @@ describe("Photo Gallery", () ->
     it('should upload the camera taken photo to the ACS cloud', () -> 
       expect(Cloud.Photos.create).toHaveBeenCalledWith({photo: photo}, jasmine.any(Function))
     )
+    
+    it('refreshes the grid', ()->
+      expect(false).toBeTruthy()
+    )
   )
     
   

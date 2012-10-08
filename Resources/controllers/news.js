@@ -30,7 +30,7 @@ Controllers.News = function(view) {
   }
   
   var getNewsIfItsBeenLongEnough = function() {
-    if(PropertyCache.get('fb_news', id) && state.fb_rows) return;
+    if(PropertyCache.get('fb_news', id) && view.table.data && view.table.data[0]) return;
     getCachedNews() || getNews();
   }
   
