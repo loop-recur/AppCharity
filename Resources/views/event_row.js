@@ -1,7 +1,7 @@
 Views.EventRow = function(event) {
   var self = {
     row: UI.createTableViewRow({
-      start_time: DateFormatter.date(event.start_time, {formatted: true}),
+      start_time: event.start_time,
       layout: 'horizontal',
       event: event
     }),
@@ -61,7 +61,7 @@ Views.EventRow = function(event) {
       top: 5,
       left: 0,
       color: "#444444",
-      text: DateFormatter.date(event.start_time, {formatted: true}),
+      text: DateFormatter.date(event.start_time, {to_date: true, formatted: true}),
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     }))
