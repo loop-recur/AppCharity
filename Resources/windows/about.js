@@ -14,7 +14,7 @@ Windows.About = function() {
     
     donate_banner: Views.TopBanner().view,
     
-    shadow: UI.BorderShadows().view,
+    shadow: UI.BorderShadows({top: 120}).view,
     
     subnav: UI.createView({
       top: 0,

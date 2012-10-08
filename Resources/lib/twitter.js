@@ -92,6 +92,12 @@ Twitter = (function(global) {
     loadingOverlay.add(actInd);
     webViewWindow.add(loadingOverlay);
     webViewWindow.open({modal: true});
+    if(isAndroid) {
+      webView.addEventListener('load', function() {
+        actInd.hide();
+        webViewWindow.remove(loadingOverlay);
+      });
+    }
     
     webViewWindow.add(webView);
   
