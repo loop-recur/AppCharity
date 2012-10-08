@@ -1,4 +1,6 @@
 Push = (function(debug){
+  var id = function(x){ return x; }
+  
   if(isMobileweb) { return {unsubscribe: id, subscribe: id}; }
   Cloud.debug = true;  // optional; if you add this line, set it to false for production
   
@@ -14,7 +16,6 @@ Push = (function(debug){
       },
       
       iphoneRegister = function(pushCallback, registeredCallback) {
-        log("iphoneRegister");
         logInAsGenericUserToAvoidErrorHack(function() {
           Ti.Network.registerForPushNotifications({
             types: [
