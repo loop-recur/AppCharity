@@ -3,7 +3,8 @@ Views.TwitterNewsRow = function(news) {
     row: UI.createTableViewRow({
       created: DateFormatter.date(news.created_at, {parsed: true}),
       backgroundColor: 'transparent',
-      news: news
+      news: news,
+      className: 'twitter'
     }),
 
     photo: UI.createImageView({
