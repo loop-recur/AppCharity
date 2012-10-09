@@ -17,7 +17,10 @@ Controllers.PhotoGallery = function(view) {
     if (view.photo_grid) {
       if(isAndroid) {
         squares.map(function(s){
-          s.view.image = null;
+          log("STARTGIN");
+          log(s);
+          if(s.view) log(s.view.image);
+          if(s.view) s.view.image = null;
         });
       }
       view.win.remove(view.photo_grid);
