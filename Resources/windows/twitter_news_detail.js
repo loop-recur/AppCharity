@@ -21,7 +21,7 @@ Windows.TwitterNewsDetail = function(news) {
     }),
 
     view: UI.createView({
-      top: 146,
+      top: (isAndroid ? 100 : 146),
       left: 10,
       right: 10,
       backgroundColor: 'transparent',
@@ -96,7 +96,7 @@ Windows.TwitterNewsDetail = function(news) {
     self.back_btn.top = 20;
     self.back_btn.left = "5%";
     self.view.add(self.back_btn);
-  } else {
+  } else if(isIPhone) {
     self.win.add(self.back_btn);
   }
   self.win.add(self.view);

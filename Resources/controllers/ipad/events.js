@@ -7,8 +7,11 @@ Controllers.IPad.Events = function(view) {
     view.table.fireEvent('click', {row: rows[0] });
   }
   
-  var getEvents = function() {
-    FbGraph.getEventsOlderThan2Weeks('msf.english', '33110852384', populateTable);
+  var getEvents = function(cb) {
+    FbGraph.getEventsOlderThan2Weeks('msf.english', '33110852384', function(events){
+      populateTable(events);
+      if(cb) cb();
+    });
   }
   
   var getEventsIfItsBeenLongEnough = function() {
@@ -23,4 +26,8 @@ Controllers.IPad.Events = function(view) {
   
   view.win.addEventListener('focus', getEventsIfItsBeenLongEnough);
   view.table.addEventListener('click', openDetail);
+  
+  PullToRefresh(function(end){
+    getEvents(end);
+  }, view.table);
 }

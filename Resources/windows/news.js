@@ -16,7 +16,7 @@ Windows.News = function() {
       backgroundColor: 'transparent'
     })
   };
-
+  
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
   self.win.add(self.table);

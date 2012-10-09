@@ -14,7 +14,7 @@ Windows.About = function() {
     
     donate_banner: Views.TopBanner().view,
     
-    shadow: UI.BorderShadows().view,
+    shadow: UI.BorderShadows({top: 120}).view,
     
     subnav: UI.createView({
       top: 0,
@@ -69,8 +69,14 @@ Windows.About = function() {
       height: Ti.UI.FILL
     });
     
-    var img = UI.createView({
-      backgroundImage: page.photo.urls.medium_640
+    var img = UI.createImageView({
+      image: page.photo.urls.medium_640
+    });
+    
+    img.addEventListener('load', function(e) {
+      var i = img.image;
+      scroll.add(UI.createView({backgroundImage: i}));
+      scroll.remove(img);
     });
     
     scroll.add(img);

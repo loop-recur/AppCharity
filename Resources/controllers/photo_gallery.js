@@ -4,7 +4,7 @@ Controllers.PhotoGallery = function(view) {
   var all_photos = [];
 
   var logInAsGenercUserToAvoidErrorHack = function(cb) {
-    Cloud.Users.login({login: 'drboolean', password: '123456'}, function(e) {
+    Cloud.Users.login({login: 'appcharity', password: '123456'}, function(e) {
       e.success ? cb() : alert('Error Logging in to Server');
     });
   }

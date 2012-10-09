@@ -1,11 +1,9 @@
 Controllers.News = function(view) {
-  var state = {};
+  var state = {fb_rows: [], tweet_rows: []};
   
   var tryTofinish = function() {
-    if(state.fb_rows && state.tweet_rows) {
-      var all_rows = sortBy('.created', state.fb_rows.concat(state.tweet_rows));
-      view.table.setData(all_rows);
-    }
+    var all_rows = sortBy('.created', state.fb_rows.concat(state.tweet_rows));
+    view.table.setData(all_rows);
   }
   
   var finishTwitter = function(tweets) {
@@ -20,8 +18,8 @@ Controllers.News = function(view) {
     tryTofinish();
   }
   
-  var getNews = function() {
-    FbGraph.getNewsFeed('msf.english', finishFb);
+  var getNews = function(cb) {
+    FbGraph.getNewsFeed('msf.english', function(news){ finishFb(news); if(cb) cb(); });
     Twitter.timeline({screen_name: "MSF_USA"}, finishTwitter);
   }
   
@@ -46,4 +44,10 @@ Controllers.News = function(view) {
   if(!isIPad) view.table.addEventListener('click', openDetail);
 
   Push.addAndroidSettingsEvent(view.win);
+  
+  if(!isAndroid) {
+    PullToRefresh(function(end){
+      getNews(end);
+    }, view.table);
+  }
 };

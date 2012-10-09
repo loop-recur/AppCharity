@@ -15,8 +15,8 @@ Views.FbNewsRow = function(news) {
       style_id: 'news_container'
     }),
 
-    photo: UI.createView({
-      backgroundImage: (isIPhone ? news.picture : '/images/icons/MSF-twitter-icon.png'),
+    photo: UI.createImageView({
+      image: (isAndroid ? '/images/icons/MSF-twitter-icon.png' : news.picture),
       top: 10,
       left: 10,
       width: 40,
@@ -118,6 +118,7 @@ Views.FbNewsRow = function(news) {
     self.container_view.add(self.title_view);
     self.container_view.add(self.description);
     self.row.add(self.photo);
+    self.row.selectionStyle = Ti.UI.iPhone.TableViewCellSelectionStyle.NONE;
   } else {
     var top_view = UI.createView({ height: Ti.UI.SIZE, left:0, layout: 'horizontal'});
     if(news.picture) { 
