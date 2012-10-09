@@ -110,8 +110,10 @@ Twitter = (function(global) {
     
     webView.addEventListener('beforeload', function(e) {
       log("BEFORE LOAD!")
-      if (!isAndroid) { webViewWindow.add(loadingOverlay); }
-      actInd.show();
+      if (!isAndroid) {
+        webViewWindow.add(loadingOverlay);
+        actInd.show();
+      }
     });
   
     webView.addEventListener('load', function(event) {
