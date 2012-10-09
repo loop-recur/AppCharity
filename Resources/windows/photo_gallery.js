@@ -15,7 +15,7 @@ Windows.PhotoGallery = function() {
       top: 100
     }).view,
 
-    photo_upload_btn: Ti.UI.createButton({
+    photo_upload_btn: UI.createButton({
       width: photo_size,
       height: photo_size,
       square: true,
