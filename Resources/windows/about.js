@@ -35,14 +35,18 @@ Windows.About = function() {
   self.addSubNavItem = function(page, left, idx, width) {
     var nav_item = Ti.UI.createView({
       width: width,
-      left: left
+      left: left,
+      page: page,
+      idx: idx
     });
     
     var title_view = UI.createView({
       backgroundColor: "white",
       bottom:24,
       width: 120,
-      height: Ti.UI.SIZE
+      height: Ti.UI.SIZE,
+      page: page,
+      idx: idx
     });
     
     var title_label = UI.createLabel({
@@ -54,23 +58,31 @@ Windows.About = function() {
       left: 5,
       right: 5,
       width: 120,
-      height: Ti.UI.SIZE
+      height: Ti.UI.SIZE,
+      page: page,
+      idx: idx
     });
     
     var scroll = UI.createView({
       height: Ti.UI.FILL,
-      width: Ti.UI.FILL
+      width: Ti.UI.FILL,
+      page: page,
+      idx: idx
     });
     
     var mask = UI.createView({
       backgroundImage: "/images/backgrounds/about_nav_overlay_"+COLORS[idx]+".png",
       opacity: 0.7,
       width: Ti.UI.FILL,
-      height: Ti.UI.FILL
+      height: Ti.UI.FILL,
+      page: page,
+      idx: idx
     });
     
     var img = UI.createImageView({
-      image: page.photo.urls.medium_640
+      image: page.photo.urls.medium_640,
+      page: page,
+      idx: idx
     });
     
     img.addEventListener('load', function(e) {
@@ -92,6 +104,8 @@ Windows.About = function() {
     
     nav_item.mask = mask;
     nav_item.title = title_label;
+    nav_item.image = img;
+    
     return nav_item;
   };
 

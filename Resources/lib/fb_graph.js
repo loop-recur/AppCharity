@@ -11,9 +11,15 @@ FbGraph = (function() {
 	  url = "https://graph.facebook.com/"+ url;
 	  url = url + "&access_token="+access_token;
   	var xhr = Ti.Network.createHTTPClient({});
+    xhr.setTimeout(20000);
   	xhr.onload = function() {
   	  fun(JSON.parse(this.responseText));
   	  Ti.App.fireEvent('hide_activity');
+  	};
+  	
+  	xhr.onerror = function() {
+  	  Ti.App.fireEvent('hide_activity');
+  	  alert('Error on Facebook request.  Please try again.');
   	};
     xhr.open("GET", url);
   	xhr.send();

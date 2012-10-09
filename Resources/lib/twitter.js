@@ -109,18 +109,23 @@ Twitter = (function(global) {
     });
     
     webView.addEventListener('beforeload', function(e) {
+      log("BEFORE LOAD!")
       if (!isAndroid) { webViewWindow.add(loadingOverlay); }
       actInd.show();
     });
   
     webView.addEventListener('load', function(event) {
+      log("LOADED!")
       if(isAndroid) {
         actInd.hide();
         webViewWindow.remove(loadingOverlay);
       }
       
+      log2("event.url", event.url);
+      log2("self.authorizeUrl", self.authorizeUrl);
       // If we're not on the Twitter authorize page
       if (event.url.indexOf(self.authorizeUrl) === -1) {
+        log("REMOVE")
         webViewWindow.remove(loadingOverlay);
         actInd.hide(); // Required for Android
         
@@ -129,6 +134,7 @@ Twitter = (function(global) {
           webViewWindow.leftNavButton = backButton;
         }
       } else {
+        log("ELSE :(")
         // Switch out back button for close button
         if (webViewWindow.leftNavButton !== closeButton) {
           webViewWindow.leftNavButton = closeButton;

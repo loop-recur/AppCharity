@@ -21,8 +21,7 @@ Controllers.Slideshow = function(vp, screens, current_index) {
         } else {
           current_screen = UI.createImageView({
             image: img, 
-            width: Ti.UI.FILL, 
-            defaultImage: '/images/default_image.png'
+            width: Ti.UI.FILL
           });
         }
         return current_screen;

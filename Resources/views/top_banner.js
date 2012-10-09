@@ -21,6 +21,7 @@ Views.TopBanner = function() {
       left: (isAndroid ? "5%" : "2%"),
       width: 165,
       height: 50,
+      hires: true,
       image: '/images/top_logo.png'
     }),
     

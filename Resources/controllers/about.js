@@ -49,14 +49,14 @@ Controllers.About = function(view_proxy) {
    
   var updateMenuAndContent = function(pages){
     subnav = [];
-    view_proxy.subnav.children.map(function(c){ view_proxy.subnav.remove(c); });
+    if(subnav.length) {
+      if(isAndroid){ subnav.map(function(ni){ ni.image.image = null; }); }
+      view_proxy.subnav.children.map(function(c){ view_proxy.subnav.remove(c); });
+    }
+    
     var width = Ti.Platform.displayCaps.platformWidth / pages.length;
     pages.reduce(function(last_left, page, idx) {
       var nav_item = view_proxy.addSubNavItem(page, last_left, idx, width);
-      nav_item.addEventListener('click', function(e){
-        setPage(page);
-        updateSubMenu(idx);
-      });
       subnav.push(nav_item);
       return last_left+nav_item.width;
     }, 0);
@@ -65,12 +65,19 @@ Controllers.About = function(view_proxy) {
   }
   
   var populatePage = function() {
-    // if(PropertyCache.get('pages', id) && subnav.length) return;
+    if(PropertyCache.get('pages', id) && subnav.length) return;
     PropertyCache.get('pages', updateMenuAndContent) || fetchAllSubpageData(updateMenuAndContent);
   }
   
   view_proxy.win.addEventListener('focus', populatePage);
 
   Push.addAndroidSettingsEvent(view_proxy.win);
+  
+  view_proxy.subnav.addEventListener('click', function(e){
+    if(e.source && e.source.page) {
+      setPage(e.source.page);
+      updateSubMenu(e.source.idx);
+    }
+  });
 };
 

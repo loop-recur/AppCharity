@@ -1,6 +1,7 @@
 Controllers.PhotoGallery = function(view) {
 
   var photo_urls;
+  var squares;
   var all_photos = [];
 
   var logInAsGenercUserToAvoidErrorHack = function(cb) {
@@ -13,11 +14,20 @@ Controllers.PhotoGallery = function(view) {
     all_photos = cloud_photos;
     Ti.App.fireEvent('show_activity');
 
-    if (view.photo_grid) { view.win.remove(view.photo_grid); }
+    if (view.photo_grid) {
+      if(isAndroid) {
+        squares.map(function(s){
+          s.view.image = null;
+        });
+      }
+      view.win.remove(view.photo_grid);
+      squares = null;
+      view.photo_grid = null;
+    }
 
     photo_urls = cloud_photos.map(function(p){ return p.urls.large_1024; });
 
-    var squares = cloud_photos.map(view.makeImageViewFromCloudPhoto);
+    squares = cloud_photos.map(view.makeImageViewFromCloudPhoto);
 
     var squares_with_btn = squares.concat(view.photo_upload_btn);
     

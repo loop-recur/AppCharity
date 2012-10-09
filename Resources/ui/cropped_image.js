@@ -21,6 +21,7 @@ UI.CroppedImage = function(props) {
   scroller.add(image);
   view.add(scroller);
   view.add(click_blocker);
+  view.image = image;
 
   return view;
 };
