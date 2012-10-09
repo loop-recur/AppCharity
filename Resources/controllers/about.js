@@ -49,10 +49,8 @@ Controllers.About = function(view_proxy) {
    
   var updateMenuAndContent = function(pages){
     subnav = [];
-    if(subnav.length) {
       if(isAndroid){ subnav.map(function(ni){ ni.image.image = null; }); }
       view_proxy.subnav.children.map(function(c){ view_proxy.subnav.remove(c); });
-    }
     
     var width = Ti.Platform.displayCaps.platformWidth / pages.length;
     pages.reduce(function(last_left, page, idx) {

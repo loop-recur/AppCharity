@@ -4,7 +4,8 @@ Views.FbNewsRow = function(news) {
       created: DateFormatter.date(news.created_time, {parsed: true, fb: true}),
       news: news,
       backgroundColor: 'transparent',
-      kind: 'fb'
+      kind: 'fb',
+      className: 'facebook'
     }),
     
     container_view: UI.createView({

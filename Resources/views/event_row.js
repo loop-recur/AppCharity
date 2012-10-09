@@ -3,7 +3,8 @@ Views.EventRow = function(event) {
     row: UI.createTableViewRow({
       start_time: event.start_time,
       layout: 'horizontal',
-      event: event
+      event: event,
+      className: 'event'
     }),
 
     cal_icon: UI.createView({
