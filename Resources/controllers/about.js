@@ -60,7 +60,8 @@ Controllers.About = function(view_proxy) {
       subnav.push(nav_item);
       return last_left+nav_item.width;
     }, 0);
-    subnav[0].fireEvent('click');
+    setPage(pages[0]);
+    updateSubMenu(0);
     Ti.App.fireEvent('hide_activity');
   }
   
