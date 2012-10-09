@@ -25,12 +25,6 @@ Windows.Tweet = function(user, cb) {
       width: Ti.UI.FILL, 
       height: Ti.UI.SIZE
     }),
-
-    separator_view: UI.createView({
-      height: 1,
-      width: Ti.UI.FILL,
-      backgroundColor: '#CCC'
-    }),
     
     cancel_button: UI.createButton({
       backgroundImage: '/images/buttons/cancel_btn.png',
@@ -38,7 +32,7 @@ Windows.Tweet = function(user, cb) {
       width: 56,
       height: 28,
       left: "5%",
-      top: 10,
+      top: 20,
       bottom: 10
     }),
     
@@ -47,7 +41,7 @@ Windows.Tweet = function(user, cb) {
       color: "black",
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE,
-      top: 10,
+      top: 25,
       bottom: 10
     })),
    
@@ -57,7 +51,7 @@ Windows.Tweet = function(user, cb) {
       width: 56,
       height: 28,
       right: "5%",
-      top: 10,
+      top: 20,
       bottom: 10
     }),
     
@@ -93,7 +87,6 @@ Windows.Tweet = function(user, cb) {
   self.win.add(self.view);
 
   self.view.add(self.button_view);
-  self.view.add(self.separator_view);
   self.view.add(self.text_view);
   
   self.cancel_button.addEventListener('click', function() {
