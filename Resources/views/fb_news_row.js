@@ -16,7 +16,7 @@ Views.FbNewsRow = function(news) {
     }),
 
     photo: UI.createImageView({
-      image: (isIPhone ? news.picture : '/images/icons/MSF-twitter-icon.png'),
+      image: (isAndroid ? '/images/icons/MSF-twitter-icon.png' : news.picture),
       top: 10,
       left: 10,
       width: 40,

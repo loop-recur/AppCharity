@@ -6,8 +6,11 @@ Controllers.Events = function(view) {
     view.table.setData(sortBy('.start_time', rows));
   }
   
-  var getEvents = function() {
-    FbGraph.getEventsOlderThan2Weeks('msf.english', '33110852384', populateTable);
+  var getEvents = function(cb) {
+    FbGraph.getEventsOlderThan2Weeks('msf.english', '33110852384', function(events){
+      populateTable(events);
+      if(cb) cb();
+    });
   }
   
   var getEventsIfItsBeenLongEnough = function() {
@@ -25,4 +28,7 @@ Controllers.Events = function(view) {
   
   Push.addAndroidSettingsEvent(view.win);
 
+  PullToRefresh(function(end){
+    getEvents(end);
+  }, view.table);
 }

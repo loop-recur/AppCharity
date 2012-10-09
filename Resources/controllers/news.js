@@ -18,8 +18,8 @@ Controllers.News = function(view) {
     tryTofinish();
   }
   
-  var getNews = function() {
-    FbGraph.getNewsFeed('msf.english', finishFb);
+  var getNews = function(cb) {
+    FbGraph.getNewsFeed('msf.english', function(news){ finishFb(news); if(cb) cb(); });
     Twitter.timeline({screen_name: "MSF_USA"}, finishTwitter);
   }
   
@@ -44,4 +44,8 @@ Controllers.News = function(view) {
   if(!isIPad) view.table.addEventListener('click', openDetail);
 
   Push.addAndroidSettingsEvent(view.win);
+  
+  PullToRefresh(function(end){
+    getNews(end);
+  }, view.table);
 };
