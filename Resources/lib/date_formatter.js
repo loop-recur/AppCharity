@@ -18,7 +18,7 @@ DateFormatter = (function() {
     if (opts && opts.to_date && opts.formatted) {
       parsed_date = new Date(date_str * 1000).toString().slice(0,15);
     } else if (opts && opts.parsed) {
-      parsed_date = opts.fb ? Date.parse(parsed_date) : Date.parse(date_str);
+      parsed_date = opts.fb ? parsed_date.toISOString() : Date.parse(date_str);
     } else if (opts && opts.formatted) {
       parsed_date = opts.fb ? parsed_date.toString().slice(0,10) : Date(date_str).slice(0,10);
     } else if (opts && opts.twitter) {
