@@ -30,7 +30,7 @@ Windows.FbNewsDetail = function(news) {
 
     header_view: UI.createView({
       layout: 'horizontal',
-      top: 46,
+      top: (isAndroid ? 0 : 46),
       height: Ti.UI.SIZE,
       width: Ti.UI.FILL
     }),
@@ -141,7 +141,7 @@ Windows.FbNewsDetail = function(news) {
     self.back_btn.top = 20;
     self.back_btn.left = 0;
     self.view.add(self.back_btn);
-  } else {
+  } else if(isIPhone) {
     self.win.add(self.back_btn);
   }
   

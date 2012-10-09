@@ -25,7 +25,7 @@ Windows.EventDetail = function(event) {
 
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
-  self.win.add(self.back_btn);
+  if(!isAndroid) { self.win.add(self.back_btn); }
   self.win.add(self.detail_view.view);
 
   Controllers.EventDetail(self);
