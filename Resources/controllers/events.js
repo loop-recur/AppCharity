@@ -28,7 +28,9 @@ Controllers.Events = function(view) {
   
   Push.addAndroidSettingsEvent(view.win);
 
-  PullToRefresh(function(end){
-    getEvents(end);
-  }, view.table);
+  if(!isAndroid) {
+    PullToRefresh(function(end){
+      getEvents(end);
+    }, view.table);
+  }
 }

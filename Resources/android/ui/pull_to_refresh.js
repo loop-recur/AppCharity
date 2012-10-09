@@ -17,7 +17,7 @@ PullToRefresh = defn(function(beginLoading, tableView) {
   tableHeader.add(border);
 
   var arrow = Ti.UI.createView({
-      backgroundImage:"tifu/images/blueArrow.png",
+      backgroundImage:"/images/animations/blueArrow.png",
       width:23,
       height:60,
       bottom:10,
@@ -108,7 +108,7 @@ PullToRefresh = defn(function(beginLoading, tableView) {
     tableView.setData(rs);
   }
   
-  wrapperView.footerView = table_view.footerView
+  wrapperView.footerView = tableView.footerView
   
   wrapperView.add(scrollView);
 

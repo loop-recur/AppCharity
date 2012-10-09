@@ -45,7 +45,9 @@ Controllers.News = function(view) {
 
   Push.addAndroidSettingsEvent(view.win);
   
-  PullToRefresh(function(end){
-    getNews(end);
-  }, view.table);
+  if(!isAndroid) {
+    PullToRefresh(function(end){
+      getNews(end);
+    }, view.table);
+  }
 };
