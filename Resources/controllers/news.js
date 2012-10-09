@@ -2,7 +2,7 @@ Controllers.News = function(view) {
   var state = {fb_rows: [], tweet_rows: []};
   
   var tryTofinish = function() {
-    var all_rows = sortBy('.created', state.fb_rows.concat(state.tweet_rows));
+    var all_rows = sortBy('.created', state.fb_rows.concat(state.tweet_rows)).reverse();
     view.table.setData(all_rows);
   }
   
