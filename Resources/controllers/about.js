@@ -9,7 +9,6 @@ Controllers.About = function(view_proxy) {
         page: 1,
         per_page: 10
     }, function (e) {
-      log2("E", e);
         if (e.success) {
           PropertyCache.set('pages', e.AboutUsPage);
           cb(e.AboutUsPage);

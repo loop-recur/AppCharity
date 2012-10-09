@@ -18,7 +18,7 @@ Windows.PhotoGallery = function() {
     photo_upload_btn: UI.createButton({
       width: photo_size,
       height: photo_size,
-      square: true,
+      skip_scale: true,
       backgroundImage: '/images/buttons/photo_grid_add_btn_sml.png',
       backgroundSelectedImage: '/images/buttons/photo_grid_add_btn_sml_p.png',
       style_id: 'photo_upload_button'

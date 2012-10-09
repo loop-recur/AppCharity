@@ -92,12 +92,6 @@ Twitter = (function(global) {
     loadingOverlay.add(actInd);
     webViewWindow.add(loadingOverlay);
     webViewWindow.open({modal: true});
-    if(isAndroid) {
-      webView.addEventListener('load', function() {
-        actInd.hide();
-        webViewWindow.remove(loadingOverlay);
-      });
-    }
     
     webViewWindow.add(webView);
   
@@ -120,6 +114,11 @@ Twitter = (function(global) {
     });
   
     webView.addEventListener('load', function(event) {
+      if(isAndroid) {
+        actInd.hide();
+        webViewWindow.remove(loadingOverlay);
+      }
+      
       // If we're not on the Twitter authorize page
       if (event.url.indexOf(self.authorizeUrl) === -1) {
         webViewWindow.remove(loadingOverlay);
