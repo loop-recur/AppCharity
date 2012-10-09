@@ -30,21 +30,22 @@ Views.EventDetail = function(event) {
       square: true
     }),
 
-    month: UI.createLabel(merge(Style.h3, {
-      text: DateFormatter.date(event.start_time, {month: true}),
-      top: 0,
-      height: Ti.UI.SIZE,
-      font: {
-        fontFamily: 'Helvetica Neue',
-        fontSize: 6,
-        fontWeight: 'bold'
-      }
-    })),
+    month: UI.createLabel({
+       text: DateFormatter.date(event.start_time, {month: true}),
+       top: 2,
+       height: Ti.UI.SIZE,
+			 color:"#515151",
+       font: {
+         fontFamily: 'Helvetica Neue',
+         fontSize: 10
+       }
+     }),
 
     day: UI.createLabel({
       text: DateFormatter.date(event.start_time, {day: true}),
       top: 13,
       height: Ti.UI.SIZE,
+			color:"#515151",
       font: {
         fontFamily: 'Helvetica Neue',
         fontSize: 30,

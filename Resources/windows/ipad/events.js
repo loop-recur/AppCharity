@@ -16,7 +16,8 @@ Windows.IPad.Events = function() {
 
     table: UI.createTableView({
       top: 100,
-      backgroundColor: "#d7dadf"
+      backgroundColor: "transparent",
+			separatorColor:'rgba(183,183,183,.5)'
     })
   };
 

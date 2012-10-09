@@ -16,22 +16,23 @@ Views.EventRow = function(event) {
       bottom: 15
     }),
 
-    month: UI.createLabel(merge(Style.h3, {
+    month: UI.createLabel({
       text: DateFormatter.date(event.start_time, {month: true}),
-      top: 0,
+      top: 2,
       height: Ti.UI.SIZE,
+			color:"#515151",
       font: {
         fontFamily: 'Helvetica Neue',
-        fontSize: 6,
-        fontWeight: 'bold'
+        fontSize: 10
       }
-    })),
+    }),
 
     day: UI.createLabel({
       text: DateFormatter.date(event.start_time, {day: true}),
       top: 13,
       color: "black",
       height: Ti.UI.SIZE,
+			color:"#515151",
       font: {
         fontFamily: 'Helvetica Neue',
         fontSize: 30,
@@ -64,7 +65,7 @@ Views.EventRow = function(event) {
       text: DateFormatter.date(event.start_time, {to_date: true, formatted: true}),
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
-    }))
+    })),
   };
 
   self.content_view.add(self.title);

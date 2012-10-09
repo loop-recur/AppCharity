@@ -32,10 +32,10 @@ Windows.Application = (function() {
 	self.open = function() {
 	  Ti.App.addEventListener('show_activity', self.spinner.showLoading);
     Ti.App.addEventListener('hide_activity', self.spinner.hideLoading);
+		self.tab_group.addTab(self.about);
 		self.tab_group.addTab(self.events);
 		self.tab_group.addTab(self.news);
 		self.tab_group.addTab(self.photos);
-		self.tab_group.addTab(self.about);
 		self.tab_group.add(self.spinner);
 		self.tab_group.open();
 	};

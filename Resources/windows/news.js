@@ -2,7 +2,8 @@ Windows.News = function() {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
-      backgroundColor: "#f5f1f1"
+      backgroundImage: '/images/backgrounds/main_bg.png',
+      backgroundRepeat: true
     }),
 
     donate_banner: Views.TopBanner().view,
@@ -13,7 +14,8 @@ Windows.News = function() {
 
     table: UI.createTableView({
       top: 100,
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent',
+			separatorColor:'rgba(183,183,183,.5)'
     })
   };
   

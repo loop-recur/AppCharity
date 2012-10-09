@@ -14,13 +14,15 @@ Windows.Events = function() {
 
     table: UI.createTableView({
       top: 100,
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent',
+			separatorColor:'rgba(183,183,183,.5)'
     })
   };
 
   self.win.add(self.donate_banner);
-  self.win.add(self.shadow);
-  self.win.add(self.table);
+	self.win.add(self.shadow);
+	self.win.add(self.table);
+	
 
   Controllers.Events(self);
 
