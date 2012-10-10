@@ -18,7 +18,7 @@ Windows.News = function() {
     })
   };
   
-  if(!isAndroid) self.table.separatorColor = 'rgba(183,183,183,.5)';
+  self.table.separatorColor = isAndroid ? '#999' : 'rgba(183,183,183,.5)';
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
   self.win.add(self.table);
