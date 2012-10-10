@@ -13,7 +13,7 @@
         <target device="android">true</target>
         <target device="blackberry">false</target>
     </deployment-targets>
-    <sdk-version>2.1.3.GA</sdk-version>
+    <sdk-version>2.1.2.GA</sdk-version>
     <id>com.looprecur.appcharity</id>
     <name>appcharity</name>
     <version>0.8</version>
@@ -31,9 +31,9 @@
     <analytics>true</analytics>
     <guid>0b9b6d77-8feb-401f-96be-caeee73367d9</guid>
     <property name="ti.ui.defaultunit">system</property>
-		<ios>
-		   <min-ios-ver>5.0</min-ios-ver>
-		</ios>
+    <ios>
+        <min-ios-ver>5.0</min-ios-ver>
+    </ios>
     <iphone>
         <orientations device="iphone">
             <orientation>Ti.UI.PORTRAIT</orientation>
