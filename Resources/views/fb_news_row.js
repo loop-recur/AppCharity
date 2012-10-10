@@ -5,7 +5,7 @@ Views.FbNewsRow = function(news) {
       news: news,
       backgroundColor: 'transparent',
       kind: 'fb',
-      className: 'facebook'
+      className: (news.picture ? 'facebook-pic' : 'facebook-nopic')
     }),
     
     container_view: UI.createView({

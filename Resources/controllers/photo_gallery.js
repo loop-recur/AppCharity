@@ -6,7 +6,7 @@ Controllers.PhotoGallery = function(view) {
 
   var logInAsGenercUserToAvoidErrorHack = function(cb) {
     Cloud.Users.login({login: 'appcharity', password: '123456'}, function(e) {
-      e.success ? cb() : alert('Error Logging in to Server');
+      e.success ? cb() : Ti.App.fireEvent('hide_activity');
     });
   }
 
@@ -17,8 +17,6 @@ Controllers.PhotoGallery = function(view) {
     if (view.photo_grid) {
       if(isAndroid) {
         squares.map(function(s){
-          log("STARTGIN");
-          log(s);
           if(s.view) log(s.view.image);
           if(s.view) s.view.image = null;
         });
@@ -53,6 +51,7 @@ Controllers.PhotoGallery = function(view) {
         PropertyCache.set('cloud_photos', e.photos);
         makePhotoGrid(e.photos);
       } else {
+        Ti.App.fireEvent('hide_activity');
         alert('Error Getting photos!');
       }
     })
@@ -68,7 +67,7 @@ Controllers.PhotoGallery = function(view) {
     Ti.App.fireEvent('show_activity');
     logInAsGenercUserToAvoidErrorHack(function() {
       Cloud.Photos.create({ photo: camera_event.media }, function(e) {
-        var photo = e.success ? addPhotoToGridAndRefresh(camera_event.media) : alert('Error Uploading Photo');
+        var photo = e.success ? addPhotoToGridAndRefresh(camera_event.media) : Ti.App.fireEvent('hide_activity');
       })
     })
   };

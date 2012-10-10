@@ -61,7 +61,9 @@ FbGraph = (function() {
 		  Ti.API.info("LOGGED IN CALLBACK");
 		  Ti.API.info(e);
 		  log(e);
+		  if(e.data) log(e.data);
 		  log(e.source);
+      // log(e.source.accessToken);
 			fun();
 		});
 	}
