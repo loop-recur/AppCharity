@@ -41,9 +41,7 @@ FbGraph = (function() {
 	}
 	
 	function getNewsFeed(uid, cb) {
-	  _authenticated(function() {
 	  manualRequest(uid+"/feed", compose(cb, '.data', log2("NEWS")));
-    })
 	}
 	
 	function getPage(uid, cb) {
