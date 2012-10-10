@@ -44,7 +44,7 @@ Views.TwitterNewsRow = function(news) {
     })),
 
     date: UI.createLabel(merge(Style.p3, {
-      text: DateFormatter.date(news.created_at, {twitter: true}),
+      text: DateFormatter.date(news.created_at, {twitter_row: true}),
       left: 10,
       right: 0
     })),
