@@ -64,7 +64,7 @@ Views.EventDetail = function(event) {
     time: UI.createLabel(merge(Style.p3, {
       top: 5,
       left: 0,
-      text: DateFormatter.date(event.start_time, {formatted: true}),
+      text: DateFormatter.date(event.start_time, {to_date: true, formatted: true}),
       width: Ti.UI.SIZE,
       height: Ti.UI.SIZE
     })),

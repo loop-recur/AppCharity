@@ -62,7 +62,7 @@ Windows.TwitterNewsDetail = function(news) {
     })),
 
     date: UI.createLabel(merge(Style.p3, {
-      text: DateFormatter.date(news.created_at, {formatted: true}),
+      text: DateFormatter.date(news.created_at, {twitter: true}),
       color: '#505050',
       right: 0
     })),
