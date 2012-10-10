@@ -14,6 +14,7 @@ Controllers.About = function(view_proxy) {
           cb(e.AboutUsPage);
         } else {
           alert(JSON.stringify(e));
+          Ti.App.fireEvent('hide_activity');
         }
     });
   };
