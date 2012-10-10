@@ -1,0 +1,59 @@
+<?xml version="1.0" ?><manifest android:installLocation="auto" android:versionCode="1" android:versionName="1" package="com.appcelerator.appcharity" xmlns:android="http://schemas.android.com/apk/res/android">
+	<uses-sdk android:minSdkVersion="8"/>
+
+	<!-- TI_MANIFEST -->
+
+	<application android:debuggable="false" android:icon="@drawable/appicon" android:label="Appcharity" android:name="AppcharityApplication">
+
+		<service android:name="com.appcelerator.cloud.push.PushService"/><receiver android:name="ti.cloudpush.IntentReceiver"/><receiver android:name="ti.cloudpush.CustomReceiver">
+					<intent-filter>
+						<action android:name="android.intent.action.BOOT_COMPLETED"/>
+						<action android:name="android.intent.action.USER_PRESENT"/>
+						<action android:name="com.appcelerator.cloud.push.PushService.MSG_ARRIVAL"/>
+						<category android:name="android.intent.category.HOME"/>
+					</intent-filter>
+					<meta-data android:name="com.appcelerator.cloud.push.BroadcastReceiver.ArrivalActivity" android:value="ti.cloudpush.CustomReceiver"/>
+				</receiver>
+
+		<activity android:configChanges="keyboardHidden|orientation" android:label="Appcharity" android:name=".AppcharityActivity" android:theme="@style/Theme.Titanium" android:screenOrientation="portrait">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+
+		<activity android:configChanges="keyboardHidden|orientation" android:name="ti.modules.titanium.media.TiCameraActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+android:screenOrientation="portrait" />
+
+		<activity android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask" android:name="ti.modules.titanium.map.TiMapActivity" android:screenOrientation="portrait"/>
+	<uses-library android:name="com.google.android.maps"/>
+
+		<activity android:configChanges="keyboardHidden|orientation" android:name="org.appcelerator.titanium.TiActivity"
+			android:screenOrientation="portrait" />
+		<activity android:configChanges="keyboardHidden|orientation" android:name="org.appcelerator.titanium.TiTranslucentActivity" android:theme="@android:style/Theme.Translucent"
+			android:screenOrientation="portrait"/>
+		<activity android:configChanges="keyboardHidden|orientation" android:name="org.appcelerator.titanium.TiModalActivity" android:theme="@android:style/Theme.Translucent"
+			android:screenOrientation="portrait"/>
+		<activity android:configChanges="keyboardHidden|orientation" android:name="ti.modules.titanium.ui.TiTabActivity"
+			android:screenOrientation="portrait"/>
+		<activity android:name="ti.modules.titanium.ui.android.TiPreferencesActivity" android:screenOrientation="portrait"/>
+
+		<service android:exported="false" android:name="org.appcelerator.titanium.analytics.TiAnalyticsService"/>
+		
+
+	</application>
+
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	
+
+</manifest>
