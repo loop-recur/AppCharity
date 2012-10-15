@@ -1,8 +1,8 @@
-require('../helpers/SpecHelper');
+
 
 describe("Views/TwitterNewsRow", () ->
   view_proxy = null
-  tweet = Factory('tweet')
+  tweet = Factory('tweet', {created_at: 'Wed Sep 19 15:10:11 +0000 2012'})
   
   beforeEach(() ->
     view_proxy = Views.TwitterNewsRow(tweet)
@@ -14,5 +14,9 @@ describe("Views/TwitterNewsRow", () ->
   
   it('adds the picture icon', () ->
     expect(view_proxy.photo.image).toEqual(tweet.user.profile_image_url);
+  )
+  
+  it('formats the date correctly', () ->
+    expect(view_proxy.date.text).toEqual('Sep 19');
   )
 )

@@ -1,4 +1,4 @@
-require('../helpers/SpecHelper');
+
 
 describe("Windows/Tweet", () ->
   view_proxy = null
@@ -21,7 +21,7 @@ describe("Windows/Tweet", () ->
   
   it('calls the callback with the text', () ->
     view_proxy.text_field.value = '@MSF_USA yo yo'
-    view_proxy.submit.fireEvent('click')
+    view_proxy.tweet_button.fireEvent('click')
     expect(cb).toHaveBeenCalledWith("@MSF_USA yo yo");
   )
   

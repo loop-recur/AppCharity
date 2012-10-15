@@ -1,4 +1,4 @@
-require('../helpers/SpecHelper');
+
 
 describe("Windows/Events", () ->
   view_proxy = null

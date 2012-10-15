@@ -1,4 +1,4 @@
-require('../helpers/SpecHelper');
+
 
 describe("Views/EventRow", () ->
   view_proxy = null

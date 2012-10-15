@@ -24,12 +24,13 @@ Controllers.TopBanner = function(view) {
                 name: 'topbar_message'
             }, function (e) {
                 if (e.success) {
+                  log('was successs dog!')
                   Controllers.TopBanner.blurb = e.keyvalues[0].value;
                   updateBlurb(e.keyvalues[0].value);
                 }
             });
           }
-
+    
           Cloud.KeyValues.get({
               name: 'logo_url'
           }, function (e) {
@@ -52,7 +53,7 @@ Controllers.TopBanner = function(view) {
   }
 
   view.donate_button.addEventListener('click', openDonateLink);
-
+  
   if(Controllers.TopBanner.blurb && Controllers.TopBanner.logo && Controllers.TopBanner.donate_url) {
     if(isIPad) updateBlurb(Controllers.TopBanner.blurb);
     updateLogo(Controllers.TopBanner.logo);

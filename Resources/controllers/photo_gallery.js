@@ -1,5 +1,4 @@
 Controllers.PhotoGallery = function(view) {
-
   var photo_urls;
   var squares;
   var all_photos = [];
@@ -25,7 +24,7 @@ Controllers.PhotoGallery = function(view) {
       squares = null;
       view.photo_grid = null;
     }
-
+    
     photo_urls = cloud_photos.map(function(p){ return p.urls.large_1024; });
 
     squares = cloud_photos.map(view.makeImageViewFromCloudPhoto);
@@ -67,7 +66,7 @@ Controllers.PhotoGallery = function(view) {
     Ti.App.fireEvent('show_activity');
     logInAsGenercUserToAvoidErrorHack(function() {
       Cloud.Photos.create({ photo: camera_event.media }, function(e) {
-        var photo = e.success ? addPhotoToGridAndRefresh(camera_event.media) : Ti.App.fireEvent('hide_activity');
+        e.success ? addPhotoToGridAndRefresh(camera_event.media) : Ti.App.fireEvent('hide_activity');
       })
     })
   };

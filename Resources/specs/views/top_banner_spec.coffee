@@ -1,5 +1,3 @@
-require('../helpers/SpecHelper');
-
 describe("Views/TopBanner", () ->
   view_proxy = null
   

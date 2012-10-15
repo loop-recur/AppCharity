@@ -1,5 +1,3 @@
-require('../helpers/SpecHelper')
-
 describe("Windows/News", () ->
   view_proxy = null
   fb_news = Factory('fb_news', {name: 'some name', created_time: '2012-09-07T20:24:48+0000'})
@@ -28,28 +26,21 @@ describe("Windows/News", () ->
   )
     
   it('populates the table with sorted news', () ->
-    expect(view_proxy.table.children.length).toEqual(2)
-    expect(view_proxy.table.children[0].news).toEqual(tweet)
-    expect(view_proxy.table.children[1].news).toEqual(fb_news)
+    expect(view_proxy.table.data.length).toEqual(2)
+    expect(view_proxy.table.data[1].news).toEqual(tweet)
+    expect(view_proxy.table.data[0].news).toEqual(fb_news)
   )
   
   it('takes you to the correct news detail page when you click the table', () ->
-    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[0]})
+    view_proxy.table.fireEvent('click', {row: view_proxy.table.data[1]})
     expect(Windows.TwitterNewsDetail).toHaveBeenCalledWith(tweet)
-    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[1]})
+    view_proxy.table.fireEvent('click', {row: view_proxy.table.data[0]})
     expect(Windows.FbNewsDetail).toHaveBeenCalledWith(fb_news)
   )
   
   
   it("doesn't open the detail when you try to click a twitter action", () ->
-    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[0], source: {id: "twitter_action"}})
+    view_proxy.table.fireEvent('click', {row: view_proxy.table.children[1], source: {id: "twitter_action"}})
     expect(Windows.TwitterNewsDetail).not.toHaveBeenCalledWith(tweet)
-  )
-
-  it('formats the date correctly', () ->
-    tweet_date_format = DateFormatter.date(tweet.created_at, {formatted: true})
-    expect(view_proxy.table.data[0].children[1].children[1].children[1].text).toEqual(tweet_date_format)
-    fb_news_date_format = DateFormatter.date(fb_news.created_time, {formatted: true, fb: true})
-    expect(view_proxy.table.data[1].children[0].children[1].children[1].children[0].text).toEqual(fb_news_date_format)
   )
 )

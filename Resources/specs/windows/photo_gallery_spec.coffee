@@ -1,14 +1,12 @@
-require('../helpers/SpecHelper');
-
 describe("Photo Gallery", () ->
   view_proxy = null
   photo = {testing_text: "Object Literal posing as a fake photo"}
   
   beforeEach(() ->
-    spyOn(Cloud.Photos, 'create')
-    spyOn(Cloud.Users, 'login').andCallFake((credentials, callback) -> callback({success: true}))
+    spyOn(Cloud.Photos, 'create').andCallFake((credentials, callback) -> callback({success: true}))
     spyOn(Windows, 'Slideshow').andCallThrough()
     view_proxy = Windows.PhotoGallery()
+    view_proxy.win.fireEvent('focus')
   )
   
   describe("Photo taken with Camera", () -> 
@@ -28,10 +26,12 @@ describe("Photo Gallery", () ->
     )
     
     it('refreshes the grid', ()->
-      expect(false).toBeTruthy()
+      expect(view_proxy.photo_grid.children[0].children.length).toEqual(2)
+      view_proxy.photo_upload_btn.fireEvent('click')
+      view_proxy.confirmation.fireEvent('click', {index: 0})
+      expect(view_proxy.photo_grid.children[0].children.length).toEqual(3)
     )
   )
-    
   
   describe("Photo selected from Phone via personal Photo Gallery", () ->
     beforeEach(() ->
@@ -48,7 +48,6 @@ describe("Photo Gallery", () ->
       expect(Cloud.Photos.create).toHaveBeenCalledWith({photo: photo}, jasmine.any(Function))
     )
   )
-  
   
   describe('Photo Grid', () ->
     grid_scroll_view = null
@@ -77,8 +76,8 @@ describe("Photo Gallery", () ->
       expect(view_proxy.win.children.length).toEqual(original_amount_of_elements_on_screen)
     )
     
-    it('should attempt to get photos on window focus', () -> 
-      expect(grid_scroll_view.children[0].image).toEqual('http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_small_240.jpeg')
+    it('gets photos on window focus', () -> 
+      expect(grid_scroll_view.children[0].image.image).toEqual('http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/89/43/5060e1cb18897b7d71031f21/99d6780_small_240.jpeg')
     )
 
     it('expects the last item in the grid to be photo_upload_btn', () ->

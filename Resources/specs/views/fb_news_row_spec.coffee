@@ -1,4 +1,4 @@
-require('../helpers/SpecHelper');
+
 
 describe("Views/FbNewsRow", () ->
   view_proxy = null
@@ -16,5 +16,8 @@ describe("Views/FbNewsRow", () ->
   it('adds the picture icon', () ->
     expect(view_proxy.photo.image).toEqual(fb_news.picture)
   )
-    
+  
+  it('formats the date correctly', () ->
+    expect(view_proxy.time.text).toEqual('Fri Sep 07');
+  ) 
 )

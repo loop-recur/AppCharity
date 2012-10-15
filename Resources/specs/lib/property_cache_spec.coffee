@@ -1,4 +1,4 @@
-require('../helpers/SpecHelper');
+
 
 describe("PropertyCache", () ->
   beforeEach(()->

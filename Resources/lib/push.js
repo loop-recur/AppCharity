@@ -1,7 +1,7 @@
 Push = (function(debug){
   var id = function(x){ return x; }
   
-  if(isMobileweb) { return {unsubscribe: id, subscribe: id}; }
+  if(isMobileweb) { return {unsubscribe: id, subscribe: id, addAndroidSettingsEvent: id}; }
   Cloud.debug = true;  // optional; if you add this line, set it to false for production
   
   if(isAndroid) {

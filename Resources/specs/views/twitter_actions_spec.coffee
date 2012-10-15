@@ -1,4 +1,4 @@
-require('../helpers/SpecHelper');
+
 
 describe("Views/TwitterActions", () ->
   view_proxy = null
@@ -29,7 +29,7 @@ describe("Views/TwitterActions", () ->
     view_proxy.reply.fireEvent('click')
     expect(Windows.Tweet).toHaveBeenCalledWith('MSF_USA', jasmine.any(Function))
     view_proxy.tweet_view.text_field.value = 'yo yo'
-    view_proxy.tweet_view.submit.fireEvent('click')
+    view_proxy.tweet_view.tweet_button.fireEvent('click')
     expect(Twitter.reply).toHaveBeenCalledWith(tweet.id_str, "yo yo", jasmine.any(Function));
     expect(UI.createAlertMessage).toHaveBeenCalledWith("You've successfully replied!");
   )

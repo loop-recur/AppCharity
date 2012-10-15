@@ -1,7 +1,7 @@
-require('../helpers/SpecHelper');
+
 
 describe("Windows/Application", () ->
-    
+
   it('creates a tabgroup with all the tabs on it', () ->
     expect(Windows.Application.events.window).toBeTruthy()
     expect(Windows.Application.news.window).toBeTruthy()

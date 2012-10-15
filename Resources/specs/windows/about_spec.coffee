@@ -1,4 +1,4 @@
-require('../helpers/SpecHelper');
+
 
 describe("Windows/About", () ->
   view_proxy = null
@@ -51,7 +51,7 @@ describe("Windows/About", () ->
   )
   
   it("changes the view when you click the subnav", ()->
-    view_proxy.subnav.children[1].fireEvent('click')
+    view_proxy.subnav.fireEvent('click', {source: {page: view_proxy.subnav.children[1].page, idx: 1}})
     expect(detail_view_proxy.title.text).toMatch("Mission")
   )
   
@@ -60,7 +60,7 @@ describe("Windows/About", () ->
   )
   
   it("leaves the mask from the other subnav, but not the main", ()->
-    expect(view_proxy.subnav.children[1].mask.opacity).toEqual(0.3)
+    expect(view_proxy.subnav.children[1].mask.opacity).toEqual(0.7)
     expect(view_proxy.subnav.children[0].mask.opacity).toEqual(0)
   )
 
