@@ -1,3 +1,5 @@
+var topBanner = nrequire('templates/views/top_banner');
+
 Windows.About = function() {
   var COLORS = ['red', 'blue', 'yellow', 'green', 'orange'];
   
@@ -12,7 +14,7 @@ Windows.About = function() {
       layout: 'vertical'
     }),
     
-    donate_banner: Views.TopBanner().view,
+    donate_banner: topBanner().view,
     
     shadow: UI.BorderShadows({top: 120}).view,
     

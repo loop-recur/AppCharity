@@ -1,14 +1,21 @@
-describe("Windows/News", () ->
+FbGraph = nrequire('lib/fb_graph')
+TwitterNewsRow = nrequire('templates/views/twitter_news_row')
+FbNewsDetail = nrequire('templates/windows/fb_news_detail')
+TwitterNewsDetail = nrequire('templates/windows/twitter_news_detail')
+NewsWin = nrequire('templates/windows/news')
+
+describe("Windows/News", () ->  
   view_proxy = null
   fb_news = Factory('fb_news', {name: 'some name', created_time: '2012-09-07T20:24:48+0000'})
   tweet = Factory('tweet', {text: 'some tweet', created_at: 'Wed Sep 07 20:23:48 +0000 2012'})
   
   beforeEach(() ->
-    spyOn(Windows, 'FbNewsDetail').andCallThrough()
-    spyOn(Windows, 'TwitterNewsDetail').andCallThrough()
+    global = jasmine.getGlobal()
+    spyOn(FbNewsDetail).andCallThrough()
+    spyOn(TwitterNewsDetail, 'render').andCallThrough()
     spyOn(FbGraph, 'getNewsFeed').andCallFake((uid, cb) -> cb([fb_news]))
     spyOn(Twitter, 'timeline').andCallFake((str, cb)-> cb([tweet]))
-    view_proxy = Windows.News()
+    view_proxy = NewsWin()
     view_proxy.win.open()
     view_proxy.win.fireEvent('focus')
   )
@@ -33,14 +40,14 @@ describe("Windows/News", () ->
   
   it('takes you to the correct news detail page when you click the table', () ->
     view_proxy.table.fireEvent('click', {row: view_proxy.table.data[1]})
-    expect(Windows.TwitterNewsDetail).toHaveBeenCalledWith(tweet)
+    expect(TwitterNewsDetail.render).toHaveBeenCalledWith(tweet)
     view_proxy.table.fireEvent('click', {row: view_proxy.table.data[0]})
-    expect(Windows.FbNewsDetail).toHaveBeenCalledWith(fb_news)
+    expect(FbNewsDetail).toHaveBeenCalledWith(fb_news)
   )
   
   
   it("doesn't open the detail when you try to click a twitter action", () ->
     view_proxy.table.fireEvent('click', {row: view_proxy.table.children[1], source: {id: "twitter_action"}})
-    expect(Windows.TwitterNewsDetail).not.toHaveBeenCalledWith(tweet)
+    expect(TwitterNewsDetail.render).not.toHaveBeenCalledWith(tweet)
   )
 )

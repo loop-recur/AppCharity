@@ -1,4 +1,4 @@
-Views.TwitterNewsRow = function(news) {
+module.exports = function(news) {
   var self = {
     row: UI.createTableViewRow({
       created: DateFormatter.date(news.created_at, {parsed: true}),

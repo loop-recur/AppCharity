@@ -1,3 +1,5 @@
+var topBanner = nrequire('templates/views/top_banner');
+
 Windows.EventDetail = function(event) {
   var self = {
     win: UI.createWindow({
@@ -5,7 +7,7 @@ Windows.EventDetail = function(event) {
       backgroundColor: "#f5f1f1"
     }),
 
-    donate_banner: Views.TopBanner().view,
+    donate_banner: topBanner().view,
 
     shadow: UI.BorderShadows({
       top: 100

@@ -1,4 +1,4 @@
-FbGraph = (function() {
+module.exports = (function() {
 	var _debug = 1;
 	var access_token = "AAAEP95zi3bUBABZBI5H29tlvNTQZB8dEhWmUYpiZANGG5xEQcZBal3hgYBtsnKG9tlzaqZBRCZAucNdkg07mLwwZAJjih7umQlCmpD3PCXwSQZDZD";
 			
@@ -57,15 +57,7 @@ FbGraph = (function() {
 	function _authenticated(fun) {
 		Ti.Facebook.loggedIn ? fun() : Ti.Facebook.authorize();
 
-		Ti.Facebook.addEventListener('login', function(e) {
-		  Ti.API.info("LOGGED IN CALLBACK");
-		  Ti.API.info(e);
-		  log(e);
-		  if(e.data) log(e.data);
-		  log(e.source);
-      // log(e.source.accessToken);
-			fun();
-		});
+		Ti.Facebook.addEventListener('login', fun);
 	}
 	
 	return {wallPost : wallPost,

@@ -1,3 +1,5 @@
+var topBanner = nrequire('templates/views/top_banner');
+
 Windows.Tweet = function(user, cb) {
   var self = {
     win: UI.createWindow({
@@ -7,7 +9,7 @@ Windows.Tweet = function(user, cb) {
       backgroundRepeat: true
     }),
     
-    donate_banner: Views.TopBanner().view,
+    donate_banner: topBanner().view,
     
     shadow: UI.BorderShadows({top: 100}).view,
 

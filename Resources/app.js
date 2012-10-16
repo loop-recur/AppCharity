@@ -1,11 +1,23 @@
 Ti.UI.setBackgroundColor('#FFF');
 
-Cloud = require('ti.cloud');
-
 isAndroid = Ti.Platform.osname == 'android';
 isIPad = Ti.Platform.osname == 'ipad';
 isIPhone = Ti.Platform.osname == 'iphone';
 isMobileweb = Ti.Platform.osname == 'mobileweb';
+
+if(isAndroid) module = {};
+nrequire = function(path){
+  if(isAndroid) {
+    Ti.include(path+'.js');
+    return module.exports;
+  } else {
+    return require(path);
+  }
+}
+
+Cloud = require('ti.cloud');
+
+
 
 Ti.include("initializers/init.js");
 init();

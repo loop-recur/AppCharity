@@ -79,7 +79,7 @@ Push = (function(debug){
       
       addAndroidSettingsEvent = function(win) {
         var _openPreferences = function() {
-              Titanium.UI.Android.openPreferences();
+              Ti.UI.Android.openPreferences();
               setTimeout(function(){
                 var dialog = Ti.UI.createAlertDialog({ title:'Settings', message:'Settings were saved...', ok:'OK' });
      

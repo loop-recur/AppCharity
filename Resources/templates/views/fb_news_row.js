@@ -136,3 +136,5 @@ Views.FbNewsRow = function(news) {
    
   return self;
 };
+
+module.exports = Views.FbNewsRow;

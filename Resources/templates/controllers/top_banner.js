@@ -61,3 +61,5 @@ Controllers.TopBanner = function(view) {
     pullAcsInfo();
   }
 }
+
+module.exports = Controllers.TopBanner;

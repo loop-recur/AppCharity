@@ -1,3 +1,5 @@
+var topBanner = nrequire('templates/views/top_banner');
+
 Windows.PhotoGallery = function() {
   var photo_size = (Ti.Platform.displayCaps.platformWidth / 3);
   if(isIPad) photo_size = 340;
@@ -9,7 +11,7 @@ Windows.PhotoGallery = function() {
       backgroundRepeat: true
     }),
     
-    donate_banner: Views.TopBanner().view,
+    donate_banner: topBanner().view,
 
     shadow: UI.BorderShadows({
       top: 100

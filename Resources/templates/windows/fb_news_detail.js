@@ -1,11 +1,13 @@
-Windows.FbNewsDetail = function(news) {
+var topBanner = nrequire('templates/views/top_banner');
+
+module.exports = function(news) {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
       backgroundColor: "#f5f1f1"
     }),
 
-    donate_banner: Views.TopBanner().view,
+    donate_banner: topBanner().view,
 
     shadow: UI.BorderShadows({
       top: 100
@@ -144,7 +146,7 @@ Windows.FbNewsDetail = function(news) {
   } else if(isIPhone) {
     self.win.add(self.back_btn);
   }
-  
+
   self.win.add(self.view);
 
   Controllers.FbNewsDetail(self);

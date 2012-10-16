@@ -12,11 +12,15 @@ SpecHelper = {
   }
 };
 
+nrequire = function(path){
+  path = __dirname.replace('specs/helpers', '')+path;
+  return require(path);
+}
 
 Cloud = require('../../../modules/commonjs/ti.cloud/2.3.0/ti.cloud');
 
 Cloud.Users.login = jasmine.createSpy().andCallFake(function(opts, cb){ cb({success:true})});
-Cloud.KeyValues.get = jasmine.createSpy() //`.andCallFake(function(opts, cb){ cb({success:true})});
+Cloud.KeyValues.get = jasmine.createSpy() //.andCallFake(function(opts, cb){ cb({success:true})});
 
 require('../../initializers/init');
 init('../', true);

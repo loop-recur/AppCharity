@@ -3,7 +3,5 @@ module.exports = function(fancyRequire) {
   fancyRequire('event_row');
   fancyRequire('event_detail');
   fancyRequire('twitter_actions');
-  fancyRequire('fb_news_row');
-  fancyRequire('twitter_news_row');
   fancyRequire('top_banner');
 }

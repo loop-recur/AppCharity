@@ -1,3 +1,5 @@
+var topBanner = nrequire('templates/views/top_banner');
+
 Windows.IPad.Events = function() {
   var self = {
     win: UI.createWindow({
@@ -8,7 +10,7 @@ Windows.IPad.Events = function() {
     
     split_view: SplitView(),
 
-    donate_banner: Views.TopBanner().view,
+    donate_banner: topBanner().view,
 
     shadow: UI.BorderShadows({
       top: 100,

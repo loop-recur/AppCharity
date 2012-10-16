@@ -1,3 +1,5 @@
+var newsWin = nrequire('/windows/news');
+
 Windows.Application = (function() {
 	var self = {
         tab_group: Ti.UI.createTabGroup({}),
@@ -11,7 +13,7 @@ Windows.Application = (function() {
         news: UI.createTab({
           title: 'News',
           icon:'/images/icons/tab_newsfeed.png',
-          window: Windows.News().win
+          window: newsWin().win
         }),
   
         photos: UI.createTab({
@@ -41,6 +43,5 @@ Windows.Application = (function() {
 	};
 
 	return self;
-
 })();
 

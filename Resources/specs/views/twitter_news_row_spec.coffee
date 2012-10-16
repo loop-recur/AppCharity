@@ -1,11 +1,11 @@
-
+TwitterNewsRow = nrequire('templates/views/twitter_news_row')
 
 describe("Views/TwitterNewsRow", () ->
   view_proxy = null
   tweet = Factory('tweet', {created_at: 'Wed Sep 19 15:10:11 +0000 2012'})
   
   beforeEach(() ->
-    view_proxy = Views.TwitterNewsRow(tweet)
+    view_proxy = TwitterNewsRow(tweet)
   )
     
   it('has a label with the name in it', () ->

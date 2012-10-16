@@ -1,9 +1,3 @@
-Ti.Platform.openURL_ = (isMobileweb ? function(s){location.href = s; return s;} : function(s){ Ti.Platform.openURL(s); return s;})
-
-fireEvent_ = defn(function(name, obj) {
-	obj.fireEvent(name, {});
-});
-
 UI.createActivityIndicator = function(props){
 	var ind = Ti.UI.createActivityIndicator(props);
 	

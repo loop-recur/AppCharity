@@ -1,6 +1,7 @@
-var topBanner = nrequire('templates/views/top_banner');
+var topBanner = nrequire('templates/views/top_banner')
+  , Controller = nrequire('templates/controllers/news');
 
-Windows.Events = function() {
+module.exports = function() {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
@@ -11,7 +12,7 @@ Windows.Events = function() {
     donate_banner: topBanner().view,
 
     shadow: UI.BorderShadows({
-      top: 100,
+      top: 100
     }).view,
 
     table: UI.createTableView({
@@ -19,14 +20,13 @@ Windows.Events = function() {
       backgroundColor: 'transparent'
     })
   };
-
+  
   self.table.separatorColor = isAndroid ? '#999' : 'rgba(183,183,183,.5)';
   self.win.add(self.donate_banner);
-	self.win.add(self.shadow);
-	self.win.add(self.table);
-	
+  self.win.add(self.shadow);
+  self.win.add(self.table);
 
-  Controllers.Events(self);
+  Controller(self);
 
   return self;
 };
