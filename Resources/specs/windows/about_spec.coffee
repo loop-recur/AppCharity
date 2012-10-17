@@ -3,6 +3,7 @@ require('../../specs/helpers/spec_helper')
 FbGraph = nrequire('lib/fb_graph')
 Twitter = nrequire('lib/twitter')
 AboutWin = nrequire('/windows/about')
+PropertyCache = nrequire('/lib/property_cache')
 
 describe("Windows/About", () ->
   view_proxy = null

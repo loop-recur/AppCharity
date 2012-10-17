@@ -2,6 +2,7 @@ require('../../specs/helpers/spec_helper')
 
 PhotoGalleryWin = nrequire('/windows/photo_gallery')
 Slideshow = nrequire('templates/windows/slideshow')
+PropertyCache = nrequire('/lib/property_cache')
 
 describe("Photo Gallery", () ->
   view_proxy = null

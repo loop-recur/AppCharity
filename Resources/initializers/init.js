@@ -9,7 +9,6 @@ var subscribePushNotifications = function() {
 module.exports = function(testing) {
   nrequire('/support/functional');
   nrequire('/support/prelude');
-  nrequire('/lib/property_cache');
   nrequire('/ui/proxies');
   nrequire('/ui/style');
   Application = nrequire('/windows/application');

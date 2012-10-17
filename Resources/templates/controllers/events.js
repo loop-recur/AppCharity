@@ -2,6 +2,7 @@ var FbGraph = nrequire('lib/fb_graph'),
     EventRow = nrequire('templates/views/event_row'),
     Detail = nrequire('templates/windows/event_detail'),
     PullToRefresh = nrequire('/ui/pull_to_refresh'),
+    PropertyCache = nrequire('/lib/property_cache'),
     Push = nrequire('/lib/push');
 
 module.exports = function(view) {

@@ -6,6 +6,7 @@ FbNewsDetail = nrequire('templates/windows/fb_news_detail')
 TwitterNewsDetail = nrequire('templates/windows/twitter_news_detail')
 NewsWin = nrequire('/windows/news')
 Twitter = nrequire('lib/twitter')
+PropertyCache = nrequire('/lib/property_cache')
 
 describe("Windows/News", () ->
   view_proxy = null

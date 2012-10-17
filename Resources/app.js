@@ -18,6 +18,7 @@ nrequire = function(path){
   }
 }
 
+var PropertyCache = nrequire('/lib/property_cache');
 var Twitter = nrequire('lib/twitter');
 Cloud = require('ti.cloud');
 

@@ -1,4 +1,4 @@
-
+PropertyCache = nrequire('/lib/property_cache');
 
 describe("PropertyCache", () ->
   beforeEach(()->

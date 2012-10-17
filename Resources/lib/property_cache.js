@@ -1,4 +1,4 @@
-PropertyCache = (function() {
+module.exports = (function() {
   var cache_time = 120000;
   
   var _currentTime = function(){

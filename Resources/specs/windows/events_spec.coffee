@@ -3,6 +3,7 @@ require('../../specs/helpers/spec_helper')
 FbGraph = nrequire('lib/fb_graph')
 EventsWin = nrequire('/windows/events')
 EventDetail = nrequire('templates/windows/event_detail')
+PropertyCache = nrequire('/lib/property_cache')
 
 describe("Windows/Events", () ->
   view_proxy = null

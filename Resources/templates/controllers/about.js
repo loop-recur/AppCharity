@@ -1,4 +1,5 @@
-var Push = nrequire('/lib/push');
+var Push = nrequire('/lib/push'),
+    PropertyCache = nrequire('/lib/property_cache');
 
 module.exports = function(view) {
   var subnav = [];

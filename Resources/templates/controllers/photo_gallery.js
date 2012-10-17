@@ -1,6 +1,7 @@
 var Slideshow = nrequire('templates/windows/slideshow'),
     Grid = nrequire('/lib/grid'),
     Push = nrequire('/lib/push'),
+    PropertyCache = nrequire('/lib/property_cache'),
     Confirm = nrequire('/ui/confirm');
     
 module.exports = function(view) {
