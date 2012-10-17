@@ -1,4 +1,6 @@
-Views.AboutDetail = function() {
+var Controller = nrequire('templates/controllers/about_detail');
+
+module.exports.render = function() {
   var self = {
     view: UI.createScrollView({
       height: Ti.UI.FILL,
@@ -74,7 +76,7 @@ Views.AboutDetail = function() {
   self.view.add(self.title);
 
   self.photo_container.add(self.photo);
-  self.profile_view.add(self.photo_container)
+  self.profile_view.add(self.photo_container);
   self.share_view.add(self.tweet_button);
   self.share_view.add(self.fb_button);
   self.profile_view.add(self.share_view);
@@ -82,7 +84,8 @@ Views.AboutDetail = function() {
 
   self.view.add(self.content);
 
-  Controllers.AboutDetail(self);
+  Controller(self);
 
   return self;
 };
+

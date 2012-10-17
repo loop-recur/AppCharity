@@ -1,13 +1,14 @@
-var topBanner = nrequire('templates/views/top_banner');
+var topBanner = nrequire('templates/views/top_banner'),
+    Controller = nrequire('templates/controllers/fb_news_detail');
 
-module.exports = function(news) {
+module.exports.render = function(news) {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
       backgroundColor: "#f5f1f1"
     }),
 
-    donate_banner: topBanner().view,
+    donate_banner: topBanner.render().view,
 
     shadow: UI.BorderShadows({
       top: 100
@@ -149,6 +150,8 @@ module.exports = function(news) {
 
   self.win.add(self.view);
 
-  Controllers.FbNewsDetail(self);
+  Controller(self);
+
   return self;
 };
+

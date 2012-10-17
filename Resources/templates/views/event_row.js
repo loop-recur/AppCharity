@@ -1,4 +1,4 @@
-Views.EventRow = function(event) {
+module.exports.render = function(event) {
   var self = {
     row: UI.createTableViewRow({
       start_time: event.start_time,
@@ -80,3 +80,4 @@ Views.EventRow = function(event) {
 
   return self;
 };
+

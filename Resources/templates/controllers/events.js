@@ -1,8 +1,12 @@
-Controllers.Events = function(view) {
+var FbGraph = nrequire('lib/fb_graph'),
+    EventRow = nrequire('templates/views/event_row'),
+    Detail = nrequire('templates/windows/event_detail');
+
+module.exports = function(view) {
   
   var populateTable = function(events) {
     PropertyCache.set('fb_events', events);
-    var rows = events.map(function(e){ return Views.EventRow(e).row; });
+    var rows = events.map(function(e){ return EventRow.render(e).row; });
     view.table.setData(sortBy('.start_time', rows));
   }
   
@@ -19,8 +23,8 @@ Controllers.Events = function(view) {
   }
   
   var openDetail = function(e) {
-    var detail = Windows.EventDetail(e.row.event);
-    Windows.Application.events.open(detail.win);
+    var detail = Detail.render(e.row.event);
+    Application.events.open(detail.win);
   }
   
   view.win.addEventListener('focus', getEventsIfItsBeenLongEnough);
@@ -33,4 +37,5 @@ Controllers.Events = function(view) {
       getEvents(end);
     }, view.table);
   }
-}
+};
+

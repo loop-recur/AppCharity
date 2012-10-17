@@ -1,6 +1,6 @@
-Controllers.About = function(view_proxy) {
+module.exports = function(view) {
   var subnav = [];
-  var detail_view_proxy = view_proxy.detail_view_proxy;
+  var detail_view = view.detail_view;
   
   var fetchAllSubpageData = function(cb){
     Ti.App.fireEvent('show_activity');
@@ -21,18 +21,18 @@ Controllers.About = function(view_proxy) {
   
   // Callback, passed to AboutUsFetcher
   var setTitle = function(value){
-    detail_view_proxy.title.text = value;
+    detail_view.title.text = value;
   };
 
   // Callback, passed to AboutUsFetcher
   var setContent = function(value){
     value = value.replace(/\\n?/g, '');
-    detail_view_proxy.content.text = value;
+    detail_view.content.text = value;
   };
 
   // Callback, passed to AboutUsFetcher
   var setImage = function(value){
-    detail_view_proxy.photo.image = value;
+    detail_view.photo.image = value;
   };
 
   var setPage = function(page) {
@@ -51,29 +51,29 @@ Controllers.About = function(view_proxy) {
   var updateMenuAndContent = function(pages){
     subnav = [];
       if(isAndroid){ subnav.map(function(ni){ ni.image.image = null; }); }
-      view_proxy.subnav.children.map(function(c){ view_proxy.subnav.remove(c); });
+      view.subnav.children.map(function(c){ view.subnav.remove(c); });
     
     var width = Ti.Platform.displayCaps.platformWidth / pages.length;
     pages.reduce(function(last_left, page, idx) {
-      var nav_item = view_proxy.addSubNavItem(page, last_left, idx, width);
+      var nav_item = view.addSubNavItem(page, last_left, idx, width);
       subnav.push(nav_item);
       return last_left+nav_item.width;
     }, 0);
     setPage(pages[0]);
     updateSubMenu(0);
     Ti.App.fireEvent('hide_activity');
-  }
+  };
   
   var populatePage = function() {
     if(PropertyCache.get('pages', id) && subnav.length) return;
     PropertyCache.get('pages', updateMenuAndContent) || fetchAllSubpageData(updateMenuAndContent);
-  }
+  };
   
-  view_proxy.win.addEventListener('focus', populatePage);
+  view.win.addEventListener('focus', populatePage);
 
-  Push.addAndroidSettingsEvent(view_proxy.win);
+  Push.addAndroidSettingsEvent(view.win);
   
-  view_proxy.subnav.addEventListener('click', function(e){
+  view.subnav.addEventListener('click', function(e){
     if(e.source && e.source.page) {
       setPage(e.source.page);
       updateSubMenu(e.source.idx);

@@ -1,7 +1,7 @@
 var topBanner = nrequire('templates/views/top_banner')
   , Controller = nrequire('templates/controllers/news');
 
-module.exports = function() {
+module.exports.render = function() {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
@@ -9,7 +9,7 @@ module.exports = function() {
       backgroundRepeat: true
     }),
 
-    donate_banner: topBanner().view,
+    donate_banner: topBanner.render().view,
 
     shadow: UI.BorderShadows({
       top: 100

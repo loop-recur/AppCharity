@@ -1,13 +1,15 @@
-var topBanner = nrequire('templates/views/top_banner');
+var topBanner = nrequire('templates/views/top_banner'),
+    Controller = nrequire('templates/controllers/event_detail'),
+    Detail = nrequire('templates/views/event_detail');
 
-Windows.EventDetail = function(event) {
+module.exports.render = function(event) {
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
       backgroundColor: "#f5f1f1"
     }),
 
-    donate_banner: topBanner().view,
+    donate_banner: topBanner.render().view,
 
     shadow: UI.BorderShadows({
       top: 100
@@ -22,7 +24,7 @@ Windows.EventDetail = function(event) {
       top: 110
     }),
 
-    detail_view: Views.EventDetail(event)
+    detail_view: Detail.render(event)
   };
 
   self.win.add(self.donate_banner);
@@ -30,6 +32,7 @@ Windows.EventDetail = function(event) {
   if(!isAndroid) { self.win.add(self.back_btn); }
   self.win.add(self.detail_view.view);
 
-  Controllers.EventDetail(self);
+  Controller(self);
   return self;
 };
+

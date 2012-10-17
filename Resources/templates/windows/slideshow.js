@@ -1,4 +1,6 @@
-Windows.Slideshow = function(screens, index) {
+var Controller = nrequire('templates/controllers/slideshow');
+
+module.exports.render = function(screens, index) {
   var self = { 
       win: UI.createWindow({
           title: 'Showing ' + (index+1)  + ' of ' + screens.length,
@@ -9,6 +11,7 @@ Windows.Slideshow = function(screens, index) {
         }) 
       };
 
-  Controllers.Slideshow(self, screens, index);
+  Controller(self, screens, index);
   return self;
 };
+

@@ -1,13 +1,15 @@
+require('../../specs/helpers/spec_helper')
 
+TweetWin = nrequire('templates/windows/tweet')
 
 describe("Windows/Tweet", () ->
   view_proxy = null
-  cb = () -> 
+  cb = () ->
   tweet = Factory('tweet', {name: 'some name', created_time: '2012-09-07T20:26:48+0000'})
   
   beforeEach(() ->
     cb = jasmine.createSpy('callback')
-    view_proxy = Windows.Tweet("MSF_USA", cb)
+    view_proxy = TweetWin.render("MSF_USA", cb)
   )
   
   
@@ -22,7 +24,7 @@ describe("Windows/Tweet", () ->
   it('calls the callback with the text', () ->
     view_proxy.text_field.value = '@MSF_USA yo yo'
     view_proxy.tweet_button.fireEvent('click')
-    expect(cb).toHaveBeenCalledWith("@MSF_USA yo yo");
+    expect(cb).toHaveBeenCalledWith("@MSF_USA yo yo")
   )
   
 )

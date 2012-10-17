@@ -1,4 +1,6 @@
-Controllers.PhotoGallery = function(view) {
+var Slideshow = nrequire('templates/windows/slideshow');
+
+module.exports = function(view) {
   var photo_urls;
   var squares;
   var all_photos = [];
@@ -38,7 +40,7 @@ Controllers.PhotoGallery = function(view) {
     view.win.add(view.photo_grid);
     view.photo_grid.addEventListener('click', function(e) {
       if(e.source.index == 'undefined' || e.source.index == null) return;
-      Windows.Application.photos.open(Windows.Slideshow(photo_urls, e.source.index).win);
+      Application.photos.open(Slideshow.render(photo_urls, e.source.index).win);
     });
     Ti.App.fireEvent('hide_activity');
   };
@@ -96,3 +98,4 @@ Controllers.PhotoGallery = function(view) {
   view.win.addEventListener('focus', getCacheOrMakeGrid);
   Push.addAndroidSettingsEvent(view.win);
 };
+

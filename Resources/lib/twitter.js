@@ -1,4 +1,4 @@
-Twitter = (function(global) {
+module.exports = (function(global) {
   var K = function(){}, isAndroid = Ti.Platform.osname === "android";
   var global_config = {};
   

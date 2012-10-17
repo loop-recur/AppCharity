@@ -1,4 +1,4 @@
-Views.FbNewsRow = function(news) {
+module.exports.render = function(news) {
   var self = {
     row: UI.createTableViewRow({
       created: DateFormatter.date(news.created_time, {parsed: true, fb: true}),
@@ -137,4 +137,3 @@ Views.FbNewsRow = function(news) {
   return self;
 };
 
-module.exports = Views.FbNewsRow;

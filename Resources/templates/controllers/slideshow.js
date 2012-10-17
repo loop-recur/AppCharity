@@ -1,4 +1,4 @@
-Controllers.Slideshow = function(vp, screens, current_index) {
+module.exports = function(vp, screens, current_index) {
   var screens_len = screens.length,
       current_screen= null,
 

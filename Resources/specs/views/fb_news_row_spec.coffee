@@ -1,11 +1,13 @@
+require('../../specs/helpers/spec_helper')
 
+FbNewsRow = nrequire('templates/views/fb_news_row')
 
 describe("Views/FbNewsRow", () ->
   view_proxy = null
   fb_news = Factory('fb_news', {name: 'some name', created_time: '2012-09-07T20:26:48+0000'})
   
   beforeEach(() ->
-    view_proxy = Views.FbNewsRow(fb_news)
+    view_proxy = FbNewsRow.render(fb_news)
   )
     
   it('has a label with the name in it', () ->
@@ -18,6 +20,6 @@ describe("Views/FbNewsRow", () ->
   )
   
   it('formats the date correctly', () ->
-    expect(view_proxy.time.text).toEqual('Fri Sep 07');
-  ) 
+    expect(view_proxy.time.text).toEqual('Fri Sep 07')
+  )
 )

@@ -1,4 +1,4 @@
-Views.EventDetail = function(event) {
+module.exports.render = function(event) {
   var self = {
     view: UI.createScrollView({
       top: (isAndroid ? 100 : 136),
@@ -137,3 +137,4 @@ Views.EventDetail = function(event) {
 
   return self;
 };
+

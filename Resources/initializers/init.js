@@ -1,42 +1,31 @@
-App = {};
-Config = {};
-Controllers = {IPad: {}};
-Models = {};
-Views = {};
 UI = {};
-Windows = {IPad : {}};
-Helpers = {};
 
-var fancyRequire = function(path) {
-      if(isAndroid) {
-        return function(module_name) { Ti.include('../'+path+"/"+module_name+".js"); }
-      } else {
-        return function(module_name) { return require(path+"/"+module_name); }
-      }
-    },
+var subscribePushNotifications = function() {
+  var channel = Ti.App.id;
+  Push.subscribe(channel);
+};
 
-    requireFrom = function(from, xs) {
-      var from = from || "";
-      xs.map(function(m){ require(from+m+"/"+m)(fancyRequire(from+m)); });
-    },
-   
-    domain = function(from) {
-      requireFrom(from, ['support', 'lib']);
-    },
-
-    application = function(from) {
-      requireFrom(from, ['ui', 'controllers', 'views', 'windows']);
-    },
-
-    subscribePushNotifications = function() {
-      var channel = Ti.App.id;
-      Push.subscribe(channel);
-    };
-
-
-init = function(from, testing) {
-  if(testing) require('../specs/mock_ti').mock();  
-  domain(from);
-  application(from);
+module.exports = function(testing) {
+  nrequire('/support/functional');
+  nrequire('/support/prelude');
+  nrequire('/support/date');
+  nrequire('/lib/scaler');
+  nrequire('/lib/fb_graph');
+  nrequire('/lib/jsOAuth-1.3.1');
+  nrequire('/lib/property_cache');
+  nrequire('/lib/twitter');
+  nrequire('/lib/grid');
+  nrequire('/lib/date_formatter');
+  nrequire('/lib/push');
+  nrequire('/ui/proxies');
+  nrequire('/ui/split_view');
+  nrequire('/ui/pull_to_refresh');
+  nrequire('/ui/cropped_image');
+  nrequire('/ui/confirm');
+  nrequire('/ui/style');
+  nrequire('/ui/spinner');
+  nrequire('/ui/border_shadows');
+  Application = nrequire('/windows/application');
+  Application.open();
   subscribePushNotifications();
 };

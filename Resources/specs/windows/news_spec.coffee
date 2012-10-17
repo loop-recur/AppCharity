@@ -1,17 +1,19 @@
+require('../../specs/helpers/spec_helper')
+
 FbGraph = nrequire('lib/fb_graph')
 TwitterNewsRow = nrequire('templates/views/twitter_news_row')
 FbNewsDetail = nrequire('templates/windows/fb_news_detail')
 TwitterNewsDetail = nrequire('templates/windows/twitter_news_detail')
-NewsWin = nrequire('templates/windows/news')
+NewsWin = nrequire('/windows/news')
+Twitter = nrequire('lib/twitter')
 
-describe("Windows/News", () ->  
+describe("Windows/News", () ->
   view_proxy = null
   fb_news = Factory('fb_news', {name: 'some name', created_time: '2012-09-07T20:24:48+0000'})
   tweet = Factory('tweet', {text: 'some tweet', created_at: 'Wed Sep 07 20:23:48 +0000 2012'})
   
   beforeEach(() ->
-    global = jasmine.getGlobal()
-    spyOn(FbNewsDetail).andCallThrough()
+    spyOn(FbNewsDetail, 'render').andCallThrough()
     spyOn(TwitterNewsDetail, 'render').andCallThrough()
     spyOn(FbGraph, 'getNewsFeed').andCallFake((uid, cb) -> cb([fb_news]))
     spyOn(Twitter, 'timeline').andCallFake((str, cb)-> cb([tweet]))
@@ -19,7 +21,7 @@ describe("Windows/News", () ->
     view_proxy.win.open()
     view_proxy.win.fireEvent('focus')
   )
-  
+
   it('only gets news after a certain amount of cache time', () ->
     PropertyCache.setup({cache_time: 10000})
     view_proxy.win.fireEvent('focus')
@@ -33,6 +35,7 @@ describe("Windows/News", () ->
   )
     
   it('populates the table with sorted news', () ->
+    log(view_proxy)
     expect(view_proxy.table.data.length).toEqual(2)
     expect(view_proxy.table.data[1].news).toEqual(tweet)
     expect(view_proxy.table.data[0].news).toEqual(fb_news)
@@ -42,7 +45,7 @@ describe("Windows/News", () ->
     view_proxy.table.fireEvent('click', {row: view_proxy.table.data[1]})
     expect(TwitterNewsDetail.render).toHaveBeenCalledWith(tweet)
     view_proxy.table.fireEvent('click', {row: view_proxy.table.data[0]})
-    expect(FbNewsDetail).toHaveBeenCalledWith(fb_news)
+    expect(FbNewsDetail.render).toHaveBeenCalledWith(fb_news)
   )
   
   

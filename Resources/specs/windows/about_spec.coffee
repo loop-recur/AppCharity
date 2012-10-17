@@ -1,8 +1,12 @@
+require('../../specs/helpers/spec_helper')
 
+FbGraph = nrequire('lib/fb_graph')
+Twitter = nrequire('lib/twitter')
+AboutWin = nrequire('/windows/about')
 
 describe("Windows/About", () ->
   view_proxy = null
-  detail_view_proxy = null
+  detail_view = null
   about_page1 = null
   about_page2 = null
   
@@ -12,8 +16,8 @@ describe("Windows/About", () ->
     spyOn(Cloud.Objects, 'query').andCallFake((query, cb) -> cb({success: true, AboutUsPage: [about_page1, about_page2]}))
     spyOn(Twitter, 'tweet').andCallFake((cb) -> cb({success: true}))
     spyOn(FbGraph, 'wallPost').andCallFake((cb) -> cb({success: true}))
-    view_proxy = Windows.About()
-    detail_view_proxy = view_proxy.detail_view_proxy
+    view_proxy = AboutWin()
+    detail_view = view_proxy.detail_view
     PropertyCache.setup({cache_time: 10000})
     view_proxy.win.open()
     view_proxy.win.fireEvent('focus')
@@ -22,37 +26,37 @@ describe("Windows/About", () ->
   it('only gets the page after a certain amount of cache time', () ->
     view_proxy.win.fireEvent('focus')
     expect(Cloud.Objects.query.callCount).toEqual(1)
-    PropertyCache.setup({cache_time: 1});
+    PropertyCache.setup({cache_time: 1})
     sleep(10)
     view_proxy.win.fireEvent('focus')
     expect(Cloud.Objects.query.callCount).toEqual(2)
   )
 
   it("puts photo on the page", ()->
-    expect(detail_view_proxy.photo.image).toEqual("http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/c1/ab/506c90c79e73795f3b000292/charity1_medium_640.jpeg");
+    expect(detail_view.photo.image).toEqual("http://storage.cloud.appcelerator.com/bx017YfidhbNRHRMlhZCTl4dOy8Ug9qH/photos/c1/ab/506c90c79e73795f3b000292/charity1_medium_640.jpeg")
   )
   
   it("puts content from ACS on the page", ()->
-    expect(detail_view_proxy.content.text).toMatch('This is copy that we have for the About Us page.');
+    expect(detail_view.content.text).toMatch('This is copy that we have for the About Us page.')
   )
   
   it("puts title from ACS on the page", ()->
-    expect(detail_view_proxy.title.text).toMatch('About Us');
+    expect(detail_view.title.text).toMatch('About Us')
   )
     
   it("adds a tweet button to the page", ()->
-    detail_view_proxy.tweet_button.fireEvent('click')
+    detail_view.tweet_button.fireEvent('click')
     expect(Twitter.tweet).toHaveBeenCalled()
   )
   
   it("adds a fb share button to the page", () ->
-    detail_view_proxy.fb_button.fireEvent('click')
+    detail_view.fb_button.fireEvent('click')
     expect(FbGraph.wallPost).toHaveBeenCalled()
   )
   
   it("changes the view when you click the subnav", ()->
     view_proxy.subnav.fireEvent('click', {source: {page: view_proxy.subnav.children[1].page, idx: 1}})
-    expect(detail_view_proxy.title.text).toMatch("Mission")
+    expect(detail_view.title.text).toMatch("Mission")
   )
   
   it("evenly distributes the subnav", ()->
@@ -79,4 +83,4 @@ describe("Windows/About", () ->
     expect(view_proxy.subnav.children.length).toEqual(2)
   )
   
-)  
+)

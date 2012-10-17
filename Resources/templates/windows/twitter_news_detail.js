@@ -1,14 +1,15 @@
-var topBanner = nrequire('templates/views/top_banner');
+var topBanner = nrequire('templates/views/top_banner'),
+    Controller = nrequire('templates/controllers/twitter_news_detail'),
+    TwitterActions = nrequire('/templates/views/twitter_actions');
 
-module.exports = (function(){
-  var render = function(news) {
+module.exports.render = function(news) {
     var self = {
       win: UI.createWindow({
         navBarHidden: true,
         backgroundColor: "#f5f1f1"
       }),
 
-      donate_banner: topBanner().view,
+      donate_banner: topBanner.render().view,
 
       shadow: UI.BorderShadows({
         top: 100
@@ -76,7 +77,7 @@ module.exports = (function(){
         width: Ti.UI.FILL
       })),
     
-      twitter_actions: Views.TwitterActions(news)
+      twitter_actions: TwitterActions.render(news)
     };
 
     self.title_view.add(self.screen_name);
@@ -103,9 +104,9 @@ module.exports = (function(){
       self.win.add(self.back_btn);
     }
     self.win.add(self.view);
-    Controllers.TwitterNewsDetail(self);
+
+    Controller(self);
 
     return self;
-  };
-  return {render: render}
-})();
+};
+

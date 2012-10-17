@@ -1,6 +1,6 @@
 var topBanner = nrequire('templates/views/top_banner');
 
-Windows.Tweet = function(user, cb) {
+module.exports.render = function(user, cb) {
   var self = {
     win: UI.createWindow({
       title: "Tweet",
@@ -9,7 +9,7 @@ Windows.Tweet = function(user, cb) {
       backgroundRepeat: true
     }),
     
-    donate_banner: topBanner().view,
+    donate_banner: topBanner.render().view,
     
     shadow: UI.BorderShadows({top: 100}).view,
 
@@ -115,3 +115,4 @@ Windows.Tweet = function(user, cb) {
 
   return self;
 };
+

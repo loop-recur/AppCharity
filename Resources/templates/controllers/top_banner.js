@@ -1,4 +1,5 @@
-Controllers.TopBanner = function(view) {
+Hack = {};
+module.exports = function(view) {
   var url = 'http://www.doctorswithoutborders.com/';
   
   var openDonateLink = function() {
@@ -25,7 +26,7 @@ Controllers.TopBanner = function(view) {
             }, function (e) {
                 if (e.success) {
                   log('was successs dog!')
-                  Controllers.TopBanner.blurb = e.keyvalues[0].value;
+                  Hack.blurb = e.keyvalues[0].value;
                   updateBlurb(e.keyvalues[0].value);
                 }
             });
@@ -35,7 +36,7 @@ Controllers.TopBanner = function(view) {
               name: 'logo_url'
           }, function (e) {
               if (e.success) {
-                Controllers.TopBanner.logo = e.keyvalues[0].value;
+                Hack.logo = e.keyvalues[0].value;
                 updateLogo(e.keyvalues[0].value);
               }
           });
@@ -44,22 +45,21 @@ Controllers.TopBanner = function(view) {
               name: 'donate_url'
           }, function (e) {
               if (e.success) {
-                Controllers.TopBanner.donate_url = e.keyvalues[0].value;
+                Hack.donate_url = e.keyvalues[0].value;
                 url = e.keyvalues[0].value;
               }
           }); 
         }
     });
-  }
+  };
 
   view.donate_button.addEventListener('click', openDonateLink);
   
-  if(Controllers.TopBanner.blurb && Controllers.TopBanner.logo && Controllers.TopBanner.donate_url) {
-    if(isIPad) updateBlurb(Controllers.TopBanner.blurb);
-    updateLogo(Controllers.TopBanner.logo);
+  if(Hack.blurb && Hack.logo && Hack.donate_url) {
+    if(isIPad) updateBlurb(Hack.blurb);
+    updateLogo(Hack.logo);
   } else {
     pullAcsInfo();
   }
-}
+};
 
-module.exports = Controllers.TopBanner;

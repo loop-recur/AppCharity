@@ -1,4 +1,7 @@
-Controllers.TwitterActions = function(view, tweet){
+var TweetWin = nrequire('templates/windows/tweet'),
+    Twitter = nrequire('lib/twitter');
+
+module.exports = function(view, tweet) {
   
   var retweet = function() {
     Twitter.retweet(tweet.id_str, function(e) {
@@ -14,7 +17,7 @@ Controllers.TwitterActions = function(view, tweet){
   }
   
   var reply = function() {
-    view.tweet_view = Windows.Tweet(tweet.user.screen_name, function(text){
+    view.tweet_view = TweetWin.render(tweet.user.screen_name, function(text){
       Twitter.reply(tweet.id_str, text, function(e) {
         if(e.success) UI.createAlertMessage("You've successfully replied!");
       });
@@ -31,4 +34,5 @@ Controllers.TwitterActions = function(view, tweet){
   view.favorite.addEventListener('click', favorite);
   view.reply.addEventListener('click', reply);
   view.tweet_button.addEventListener('click', openTwitterPage);
-}
+};
+

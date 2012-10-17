@@ -1,4 +1,6 @@
-module.exports = function(news) {
+var TwitterActions = nrequire('templates/views/twitter_actions');
+
+module.exports.render = function(news) {
   var self = {
     row: UI.createTableViewRow({
       created: DateFormatter.date(news.created_at, {parsed: true}),
@@ -56,7 +58,7 @@ module.exports = function(news) {
       width: Ti.UI.FILL
     })),
     
-    twitter_actions: Views.TwitterActions(news)
+    twitter_actions: TwitterActions.render(news)
   };
 
   self.title_view.add(self.title);

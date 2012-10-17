@@ -1,5 +1,7 @@
-Controllers.IPad.Events = function(view) {
-  
+var Detail = nrequire('templates/views/event_detail'),
+    FbGraph = nrequire('lib/fb_graph');
+
+module.exports = function(view) {
   var populateTable = function(events) {
     PropertyCache.set('fb_events', events);
     var rows = events.map(function(e){ return Views.EventRow(e).row; });
@@ -19,7 +21,7 @@ Controllers.IPad.Events = function(view) {
   }
   
   var openDetail = function(e) {
-    var detail = Views.EventDetail(e.row.event);
+    var detail = Detail(e.row.event);
     view.split_view.detailView.children.map(function(c){ view.split_view.detailView.remove(c);});
     view.split_view.detailView.add(detail.view);
   }
@@ -30,4 +32,5 @@ Controllers.IPad.Events = function(view) {
   PullToRefresh(function(end){
     getEvents(end);
   }, view.table);
-}
+};
+
