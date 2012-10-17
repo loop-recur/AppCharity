@@ -1,4 +1,5 @@
-var TwitterActions = nrequire('templates/views/twitter_actions');
+var TwitterActions = nrequire('templates/views/twitter_actions'),
+    DateFormatter = nrequire('/lib/date_formatter');
 
 module.exports.render = function(news) {
   var self = {

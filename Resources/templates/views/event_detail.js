@@ -1,3 +1,5 @@
+var DateFormatter = nrequire('/lib/date_formatter');
+
 module.exports.render = function(event) {
   var self = {
     view: UI.createScrollView({

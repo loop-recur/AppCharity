@@ -1,5 +1,7 @@
 var topBanner = nrequire('templates/views/top_banner'),
-    Controller = nrequire('templates/controllers/photo_gallery');
+    Controller = nrequire('templates/controllers/photo_gallery'),
+    CroppedImage = nrequire('/ui/cropped_image'),
+    BorderShadows = nrequire('/ui/border_shadows');
 
 module.exports.render = function() {
   var photo_size = (Ti.Platform.displayCaps.platformWidth / 3);
@@ -14,7 +16,7 @@ module.exports.render = function() {
     
     donate_banner: topBanner.render().view,
 
-    shadow: UI.BorderShadows({
+    shadow: BorderShadows({
       top: 100
     }).view,
 
@@ -32,7 +34,7 @@ module.exports.render = function() {
   self.win.add(self.shadow);
   
   self.makeImageViewFromCloudPhoto = function(cloud_photo, index) {
-    return UI.CroppedImage({
+    return CroppedImage({
       height: photo_size,
       width: photo_size,
       index: index,

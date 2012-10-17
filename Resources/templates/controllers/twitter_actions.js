@@ -23,7 +23,7 @@ module.exports = function(view, tweet) {
       });
     });
     
-    Windows.Application.news.open(view.tweet_view.win);
+    Application.news.open(view.tweet_view.win);
   }
   
   var openTwitterPage = function() {

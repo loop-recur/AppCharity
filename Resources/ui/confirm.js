@@ -1,4 +1,4 @@
-Confirm = function(msg, names_and_callbacks) {
+module.exports = function(msg, names_and_callbacks) {
 
   if(!names_and_callbacks[names_and_callbacks.length -1].name == "cancel") {
     names_and_callbacks.push({

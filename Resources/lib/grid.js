@@ -1,4 +1,4 @@
-Grid = function(grid_attributes, attrs, xs) {
+module.exports = function(grid_attributes, attrs, xs) {
 	attrs = merge({
 		item_width: 100,
 		left_padding: 10,

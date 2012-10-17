@@ -1,6 +1,7 @@
 var topBanner = nrequire('templates/views/top_banner'),
     Controller = nrequire('templates/controllers/about'),
-    Detail = nrequire('templates/views/about_detail');
+    Detail = nrequire('templates/views/about_detail'),
+    BorderShadows = nrequire('/ui/border_shadows');
 
 module.exports.render = function() {
   var COLORS = ['red', 'blue', 'yellow', 'green', 'orange'];
@@ -18,7 +19,7 @@ module.exports.render = function() {
     
     donate_banner: topBanner.render().view,
     
-    shadow: UI.BorderShadows({top: 120}).view,
+    shadow: BorderShadows({top: 120}).view,
     
     subnav: UI.createView({
       top: 0,

@@ -1,4 +1,4 @@
-Push = (function(debug){
+module.exports = (function(debug){
   var id = function(x){ return x; }
   
   if(isMobileweb) { return {unsubscribe: id, subscribe: id, addAndroidSettingsEvent: id}; }

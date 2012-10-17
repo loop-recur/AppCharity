@@ -1,3 +1,5 @@
+var DateFormatter = nrequire('/lib/date_formatter');
+
 module.exports.render = function(news) {
   var self = {
     row: UI.createTableViewRow({

@@ -1,5 +1,8 @@
-var Slideshow = nrequire('templates/windows/slideshow');
-
+var Slideshow = nrequire('templates/windows/slideshow'),
+    Grid = nrequire('/lib/grid'),
+    Push = nrequire('/lib/push'),
+    Confirm = nrequire('/ui/confirm');
+    
 module.exports = function(view) {
   var photo_urls;
   var squares;

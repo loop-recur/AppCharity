@@ -1,4 +1,4 @@
-UI.BorderShadows = function(props) {
+module.exports = function(props) {
   var self = {
     view: UI.createView(merge({
       top: 0,

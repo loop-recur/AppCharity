@@ -1,6 +1,8 @@
 var topBanner = nrequire('templates/views/top_banner'),
     Controller = nrequire('templates/controllers/events'),
     iPadController = nrequire('templates/controllers/ipad/events'),
+    SplitView = nrequire('ui/split_view'),
+    BorderShadows = nrequire('/ui/border_shadows'),
     iPadWin = function() {
                 var self = {
                   win: UI.createWindow({
@@ -13,7 +15,7 @@ var topBanner = nrequire('templates/views/top_banner'),
 
                   donate_banner: topBanner.render().view,
 
-                  shadow: UI.BorderShadows({
+                  shadow: BorderShadows({
                     top: 100
                   }).view,
 
@@ -48,7 +50,7 @@ var topBanner = nrequire('templates/views/top_banner'),
 
               donate_banner: topBanner.render().view,
 
-              shadow: UI.BorderShadows({
+              shadow: BorderShadows({
                 top: 100
               }).view,
 

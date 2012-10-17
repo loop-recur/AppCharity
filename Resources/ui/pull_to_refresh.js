@@ -1,4 +1,5 @@
-PullToRefresh = defn(function(beginLoading, tableView) {
+nrequire('/support/date');
+module.exports = defn(function(beginLoading, tableView) {
   
     var shouldRefresh = false;
     

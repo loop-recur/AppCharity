@@ -1,5 +1,6 @@
 var topBanner = nrequire('templates/views/top_banner')
-  , Controller = nrequire('templates/controllers/news');
+  , Controller = nrequire('templates/controllers/news')
+  , BorderShadows = nrequire('/ui/border_shadows');
 
 module.exports.render = function() {
   var self = {
@@ -11,7 +12,7 @@ module.exports.render = function() {
 
     donate_banner: topBanner.render().view,
 
-    shadow: UI.BorderShadows({
+    shadow: BorderShadows({
       top: 100
     }).view,
 

@@ -3,7 +3,9 @@ var TwitterNewsRow = nrequire('templates/views/twitter_news_row')
 , FbGraph = nrequire('lib/fb_graph')
 , Twitter = nrequire('lib/twitter')
 , FbNewsDetail = nrequire('templates/windows/fb_news_detail')
-, TwitterNewsDetail = nrequire('templates/windows/twitter_news_detail');
+, TwitterNewsDetail = nrequire('templates/windows/twitter_news_detail')
+, PullToRefresh = nrequire('/ui/pull_to_refresh')
+, Push = nrequire('/lib/push');
 
 module.exports = function(view) {  
   var state = {fb_rows: [], tweet_rows: []};

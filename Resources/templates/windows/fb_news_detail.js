@@ -1,5 +1,7 @@
 var topBanner = nrequire('templates/views/top_banner'),
-    Controller = nrequire('templates/controllers/fb_news_detail');
+    Controller = nrequire('templates/controllers/fb_news_detail'),
+    DateFormatter = nrequire('/lib/date_formatter'),
+    BorderShadows = nrequire('/ui/border_shadows');
 
 module.exports.render = function(news) {
   var self = {
@@ -10,7 +12,7 @@ module.exports.render = function(news) {
 
     donate_banner: topBanner.render().view,
 
-    shadow: UI.BorderShadows({
+    shadow: BorderShadows({
       top: 100
     }).view,
 

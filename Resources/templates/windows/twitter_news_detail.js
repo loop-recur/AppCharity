@@ -1,6 +1,8 @@
 var topBanner = nrequire('templates/views/top_banner'),
     Controller = nrequire('templates/controllers/twitter_news_detail'),
-    TwitterActions = nrequire('/templates/views/twitter_actions');
+    TwitterActions = nrequire('/templates/views/twitter_actions'),
+    BorderShadows = nrequire('/ui/border_shadows'),
+    DateFormatter = nrequire('/lib/date_formatter');
 
 module.exports.render = function(news) {
     var self = {
@@ -11,7 +13,7 @@ module.exports.render = function(news) {
 
       donate_banner: topBanner.render().view,
 
-      shadow: UI.BorderShadows({
+      shadow: BorderShadows({
         top: 100
       }).view,
 

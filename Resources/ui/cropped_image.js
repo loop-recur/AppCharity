@@ -1,4 +1,4 @@
-UI.CroppedImage = function(props) {
+module.exports = function(props) {
   var view = Ti.UI.createView(props),
     
     click_blocker = Ti.UI.createView(props),

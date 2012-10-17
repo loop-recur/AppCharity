@@ -1,4 +1,4 @@
-Scaler = (function() {
+module.exports = (function() {
 	var getHeight = function(height) {
 		return height / 480;
 	}

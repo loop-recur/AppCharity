@@ -1,3 +1,5 @@
+var Scaler = nrequire('/lib/scaler');
+
 UI.createActivityIndicator = function(props){
 	var ind = Ti.UI.createActivityIndicator(props);
 	

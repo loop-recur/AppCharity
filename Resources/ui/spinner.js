@@ -1,4 +1,4 @@
-Spinner = function(options) {
+module.exports = function(options) {
     var loadingView = UI.createView({
           width:Ti.UI.SIZE,
           height: Ti.UI.SIZE,

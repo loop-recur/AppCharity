@@ -1,4 +1,4 @@
-SplitView = function(detail_props, master_props) { 
+module.exports = function(detail_props, master_props) { 
   detail_props = detail_props || {};
   master_props = master_props || {};
   

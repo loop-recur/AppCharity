@@ -6,9 +6,12 @@ isIPhone = Ti.Platform.osname == 'iphone';
 isMobileweb = Ti.Platform.osname == 'mobileweb';
 
 if(isAndroid) module = {};
+var names = {};
 nrequire = function(path){
   if(isAndroid) {
+    if(names[path]) { return names[path]; }
     Ti.include(path+'.js');
+    names[path] = module.exports;
     return module.exports;
   } else {
     return require(path);

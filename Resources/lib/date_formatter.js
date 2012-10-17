@@ -1,4 +1,4 @@
-DateFormatter = (function() {
+module.exports = (function() {
   var date = function(date_str, opts) {
     var parsed_date,
         months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

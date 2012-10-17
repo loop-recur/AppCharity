@@ -1,3 +1,5 @@
+var Push = nrequire('/lib/push');
+
 module.exports = function(view) {
   var subnav = [];
   var detail_view = view.detail_view;
