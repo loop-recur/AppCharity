@@ -122,8 +122,6 @@ module.exports = (function(global) {
         webViewWindow.remove(loadingOverlay);
       }
       
-      log2("event.url", event.url);
-      log2("self.authorizeUrl", self.authorizeUrl);
       // If we're not on the Twitter authorize page
       if (event.url.indexOf(self.authorizeUrl) === -1) {
         log("REMOVE")

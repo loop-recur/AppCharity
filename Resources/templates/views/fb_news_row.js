@@ -36,7 +36,7 @@ module.exports.render = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    title: UI.createLabel(merge(Style.h4, {
+    title: UI.createLabel(_.extend(Style.h4, {
       text: (news.name ? news.name : news.from.name),
       top: 0,
       left: 0,
@@ -51,7 +51,7 @@ module.exports.render = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    time: UI.createLabel(merge(Style.p3, {
+    time: UI.createLabel(_.extend(Style.p3, {
       text: DateFormatter.date(news.created_time, {formatted: true, fb: true}),
       left: 0,
       width: Ti.UI.SIZE,
@@ -66,7 +66,7 @@ module.exports.render = function(news) {
       square: true
     }),
 
-    via: UI.createLabel(merge(Style.p3, {
+    via: UI.createLabel(_.extend(Style.p3, {
       text: 'via',
       left: 2,
       width: Ti.UI.SIZE,
@@ -81,7 +81,7 @@ module.exports.render = function(news) {
       square: true
     }),
 
-    description: UI.createLabel(merge(Style.p5, {
+    description: UI.createLabel(_.extend(Style.p5, {
       text: news.description,
       top: 5,
       left: 0,

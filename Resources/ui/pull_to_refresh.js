@@ -1,5 +1,5 @@
 nrequire('/support/date');
-module.exports = defn(function(beginLoading, tableView) {
+module.exports = function(beginLoading, tableView) {
   
     var shouldRefresh = false;
     
@@ -140,4 +140,4 @@ module.exports = defn(function(beginLoading, tableView) {
             }
         }
     });
-});
+};

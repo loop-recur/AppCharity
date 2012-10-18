@@ -29,7 +29,7 @@ module.exports = (function() {
 	  function getEventsFromEids(data){
 	    var eids = data.data.map(function(d){ return d.eid; }).join(",");
       var path = buildFQLPath(uid, "SELECT eid, name, pic_square, start_time, end_time, pic_big, description, location FROM event WHERE eid IN ("+eids+")");
-			manualRequest(path, compose(cb, '.data'));
+			manualRequest(path, function(r){ cb(r.data) });
   	}
 	  
     var path = buildFQLPath(uid, "SELECT eid FROM event_member where uid="+numeric_id+" and start_time > 0");
@@ -37,15 +37,15 @@ module.exports = (function() {
 	}
 	
 	function getEvents(uid, cb) {
-	  manualRequest(uid+"/events", compose(cb, '.data', log2("EVENTS")));
+	  manualRequest(uid+"/events", function(r){ cb(r.data) });
 	}
 	
 	function getNewsFeed(uid, cb) {
-	  manualRequest(uid+"/feed", compose(cb, '.data', log2("NEWS")));
+	  manualRequest(uid+"/feed", function(r){ cb(r.data) });
 	}
 	
 	function getPage(uid, cb) {
-	  manualRequest(uid+"/", compose(cb, log2("PAGE")));
+	  manualRequest(uid+"/", function(r){ cb(r); });
 	}
 	
 	function wallPost(options, callback) {

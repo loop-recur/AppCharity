@@ -10,7 +10,7 @@ module.exports = function(view) {
   var populateTable = function(events) {
     PropertyCache.set('fb_events', events);
     var rows = events.map(function(e){ return EventRow.render(e).row; });
-    view.table.setData(sortBy('.start_time', rows));
+    view.table.setData(_.sortBy(rows, function(x){ return x.start_time }));
   }
   
   var getEvents = function(cb) {
@@ -21,7 +21,7 @@ module.exports = function(view) {
   }
   
   var getEventsIfItsBeenLongEnough = function() {
-    if(PropertyCache.get('fb_events', id) && view.table.data && view.table.data[0]) return;
+    if(PropertyCache.get('fb_events', function(){}) && view.table.data && view.table.data[0]) return;
     PropertyCache.get('fb_events', populateTable) || getEvents();
   }
   

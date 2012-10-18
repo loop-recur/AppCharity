@@ -33,12 +33,12 @@ module.exports.render = function(news) {
       layout: 'horizontal'
     }),
 
-    title: UI.createLabel(merge(Style.h2, {
+    title: UI.createLabel(_.extend(Style.h2, {
       text: news.user.name,
       left: 0
     })),
 
-    screen_name: UI.createLabel(merge(Style.p3, {
+    screen_name: UI.createLabel(_.extend(Style.p3, {
       text: "@"+news.user.screen_name,
       left: 5,
       width: 55,
@@ -46,13 +46,13 @@ module.exports.render = function(news) {
       ellipsize: true
     })),
 
-    date: UI.createLabel(merge(Style.p3, {
+    date: UI.createLabel(_.extend(Style.p3, {
       text: DateFormatter.date(news.created_at, {twitter_row: true}),
       left: 10,
       right: 0
     })),
 
-    tweet: UI.createLabel(merge(Style.p3, {
+    tweet: UI.createLabel(_.extend(Style.p3, {
       text: news.text,
       top: 5,
       left: 0,

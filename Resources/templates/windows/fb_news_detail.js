@@ -58,7 +58,7 @@ module.exports.render = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    title: UI.createLabel(merge(Style.h3, {
+    title: UI.createLabel(_.extend(Style.h3, {
       text: (news.name ? news.name : news.from.name),
       color: '#667dad',
       left: 0,
@@ -73,7 +73,7 @@ module.exports.render = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    time: UI.createLabel(merge(Style.p3, {
+    time: UI.createLabel(_.extend(Style.p3, {
       text: DateFormatter.date(news.created_time, {formatted: true, fb: true}),
       color: '#505050',
       left: 0,
@@ -89,7 +89,7 @@ module.exports.render = function(news) {
       square: true
     }),
 
-    via: UI.createLabel(merge(Style.p3, {
+    via: UI.createLabel(_.extend(Style.p3, {
       text: 'via',
       color: '#505050',
       left: 2,
@@ -105,7 +105,7 @@ module.exports.render = function(news) {
       square: true
     }),
 
-    message: UI.createLabel(merge(Style.p3, {
+    message: UI.createLabel(_.extend(Style.p3, {
       text: news.message,
       left: 10,
       right: 10,
@@ -115,7 +115,7 @@ module.exports.render = function(news) {
       height: Ti.UI.SIZE
     })),
 
-    description: UI.createLabel(merge(Style.p3, {
+    description: UI.createLabel(_.extend(Style.p3, {
       text: news.description,
       left: 10,
       right: 10,

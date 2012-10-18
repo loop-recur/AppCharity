@@ -12,7 +12,7 @@ module.exports = function(view) {
   var state = {fb_rows: [], tweet_rows: []};
   
   var tryTofinish = function() {
-    var all_rows = sortBy('.created', state.fb_rows.concat(state.tweet_rows)).reverse();
+    var all_rows = _.sortBy(state.fb_rows.concat(state.tweet_rows), function(x){ return x.created;}).reverse();
     view.table.setData(all_rows);
   }
   
@@ -38,7 +38,7 @@ module.exports = function(view) {
   }
   
   var getNewsIfItsBeenLongEnough = function() {
-    if(PropertyCache.get('fb_news', id) && view.table.data && view.table.data[0]) return;
+    if(PropertyCache.get('fb_news', function(){}) && view.table.data && view.table.data[0]) return;
     getCachedNews() || getNews();
   }
   

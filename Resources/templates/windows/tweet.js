@@ -39,7 +39,7 @@ module.exports.render = function(user, cb) {
       bottom: 10
     }),
     
-    reply_text: UI.createLabel(merge(Style.p3,{
+    reply_text: UI.createLabel(_.extend(Style.p3,{
       text: "Reply to @"+user,
       color: "black",
       height: Ti.UI.SIZE,

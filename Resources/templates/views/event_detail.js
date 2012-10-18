@@ -55,7 +55,7 @@ module.exports.render = function(event) {
       }
     }),
 
-    title: UI.createLabel(merge(Style.h3, {
+    title: UI.createLabel(_.extend(Style.h3, {
       left: 0,
       color: '#667dad',
       text: event.name,
@@ -63,7 +63,7 @@ module.exports.render = function(event) {
       width: Ti.UI.SIZE
     })),
 
-    time: UI.createLabel(merge(Style.p3, {
+    time: UI.createLabel(_.extend(Style.p3, {
       top: 5,
       left: 0,
       text: DateFormatter.date(event.start_time, {to_date: true, formatted: true}),
@@ -78,7 +78,7 @@ module.exports.render = function(event) {
       height: 120
     }),
 
-    location: UI.createLabel(merge(Style.p3, {
+    location: UI.createLabel(_.extend(Style.p3, {
       top: 5,
       left: 0,
       text: "@ "+event.location,
@@ -109,7 +109,7 @@ module.exports.render = function(event) {
       width: Ti.UI.SIZE
     }),
 
-    description: UI.createLabel(merge(Style.p3, {
+    description: UI.createLabel(_.extend(Style.p3, {
       top: 5,
       text: event.description,
       color: "black",

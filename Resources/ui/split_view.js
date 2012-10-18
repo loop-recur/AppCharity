@@ -2,11 +2,11 @@ module.exports = function(detail_props, master_props) {
   detail_props = detail_props || {};
   master_props = master_props || {};
   
-    var win = UI.createWindow(merge({
+    var win = UI.createWindow(_.extend({
         barColor : 'black'
     }, detail_props));
     
-    var win2 = UI.createWindow(merge({
+    var win2 = UI.createWindow(_.extend({
         barColor : 'black',
         title : 'Menu'
     }, master_props));

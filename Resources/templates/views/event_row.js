@@ -53,7 +53,7 @@ module.exports.render = function(event) {
       width: 235
     }),
 
-    title: UI.createLabel(merge(Style.h3, {
+    title: UI.createLabel(_.extend(Style.h3, {
       text: event.name,
       color: '#667dad',
       left: 0,
@@ -61,7 +61,7 @@ module.exports.render = function(event) {
       width: Ti.UI.SIZE
     })),
     
-    time: UI.createLabel(merge(Style.p3, {
+    time: UI.createLabel(_.extend(Style.p3, {
       top: 5,
       left: 0,
       color: "#444444",

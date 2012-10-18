@@ -68,7 +68,7 @@ module.exports = function(view) {
   };
   
   var populatePage = function() {
-    if(PropertyCache.get('pages', id) && subnav.length) return;
+    if(PropertyCache.get('pages', function(){}) && subnav.length) return;
     PropertyCache.get('pages', updateMenuAndContent) || fetchAllSubpageData(updateMenuAndContent);
   };
   

@@ -37,7 +37,7 @@ var EventRegistry = (function() {
 	}
 	
 	var fire = function(obj, name, e) {
-		try { obj[name+'event'].apply(obj, flatten([(e || {})])); } catch(e){ }
+		try { obj[name+'event'].apply(obj, _.flatten([(e || {})])); } catch(e){ }
 	}
 	
 	return {register: register, fire: fire}

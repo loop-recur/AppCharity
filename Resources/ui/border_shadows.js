@@ -1,6 +1,6 @@
 module.exports = function(props) {
   var self = {
-    view: UI.createView(merge({
+    view: UI.createView(_.extend({
       top: 0,
       width: Ti.UI.FILL,
       height: Ti.UI.FILL

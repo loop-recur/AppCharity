@@ -1,5 +1,5 @@
 var Slideshow = nrequire('templates/windows/slideshow'),
-    Grid = nrequire('/lib/grid'),
+    Grid = nrequire('/ui/grid'),
     Push = nrequire('/lib/push'),
     PropertyCache = nrequire('/lib/property_cache'),
     Confirm = nrequire('/ui/confirm');
@@ -22,7 +22,6 @@ module.exports = function(view) {
     if (view.photo_grid) {
       if(isAndroid) {
         squares.map(function(s){
-          if(s.view) log(s.view.image);
           if(s.view) s.view.image = null;
         });
       }
@@ -83,7 +82,7 @@ module.exports = function(view) {
   };
 
   var getCacheOrMakeGrid = function() {
-    if(PropertyCache.get('cloud_photos', id) && photo_urls) return;
+    if(PropertyCache.get('cloud_photos', function(){}) && photo_urls) return;
     PropertyCache.get('cloud_photos', makePhotoGrid) || getCloudPhotos();
   }
 

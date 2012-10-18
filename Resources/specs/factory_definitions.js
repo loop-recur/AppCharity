@@ -1,7 +1,7 @@
 FactoryDefinitions = {
   
   about_us_subpage: function(props){
-    return merge({ user: 
+    return _.extend({ user: 
        { id: '50511f70025afe168b023567',
          first_name: 'Bubba',
          last_name: 'Jones',
@@ -49,7 +49,7 @@ FactoryDefinitions = {
   },
   
   fb_news: function(props) {
-    return merge({
+    return _.extend({
       id: '33110852384_407906475935654',
       actions: [],
       updated_time: '2012-09-07T20:25:48+0000',
@@ -75,7 +75,7 @@ FactoryDefinitions = {
   },
   
   fb_event: function(props) {
-    return merge({
+    return _.extend({
         eid: 25789302371,
         name: 'Homebush: Refugee Camp In Your City',
         pic_square: 'http://profile.ak.fbcdn.net/hprofile-ak-ash3/174598_25789302371_1715866_q.jpg',
@@ -88,7 +88,7 @@ FactoryDefinitions = {
   },
   
   fb_page: function(props){
-    return merge({
+    return _.extend({
       name: 'Doctors Without Borders/ Médecins Sans Frontières (MSF)',
       is_published: true,
       username: 'msf.english',
@@ -111,7 +111,7 @@ FactoryDefinitions = {
   },
   
   tweet: function(props) {
-    return merge({
+    return _.extend({
         created_at: 'Wed Sep 19 15:10:11 +0000 2012',
         id: 248438845538983940,
         id_str: '248438845538983937',

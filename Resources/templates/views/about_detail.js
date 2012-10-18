@@ -8,7 +8,7 @@ module.exports.render = function() {
       layout: 'vertical'
     }),
 
-    title: UI.createLabel(merge(Style.h1, {
+    title: UI.createLabel(_.extend(Style.h1, {
       text: 'About Us',
       top: 20,
       left: 20,
@@ -64,7 +64,7 @@ module.exports.render = function() {
       style_id: 'fb_share_button'
     }),
 
-    content: UI.createLabel(merge(Style.p4, {
+    content: UI.createLabel(_.extend(Style.p4, {
       top: 10,
       left: 20,
       right: 20

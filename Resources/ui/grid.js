@@ -1,12 +1,12 @@
 module.exports = function(grid_attributes, attrs, xs) {
-	attrs = merge({
+	attrs = _.extend({
 		item_width: 100,
 		left_padding: 10,
 		top_padding: 10,
 		row_height: 100
 	}, attrs);
 
-	var grid_view = UI.createScrollView(merge({
+	var grid_view = UI.createScrollView(_.extend({
 		width: Ti.UI.FILL,
 		contentWidth: 310,
 		showHorizontalScrollIndicator: false,
@@ -35,8 +35,16 @@ module.exports = function(grid_attributes, attrs, xs) {
 
 			return top + row.height + attrs.top_padding;
 		},
-
-		groups = groups_of(3, xs); // underscore
+		
+		groupsOf = function(n, array) {
+      var i,j,chunk = n, result = [];
+      for (i=0,j=array.length; i<j; i+=chunk) {
+        result.push(array.slice(i,i+chunk));
+      }
+      return result;
+    },
+    
+		groups = groupsOf(3, xs);
 
 	groups.reduce(createRow, 0);
 

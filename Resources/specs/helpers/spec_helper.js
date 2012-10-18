@@ -36,8 +36,6 @@ Factory = function(name, props) {
 }
 Factory.id = 0;
 
-notBlank = id;
-extractText = compose(join(','), filter(notBlank), map(or('.text', '.title')), '.children');
 
 expectThreaded = function(expectation, wait_time) {
 	wait_time = (wait_time || 50);
@@ -50,15 +48,6 @@ expectThreaded = function(expectation, wait_time) {
 	setTimeout(fullExpectation, wait_time);
 	asyncSpecWait();
 }
-
-thread = function(f){
-  f();
-}
-
-// make syncronous for tests
-map_p = defn(function(f, cb, xs) {
-  compose(cb, map(f))(xs);
-});
 
 
 sleep = function(millis) {
