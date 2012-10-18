@@ -1,4 +1,4 @@
-module.exports = function(beginLoading, tableView) {
+module.exports = function(tableView, beginLoading) {
   nrequire('/support/date');
   
     var shouldRefresh = false;

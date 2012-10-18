@@ -36,9 +36,9 @@ module.exports = function(view) {
   Push.addAndroidSettingsEvent(view.win);
 
   if(!isAndroid) {
-    PullToRefresh(function(end){
+    PullToRefresh(view.table, function(end){
       getEvents(end);
-    }, view.table);
+    });
   }
 };
 

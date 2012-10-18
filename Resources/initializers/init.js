@@ -9,8 +9,6 @@ var subscribePushNotifications = function() {
 };
 
 module.exports = function(testing) {
-  // nrequire('/support/functional');
-  // nrequire('/support/prelude');
   _ = nrequire('/support/underscore');
   nrequire('/ui/proxies');
   nrequire('/ui/style');

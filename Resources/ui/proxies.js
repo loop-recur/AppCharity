@@ -19,6 +19,7 @@ UI.createImageView = function(props) {
 }
 
 UI.createLabel = function(props) {
+  props = extendStyle(props);
 	return Ti.UI.createLabel(Scaler(props));
 }
 

@@ -9,12 +9,13 @@
 
 // 1. The result of nrequire() is whatever you last assigned module.exports to.
 // 2. Other weirdness?
+
 var isAndroid = Ti.Platform.osname == 'android';
 
 if(isAndroid) exports = {}; // for libs like underscore
 if(isAndroid) module = {};
 var names = {};
-nrequire = function(path){
+nrequire = function(path) {
   if(isAndroid) {
     if(names[path]) { return names[path]; }
     Ti.include(path+'.js');

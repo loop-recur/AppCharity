@@ -32,8 +32,8 @@ module.exports = function(view) {
   view.win.addEventListener('focus', getEventsIfItsBeenLongEnough);
   view.table.addEventListener('click', openDetail);
   
-  PullToRefresh(function(end){
+  PullToRefresh(view.table, function(end){
     getEvents(end);
-  }, view.table);
+  });
 };
 
