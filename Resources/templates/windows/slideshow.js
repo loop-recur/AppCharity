@@ -1,6 +1,6 @@
-var Controller = nrequire('templates/controllers/slideshow');
-
-module.exports.render = function(screens, index) {
+var render = function(screens, index) {
+  var Controller = nrequire('/templates/controllers/slideshow');
+  
   var self = { 
       win: UI.createWindow({
           title: 'Showing ' + (index+1)  + ' of ' + screens.length,
@@ -15,3 +15,4 @@ module.exports.render = function(screens, index) {
   return self;
 };
 
+module.exports = {render: render}

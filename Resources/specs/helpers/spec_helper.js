@@ -2,6 +2,7 @@ isIPad = false;
 isIPhone = true;
 isAndroid = false;
 isMobileweb = true;
+Hack = {};
 
 SpecHelper = {
   switchPlatform: function(platform, bool){

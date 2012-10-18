@@ -1,6 +1,6 @@
-var DateFormatter = nrequire('/lib/date_formatter');
-
-module.exports.render = function(event) {
+var render = function(event) {
+  var DateFormatter = nrequire('/lib/date_formatter');
+  
   var self = {
     view: UI.createScrollView({
       top: (isAndroid ? 100 : 136),
@@ -140,3 +140,4 @@ module.exports.render = function(event) {
   return self;
 };
 
+module.exports = {render: render}

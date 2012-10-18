@@ -1,18 +1,18 @@
-var TwitterNewsRow = nrequire('templates/views/twitter_news_row')
-, FbNewsRow = nrequire('templates/views/fb_news_row')
-, FbGraph = nrequire('lib/fb_graph')
-, Twitter = nrequire('lib/twitter')
-, FbNewsDetail = nrequire('templates/windows/fb_news_detail')
-, TwitterNewsDetail = nrequire('templates/windows/twitter_news_detail')
-, PullToRefresh = nrequire('/ui/pull_to_refresh')
-, PropertyCache = nrequire('/lib/property_cache')
-, Push = nrequire('/lib/push');
-
 module.exports = function(view) {  
+  var TwitterNewsRow = nrequire('/templates/views/twitter_news_row')
+  , FbNewsRow = nrequire('/templates/views/fb_news_row')
+  , FbGraph = nrequire('/lib/fb_graph')
+  , Twitter = nrequire('/lib/twitter')
+  , FbNewsDetail = nrequire('/templates/windows/fb_news_detail')
+  , TwitterNewsDetail = nrequire('/templates/windows/twitter_news_detail')
+  , PullToRefresh = nrequire('/ui/pull_to_refresh')
+  , PropertyCache = nrequire('/lib/property_cache')
+  , Push = nrequire('/lib/push');
+  
   var state = {fb_rows: [], tweet_rows: []};
   
   var tryTofinish = function() {
-    var all_rows = _.sortBy(state.fb_rows.concat(state.tweet_rows), function(x){ return x.created;}).reverse();
+    var all_rows = _.sortBy(state.fb_rows.concat(state.tweet_rows), function(x){return x.created;}).reverse();
     view.table.setData(all_rows);
   }
   

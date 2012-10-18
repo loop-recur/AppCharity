@@ -1,6 +1,6 @@
-var Controller = nrequire('templates/controllers/about_detail');
-
-module.exports.render = function() {
+var render = function() {
+  var Controller = nrequire('/templates/controllers/about_detail');
+  
   var self = {
     view: UI.createScrollView({
       height: Ti.UI.FILL,
@@ -89,3 +89,4 @@ module.exports.render = function() {
   return self;
 };
 
+module.exports = {render: render}

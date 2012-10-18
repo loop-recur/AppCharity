@@ -1,4 +1,3 @@
-Hack = {};
 module.exports = function(view) {
   var url = 'http://www.doctorswithoutborders.com/';
   

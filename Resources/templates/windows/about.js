@@ -1,9 +1,9 @@
-var topBanner = nrequire('templates/views/top_banner'),
-    Controller = nrequire('templates/controllers/about'),
-    Detail = nrequire('templates/views/about_detail'),
-    BorderShadows = nrequire('/ui/border_shadows');
-
-module.exports.render = function() {
+var render = function() {
+  var topBanner = nrequire('/templates/views/top_banner'),
+      Controller = nrequire('/templates/controllers/about'),
+      Detail = nrequire('/templates/views/about_detail'),
+      BorderShadows = nrequire('/ui/border_shadows');
+  
   var COLORS = ['red', 'blue', 'yellow', 'green', 'orange'];
   
   var self = {
@@ -119,3 +119,4 @@ module.exports.render = function() {
   return self;
 };
 
+module.exports = {render: render}

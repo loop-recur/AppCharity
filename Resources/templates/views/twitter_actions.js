@@ -1,6 +1,6 @@
-var Controller = nrequire('templates/controllers/twitter_actions');
-
-module.exports.render = function(tweet) {
+var render = function(tweet) {
+  var Controller = nrequire('/templates/controllers/twitter_actions');
+  
   var self = {
     view: UI.createView({
       layout: 'horizontal',
@@ -56,3 +56,4 @@ module.exports.render = function(tweet) {
   return self;
 };
 
+module.exports = {render: render}

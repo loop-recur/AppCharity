@@ -1,7 +1,7 @@
-var TwitterActions = nrequire('templates/views/twitter_actions'),
-    DateFormatter = nrequire('/lib/date_formatter');
-
-module.exports.render = function(news) {
+var render = function(news) {
+  var TwitterActions = nrequire('/templates/views/twitter_actions'),
+      DateFormatter = nrequire('/lib/date_formatter');
+  
   var self = {
     row: UI.createTableViewRow({
       created: DateFormatter.date(news.created_at, {parsed: true}),
@@ -86,3 +86,5 @@ module.exports.render = function(news) {
   
   return self;
 };
+
+module.exports = {render: render}

@@ -1,7 +1,6 @@
-var FbGraph = nrequire('lib/fb_graph'),
-    Twitter = nrequire('lib/twitter');
-
 module.exports = function(view) {
+  var FbGraph = nrequire('/lib/fb_graph'),
+      Twitter = nrequire('/lib/twitter');
   
   var tweet = function() {
     Twitter.tweet("I like @MSF_USA", function(e){

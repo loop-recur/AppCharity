@@ -55,8 +55,13 @@
   // backwards-compatibility for the old `require()` API. If we're in
   // the browser, add `_` as a global object via a string identifier,
   // for Closure Compiler "advanced" mode.
+  log("\n\n\n==================starting require");
+  log(typeof exports);
+  log(typeof module);
+  log(module.exports);
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
+      log("wasn't undefined")
       exports = module.exports = _;
     }
     exports._ = _;

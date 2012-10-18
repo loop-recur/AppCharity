@@ -1,6 +1,6 @@
-var Controller = nrequire('templates/controllers/top_banner');
-
-module.exports.render = function() {
+var render = function() {
+  var Controller = nrequire('/templates/controllers/top_banner');
+  
   var self = {
     view: UI.createView({
       style_id: 'top_banner',
@@ -45,3 +45,4 @@ module.exports.render = function() {
   return self;
 }; 
 
+module.exports = {render: render}

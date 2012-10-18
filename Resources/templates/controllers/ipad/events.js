@@ -1,10 +1,10 @@
-var Detail = nrequire('templates/views/event_detail'),
-    FbGraph = nrequire('lib/fb_graph'),
-    EventRow = nrequire('templates/views/event_row'),
-    PropertyCache = nrequire('/lib/property_cache'),
-    PullToRefresh = nrequire('/ui/pull_to_refresh');
-
 module.exports = function(view) {
+  var Detail = nrequire('/templates/views/event_detail'),
+      FbGraph = nrequire('/lib/fb_graph'),
+      EventRow = nrequire('/templates/views/event_row'),
+      PropertyCache = nrequire('/lib/property_cache'),
+      PullToRefresh = nrequire('/ui/pull_to_refresh');
+  
   var populateTable = function(events) {
     PropertyCache.set('fb_events', events);
     var rows = events.map(function(e){ return EventRow.render(e).row; });

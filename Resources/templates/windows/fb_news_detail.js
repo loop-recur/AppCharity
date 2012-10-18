@@ -1,9 +1,9 @@
-var topBanner = nrequire('templates/views/top_banner'),
-    Controller = nrequire('templates/controllers/fb_news_detail'),
-    DateFormatter = nrequire('/lib/date_formatter'),
-    BorderShadows = nrequire('/ui/border_shadows');
-
-module.exports.render = function(news) {
+var render = function(news) {
+  var topBanner = nrequire('/templates/views/top_banner'),
+      Controller = nrequire('/templates/controllers/fb_news_detail'),
+      DateFormatter = nrequire('/lib/date_formatter'),
+      BorderShadows = nrequire('/ui/border_shadows');
+  
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
@@ -157,3 +157,4 @@ module.exports.render = function(news) {
   return self;
 };
 
+module.exports = {render: render}

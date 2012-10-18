@@ -1,6 +1,6 @@
-var DateFormatter = nrequire('/lib/date_formatter');
-
-module.exports.render = function(event) {
+var render = function(event) {
+  var DateFormatter = nrequire('/lib/date_formatter');
+  
   var self = {
     row: UI.createTableViewRow({
       start_time: event.start_time,
@@ -83,3 +83,4 @@ module.exports.render = function(event) {
   return self;
 };
 
+module.exports = {render: render}

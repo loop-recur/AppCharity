@@ -1,6 +1,6 @@
 require('../../specs/helpers/spec_helper')
 
-FbNewsRow = nrequire('templates/views/fb_news_row')
+FbNewsRow = nrequire('/templates/views/fb_news_row')
 
 describe("Views/FbNewsRow", () ->
   view_proxy = null

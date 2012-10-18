@@ -1,10 +1,10 @@
-var Slideshow = nrequire('templates/windows/slideshow'),
-    Grid = nrequire('/ui/grid'),
-    Push = nrequire('/lib/push'),
-    PropertyCache = nrequire('/lib/property_cache'),
-    Confirm = nrequire('/ui/confirm');
-    
 module.exports = function(view) {
+  var Slideshow = nrequire('/templates/windows/slideshow'),
+      Grid = nrequire('/ui/grid'),
+      Push = nrequire('/lib/push'),
+      PropertyCache = nrequire('/lib/property_cache'),
+      Confirm = nrequire('/ui/confirm');
+  
   var photo_urls;
   var squares;
   var all_photos = [];

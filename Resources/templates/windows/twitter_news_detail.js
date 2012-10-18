@@ -1,10 +1,10 @@
-var topBanner = nrequire('templates/views/top_banner'),
-    Controller = nrequire('templates/controllers/twitter_news_detail'),
-    TwitterActions = nrequire('/templates/views/twitter_actions'),
-    BorderShadows = nrequire('/ui/border_shadows'),
-    DateFormatter = nrequire('/lib/date_formatter');
-
-module.exports.render = function(news) {
+var render = function(news) {
+  var topBanner = nrequire('/templates/views/top_banner'),
+      Controller = nrequire('/templates/controllers/twitter_news_detail'),
+      TwitterActions = nrequire('/templates/views/twitter_actions'),
+      BorderShadows = nrequire('/ui/border_shadows'),
+      DateFormatter = nrequire('/lib/date_formatter');
+  
     var self = {
       win: UI.createWindow({
         navBarHidden: true,
@@ -112,3 +112,4 @@ module.exports.render = function(news) {
     return self;
 };
 
+module.exports = {render: render}

@@ -1,9 +1,9 @@
-var topBanner = nrequire('templates/views/top_banner'),
-    Controller = nrequire('templates/controllers/photo_gallery'),
-    CroppedImage = nrequire('/ui/cropped_image'),
-    BorderShadows = nrequire('/ui/border_shadows');
-
-module.exports.render = function() {
+var render = function() {
+  var topBanner = nrequire('/templates/views/top_banner'),
+      Controller = nrequire('/templates/controllers/photo_gallery'),
+      CroppedImage = nrequire('/ui/cropped_image'),
+      BorderShadows = nrequire('/ui/border_shadows');
+  
   var photo_size = (Ti.Platform.displayCaps.platformWidth / 3);
   if(isIPad) photo_size = 340;
 
@@ -49,3 +49,4 @@ module.exports.render = function() {
   return self;
 };
 
+module.exports = {render: render}

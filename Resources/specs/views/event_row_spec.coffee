@@ -1,6 +1,6 @@
 require('../../specs/helpers/spec_helper')
 
-EventRow = nrequire('templates/views/event_row')
+EventRow = nrequire('/templates/views/event_row')
 
 describe("Views/EventRow", () ->
   view_proxy = null

@@ -1,10 +1,11 @@
 Ti.UI.setBackgroundColor('#FFF');
-
+Hack = {};
 isAndroid = Ti.Platform.osname == 'android';
 isIPad = Ti.Platform.osname == 'ipad';
 isIPhone = Ti.Platform.osname == 'iphone';
 isMobileweb = Ti.Platform.osname == 'mobileweb';
 
+exports = {}; // for underscore
 if(isAndroid) module = {};
 var names = {};
 nrequire = function(path){
@@ -19,7 +20,7 @@ nrequire = function(path){
 }
 
 var PropertyCache = nrequire('/lib/property_cache');
-var Twitter = nrequire('lib/twitter');
+var Twitter = nrequire('/lib/twitter');
 Cloud = require('ti.cloud');
 
 var init = nrequire("/initializers/init");

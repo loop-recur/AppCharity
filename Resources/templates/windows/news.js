@@ -1,8 +1,8 @@
-var topBanner = nrequire('templates/views/top_banner')
-  , Controller = nrequire('templates/controllers/news')
-  , BorderShadows = nrequire('/ui/border_shadows');
-
-module.exports.render = function() {
+var render = function() {
+  var topBanner = nrequire('/templates/views/top_banner')
+    , Controller = nrequire('/templates/controllers/news')
+    , BorderShadows = nrequire('/ui/border_shadows');
+  
   var self = {
     win: UI.createWindow({
       navBarHidden: true,
@@ -31,3 +31,5 @@ module.exports.render = function() {
 
   return self;
 };
+
+module.exports = {render: render}

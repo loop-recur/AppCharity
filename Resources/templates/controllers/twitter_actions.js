@@ -1,7 +1,7 @@
-var TweetWin = nrequire('templates/windows/tweet'),
-    Twitter = nrequire('lib/twitter');
-
 module.exports = function(view, tweet) {
+  var TweetWin = nrequire('/templates/windows/tweet'),
+      Twitter = nrequire('/lib/twitter');
+  
   
   var retweet = function() {
     Twitter.retweet(tweet.id_str, function(e) {

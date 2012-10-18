@@ -1,7 +1,7 @@
-var topBanner = nrequire('templates/views/top_banner'),
-    BorderShadows = nrequire('/ui/border_shadows');
-
-module.exports.render = function(user, cb) {
+var render = function(user, cb) {
+  var topBanner = nrequire('/templates/views/top_banner'),
+      BorderShadows = nrequire('/ui/border_shadows');
+  
   var self = {
     win: UI.createWindow({
       title: "Tweet",
@@ -117,3 +117,4 @@ module.exports.render = function(user, cb) {
   return self;
 };
 
+module.exports = {render: render}

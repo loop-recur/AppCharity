@@ -1,9 +1,10 @@
-var topBanner = nrequire('templates/views/top_banner'),
-    Controller = nrequire('templates/controllers/events'),
-    iPadController = nrequire('templates/controllers/ipad/events'),
-    SplitView = nrequire('ui/split_view'),
-    BorderShadows = nrequire('/ui/border_shadows'),
-    iPadWin = function() {
+  var iPadWin = function() {
+      var topBanner = nrequire('/templates/views/top_banner'),
+          Controller = nrequire('/templates/controllers/events'),
+          iPadController = nrequire('/templates/controllers/ipad/events'),
+          SplitView = nrequire('/ui/split_view'),
+          BorderShadows = nrequire('/ui/border_shadows');
+      
                 var self = {
                   win: UI.createWindow({
                     navBarHidden: true,
@@ -38,9 +39,15 @@ var topBanner = nrequire('templates/views/top_banner'),
                 iPadController(self);
 
                 return self;
-              },
+              };
 
-    Win = function() {
+  var Win = function() {
+      var topBanner = nrequire('/templates/views/top_banner'),
+          Controller = nrequire('/templates/controllers/events'),
+          iPadController = nrequire('/templates/controllers/ipad/events'),
+          SplitView = nrequire('/ui/split_view'),
+          BorderShadows = nrequire('/ui/border_shadows');
+      
             var self = {
               win: UI.createWindow({
                 navBarHidden: true,
@@ -70,5 +77,5 @@ var topBanner = nrequire('templates/views/top_banner'),
             return self;
           };
 
-module.exports.render = (isIPad ? iPadWin : Win);
+module.exports = {render: (isIPad ? iPadWin : Win)};
 

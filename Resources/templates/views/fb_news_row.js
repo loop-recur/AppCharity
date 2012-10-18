@@ -1,6 +1,6 @@
-var DateFormatter = nrequire('/lib/date_formatter');
-
-module.exports.render = function(news) {
+var render = function(news) {
+  var DateFormatter = nrequire('/lib/date_formatter');
+  
   var self = {
     row: UI.createTableViewRow({
       created: DateFormatter.date(news.created_time, {parsed: true, fb: true}),
@@ -139,3 +139,4 @@ module.exports.render = function(news) {
   return self;
 };
 
+module.exports = {render: render}

@@ -1,5 +1,5 @@
-nrequire('/support/date');
 module.exports = function(beginLoading, tableView) {
+  nrequire('/support/date');
   
     var shouldRefresh = false;
     

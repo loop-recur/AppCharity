@@ -1,10 +1,10 @@
-var newsWin = nrequire('/windows/news'),
-    aboutWin = nrequire('/windows/about'),
-    eventsWin = nrequire('/windows/events'),
-    photoGalleryWin = nrequire('/windows/photo_gallery'),
-    Spinner = nrequire('/ui/spinner');
-
 module.exports = (function() {
+  var newsWin = nrequire('/windows/news'),
+      aboutWin = nrequire('/windows/about'),
+      eventsWin = nrequire('/windows/events'),
+      photoGalleryWin = nrequire('/windows/photo_gallery'),
+      Spinner = nrequire('/ui/spinner');
+  
 	var self = {
         tab_group: Ti.UI.createTabGroup({}),
       

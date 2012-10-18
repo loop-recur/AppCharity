@@ -1,7 +1,7 @@
-var Push = nrequire('/lib/push'),
-    PropertyCache = nrequire('/lib/property_cache');
-
 module.exports = function(view) {
+  var Push = nrequire('/lib/push'),
+      PropertyCache = nrequire('/lib/property_cache');
+  
   var subnav = [];
   var detail_view = view.detail_view;
   
