@@ -5,19 +5,7 @@ isIPad = Ti.Platform.osname == 'ipad';
 isIPhone = Ti.Platform.osname == 'iphone';
 isMobileweb = Ti.Platform.osname == 'mobileweb';
 
-exports = {}; // for underscore
-if(isAndroid) module = {};
-var names = {};
-nrequire = function(path){
-  if(isAndroid) {
-    if(names[path]) { return names[path]; }
-    Ti.include(path+'.js');
-    names[path] = module.exports;
-    return module.exports;
-  } else {
-    return require(path);
-  }
-}
+Ti.include('/lib/nrequire.js');
 
 var PropertyCache = nrequire('/lib/property_cache');
 var Twitter = nrequire('/lib/twitter');
