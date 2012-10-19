@@ -58,13 +58,14 @@ var render = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    title: UI.createLabel(_.extend(Style.h3, {
+    title: UI.createLabel({
       text: (news.name ? news.name : news.from.name),
       color: '#667dad',
       left: 0,
       height: Ti.UI.SIZE,
-      width: Ti.UI.SIZE
-    })),
+      width: Ti.UI.SIZE,
+      style_id: 'h3'
+    }),
 
     time_and_place: UI.createView({
       layout: 'horizontal',
@@ -73,13 +74,14 @@ var render = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    time: UI.createLabel(_.extend(Style.p3, {
+    time: UI.createLabel({
       text: DateFormatter.date(news.created_time, {formatted: true, fb: true}),
       color: '#505050',
       left: 0,
       width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
+      height: Ti.UI.SIZE,
+      style_id: 'p3'
+    }),
 
     world: UI.createImageView({
       image: '/images/icons/fb_public_icon.png',
@@ -89,13 +91,14 @@ var render = function(news) {
       square: true
     }),
 
-    via: UI.createLabel(_.extend(Style.p3, {
+    via: UI.createLabel({
       text: 'via',
       color: '#505050',
       left: 2,
       width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
+      height: Ti.UI.SIZE,
+      style_id: 'p3'
+    }),
 
     fb_icon: UI.createImageView({
       image: '/images/icons/fb_small_icon.png',
@@ -105,24 +108,26 @@ var render = function(news) {
       square: true
     }),
 
-    message: UI.createLabel(_.extend(Style.p3, {
+    message: UI.createLabel({
       text: news.message,
       left: 10,
       right: 10,
       color: 'black',
       top: 10,
       bottom: 10,
-      height: Ti.UI.SIZE
-    })),
+      height: Ti.UI.SIZE,
+      style_id: 'p3'
+    }),
 
-    description: UI.createLabel(_.extend(Style.p3, {
+    description: UI.createLabel({
       text: news.description,
       left: 10,
       right: 10,
       color: 'black',
       height: Ti.UI.SIZE,
-      width: Ti.UI.FILL
-    }))
+      width: Ti.UI.FILL,
+      style_id: 'p3'
+    })
   };
 
   self.title_view.add(self.title);
@@ -157,4 +162,5 @@ var render = function(news) {
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};
+

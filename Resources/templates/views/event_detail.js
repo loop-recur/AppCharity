@@ -55,21 +55,23 @@ var render = function(event) {
           }
         }),
 
-        title: UI.createLabel(_.extend(Style.h3, {
+        title: UI.createLabel({
           left: 0,
           color: '#667dad',
           text: event.name,
           height: Ti.UI.SIZE,
-          width: Ti.UI.SIZE
-        })),
+          width: Ti.UI.SIZE,
+          style_id: 'h3'
+        }),
 
-        time: UI.createLabel(_.extend(Style.p3, {
+        time: UI.createLabel({
           top: 5,
           left: 0,
           text: DateFormatter.date(event.start_time, {to_date: true, formatted: true}),
           width: Ti.UI.SIZE,
-          height: Ti.UI.SIZE
-        })),
+          height: Ti.UI.SIZE,
+          style_id: 'p3'
+        }),
 
         image: UI.createImageView({
           top: 10,
@@ -78,22 +80,24 @@ var render = function(event) {
           height: 120
         }),
 
-        location: UI.createLabel(_.extend(Style.p3, {
+        location: UI.createLabel({
           top: 5,
           left: 0,
           text: "@ "+event.location,
           width: Ti.UI.SIZE,
-          height: Ti.UI.SIZE
-        })),
+          height: Ti.UI.SIZE,
+          style_id: 'p3'
+        }),
         
-        description: UI.createLabel(_.extend(Style.p3, {
+        description: UI.createLabel({
           top: 5,
           text: event.description,
           color: "black",
           width: Ti.UI.SIZE,
           height: Ti.UI.SIZE,
-          bottom: 10
-        }))
+          bottom: 10,
+          style_id: 'p3'
+        })
       };
 
   self.cal_icon.add(self.month);

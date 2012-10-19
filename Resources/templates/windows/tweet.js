@@ -39,14 +39,15 @@ var render = function(user, cb) {
       bottom: 10
     }),
     
-    reply_text: UI.createLabel(_.extend(Style.p3,{
+    reply_text: UI.createLabel({
       text: "Reply to @"+user,
       color: "black",
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE,
       top: 25,
-      bottom: 10
-    })),
+      bottom: 10,
+      style_id: 'p3'
+    }),
    
     tweet_button: UI.createButton({
       backgroundImage: '/images/buttons/tweet_btn.png',

@@ -1,4 +1,5 @@
-var Scaler = nrequire('/lib/scaler');
+var Scaler = nrequire('/lib/scaler'),
+    merge = nrequire('/support/merge');
 
 UI.createActivityIndicator = function(props){
 	return Ti.UI.createActivityIndicator(Scaler(props));
@@ -57,7 +58,9 @@ UI.createWindow = function(props) {
 
 function extendStyle(props) {
   if(props.style_id && Style[Ti.Platform.osname] && Style[Ti.Platform.osname][props.style_id]) {
-    props = _.extend(props, Style[Ti.Platform.osname][props.style_id]);
+    props = merge(props, Style[Ti.Platform.osname][props.style_id]);
+  } else if(props.style_id && Style[props.style_id]) {
+    props = merge(props, Style[props.style_id]);
   }
   return props;
 }

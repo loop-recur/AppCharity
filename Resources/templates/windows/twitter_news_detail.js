@@ -56,34 +56,36 @@ var render = function(news) {
         height: Ti.UI.SIZE
       }),
 
-      title: UI.createLabel(_.extend(Style.h2, {
+      title: UI.createLabel({
         text: news.user.name,
-        left: 0
-      })),
+        left: 0,
+        style_id: 'h2'
+      }),
 
-      screen_name: UI.createLabel(_.extend(Style.p3, {
+      screen_name: UI.createLabel({
         text: "@"+news.user.screen_name,
         color: '#505050',
-        left: 0
-      })),
+        left: 0,
+        style_id: 'p3'
+      }),
 
-      date: UI.createLabel(_.extend(Style.p3, {
+      date: UI.createLabel({
         text: DateFormatter.date(news.created_at, {twitter: true}),
         color: '#505050',
-        right: 0
-      })),
+        right: 0,
+        style_id: 'p3'
+      }),
 
-      tweet: UI.createLabel(_.extend(Style.p3, {
+      tweet: UI.createLabel({
         text: news.text,
         top: 5,
-        width: Ti.UI.FILL
-      })),
+        width: Ti.UI.FILL,
+        style_id: 'p3'
+      }),
     
       twitter_actions: TwitterActions.render(news)
     };
 
-    log('=================logging tweet=============');
-    log(JSON.stringify(self.tweet));
     self.title_view.add(self.screen_name);
     self.title_view.add(self.date);
 
