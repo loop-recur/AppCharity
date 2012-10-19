@@ -1,7 +1,7 @@
 var render = function() {
-  var Controller = nrequire('/templates/controllers/about_detail'),
+  var Controller = nrequire('/templates/controllers/about_detail');
   
-      self = {
+  var self = {
         view: UI.createScrollView({
           height: Ti.UI.FILL,
           backgroundColor: 'transparent',

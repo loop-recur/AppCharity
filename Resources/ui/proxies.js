@@ -1,4 +1,6 @@
 var Scaler = nrequire('/lib/scaler'),
+    Push = nrequire('/lib/push'),
+    Style = nrequire('/ui/style'),
     merge = nrequire('/support/merge');
 
 UI.createActivityIndicator = function(props){
@@ -38,7 +40,7 @@ UI.createTableView = function(props) {
 
 UI.createTableViewRow = function(props) {
 	if(props['selectionStyle'] && props['selectsStyle'] == "NONE"){
-		if(isIPhone){ props['selectionStyle'] = Ti.UI.iPhone.TableViewCellSelectionStyle.NONE;} 
+		if(!isAndroid){ props['selectionStyle'] = Ti.UI.iPhone.TableViewCellSelectionStyle.NONE;} 
 	}
   return Ti.UI.createTableViewRow(Scaler(props));
 }
@@ -53,7 +55,9 @@ UI.createView = function(props) {
 }
 
 UI.createWindow = function(props) {
-	return Ti.UI.createWindow(Scaler(props));
+	var win = Ti.UI.createWindow(Scaler(props));
+	if(isAndroid) { Push.addAndroidSettingsEvent(win); }
+	return win;
 }
 
 function extendStyle(props) {

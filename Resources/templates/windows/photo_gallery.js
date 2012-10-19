@@ -3,10 +3,9 @@ var render = function() {
       Controller = nrequire('/templates/controllers/photo_gallery'),
       CroppedImage = nrequire('/ui/cropped_image'),
       BorderShadows = nrequire('/ui/border_shadows'),
-  
-      photo_size = isIPad ? 340 : (Ti.Platform.displayCaps.platformWidth / 3),
+      photo_size = isIPad ? 340 : (Ti.Platform.displayCaps.platformWidth / 3);
 
-      self = {
+  var self = {
         win: UI.createWindow({
           navBarHidden: true,
           backgroundImage: '/images/backgrounds/main_bg.png',

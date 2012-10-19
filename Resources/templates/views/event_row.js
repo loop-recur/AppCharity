@@ -2,76 +2,76 @@ var render = function(event) {
   var DateFormatter = nrequire('/lib/date_formatter');
   
   var self = {
-    row: UI.createTableViewRow({
-      start_time: event.start_time,
-      layout: 'horizontal',
-      event: event,
-      className: 'event'
-    }),
+        row: UI.createTableViewRow({
+          start_time: event.start_time,
+          layout: 'horizontal',
+          event: event,
+          className: 'event'
+        }),
 
-    cal_icon: UI.createView({
-      backgroundImage: '/images/icons/events_calendar.png',
-      height: 55,
-      width: 50,
-      left: 10,
-      top: 15,
-      square: true,
-      bottom: 15
-    }),
+        cal_icon: UI.createView({
+          backgroundImage: '/images/icons/events_calendar.png',
+          height: 55,
+          width: 50,
+          left: 10,
+          top: 15,
+          square: true,
+          bottom: 15
+        }),
 
-    month: UI.createLabel({
-      text: DateFormatter.date(event.start_time, {month: true}),
-      top: 2,
-      height: Ti.UI.SIZE,
-			color:"#515151",
-      font: {
-        fontFamily: 'Helvetica Neue',
-        fontSize: 10
-      }
-    }),
+        month: UI.createLabel({
+          text: DateFormatter.date(event.start_time, {month: true}),
+          top: 2,
+          height: Ti.UI.SIZE,
+    			color:"#515151",
+          font: {
+            fontFamily: 'Helvetica Neue',
+            fontSize: 10
+          }
+        }),
 
-    day: UI.createLabel({
-      text: DateFormatter.date(event.start_time, {day: true}),
-      top: 13,
-      color: "black",
-      height: Ti.UI.SIZE,
-			color:"#515151",
-      font: {
-        fontFamily: 'Helvetica Neue',
-        fontSize: 30,
-        fontWeight: 'bold'
-      }
-    }),
+        day: UI.createLabel({
+          text: DateFormatter.date(event.start_time, {day: true}),
+          top: 13,
+          color: "black",
+          height: Ti.UI.SIZE,
+    			color:"#515151",
+          font: {
+            fontFamily: 'Helvetica Neue',
+            fontSize: 30,
+            fontWeight: 'bold'
+          }
+        }),
 
-    content_view: UI.createView({
-      layout: 'vertical',
-      left: 10,
-      right: 10,
-      top: 15,
-      bottom: 10,
-      height: Ti.UI.SIZE,
-      width: 235
-    }),
+        content_view: UI.createView({
+          layout: 'vertical',
+          left: 10,
+          right: 10,
+          top: 15,
+          bottom: 10,
+          height: Ti.UI.SIZE,
+          width: 235
+        }),
 
-    title: UI.createLabel({
-      text: event.name,
-      color: '#667dad',
-      left: 0,
-      height: Ti.UI.SIZE,
-      width: Ti.UI.SIZE,
-      style_id: 'h3'
-    }),
+        title: UI.createLabel({
+          text: event.name,
+          color: '#667dad',
+          left: 0,
+          height: Ti.UI.SIZE,
+          width: Ti.UI.SIZE,
+          style_id: 'h3'
+        }),
     
-    time: UI.createLabel({
-      top: 5,
-      left: 0,
-      color: "#444444",
-      text: DateFormatter.date(event.start_time, {to_date: true, formatted: true}),
-      width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE,
-      style_id: 'p3'
-    })
-  };
+        time: UI.createLabel({
+          top: 5,
+          left: 0,
+          color: "#444444",
+          text: DateFormatter.date(event.start_time, {to_date: true, formatted: true}),
+          width: Ti.UI.SIZE,
+          height: Ti.UI.SIZE,
+          style_id: 'p3'
+        })
+      };
 
   self.content_view.add(self.title);
   self.content_view.add(self.time);

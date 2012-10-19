@@ -37,7 +37,4 @@ describe("Views/TwitterActions", () ->
     expect(Twitter.reply).toHaveBeenCalledWith(tweet.id_str, "yo yo", jasmine.any(Function))
     expect(UI.createAlertMessage).toHaveBeenCalledWith("You've successfully replied!")
   )
-  
-  xit('opens the twitter page', ()->
-  )
 )

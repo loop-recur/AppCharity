@@ -1,6 +1,5 @@
 module.exports = function(view) {
-  var Push = nrequire('/lib/push'),
-      Repo = nrequire('/lib/repo'),
+  var Repo = nrequire('/lib/repo'),
       NavItem = nrequire('/templates/views/nav_item');
   
   var nav_items = [],
@@ -76,8 +75,6 @@ module.exports = function(view) {
       };
   
   view.win.addEventListener('focus', populatePage);
-
-  Push.addAndroidSettingsEvent(view.win);
   
   view.subnav.addEventListener('click', function(e){
     if(e.source && e.source.page) { updatePageDetails(e.source.page, e.source.idx); }

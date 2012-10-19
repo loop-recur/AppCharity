@@ -4,9 +4,6 @@ module.exports = (function() {
       FbGraph = nrequire('/lib/fb_graph');
       
   var Cache = {},
-      FB_PAGE = 'msf.english',
-      FB_ID = '33110852384',      
-      TWITTER_SCREENNAME = 'MSF_USA',
   
       _logInAsGenercUserToAvoidErrorHack = function(cb) {
         Cloud.Users.login(ACS_ADMIN_CREDENTIALS, function(e) {
@@ -26,14 +23,17 @@ module.exports = (function() {
       },
       
       getTwitterTimeline = function(callback){
-        Twitter.timeline({screen_name: TWITTER_SCREENNAME}, function(news){
+        Twitter.timeline({screen_name: TWITTER_SCREEN_NAME}, function(news){
           news.map(function(n){ n.kind = 'twitter'; })
           callback(news);
         });
       },
       
-      getNews = function(callback) {
-        if(!cacheHasExpired('news')) { return PropertyCache.get('news', callback); }
+      getNews = function(callback, opts) {
+        opts = (opts || {force_refresh: false});
+        if(!opts.force_refresh && !cacheHasExpired('news')) {
+          return PropertyCache.get('news', callback);
+        }
         
         var _tryToFinish = function(name, val) {
               Cache[name] = val;
@@ -50,8 +50,12 @@ module.exports = (function() {
         getTwitterTimeline(function(news){ _tryToFinish('twitter', news); })
       },
       
-      getEvents = function(callback) {
-        if(!cacheHasExpired('events')) {  return PropertyCache.get('events', callback); }
+      getEvents = function(callback, opts) {
+        opts = (opts || {force_refresh: false});
+        if(!opts.force_refresh && !cacheHasExpired('events')) {
+          return PropertyCache.get('events', callback);
+        }
+        
         Ti.App.fireEvent('show_activity');
         
         FbGraph.getEventsOlderThan2Weeks(FB_PAGE, FB_ID, function(events){

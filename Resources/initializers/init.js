@@ -8,11 +8,12 @@ var subscribePushNotifications = function() {
   Push.subscribe(channel);
 };
 
-module.exports = function(testing) {
+var init = function(testing) {
   _ = nrequire('/support/underscore');
   nrequire('/ui/proxies');
-  nrequire('/ui/style');
   Application = nrequire('/windows/application');
   Application.open();
   subscribePushNotifications();
 };
+
+module.exports = {init: init}
