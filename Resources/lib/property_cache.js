@@ -19,7 +19,7 @@ module.exports = (function() {
     if(a) {
       var json = JSON.parse(a);
       if(opts.force || _withinCacheTime(json.cached_at)) {
-        cb(json.data);
+        if(cb) { cb(json.data); }
         return true;
       }
     }

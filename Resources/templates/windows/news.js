@@ -1,7 +1,7 @@
 var render = function() {
-  var topBanner = nrequire('/templates/views/top_banner')
-    , Controller = nrequire('/templates/controllers/news')
-    , BorderShadows = nrequire('/ui/border_shadows');
+  var topBanner = nrequire('/templates/views/top_banner'), 
+      Controller = nrequire('/templates/controllers/news'), 
+      BorderShadows = nrequire('/ui/border_shadows');
   
   var self = {
     win: UI.createWindow({
@@ -28,8 +28,8 @@ var render = function() {
   self.win.add(self.table);
 
   Controller(self);
-
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};
+

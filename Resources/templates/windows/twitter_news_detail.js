@@ -82,6 +82,8 @@ var render = function(news) {
       twitter_actions: TwitterActions.render(news)
     };
 
+    log('=================logging tweet=============');
+    log(JSON.stringify(self.tweet));
     self.title_view.add(self.screen_name);
     self.title_view.add(self.date);
 
