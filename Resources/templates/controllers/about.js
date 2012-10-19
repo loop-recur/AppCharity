@@ -1,25 +1,21 @@
 module.exports = function(view) {
   var Push = nrequire('/lib/push'),
+      Repo = nrequire('/lib/repo'),
       NavItem = nrequire('/templates/views/nav_item'),
       PropertyCache = nrequire('/lib/property_cache'),
   
       nav_items = [],
+      
       detail_view = view.detail_view,
   
-      apiCall = function(cb){
-        Ti.App.fireEvent('show_activity');
-        Cloud.Objects.query({
-            classname: 'AboutUsPage',
-            page: 1,
-            per_page: 10
-        }, function (e) {
-            if (e.success) {
-              PropertyCache.set('pages', e.AboutUsPage);
-              cb(e.AboutUsPage);
-            } else {
-              alert(JSON.stringify(e));
-              Ti.App.fireEvent('hide_activity');
-            }
+      getPages = function(cb){
+        Repo.getPages(function(e){
+          if (e.success) {
+            PropertyCache.set('pages', e.AboutUsPage);
+            cb(e.AboutUsPage);
+          } else {
+            alert("Error getting the pages. Please try again.");
+          }
         });
       },
   
@@ -84,7 +80,7 @@ module.exports = function(view) {
   
       populatePage = function() {
         if(PropertyCache.get('pages', function(){}) && nav_items.length) return;
-        PropertyCache.get('pages', updateMenuAndContent) || apiCall(updateMenuAndContent);
+        PropertyCache.get('pages', updateMenuAndContent) || getPages(updateMenuAndContent);
       };
   
   view.win.addEventListener('focus', populatePage);

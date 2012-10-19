@@ -10,7 +10,7 @@ var render = function() {
       backgroundImage: '/images/backgrounds/logo_donate_bar_mobile_bg.png'
     }),
     
-    blurb: UI.createLabel({
+    title_message: UI.createLabel({
       text: '"Doctors Without Borders/Médecins Sans Frontières (MSF) is a medical humanitarian organization assisting people in nearly 70 countries."',
       top: 25,
       font: {fontWeight: 'normal', fontFamily: 'Georgia', fontSize: 15, fontStyle: 'italic'},
@@ -38,7 +38,7 @@ var render = function() {
  
   self.view.add(self.logo);
   self.view.add(self.donate_button);
-  if(isIPad) self.view.add(self.blurb);
+  if(isIPad) self.view.add(self.title_message);
   
   Controller(self);
 

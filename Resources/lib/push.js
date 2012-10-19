@@ -11,7 +11,7 @@ module.exports = (function(debug){
   
   var logInAsGenericUserToAvoidErrorHack = function(cb) {
         Cloud.Users.login({login: 'appcharity', password: '123456'}, function (e) {
-          e.success ? cb() : log('Error:\\n' + ((e.error && e.message) || JSON.stringify(e)));
+          e.success ? cb() : alert('error accessing cloud services');
         });
       },
       
@@ -23,7 +23,7 @@ module.exports = (function(debug){
                 Ti.Network.NOTIFICATION_TYPE_ALERT,
                 Ti.Network.NOTIFICATION_TYPE_SOUND
             ], success:registeredCallback,
-            error: function(e){ Ti.API.info("=========PUSH ERROR\n\n\n"); Ti.API.info(e); },
+            error: function(e){ Ti.API.info(e); },
             callback: function(){
               Ti.UI.iPhone.appBadge = null;
               pushCallback ? pushCallback() : id();
