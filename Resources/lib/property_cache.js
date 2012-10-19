@@ -13,13 +13,13 @@ module.exports = (function() {
   }
   
   var get = function(x, cb, opts) {
-    opts = (opts || {force: false});
+    var opts = (opts || {force: false});
     var a = Ti.App.Properties.getString(x);
     
     if(a) {
       var json = JSON.parse(a);
       if(opts.force || _withinCacheTime(json.cached_at)) {
-        cb(json.data);
+        if(cb) { cb(json.data) };
         return true;
       }
     }
