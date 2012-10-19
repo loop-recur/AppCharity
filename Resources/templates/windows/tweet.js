@@ -73,7 +73,6 @@ var render = function(user, cb) {
 			borderWidth: 1,
     	borderColor: '#ccc',
       returnKeyType: Ti.UI.RETURNKEY_GO,
-      softKeyboardOnFocus: "SOFT_KEYBOARD_SHOW_ON_FOCUS",
 			paddingLeft:10,
 			paddingRight:10,
 			paddingTop:2
