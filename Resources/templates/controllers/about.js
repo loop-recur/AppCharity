@@ -2,30 +2,17 @@ module.exports = function(view) {
   var Push = nrequire('/lib/push'),
       Repo = nrequire('/lib/repo'),
       NavItem = nrequire('/templates/views/nav_item'),
-      PropertyCache = nrequire('/lib/property_cache'),
   
       nav_items = [],
       
       detail_view = view.detail_view,
-  
-      getPages = function(cb){
-        Repo.getPages(function(e){
-          if (e.success) {
-            PropertyCache.set('pages', e.AboutUsPage);
-            cb(e.AboutUsPage);
-          } else {
-            alert("Error getting the pages. Please try again.");
-          }
-        });
-      },
-  
+    
       setTitle = function(value){
         detail_view.title.text = value;
       },
 
       setContent = function(value){
-        value = value.replace(/\\n?/g, '');
-        detail_view.content.text = value;
+        detail_view.content.text = value.replace(/\\n?/g, '');
       },
 
       setImage = function(value){
@@ -77,10 +64,15 @@ module.exports = function(view) {
         updatePageDetails(pages[0], 0);
         Ti.App.fireEvent('hide_activity');
       },
-  
+      
+      hasntRenderedPage = function() {
+        return nav_items.length === 0;
+      },
+
       populatePage = function() {
-        if(PropertyCache.get('pages', function(){}) && nav_items.length) return;
-        PropertyCache.get('pages', updateMenuAndContent) || getPages(updateMenuAndContent);
+        if(Repo.cacheHasExpired('pages') || hasntRenderedPage()) {
+          Repo.getPages(updateMenuAndContent);
+        }
       };
   
   view.win.addEventListener('focus', populatePage);

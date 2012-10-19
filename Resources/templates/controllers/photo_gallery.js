@@ -22,7 +22,7 @@ module.exports = function(view) {
         squares.map(function(s){
           if(s.view) { s.view.image = null; }
         });
-      }
+      },
       
       resetGrid = function() {
         if(!view.photo_grid) { return; }
@@ -55,17 +55,6 @@ module.exports = function(view) {
         makeGrid(cloud_photos);
         Ti.App.fireEvent('hide_activity');
       },
-
-      getCloudPhotos = function() {
-        Repo.getPhotos(function(e){
-          if(e.success) {
-            PropertyCache.set('cloud_photos', e.photos);
-            populateView(e.photos);
-          } else {
-            alert('Error Getting photos!');
-          }
-        });
-      },
       
       makeLocalPhotoLookLikeCloudPhotoBecauseItIsntProcessedYet = function(photo) {
         return {urls: {small_240: photo, medium_640: photo, large_1024: photo }};
@@ -79,14 +68,19 @@ module.exports = function(view) {
 
       uploadPhotoToACS = function(camera_event) {
         Repo.uploadPhoto(camera_event.media, function(e){
-          e.success ? addPhotoAndRefresh(camera_event.media) : alert('there was a problem uploading your photo');
+          addPhotoAndRefresh(camera_event.media);
         });
       },
-
-      getCacheOrMakeGrid = function() {
-        if(PropertyCache.get('cloud_photos', function(){}) && slideshow_urls.length >= 1) return;
-        PropertyCache.get('cloud_photos', populateView) || getCloudPhotos();
+      
+      hasntRenderedPage = function() {
+        return slideshow_urls.length === 0;
       },
+
+      populatePage = function() {
+        if(Repo.cacheHasExpired('cloud_photos') || hasntRenderedPage()) {
+          Repo.getPhotos(populateView);
+        }
+      };
 
       showCamera = function(e) {
         Ti.Media.showCamera({
@@ -110,6 +104,6 @@ module.exports = function(view) {
     view.confirmation = Confirm('Add a photo', [{name: 'Take a photo', callback: showCamera }, {name: 'Choose a photo', callback: showGallery}]);
   });
 
-  view.win.addEventListener('focus', getCacheOrMakeGrid);
+  view.win.addEventListener('focus', populatePage);
   Push.addAndroidSettingsEvent(view.win);
 };

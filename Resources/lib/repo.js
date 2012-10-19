@@ -1,5 +1,7 @@
 module.exports = (function() {  
-  var Cache = {},
+  var PropertyCache = nrequire('/lib/property_cache'),
+      
+      Cache = {},
   
       ADMIN_CREDENTIALS = {login: 'appcharity', password: '123456'},
   
@@ -9,22 +11,40 @@ module.exports = (function() {
         });
       },
       
+      cacheHasExpired = function(name) {
+        return !PropertyCache.get(name);
+      },
+      
       getPages = function(callback) {
+        if(!cacheHasExpired('pages')) { return PropertyCache.get('pages', callback); }
         Ti.App.fireEvent('show_activity');
         Cloud.Objects.query({
             classname: 'AboutUsPage',
             page: 1,
             per_page: 10
         }, function (e) {
-          callback(e);
+          if(e.success) {
+            var result = e.AboutUsPage;
+            PropertyCache.set('pages', result);
+            callback(result);
+          } else {
+            alert("Error getting the pages. Please try again.");
+          }
           Ti.App.fireEvent('hide_activity');
         });
       },
       
       getPhotos = function(callback) {
+        if(!cacheHasExpired('cloud_photos')) { return PropertyCache.get('cloud_photos', callback); }
         Ti.App.fireEvent('show_activity');
         Cloud.Photos.query({page: 1, per_page: 20}, function(e) {
-          callback(e);
+          if(e.success) {
+            var result = e.photos;
+            PropertyCache.set('cloud_photos', result);
+            callback(result);
+          } else {
+            alert('Error Getting photos!');
+          }
           Ti.App.fireEvent('hide_activity');
         });
       },
@@ -33,7 +53,7 @@ module.exports = (function() {
         Ti.App.fireEvent('show_activity');
         _logInAsGenercUserToAvoidErrorHack(function() {
           Cloud.Photos.create({ photo: media }, function(e) {
-            callback(e);
+            e.success ? callback(e) : alert('there was a problem uploading your photo');
             Ti.App.fireEvent('hide_activity');
           });
         });
@@ -67,7 +87,8 @@ module.exports = (function() {
         });
       };
   
-  return {getPages: getPages,
+  return {cacheHasExpired: cacheHasExpired,
+          getPages: getPages,
           getPhotos: getPhotos,
           uploadPhoto: uploadPhoto,
           getTopBarMessageAndLogoAndDonateUrl: getTopBarMessageAndLogoAndDonateUrl}
