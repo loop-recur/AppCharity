@@ -53,22 +53,24 @@ var render = function(event) {
       width: 235
     }),
 
-    title: UI.createLabel(_.extend(Style.h3, {
+    title: UI.createLabel({
       text: event.name,
       color: '#667dad',
       left: 0,
       height: Ti.UI.SIZE,
-      width: Ti.UI.SIZE
-    })),
+      width: Ti.UI.SIZE,
+      style_id: 'h3'
+    }),
     
-    time: UI.createLabel(_.extend(Style.p3, {
+    time: UI.createLabel({
       top: 5,
       left: 0,
       color: "#444444",
       text: DateFormatter.date(event.start_time, {to_date: true, formatted: true}),
       width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
+      height: Ti.UI.SIZE,
+      style_id: 'p3'
+    })
   };
 
   self.content_view.add(self.title);
@@ -83,4 +85,5 @@ var render = function(event) {
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};
+

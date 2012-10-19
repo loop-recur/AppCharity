@@ -7,9 +7,9 @@ module.exports = function(view) {
       TwitterNewsDetail = nrequire('/templates/windows/twitter_news_detail'),
       PullToRefresh = nrequire('/ui/pull_to_refresh'),
       PropertyCache = nrequire('/lib/property_cache'),
-      Push = nrequire('/lib/push'),
+      Push = nrequire('/lib/push');
   
-      state = {fb_rows: [], tweet_rows: []},
+  var state = {fb_rows: [], tweet_rows: []},
   
       tryTofinish = function() {
         var all_rows = _.sortBy(state.fb_rows.concat(state.tweet_rows), function(x) {
@@ -67,8 +67,6 @@ module.exports = function(view) {
   Push.addAndroidSettingsEvent(view.win);
   
   if(!isAndroid) {
-    PullToRefresh(view.table, function(end){
-      getNews(end);
-    });
+    PullToRefresh(view.table, function(end){ getNews(end); });
   }
 };

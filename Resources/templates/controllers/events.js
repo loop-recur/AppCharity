@@ -8,27 +8,27 @@ module.exports = function(view) {
   
   
   var populateTable = function(events) {
-    PropertyCache.set('fb_events', events);
-    var rows = events.map(function(e){ return EventRow.render(e).row; });
-    view.table.setData(_.sortBy(rows, function(x){ return x.start_time }));
-  }
+        PropertyCache.set('fb_events', events);
+        var rows = events.map(function(e){ return EventRow.render(e).row; });
+        view.table.setData(_.sortBy(rows, function(x){ return x.start_time; }));
+      },
   
-  var getEvents = function(cb) {
-    FbGraph.getEventsOlderThan2Weeks('msf.english', '33110852384', function(events){
-      populateTable(events);
-      if(cb) cb();
-    });
-  }
-  
-  var getEventsIfItsBeenLongEnough = function() {
-    if(PropertyCache.get('fb_events', function(){}) && view.table.data && view.table.data[0]) return;
-    PropertyCache.get('fb_events', populateTable) || getEvents();
-  }
-  
-  var openDetail = function(e) {
-    var detail = Detail.render(e.row.event);
-    Application.events.open(detail.win);
-  }
+      getEvents = function(cb) {
+        FbGraph.getEventsOlderThan2Weeks('msf.english', '33110852384', function(events){
+          populateTable(events);
+          if(cb) cb();
+        });
+      },
+      
+      getEventsIfItsBeenLongEnough = function() {
+        if(PropertyCache.get('fb_events') && view.table.data && view.table.data[0]) return;
+        PropertyCache.get('fb_events', populateTable) || getEvents();
+      },
+      
+      openDetail = function(e) {
+        var detail = Detail.render(e.row.event);
+        Application.events.open(detail.win);
+      };
   
   view.win.addEventListener('focus', getEventsIfItsBeenLongEnough);
   view.table.addEventListener('click', openDetail);
@@ -36,9 +36,7 @@ module.exports = function(view) {
   Push.addAndroidSettingsEvent(view.win);
 
   if(!isAndroid) {
-    PullToRefresh(view.table, function(end){
-      getEvents(end);
-    });
+    PullToRefresh(view.table, function(end){ getEvents(end); });
   }
 };
 

@@ -8,12 +8,13 @@ var render = function() {
           layout: 'vertical'
         }),
 
-        title: UI.createLabel(_.extend(Style.h1, {
+        title: UI.createLabel({
           text: 'About Us',
           top: 20,
           left: 20,
-          height: Ti.UI.SIZE
-        })),
+          height: Ti.UI.SIZE,
+          style_id: 'h1'
+        }),
 
         profile_view: UI.createView({
           layout: 'horizontal',
@@ -64,11 +65,12 @@ var render = function() {
           style_id: 'fb_share_button'
         }),
 
-        content: UI.createLabel(_.extend(Style.p4, {
+        content: UI.createLabel({
           top: 10,
           left: 20,
-          right: 20
-        }))
+          right: 20,
+          style_id: 'p4'
+        })
       };
   
   if(isAndroid) self.photo.width = Scaler({width: 280});
