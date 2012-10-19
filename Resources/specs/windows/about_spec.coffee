@@ -78,8 +78,6 @@ describe("Windows/About", () ->
   xit('still only shows the original 2 subnav items on window focus and does not duplicate them each time the window is focused on', ()->
     view_proxy.win.fireEvent('focus')
     view_proxy.subnav.children.map((c)->
-      log("childe\n")
-      log(c)
     )
     expect(view_proxy.subnav.children.length).toEqual(2)
   )

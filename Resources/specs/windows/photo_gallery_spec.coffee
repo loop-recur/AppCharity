@@ -24,7 +24,6 @@ describe("Photo Gallery", () ->
     )
 
     it('should pull open the camera to take a new photo when clicked', () ->
-      log(view_proxy)
       expect(Ti.Media.showCamera).toHaveBeenCalled()
     )
     

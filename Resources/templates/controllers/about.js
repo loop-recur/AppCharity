@@ -1,35 +1,18 @@
 module.exports = function(view) {
   var Push = nrequire('/lib/push'),
-      NavItem = nrequire('/templates/views/nav_item'),
-      PropertyCache = nrequire('/lib/property_cache'),
+      Repo = nrequire('/lib/repo'),
+      NavItem = nrequire('/templates/views/nav_item');
   
-      nav_items = [],
+  var nav_items = [],
+      
       detail_view = view.detail_view,
-  
-      apiCall = function(cb){
-        Ti.App.fireEvent('show_activity');
-        Cloud.Objects.query({
-            classname: 'AboutUsPage',
-            page: 1,
-            per_page: 10
-        }, function (e) {
-            if (e.success) {
-              PropertyCache.set('pages', e.AboutUsPage);
-              cb(e.AboutUsPage);
-            } else {
-              alert(JSON.stringify(e));
-              Ti.App.fireEvent('hide_activity');
-            }
-        });
-      },
-  
+    
       setTitle = function(value){
         detail_view.title.text = value;
       },
 
       setContent = function(value){
-        value = value.replace(/\\n?/g, '');
-        detail_view.content.text = value;
+        detail_view.content.text = value.replace(/\\n?/g, '');
       },
 
       setImage = function(value){
@@ -64,8 +47,8 @@ module.exports = function(view) {
         
         pages.reduce(function(last_left, page, idx) {
           var nav_item = NavItem.render(page, last_left, idx, width);
-          view.subnav.add(nav_item.view);
           nav_items.push(nav_item);
+          view.subnav.add(nav_item.view);
           return last_left + nav_item.view.width;
         }, 0);
       },
@@ -81,10 +64,15 @@ module.exports = function(view) {
         updatePageDetails(pages[0], 0);
         Ti.App.fireEvent('hide_activity');
       },
-  
+      
+      hasntRenderedPage = function() {
+        return nav_items.length === 0;
+      },
+
       populatePage = function() {
-        if(PropertyCache.get('pages', function(){}) && nav_items.length) return;
-        PropertyCache.get('pages', updateMenuAndContent) || apiCall(updateMenuAndContent);
+        if(Repo.cacheHasExpired('pages') || hasntRenderedPage()) {
+          Repo.getPages(updateMenuAndContent);
+        }
       };
   
   view.win.addEventListener('focus', populatePage);

@@ -6,7 +6,7 @@ var render = function(news) {
       created: DateFormatter.date(news.created_time, {parsed: true, fb: true}),
       news: news,
       backgroundColor: 'transparent',
-      kind: 'fb',
+      kind: news.kind,
       className: (news.picture ? 'facebook-pic' : 'facebook-nopic')
     }),
     
@@ -36,12 +36,13 @@ var render = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    title: UI.createLabel(_.extend(Style.h4, {
+    title: UI.createLabel({
       text: (news.name ? news.name : news.from.name),
       top: 0,
       left: 0,
-      height: Ti.UI.SIZE
-    })),
+      height: Ti.UI.SIZE,
+      style_id: 'h4'
+    }),
 
     time_and_place: UI.createView({
       layout: 'horizontal',
@@ -51,12 +52,13 @@ var render = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    time: UI.createLabel(_.extend(Style.p3, {
+    time: UI.createLabel({
       text: DateFormatter.date(news.created_time, {formatted: true, fb: true}),
       left: 0,
       width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
+      height: Ti.UI.SIZE,
+      style_id: 'p3'
+    }),
 
     world: UI.createImageView({
       image: '/images/icons/fb_public_icon.png',
@@ -66,12 +68,13 @@ var render = function(news) {
       square: true
     }),
 
-    via: UI.createLabel(_.extend(Style.p3, {
+    via: UI.createLabel({
       text: 'via',
       left: 2,
       width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
+      height: Ti.UI.SIZE,
+      style_id: 'p3'
+    }),
 
     fb_icon: UI.createImageView({
       image: '/images/icons/fb_small_icon.png',
@@ -81,15 +84,16 @@ var render = function(news) {
       square: true
     }),
 
-    description: UI.createLabel(_.extend(Style.p5, {
+    description: UI.createLabel({
       text: news.description,
       top: 5,
       left: 0,
       right: 10,
       bottom: 10,
       height: Ti.UI.SIZE,
-      width: Ti.UI.FILL
-    }))
+      width: Ti.UI.FILL,
+      style_id: 'p5'
+    })
   };
   
   if(isIPad) {

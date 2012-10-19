@@ -33,15 +33,6 @@ var render = function(news) {
         backgroundColor: 'transparent',
         layout: 'horizontal'
       }),
-
-      photo: UI.createImageView({
-        image: news.user.profile_image_url,
-        top: 10,
-        left: 10,
-        width: 60,
-        height: 60,
-        square: true
-      }),
     
       content_view: UI.createView({
         layout: 'vertical',
@@ -56,28 +47,32 @@ var render = function(news) {
         height: Ti.UI.SIZE
       }),
 
-      title: UI.createLabel(_.extend(Style.h2, {
+      title: UI.createLabel({
         text: news.user.name,
-        left: 0
-      })),
+        left: 0,
+        style_id: 'h2'
+      }),
 
-      screen_name: UI.createLabel(_.extend(Style.p3, {
+      screen_name: UI.createLabel({
         text: "@"+news.user.screen_name,
         color: '#505050',
-        left: 0
-      })),
+        left: 0,
+        style_id: 'p3'
+      }),
 
-      date: UI.createLabel(_.extend(Style.p3, {
+      date: UI.createLabel({
         text: DateFormatter.date(news.created_at, {twitter: true}),
         color: '#505050',
-        right: 0
-      })),
+        right: 0,
+        style_id: 'p3'
+      }),
 
-      tweet: UI.createLabel(_.extend(Style.p3, {
+      tweet: UI.createLabel({
         text: news.text,
         top: 5,
-        width: Ti.UI.FILL
-      })),
+        width: Ti.UI.FILL,
+        style_id: 'p3'
+      }),
     
       twitter_actions: TwitterActions.render(news)
     };
@@ -92,19 +87,13 @@ var render = function(news) {
     self.twitter_actions.view.top = 15;
     self.content_view.add(self.twitter_actions.view);
 
-    // self.view.add(self.photo);
     self.view.add(self.content_view);
   
     self.win.add(self.donate_banner);
     self.win.add(self.shadow);
   
-    if(isIPad){
-      self.back_btn.top = 20;
-      self.back_btn.left = "5%";
-      self.view.add(self.back_btn);
-    } else if(isIPhone) {
-      self.win.add(self.back_btn);
-    }
+    if(isIPhone) { self.win.add(self.back_btn); }
+    
     self.win.add(self.view);
 
     Controller(self);

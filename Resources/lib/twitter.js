@@ -109,7 +109,6 @@ module.exports = (function(global) {
     });
     
     webView.addEventListener('beforeload', function(e) {
-      log("BEFORE LOAD!")
       if (!isAndroid) {
         webViewWindow.add(loadingOverlay);
         actInd.show();
@@ -117,7 +116,6 @@ module.exports = (function(global) {
     });
   
     webView.addEventListener('load', function(event) {
-      log("LOADED!")
       if(isAndroid) {
         actInd.hide();
         webViewWindow.remove(loadingOverlay);
@@ -125,7 +123,6 @@ module.exports = (function(global) {
       
       // If we're not on the Twitter authorize page
       if (event.url.indexOf(self.authorizeUrl) === -1) {
-        log("REMOVE")
         webViewWindow.remove(loadingOverlay);
         actInd.hide(); // Required for Android
         
@@ -134,7 +131,6 @@ module.exports = (function(global) {
           webViewWindow.leftNavButton = backButton;
         }
       } else {
-        log("ELSE :(")
         // Switch out back button for close button
         if (webViewWindow.leftNavButton !== closeButton) {
           webViewWindow.leftNavButton = closeButton;

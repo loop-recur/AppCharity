@@ -1,44 +1,39 @@
 module.exports = function(view) {
-  var FbGraph = nrequire('/lib/fb_graph'),
-      EventRow = nrequire('/templates/views/event_row'),
+  var EventRow = nrequire('/templates/views/event_row'),
       Detail = nrequire('/templates/windows/event_detail'),
       PullToRefresh = nrequire('/ui/pull_to_refresh'),
-      PropertyCache = nrequire('/lib/property_cache'),
+      Repo = nrequire('/lib/repo'),
       Push = nrequire('/lib/push');
   
   
-  var populateTable = function(events) {
-    PropertyCache.set('fb_events', events);
-    var rows = events.map(function(e){ return EventRow.render(e).row; });
-    view.table.setData(_.sortBy(rows, function(x){ return x.start_time }));
-  }
+  var fillTable = function(events) {
+        var rows = events.map(function(e){ return EventRow.render(e).row; });
+        view.table.setData(_.sortBy(rows, function(x){ return x.start_time; }));
+      },
+      
+      refreshEvents = function(endPullToRefresh) {
+        Repo.getEvents(fillTable, {force_refresh: true});
+        endPullToRefresh();
+      },
+      
+      hasntRenderedPage = function() {
+        return !(view.table.data && view.table.data[0]);
+      },
+
+      populatePage = function() {
+        if(Repo.cacheHasExpired('events') || hasntRenderedPage()) { Repo.getEvents(fillTable); }
+      },
+      
+      openDetail = function(e) {
+        var detail = Detail.render(e.row.event);
+        Application.events.open(detail.win);
+      };
   
-  var getEvents = function(cb) {
-    FbGraph.getEventsOlderThan2Weeks('msf.english', '33110852384', function(events){
-      populateTable(events);
-      if(cb) cb();
-    });
-  }
-  
-  var getEventsIfItsBeenLongEnough = function() {
-    if(PropertyCache.get('fb_events', function(){}) && view.table.data && view.table.data[0]) return;
-    PropertyCache.get('fb_events', populateTable) || getEvents();
-  }
-  
-  var openDetail = function(e) {
-    var detail = Detail.render(e.row.event);
-    Application.events.open(detail.win);
-  }
-  
-  view.win.addEventListener('focus', getEventsIfItsBeenLongEnough);
+  view.win.addEventListener('focus', populatePage);
   view.table.addEventListener('click', openDetail);
   
   Push.addAndroidSettingsEvent(view.win);
 
-  if(!isAndroid) {
-    PullToRefresh(view.table, function(end){
-      getEvents(end);
-    });
-  }
+  if(!isAndroid) { PullToRefresh(view.table, refreshEvents); }
 };
 

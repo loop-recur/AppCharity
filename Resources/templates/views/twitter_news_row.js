@@ -7,6 +7,7 @@ var render = function(news) {
       created: DateFormatter.date(news.created_at, {parsed: true}),
       backgroundColor: 'transparent',
       news: news,
+      kind: news.kind,
       className: 'twitter'
     }),
 
@@ -33,31 +34,35 @@ var render = function(news) {
       layout: 'horizontal'
     }),
 
-    title: UI.createLabel(_.extend(Style.h2, {
+    title: UI.createLabel({
       text: news.user.name,
-      left: 0
-    })),
+      left: 0,
+      style_id: 'h4' 
+    }),
 
-    screen_name: UI.createLabel(_.extend(Style.p3, {
+    screen_name: UI.createLabel({
       text: "@"+news.user.screen_name,
       left: 5,
       width: 55,
       height: 15,
-      ellipsize: true
-    })),
+      ellipsize: true,
+      style_id: 'p3'
+    }),
 
-    date: UI.createLabel(_.extend(Style.p3, {
+    date: UI.createLabel({
       text: DateFormatter.date(news.created_at, {twitter_row: true}),
       left: 10,
-      right: 0
-    })),
+      right: 0,
+      style_id: 'p3'
+    }),
 
-    tweet: UI.createLabel(_.extend(Style.p3, {
+    tweet: UI.createLabel({
       text: news.text,
       top: 5,
       left: 0,
-      width: Ti.UI.FILL
-    })),
+      width: Ti.UI.FILL,
+      style_id: 'p3'
+    }),
     
     twitter_actions: TwitterActions.render(news)
   };

@@ -2,7 +2,8 @@ isIPad = false;
 isIPhone = true;
 isAndroid = false;
 isMobileweb = true;
-Hack = {};
+
+ACS_ADMIN_CREDENTIALS = {login: 'appcharity', password: '123456'};
 
 SpecHelper = {
   switchPlatform: function(platform, bool){

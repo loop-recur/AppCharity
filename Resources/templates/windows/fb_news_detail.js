@@ -40,15 +40,6 @@ var render = function(news) {
       width: Ti.UI.FILL
     }),
 
-    photo: UI.createImageView({
-      image: news.picture,
-      top: 0,
-      left: 10,
-      width: 60,
-      height: 60,
-      square: true
-    }),
-
     title_view: UI.createView({
       layout: 'vertical',
       top: 10,
@@ -58,13 +49,14 @@ var render = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    title: UI.createLabel(_.extend(Style.h3, {
+    title: UI.createLabel({
       text: (news.name ? news.name : news.from.name),
       color: '#667dad',
       left: 0,
       height: Ti.UI.SIZE,
-      width: Ti.UI.SIZE
-    })),
+      width: Ti.UI.SIZE,
+      style_id: 'h3'
+    }),
 
     time_and_place: UI.createView({
       layout: 'horizontal',
@@ -73,13 +65,14 @@ var render = function(news) {
       height: Ti.UI.SIZE
     }),
 
-    time: UI.createLabel(_.extend(Style.p3, {
+    time: UI.createLabel({
       text: DateFormatter.date(news.created_time, {formatted: true, fb: true}),
       color: '#505050',
       left: 0,
       width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
+      height: Ti.UI.SIZE,
+      style_id: 'p3'
+    }),
 
     world: UI.createImageView({
       image: '/images/icons/fb_public_icon.png',
@@ -89,13 +82,14 @@ var render = function(news) {
       square: true
     }),
 
-    via: UI.createLabel(_.extend(Style.p3, {
+    via: UI.createLabel({
       text: 'via',
       color: '#505050',
       left: 2,
       width: Ti.UI.SIZE,
-      height: Ti.UI.SIZE
-    })),
+      height: Ti.UI.SIZE,
+      style_id: 'p3'
+    }),
 
     fb_icon: UI.createImageView({
       image: '/images/icons/fb_small_icon.png',
@@ -105,24 +99,26 @@ var render = function(news) {
       square: true
     }),
 
-    message: UI.createLabel(_.extend(Style.p3, {
+    message: UI.createLabel({
       text: news.message,
       left: 10,
       right: 10,
       color: 'black',
       top: 10,
       bottom: 10,
-      height: Ti.UI.SIZE
-    })),
+      height: Ti.UI.SIZE,
+      style_id: 'p3'
+    }),
 
-    description: UI.createLabel(_.extend(Style.p3, {
+    description: UI.createLabel({
       text: news.description,
       left: 10,
       right: 10,
       color: 'black',
       height: Ti.UI.SIZE,
-      width: Ti.UI.FILL
-    }))
+      width: Ti.UI.FILL,
+      style_id: 'p3'
+    })
   };
 
   self.title_view.add(self.title);
@@ -132,7 +128,6 @@ var render = function(news) {
   self.time_and_place.add(self.fb_icon);
   self.title_view.add(self.time_and_place);
 
-  // if(news.picture) { self.header_view.add(self.photo); }
   self.header_view.add(self.title_view);
 
   self.view.add(self.header_view);
@@ -142,13 +137,7 @@ var render = function(news) {
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
 
-  if(isIPad){
-    self.back_btn.top = 20;
-    self.back_btn.left = 0;
-    self.view.add(self.back_btn);
-  } else if(isIPhone) {
-    self.win.add(self.back_btn);
-  }
+  if(isIPhone) { self.win.add(self.back_btn); }
 
   self.win.add(self.view);
 
@@ -157,4 +146,5 @@ var render = function(news) {
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};
+

@@ -36,7 +36,6 @@ describe("Windows/News", () ->
   )
     
   it('populates the table with sorted news', () ->
-    log(view_proxy)
     expect(view_proxy.table.data.length).toEqual(2)
     expect(view_proxy.table.data[1].news).toEqual(tweet)
     expect(view_proxy.table.data[0].news).toEqual(fb_news)
