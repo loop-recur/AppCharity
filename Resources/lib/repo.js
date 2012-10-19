@@ -1,18 +1,64 @@
 module.exports = (function() {  
   var PropertyCache = nrequire('/lib/property_cache'),
+      Twitter = nrequire('/lib/twitter'),
+      FbGraph = nrequire('/lib/fb_graph');
       
-      Cache = {},
-  
-      ADMIN_CREDENTIALS = {login: 'appcharity', password: '123456'},
+  var Cache = {},
+      FB_PAGE = 'msf.english',
+      FB_ID = '33110852384',      
+      TWITTER_SCREENNAME = 'MSF_USA',
   
       _logInAsGenercUserToAvoidErrorHack = function(cb) {
-        Cloud.Users.login(ADMIN_CREDENTIALS, function(e) {
+        Cloud.Users.login(ACS_ADMIN_CREDENTIALS, function(e) {
           e.success ? cb(e) : Ti.App.fireEvent('hide_activity');
         });
       },
       
       cacheHasExpired = function(name) {
         return !PropertyCache.get(name);
+      },
+      
+      getFacebookNews = function(callback){
+        FbGraph.getNewsFeed(FB_PAGE, function(news){
+          news.map(function(n){ n.kind = 'fb'; })
+          callback(news);
+        });
+      },
+      
+      getTwitterTimeline = function(callback){
+        Twitter.timeline({screen_name: TWITTER_SCREENNAME}, function(news){
+          news.map(function(n){ n.kind = 'twitter'; })
+          callback(news);
+        });
+      },
+      
+      getNews = function(callback) {
+        if(!cacheHasExpired('news')) { return PropertyCache.get('news', callback); }
+        
+        var _tryToFinish = function(name, val) {
+              Cache[name] = val;
+              if(Cache.fb && Cache.twitter) {
+                var result = Cache.fb.concat(Cache.twitter);
+                PropertyCache.set('news', result);
+                callback(result);
+                Ti.App.fireEvent('hide_activity');
+              }
+            };
+
+        Ti.App.fireEvent('show_activity');
+        getFacebookNews(function(news){ _tryToFinish('fb', news); })
+        getTwitterTimeline(function(news){ _tryToFinish('twitter', news); })
+      },
+      
+      getEvents = function(callback) {
+        if(!cacheHasExpired('events')) {  return PropertyCache.get('events', callback); }
+        Ti.App.fireEvent('show_activity');
+        
+        FbGraph.getEventsOlderThan2Weeks(FB_PAGE, FB_ID, function(events){
+          PropertyCache.set('events', events);
+          callback(events);
+          Ti.App.fireEvent('hide_activity');
+        });
       },
       
       getPages = function(callback) {
@@ -66,9 +112,6 @@ module.exports = (function() {
       },
       
       getTopBarMessageAndLogoAndDonateUrl = function(callback) {
-        var needed_vals = ['donate_url', 'logo_url'];
-        if(isIPad) needed_vals.push('topbar_message');
-        
         var _isDone = function() {
               return needed_vals.reduce(function(b, x){ return !!Cache[x] && b; }, true);
             },
@@ -78,8 +121,11 @@ module.exports = (function() {
                 Cache[name] = e.keyvalues[0].value;
                 if(_isDone()) return callback(Cache);
               }
-            };
-        
+            },
+            
+            needed_vals = ['donate_url', 'logo_url'];
+            
+        if(isIPad) needed_vals.push('topbar_message');
         if(_isDone()) return callback(Cache);
         
         _logInAsGenercUserToAvoidErrorHack(function() {
@@ -88,6 +134,8 @@ module.exports = (function() {
       };
   
   return {cacheHasExpired: cacheHasExpired,
+          getNews: getNews,
+          getEvents: getEvents,
           getPages: getPages,
           getPhotos: getPhotos,
           uploadPhoto: uploadPhoto,

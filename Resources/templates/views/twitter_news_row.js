@@ -7,6 +7,7 @@ var render = function(news) {
       created: DateFormatter.date(news.created_at, {parsed: true}),
       backgroundColor: 'transparent',
       news: news,
+      kind: news.kind,
       className: 'twitter'
     }),
 

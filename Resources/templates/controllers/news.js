@@ -1,72 +1,57 @@
 module.exports = function(view) {  
   var TwitterNewsRow = nrequire('/templates/views/twitter_news_row'),
       FbNewsRow = nrequire('/templates/views/fb_news_row'),
-      FbGraph = nrequire('/lib/fb_graph'),
-      Twitter = nrequire('/lib/twitter'),
       FbNewsDetail = nrequire('/templates/windows/fb_news_detail'),
       TwitterNewsDetail = nrequire('/templates/windows/twitter_news_detail'),
       PullToRefresh = nrequire('/ui/pull_to_refresh'),
-      PropertyCache = nrequire('/lib/property_cache'),
+      Repo = nrequire('/lib/repo'),
       Push = nrequire('/lib/push');
+      
+  var VIEW_TYPES = {'fb': {detail: FbNewsDetail, row: FbNewsRow},
+                    'twitter': {detail: TwitterNewsDetail, row: TwitterNewsRow}},
   
-  var state = {fb_rows: [], tweet_rows: []},
+      news = [],
   
-      tryTofinish = function() {
-        var all_rows = _.sortBy(state.fb_rows.concat(state.tweet_rows), function(x) {
-          return x.created;
-        });
+      fillTable = function(rows) {
+        var all_rows = _.sortBy(rows, function(x) { return x.created; });
         view.table.setData(all_rows.reverse());
       },
-  
-      finishTwitter = function(tweets) {
-        state.tweet_rows = tweets.map(function(n){
-          return TwitterNewsRow.render(n).row;
+      
+      makeNewsRows = function(news) {
+        return news.map(function(n){
+          return VIEW_TYPES[n.kind].row.render(n).row;
         });
-        PropertyCache.set('tweets', tweets);
-        tryTofinish();
       },
   
-      finishFb = function(news) {
-        state.fb_rows = news.map(function(n){
-          return FbNewsRow.render(n).row;
-        });
-        PropertyCache.set('fb_news', news);
-        tryTofinish();
+      getNews = function(endPullToRefresh) {
+        Repo.getNews(function(news) {
+          var news_rows = makeNewsRows(news);
+          fillTable(news_rows);
+          if(endPullToRefresh) { endPullToRefresh(); }
+        }, {force_refresh: endPullToRefresh});
       },
-  
-      getNews = function(cb) {
-        FbGraph.getNewsFeed('msf.english', function(news){
-          finishFb(news);
-          if(cb){ cb(); }
-        });
-        Twitter.timeline({screen_name: "MSF_USA"}, finishTwitter);
+      
+      hasntRenderedPage = function() {
+        return !(view.table.data && view.table.data[0]);
       },
-  
-      getCachedNews = function() {
-        return PropertyCache.get('fb_news', finishFb) && PropertyCache.get('tweets', finishTwitter);
+      
+      populatePage = function() {
+        if(Repo.cacheHasExpired('news') || hasntRenderedPage()) { getNews(); }
       },
-  
-      getNewsIfItsBeenLongEnough = function() {
-        if(PropertyCache.get('fb_news') && view.table.data && view.table.data[0]){ return; }
-        getCachedNews() || getNews();
+      
+      shouldOpenDetail = function(source) {
+        return (source && source.id) != "twitter_action";
       },
   
       openDetail = function(e) {
-        if((e.source && e.source.id) === "twitter_action") { return; }
-
-        var row = e.row,
-            detail = (row.kind === "fb") ?
-                      FbNewsDetail.render(row.news) :
-                      TwitterNewsDetail.render(row.news);
-        Application.news.open(detail.win);
+        if(shouldOpenDetail(e.source)) {
+          var detail = VIEW_TYPES[e.row.kind].detail.render(e.row.news);
+          Application.news.open(detail.win);          
+        }
       };
   
-  view.win.addEventListener('focus', getNewsIfItsBeenLongEnough);
-  if(!isIPad) view.table.addEventListener('click', openDetail);
-
   Push.addAndroidSettingsEvent(view.win);
-  
-  if(!isAndroid) {
-    PullToRefresh(view.table, function(end){ getNews(end); });
-  }
+  view.win.addEventListener('focus', populatePage);
+  if(!isIPad) view.table.addEventListener('click', openDetail);
+  if(!isAndroid) { PullToRefresh(view.table, getNews); }
 };

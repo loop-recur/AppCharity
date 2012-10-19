@@ -1,9 +1,9 @@
 module.exports = function(view) {
   var Push = nrequire('/lib/push'),
       Repo = nrequire('/lib/repo'),
-      NavItem = nrequire('/templates/views/nav_item'),
+      NavItem = nrequire('/templates/views/nav_item');
   
-      nav_items = [],
+  var nav_items = [],
       
       detail_view = view.detail_view,
     
@@ -47,8 +47,8 @@ module.exports = function(view) {
         
         pages.reduce(function(last_left, page, idx) {
           var nav_item = NavItem.render(page, last_left, idx, width);
-          view.subnav.add(nav_item.view);
           nav_items.push(nav_item);
+          view.subnav.add(nav_item.view);
           return last_left + nav_item.view.width;
         }, 0);
       },

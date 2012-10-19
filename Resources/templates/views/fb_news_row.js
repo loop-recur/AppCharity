@@ -6,7 +6,7 @@ var render = function(news) {
       created: DateFormatter.date(news.created_time, {parsed: true, fb: true}),
       news: news,
       backgroundColor: 'transparent',
-      kind: 'fb',
+      kind: news.kind,
       className: (news.picture ? 'facebook-pic' : 'facebook-nopic')
     }),
     

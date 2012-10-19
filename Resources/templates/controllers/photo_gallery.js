@@ -80,7 +80,7 @@ module.exports = function(view) {
         if(Repo.cacheHasExpired('cloud_photos') || hasntRenderedPage()) {
           Repo.getPhotos(populateView);
         }
-      };
+      },
 
       showCamera = function(e) {
         Ti.Media.showCamera({

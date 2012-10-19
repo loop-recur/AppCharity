@@ -33,15 +33,6 @@ var render = function(news) {
         backgroundColor: 'transparent',
         layout: 'horizontal'
       }),
-
-      photo: UI.createImageView({
-        image: news.user.profile_image_url,
-        top: 10,
-        left: 10,
-        width: 60,
-        height: 60,
-        square: true
-      }),
     
       content_view: UI.createView({
         layout: 'vertical',
@@ -96,19 +87,13 @@ var render = function(news) {
     self.twitter_actions.view.top = 15;
     self.content_view.add(self.twitter_actions.view);
 
-    // self.view.add(self.photo);
     self.view.add(self.content_view);
   
     self.win.add(self.donate_banner);
     self.win.add(self.shadow);
   
-    if(isIPad){
-      self.back_btn.top = 20;
-      self.back_btn.left = "5%";
-      self.view.add(self.back_btn);
-    } else if(isIPhone) {
-      self.win.add(self.back_btn);
-    }
+    if(isIPhone) { self.win.add(self.back_btn); }
+    
     self.win.add(self.view);
 
     Controller(self);

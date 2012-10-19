@@ -40,15 +40,6 @@ var render = function(news) {
       width: Ti.UI.FILL
     }),
 
-    photo: UI.createImageView({
-      image: news.picture,
-      top: 0,
-      left: 10,
-      width: 60,
-      height: 60,
-      square: true
-    }),
-
     title_view: UI.createView({
       layout: 'vertical',
       top: 10,
@@ -137,7 +128,6 @@ var render = function(news) {
   self.time_and_place.add(self.fb_icon);
   self.title_view.add(self.time_and_place);
 
-  // if(news.picture) { self.header_view.add(self.photo); }
   self.header_view.add(self.title_view);
 
   self.view.add(self.header_view);
@@ -147,13 +137,7 @@ var render = function(news) {
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
 
-  if(isIPad){
-    self.back_btn.top = 20;
-    self.back_btn.left = 0;
-    self.view.add(self.back_btn);
-  } else if(isIPhone) {
-    self.win.add(self.back_btn);
-  }
+  if(isIPhone) { self.win.add(self.back_btn); }
 
   self.win.add(self.view);
 
