@@ -7,7 +7,7 @@ module.exports = function() {
     backgroundSelectedImage: '/images/buttons/go_to_fb_btn_p.png'
   });
   
-  fb_button.addEventListener('click', function(){
+  fb_button.addEventListener('click', function() {
     Ti.Platform.openURL('http://www.facebook.com/'+FB_PAGE);
   });
   

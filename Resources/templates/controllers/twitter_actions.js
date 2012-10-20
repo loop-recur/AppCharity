@@ -25,13 +25,8 @@ module.exports = function(view, tweet) {
     Application.news.open(view.tweet_view.win);
   }
   
-  var openTwitterPage = function() {
-    Ti.Platform.openURL('http://www.twitter.com/'+TWITTER_SCREEN_NAME);
-  }
-  
   view.retweet.addEventListener('click', retweet);
   view.favorite.addEventListener('click', favorite);
   view.reply.addEventListener('click', reply);
-  view.tweet_button.addEventListener('click', openTwitterPage);
 };
 

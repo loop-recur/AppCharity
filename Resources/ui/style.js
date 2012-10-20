@@ -62,6 +62,8 @@ module.exports = {
       news_photo: { top: 25, left: 10 },
       
       news_row: {selectionStyle: "NONE"},
+      
+      tweet_btn: {left: null, right: 100},
             
       top_banner: {
         width: "100%",

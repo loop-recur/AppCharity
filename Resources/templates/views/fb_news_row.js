@@ -110,9 +110,9 @@ var render = function(news) {
 
   if(isIPad) {
     self.description.width = "70%";
-    self.row.add(fbButton());
     self.container_view.add(self.title_view);
     self.row.add(self.photo);
+    self.row.add(fbButton());
   } else {
     if(news.picture) { 
       self.top_view.add(self.photo);
