@@ -4,8 +4,7 @@ module.exports = function(view) {
       FbNewsDetail = nrequire('/templates/windows/fb_news_detail'),
       TwitterNewsDetail = nrequire('/templates/windows/twitter_news_detail'),
       PullToRefresh = nrequire('/ui/pull_to_refresh'),
-      Repo = nrequire('/lib/repo'),
-      Push = nrequire('/lib/push');
+      Repo = nrequire('/lib/repo');
       
   var VIEW_TYPES = {'fb': {detail: FbNewsDetail, row: FbNewsRow},
                     'twitter': {detail: TwitterNewsDetail, row: TwitterNewsRow}},
@@ -23,12 +22,11 @@ module.exports = function(view) {
         });
       },
   
-      getNews = function(endPullToRefresh) {
+      refreshNews = function(endPullToRefresh) {
         Repo.getNews(function(news) {
-          var news_rows = makeNewsRows(news);
-          fillTable(news_rows);
-          if(endPullToRefresh) { endPullToRefresh(); }
-        }, {force_refresh: endPullToRefresh});
+          fillTable(makeNewsRows(news));
+          endPullToRefresh();
+        }, {force_refresh: true});
       },
       
       hasntRenderedPage = function() {
@@ -36,7 +34,11 @@ module.exports = function(view) {
       },
       
       populatePage = function() {
-        if(Repo.cacheHasExpired('news') || hasntRenderedPage()) { getNews(); }
+        if(Repo.cacheHasExpired('news') || hasntRenderedPage()) {
+          Repo.getNews(function(news) {
+            fillTable(makeNewsRows(news));
+          });
+        }
       },
       
       shouldOpenDetail = function(source) {
@@ -50,8 +52,7 @@ module.exports = function(view) {
         }
       };
   
-  Push.addAndroidSettingsEvent(view.win);
   view.win.addEventListener('focus', populatePage);
   if(!isIPad) view.table.addEventListener('click', openDetail);
-  if(!isAndroid) { PullToRefresh(view.table, getNews); }
+  if(!isAndroid) { PullToRefresh(view.table, refreshNews); }
 };

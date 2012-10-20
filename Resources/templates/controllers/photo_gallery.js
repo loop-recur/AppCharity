@@ -1,7 +1,6 @@
 module.exports = function(view) {
   var Slideshow = nrequire('/templates/windows/slideshow'),
       Grid = nrequire('/ui/grid'),
-      Push = nrequire('/lib/push'),
       Repo = nrequire('/lib/repo'),
       PropertyCache = nrequire('/lib/property_cache'),
       Confirm = nrequire('/ui/confirm');
@@ -105,5 +104,4 @@ module.exports = function(view) {
   });
 
   view.win.addEventListener('focus', populatePage);
-  Push.addAndroidSettingsEvent(view.win);
 };

@@ -3,8 +3,6 @@ isIPhone = true;
 isAndroid = false;
 isMobileweb = true;
 
-ACS_ADMIN_CREDENTIALS = {login: 'appcharity', password: '123456'};
-
 SpecHelper = {
   switchPlatform: function(platform, bool){
     if(platform == "Android") isAndroid = bool;
@@ -24,10 +22,9 @@ Cloud = require('../../../modules/commonjs/ti.cloud/2.3.0/ti.cloud');
 Cloud.Users.login = jasmine.createSpy().andCallFake(function(opts, cb){ cb({success:true})});
 Cloud.KeyValues.get = jasmine.createSpy();
 
-var init = require('../../initializers/init');
 require('../mock_ti').mock();  
-init();
-
+require('../../initializers/config');
+require('../../initializers/init').init();
 require('../factory_definitions');
 
 Factory = function(name, props) {

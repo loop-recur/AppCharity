@@ -1,4 +1,4 @@
-Style = {
+module.exports = {
     h1: {
       font: {fontWeight: 'normal', fontFamily: 'Georgia', fontSize: 30, fontStyle: 'italic'},
       color: "#707070",
@@ -47,8 +47,22 @@ Style = {
       height: Ti.UI.SIZE,
       width: Ti.UI.SIZE
     },
+    
+    list_table: {
+      separatorColor: 'rgba(183,183,183,0.5)'
+    },
+    
+    android: {
+      list_table: {
+        separatorColor: '#999'
+      }
+    },
 
     ipad: {
+      news_photo: { top: 25, left: 10 },
+      
+      news_row: {selectionStyle: "NONE"},
+            
       top_banner: {
         width: "100%",
         backgroundImage: '/images/backgrounds/logo_donate_bar_tablet_bg.png'

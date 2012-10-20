@@ -1,5 +1,6 @@
 module.exports = function() {
-  var template = nrequire('/templates/windows/events');
+  var template = isIPad ? nrequire('/templates/windows/ipad/events') :
+                          nrequire('/templates/windows/events');
   return template.render();
 };
 

@@ -1,5 +1,6 @@
 module.exports = (function(debug){
-  var id = function(x){ return x; }
+  var PreferencesWinWithDialogCallback = nrequire('/ui/preferences_win_with_dialog_callback');
+  var id = function(x){ return x; };
   
   if(isMobileweb) { return {unsubscribe: id, subscribe: id, addAndroidSettingsEvent: id}; }
   Cloud.debug = true;  // optional; if you add this line, set it to false for production
@@ -46,8 +47,6 @@ module.exports = (function(debug){
       
       unsubscribe = function(cb) {
         var registeredCallback = function(e) {
-              log("registeredCallback");
-              log(e);
               Ti.App.Properties.setBool('push_register', false);
               Cloud.PushNotifications.unsubscribe(
                 {device_token: e.deviceToken},
@@ -59,8 +58,6 @@ module.exports = (function(debug){
 
       subscribe = function(channel, pushCallback) {
         var registeredCallback = function(e) {
-          log("registeredCallback!!!");
-          log(e);
               unsubscribe(function() {
                 Ti.App.Properties.setBool('push_register', true);
                 Cloud.PushNotifications.subscribe(
@@ -68,8 +65,7 @@ module.exports = (function(debug){
                    device_token: e.deviceToken, 
                    type: (isIPhone ? 'ios' : 'android')}, 
                    function (e) { 
-                     log("callback after subscribe");
-                     if(!e.success) { log('Error:\\n' + ((e.error && e.message) || JSON.stringify(e))); }
+                     if(!e.success) { alert("Couldn't subscribe you to push!"); }
                   }
                 );
               });
@@ -78,29 +74,19 @@ module.exports = (function(debug){
       },
       
       addAndroidSettingsEvent = function(win) {
-        var _openPreferences = function() {
-              Ti.UI.Android.openPreferences();
-              setTimeout(function(){
-                var dialog = Ti.UI.createAlertDialog({ title:'Settings', message:'Settings were saved...', ok:'OK' });
-     
-                dialog.show();
-                dialog.addEventListener('click', function(e){
-                  if(Ti.App.Properties.getBool('push_enabled')) {
-                    subscribe(Ti.App.id);
-                  } else {
-                    unsubscribe();
-                  }
-                });
-              }, 200);
-            };
-        if(isAndroid) {
-          win.activity.onCreateOptionsMenu = function(e) {
-            var settings = e.menu.add({title: 'Settings'});
-            settings.addEventListener('click', _openPreferences);
-          };
-        }
+        win.activity.onCreateOptionsMenu = function(e) {
+          var settings = e.menu.add({title: 'Settings'});
+          
+          settings.addEventListener('click', function() {
+            PreferencesWinWithDialogCallback(function() {
+              Ti.App.Properties.getBool('push_enabled') ? subscribe(Ti.App.id) : unsubscribe();
+            });
+          });
+        };
       };
 
-    return {subscribe: subscribe, unsubscribe: unsubscribe, addAndroidSettingsEvent: addAndroidSettingsEvent};
+    return {subscribe: subscribe,
+            unsubscribe: unsubscribe,
+            addAndroidSettingsEvent: addAndroidSettingsEvent};
 })();
 

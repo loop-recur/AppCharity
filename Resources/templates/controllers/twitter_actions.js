@@ -9,7 +9,6 @@ module.exports = function(view, tweet) {
     });
   }
   
-
   var favorite = function() {
     Twitter.favorite(tweet.id_str, function(e) {
       if(e.success) UI.createAlertMessage("You've successfully favorited!");
@@ -27,7 +26,7 @@ module.exports = function(view, tweet) {
   }
   
   var openTwitterPage = function() {
-    Ti.Platform.openURL('http://www.twitter.com/MSF_USA');
+    Ti.Platform.openURL('http://www.twitter.com/'+TWITTER_SCREEN_NAME);
   }
   
   view.retweet.addEventListener('click', retweet);

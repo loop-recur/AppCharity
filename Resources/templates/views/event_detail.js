@@ -65,9 +65,6 @@ var render = function(event) {
         })
       };
 
-  //self.cal_icon.add(self.month);
-  //self.cal_icon.add(self.day);
-  //self.cal_view.add(self.cal_icon);
   self.view.add(self.cal_view);
   self.content_view.add(self.title);
   self.content_view.add(self.time);
