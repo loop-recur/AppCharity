@@ -1,5 +1,6 @@
 var render = function(tweet) {
-  var Controller = nrequire('/templates/controllers/twitter_actions');
+  var Controller = nrequire('/templates/controllers/twitter_actions'),
+      tweetButton = nrequire('/ui/tweet_button');
   
   var self = {
         view: UI.createView({
@@ -36,15 +37,7 @@ var render = function(tweet) {
           id: 'twitter_action'
         }),
 
-        tweet_button: UI.createButton({
-          height: 28,
-          width: 56,
-          left: 50,
-          backgroundImage: '/images/buttons/go_to_twitter_btn.png',
-          backgroundSelectedImage: '/images/buttons/go_to_twitter_btn_p.png',
-          id: 'twitter_action',
-          style_id: 'tweet_button'
-        })
+        tweet_button: tweetButton()
       };
 
   self.view.add(self.reply);

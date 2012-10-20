@@ -83,8 +83,6 @@ var render = function(news) {
   if(isIPad) {
     var tweet_btn = self.twitter_actions.tweet_button;
     self.twitter_actions.view.remove(tweet_btn);
-    tweet_btn.left = null;
-    tweet_btn.right = 100;
     self.row.add(tweet_btn);
     self.tweet.width = "70%";
   }
