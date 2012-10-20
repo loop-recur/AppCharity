@@ -97,7 +97,7 @@ var render = function(news) {
           bottom: 10,
           height: Ti.UI.SIZE,
           width: Ti.UI.FILL,
-          style_id: 'p5'
+          style_id: 'p3'
         })
       };
 
@@ -128,4 +128,4 @@ var render = function(news) {
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};
