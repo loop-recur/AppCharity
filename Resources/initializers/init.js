@@ -1,4 +1,4 @@
-log = function(x){ Ti.API.info(x); }
+log = function(x){ Ti.API.info(x); };
 UI = {};
 _ = null;
 Push = nrequire('/lib/push');
@@ -16,4 +16,4 @@ var init = function(testing) {
   subscribePushNotifications();
 };
 
-module.exports = {init: init}
+module.exports = {init: init};

@@ -44,7 +44,6 @@ var render = function(event) {
 
   self.content_view.add(self.title);
   self.content_view.add(self.time);
-
   self.row.add(self.cal_view);
   self.row.add(self.content_view);
 
@@ -52,4 +51,3 @@ var render = function(event) {
 };
 
 module.exports = {render: render};
-

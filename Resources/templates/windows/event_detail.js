@@ -26,9 +26,10 @@ var render = function(event) {
     self.back_btn = BackButton(self.win);
     self.win.add(self.back_btn);
   }
+
   self.win.add(self.detail_view.view);
 
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};

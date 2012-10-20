@@ -61,23 +61,23 @@ var render = function(user, callback) {
         }),
   
         text_field: UI.createTextField({
-    			height: 135,
-    			top: 15,
-    			id: "text_field",
-    			width: "85%",
-    			color: "#999999",
+          height: 135,
+          top: 15,
+          id: "text_field",
+          width: "85%",
+          color: "#999999",
           font: {fontSize: 15},
           backgroundColor: "white",
           hintText: '@'+user,
           value: '@'+user+' ',
           autocorrect: true,
-    			textAlign: "left",
-    			borderWidth: 1,
-        	borderColor: '#ccc',
+          textAlign: "left",
+          borderWidth: 1,
+          borderColor: '#ccc',
           returnKeyType: Ti.UI.RETURNKEY_GO,
-    			paddingLeft:10,
-    			paddingRight:10,
-    			paddingTop:2
+          paddingLeft:10,
+          paddingRight:10,
+          paddingTop:2
         })
       };
 
@@ -85,17 +85,14 @@ var render = function(user, callback) {
   self.button_view.add(self.reply_text);
   self.button_view.add(self.tweet_button);
   self.text_view.add(self.text_field);
-
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
   self.win.add(self.view);
-
   self.view.add(self.button_view);
   self.view.add(self.text_view);
   
   Controller(self, callback);
-  
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};

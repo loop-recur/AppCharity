@@ -1,6 +1,6 @@
 module.exports = (function(debug){
-  var PreferencesWinWithDialogCallback = nrequire('/ui/preferences_win_with_dialog_callback');
-  var id = function(x){ return x; };
+  var PreferencesWinWithDialogCallback = nrequire('/ui/preferences_win_with_dialog_callback'),
+      id = function(x){ return x; };
   
   if(isMobileweb) { return {unsubscribe: id, subscribe: id, addAndroidSettingsEvent: id}; }
   Cloud.debug = true;  // optional; if you add this line, set it to false for production
@@ -89,4 +89,3 @@ module.exports = (function(debug){
             unsubscribe: unsubscribe,
             addAndroidSettingsEvent: addAndroidSettingsEvent};
 })();
-

@@ -45,6 +45,7 @@ module.exports = function(vp, screens, current_index) {
     })();
 
   vp.win.addEventListener('swipe', showNextScreen);
+
   if(isAndroid) {
     vp.win.addEventListener('close', function() {
       vp.win.backgroundImage = null;
@@ -53,4 +54,3 @@ module.exports = function(vp, screens, current_index) {
     });
   }
 };
-

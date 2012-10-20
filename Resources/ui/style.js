@@ -94,7 +94,7 @@ module.exports = {
       about_photo_container: {
         width: 300,
         height: 213,
-        backgroundImage: "/images/backgrounds/about_tablet_featured_img_bg.png",
+        backgroundImage: "/images/backgrounds/about_tablet_featured_img_bg.png"
       },
       
       about_photo: {

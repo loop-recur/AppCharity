@@ -24,4 +24,4 @@ nrequire = function(path) {
   } else {
     return require(path);
   }
-}
+};

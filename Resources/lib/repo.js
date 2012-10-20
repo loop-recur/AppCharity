@@ -17,14 +17,14 @@ module.exports = (function() {
       
       getFacebookNews = function(callback){
         FbGraph.getNewsFeed(FB_PAGE, function(news){
-          news.map(function(n){ n.kind = 'fb'; })
+          news.map(function(n){ n.kind = 'fb'; });
           callback(news);
         });
       },
       
       getTwitterTimeline = function(callback){
         Twitter.timeline({screen_name: TWITTER_SCREEN_NAME}, function(news){
-          news.map(function(n){ n.kind = 'twitter'; })
+          news.map(function(n){ n.kind = 'twitter'; });
           callback(news);
         });
       },
@@ -46,8 +46,8 @@ module.exports = (function() {
             };
 
         Ti.App.fireEvent('show_activity');
-        getFacebookNews(function(news){ _tryToFinish('fb', news); })
-        getTwitterTimeline(function(news){ _tryToFinish('twitter', news); })
+        getFacebookNews(function(news){ _tryToFinish('fb', news); });
+        getTwitterTimeline(function(news){ _tryToFinish('twitter', news); });
       },
       
       getEvents = function(callback, opts) {
@@ -143,5 +143,5 @@ module.exports = (function() {
           getPages: getPages,
           getPhotos: getPhotos,
           uploadPhoto: uploadPhoto,
-          getTopBarMessageAndLogoAndDonateUrl: getTopBarMessageAndLogoAndDonateUrl}
+          getTopBarMessageAndLogoAndDonateUrl: getTopBarMessageAndLogoAndDonateUrl};
 })();

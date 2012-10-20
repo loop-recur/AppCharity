@@ -36,8 +36,7 @@ var render = function() {
   self.win.add(self.vert_view);
 
   Controller(self);
-
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};

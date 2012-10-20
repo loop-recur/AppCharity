@@ -46,8 +46,7 @@ var render = function(tweet) {
   self.view.add(self.tweet_button);
 
   Controller(self, tweet);
-
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};

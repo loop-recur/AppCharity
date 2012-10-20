@@ -3,4 +3,3 @@ module.exports = function() {
                           nrequire('/templates/windows/events');
   return template.render();
 };
-

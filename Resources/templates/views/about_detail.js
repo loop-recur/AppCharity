@@ -76,19 +76,16 @@ var render = function() {
   if(isAndroid) self.photo.width = Scaler({width: 280});
 
   self.view.add(self.title);
-
   self.photo_container.add(self.photo);
   self.profile_view.add(self.photo_container);
   self.share_view.add(self.tweet_button);
   self.share_view.add(self.fb_button);
   self.profile_view.add(self.share_view);
   self.view.add(self.profile_view);
-
   self.view.add(self.content);
 
   Controller(self);
-
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};

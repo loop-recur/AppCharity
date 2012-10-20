@@ -1,4 +1,3 @@
-
 module.exports = (function(global) {
   nrequire('/lib/jsOAuth-1.3.1');
   var K = function(){}, isAndroid = Ti.Platform.osname === "android";

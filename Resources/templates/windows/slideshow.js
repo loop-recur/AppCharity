@@ -15,4 +15,4 @@ var render = function(screens, index) {
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};

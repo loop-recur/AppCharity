@@ -8,7 +8,6 @@ module.exports = function(view) {
       
   var VIEW_TYPES = {'fb': {detail: FbNewsDetail, row: FbNewsRow},
                     'twitter': {detail: TwitterNewsDetail, row: TwitterNewsRow}},
-  
       news = [],
   
       fillTable = function(rows) {

@@ -1,7 +1,7 @@
 render = function(page, left, idx, width) {
-  var Controller = nrequire('/templates/controllers/nav_item'),
+  var Controller = nrequire('/templates/controllers/nav_item');
   
-      COLORS = ['red', 'blue', 'yellow', 'green', 'orange'],
+  var COLORS = ['red', 'blue', 'yellow', 'green', 'orange'],
   
       self = {        
         view: Ti.UI.createView({
@@ -60,17 +60,13 @@ render = function(page, left, idx, width) {
   self.scroll.add(self.image);
   self.view.add(self.scroll);
   self.view.add(self.mask);
-  
   self.title_view.add(self.title);
   self.title_view.transform = Ti.UI.create2DMatrix().rotate(90);
-  
   self.view.add(self.title_view);
-  
   self.view.mask = self.mask; // for accessor in spec
   
   Controller(self);
-  
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};

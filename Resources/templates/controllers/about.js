@@ -3,7 +3,6 @@ module.exports = function(view) {
       NavItem = nrequire('/templates/views/nav_item');
   
   var nav_items = [],
-      
       detail_view = view.detail_view,
     
       setTitle = function(value){
@@ -80,4 +79,3 @@ module.exports = function(view) {
     if(e.source && e.source.page) { updatePageDetails(e.source.page, e.source.idx); }
   });
 };
-

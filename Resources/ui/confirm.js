@@ -1,12 +1,11 @@
 module.exports = function(msg, names_and_callbacks) {
 
-  if(!names_and_callbacks[names_and_callbacks.length -1].name == "cancel") {
+  if(names_and_callbacks[names_and_callbacks.length -1].name !== "cancel") {
     names_and_callbacks.push({
       name: "cancel",
       callback: function(){}
     });
   }
-	
 
 	var alert = Ti.UI.createAlertDialog({ 
 		message: msg, 
@@ -15,10 +14,10 @@ module.exports = function(msg, names_and_callbacks) {
 	});
 
 	alert.addEventListener('click', function(e) { 
-	  names_and_callbacks[e.index].callback();
+    names_and_callbacks[e.index].callback();
 	});
   
 	alert.show();
 	
 	return alert;
-}
+};

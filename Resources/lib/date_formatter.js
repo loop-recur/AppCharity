@@ -37,4 +37,3 @@ module.exports = (function() {
 	};
 	return {date : date};
 })();
-

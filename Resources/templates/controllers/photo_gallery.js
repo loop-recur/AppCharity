@@ -5,14 +5,12 @@ module.exports = function(view) {
       PropertyCache = nrequire('/lib/property_cache'),
       Confirm = nrequire('/ui/confirm');
   
-      slideshow_urls = [],
-      
+  var slideshow_urls = [],
       squares = [],
-      
       local_photos = [],
       
       openSlideShow = function(e) {
-        if(e.source.index == 'undefined' || e.source.index == null) return;
+        if(e.source.index === 'undefined' || e.source.index === null) return;
         var slideshow = Slideshow.render(slideshow_urls, e.source.index);
         Application.photos.open(slideshow.win);
       },

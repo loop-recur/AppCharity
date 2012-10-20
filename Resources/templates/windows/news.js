@@ -32,4 +32,3 @@ var render = function() {
 };
 
 module.exports = {render: render};
-

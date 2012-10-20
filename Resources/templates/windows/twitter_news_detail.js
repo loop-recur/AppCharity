@@ -79,16 +79,12 @@ var render = function(news) {
 
   self.title_view.add(self.screen_name);
   self.title_view.add(self.date);
-
   self.content_view.add(self.title);
   self.content_view.add(self.title_view);
   self.content_view.add(self.tweet);
-
   self.twitter_actions.view.top = 15;
   self.content_view.add(self.twitter_actions.view);
-
   self.view.add(self.content_view);
-
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
 
@@ -102,4 +98,4 @@ var render = function(news) {
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};

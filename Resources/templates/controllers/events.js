@@ -39,4 +39,3 @@ module.exports = function(view) {
   
   if(!isAndroid) { PullToRefresh(view.table, refreshEvents); }
 };
-

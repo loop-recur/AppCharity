@@ -43,8 +43,7 @@ var render = function() {
   };
 
   Controller(self);
-
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};

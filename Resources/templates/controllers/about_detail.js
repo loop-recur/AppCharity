@@ -21,4 +21,3 @@ module.exports = function(view) {
   view.tweet_button.addEventListener('click', tweet);
   view.fb_button.addEventListener('click', fbShare);
 };
-

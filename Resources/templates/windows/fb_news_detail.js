@@ -118,13 +118,10 @@ var render = function(news) {
   self.time_and_place.add(self.via);
   self.time_and_place.add(self.fb_icon);
   self.title_view.add(self.time_and_place);
-
   self.header_view.add(self.title_view);
-
   self.view.add(self.header_view);
   self.view.add(self.message);
   self.view.add(self.description);
-
   self.win.add(self.donate_banner);
   self.win.add(self.shadow);
 
@@ -139,4 +136,3 @@ var render = function(news) {
 };
 
 module.exports = {render: render};
-

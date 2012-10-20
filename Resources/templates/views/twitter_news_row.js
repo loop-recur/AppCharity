@@ -72,11 +72,9 @@ var render = function(news) {
   self.title_view.add(self.title);
   self.title_view.add(self.screen_name);
   self.title_view.add(self.date);
-
   self.content_view.add(self.title_view);
   self.content_view.add(self.tweet);
   self.content_view.add(self.twitter_actions.view);
-
   self.row.add(self.photo);
   self.row.add(self.content_view);
   
@@ -90,4 +88,4 @@ var render = function(news) {
   return self;
 };
 
-module.exports = {render: render}
+module.exports = {render: render};

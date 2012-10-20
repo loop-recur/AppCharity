@@ -38,11 +38,11 @@ var render = function() {
  
   self.view.add(self.logo);
   self.view.add(self.donate_button);
+
   if(isIPad) { self.view.add(self.title_message); }
   
   Controller(self);
-
   return self;
 }; 
 
-module.exports = {render: render}
+module.exports = {render: render};

@@ -1,38 +1,38 @@
 module.exports = (function() {
-  var cache_time = 120000;
+  var cache_time = 120000,
   
-  var _currentTime = function(){
-    return new Date().getTime();
-  }
+      _currentTime = function(){
+        return new Date().getTime();
+      },
   
-  var _withinCacheTime = function(timestamp) {
-    var date = new Date(timestamp);
-    var now = _currentTime();
-    var calcdate = new Date(now - cache_time);
-    return  calcdate < date;
-  }
+      _withinCacheTime = function(timestamp) {
+        var date = new Date(timestamp),
+            now = _currentTime(),
+            calcdate = new Date(now - cache_time);
+        return  calcdate < date;
+      },
   
-  var get = function(x, cb, opts) {
-    var opts = (opts || {force: false});
-    var a = Ti.App.Properties.getString(x);
+      get = function(x, cb, opts) {
+        opts = (opts || {force: false});
+        var a = Ti.App.Properties.getString(x);
     
-    if(a) {
-      var json = JSON.parse(a);
-      if(opts.force || _withinCacheTime(json.cached_at)) {
-        if(cb) { cb(json.data) };
-        return true;
-      }
-    }
-  }
+        if(a) {
+          var json = JSON.parse(a);
+          if(opts.force || _withinCacheTime(json.cached_at)) {
+            if(cb) { cb(json.data); }
+            return true;
+          }
+        }
+      },
 
-  var set = function(name, x) {
-    Ti.App.Properties.setString(name, JSON.stringify({cached_at: _currentTime(), data: x}));
-    return x;
-  };
+      set = function(name, x) {
+        Ti.App.Properties.setString(name, JSON.stringify({cached_at: _currentTime(), data: x}));
+        return x;
+      },
   
-  setup = function(cfg) {
-    cache_time = cfg.cache_time;
-  }
+      setup = function(cfg) {
+        cache_time = cfg.cache_time;
+      };
 
-  return {set: set, get: get, setup: setup}
+  return {set: set, get: get, setup: setup};
 })();
