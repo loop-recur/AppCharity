@@ -1,5 +1,6 @@
 var render = function(event) {
-  var DateFormatter = nrequire('/lib/date_formatter');
+  var DateFormatter = nrequire('/lib/date_formatter'),
+      CalendarView = nrequire('/ui/calendar_view');
   
   var self = {
         view: UI.createScrollView({
@@ -17,43 +18,7 @@ var render = function(event) {
           layout: 'vertical'
         }),
 
-        cal_view: UI.createView({
-          layout: 'horizontal',
-          width: Ti.UI.FILL,
-          top: 15,
-          height: Ti.UI.SIZE
-        }),
-
-        cal_icon: UI.createView({
-          backgroundImage: '/images/icons/events_calendar.png',
-          height: 55,
-          width: 50,
-          left: 10,
-          square: true
-        }),
-
-        month: UI.createLabel({
-           text: DateFormatter.date(event.start_time, {month: true}),
-           top: 2,
-           height: Ti.UI.SIZE,
-           color:"#515151",
-           font: {
-             fontFamily: 'Helvetica Neue',
-             fontSize: 10
-           }
-         }),
-
-        day: UI.createLabel({
-          text: DateFormatter.date(event.start_time, {day: true}),
-          top: 13,
-          height: Ti.UI.SIZE,
-          color:"#515151",
-          font: {
-            fontFamily: 'Helvetica Neue',
-            fontSize: 30,
-            fontWeight: 'bold'
-          }
-        }),
+        cal_view: CalendarView(event),
 
         title: UI.createLabel({
           left: 0,
@@ -100,9 +65,6 @@ var render = function(event) {
         })
       };
 
-  self.cal_icon.add(self.month);
-  self.cal_icon.add(self.day);
-  self.cal_view.add(self.cal_icon);
   self.view.add(self.cal_view);
   self.content_view.add(self.title);
   self.content_view.add(self.time);

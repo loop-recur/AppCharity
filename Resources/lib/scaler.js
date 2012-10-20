@@ -32,7 +32,7 @@ module.exports = (function() {
 				if(scaleables.heights.indexOf(p) >= 0) {
 					props.square ? props[p] = scaleWidth(props[p]) : props[p] = scaleHeight(props[p]);
 				}
-				if(isObj(props[p])) props[p] = scaleProps(props[p]);
+				if(_.isObject(props[p])) props[p] = scaleProps(props[p]);
 			} catch(e) { log("error scaling"); log(e);}
 		}
 		return props;
