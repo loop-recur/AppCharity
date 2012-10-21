@@ -1,3 +1,6 @@
+// Scales everything for multiple android screen sizes.
+// We check the width first to decide whether or not to scale.  This means it doesn't scale
+// IPhone 5, but should show more information on the screen instead.
 module.exports = (function() {
 	var getHeight = function(height) {
 		return height / 480;

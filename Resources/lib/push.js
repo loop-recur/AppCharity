@@ -1,3 +1,6 @@
+// Push subscription library.  We decorate each window with the push settings screen on android
+// in proxies.js to unsubscribe.  iOS should just use the app push prefs in the settings app.
+// 
 module.exports = (function(debug){
   var PreferencesWinWithDialogCallback = nrequire('/ui/preferences_win_with_dialog_callback'),
       id = function(x){ return x; };
@@ -10,14 +13,14 @@ module.exports = (function(debug){
     CloudPush.enabled = true;
   }
   
-  var logInAsGenericUserToAvoidErrorHack = function(cb) {
-        Cloud.Users.login({login: 'appcharity', password: '123456'}, function (e) {
+  var _logInAsGenercAdminToMakeDestructiveCall = function(cb) {
+        Cloud.Users.login(ACS_ADMIN_CREDENTIALS, function (e) {
           e.success ? cb() : alert('error accessing cloud services');
         });
       },
       
       iphoneRegister = function(pushCallback, registeredCallback) {
-        logInAsGenericUserToAvoidErrorHack(function() {
+        _logInAsGenercAdminToMakeDestructiveCall(function() {
           Ti.Network.registerForPushNotifications({
             types: [
                 Ti.Network.NOTIFICATION_TYPE_BADGE,
@@ -34,7 +37,7 @@ module.exports = (function(debug){
       },
       
       androidRegister = function(pushCallback, registeredCallback) {
-        logInAsGenericUserToAvoidErrorHack(function() {
+        _logInAsGenercAdminToMakeDestructiveCall(function() {
           if(pushCallback) { CloudPush.addEventListener('callback', pushCallback); }
           CloudPush.retrieveDeviceToken({
             success: registeredCallback,

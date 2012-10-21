@@ -1,3 +1,8 @@
+// A ton of wrapper classes of normal Ti.UI components.
+// The main purpose is to abstract the scaling and
+// extend styles if the property hash includes a style_id attribute.
+// You can also use these wrappers to decorate appwide components with defaults attributes
+// and extra methods.
 var Scaler = nrequire('/lib/scaler'),
     Push = nrequire('/lib/push'),
     Style = nrequire('/ui/style'),

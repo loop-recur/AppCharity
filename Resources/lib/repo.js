@@ -1,3 +1,5 @@
+// This is where all main http the calls are made.
+// 
 module.exports = (function() {  
   var PropertyCache = nrequire('/lib/property_cache'),
       Twitter = nrequire('/lib/twitter'),
@@ -5,14 +7,31 @@ module.exports = (function() {
       
   var Cache = {},
   
-      _logInAsGenercUserToAvoidErrorHack = function(cb) {
+      cacheHasExpired = function(name) {
+        return !PropertyCache.get(name);
+      },
+      
+      _logInAsGenercAdminToMakeDestructiveCall = function(callback) {
         Cloud.Users.login(ACS_ADMIN_CREDENTIALS, function(e) {
-          e.success ? cb(e) : Ti.App.fireEvent('hide_activity');
+          e.success ? callback(e) : alert("couldn't connect to cloud");
+          Ti.App.fireEvent('hide_activity');
         });
       },
       
-      cacheHasExpired = function(name) {
-        return !PropertyCache.get(name);
+      // shows activity, checks cache, makes call, and caches.
+      _apiCallFactory = function(cache_name, httpCall) {
+        return function(callback, opts) {
+          opts = (opts || {force_refresh: false});
+          if(!opts.force_refresh && !cacheHasExpired(cache_name)) {
+            return PropertyCache.get(cache_name, callback);
+          }
+          Ti.App.fireEvent('show_activity');
+          httpCall(function(result) {
+            PropertyCache.set(cache_name, result);
+            callback(result);
+            Ti.App.fireEvent('hide_activity');
+          });
+        }
       },
       
       getFacebookNews = function(callback){
@@ -29,79 +48,39 @@ module.exports = (function() {
         });
       },
       
-      getNews = function(callback, opts) {
-        opts = (opts || {force_refresh: false});
-        if(!opts.force_refresh && !cacheHasExpired('news')) {
-          return PropertyCache.get('news', callback);
-        }
-        
-        var _tryToFinish = function(name, val) {
+      getNews = _apiCallFactory('news', function(finishCall) {
+        var _finishIfCompletedBoth = function(name, val) {
               Cache[name] = val;
               if(Cache.fb && Cache.twitter) {
                 var result = Cache.fb.concat(Cache.twitter);
-                PropertyCache.set('news', result);
-                callback(result);
-                Ti.App.fireEvent('hide_activity');
+                finishCall(result);
               }
             };
-
-        Ti.App.fireEvent('show_activity');
-        getFacebookNews(function(news){ _tryToFinish('fb', news); });
-        getTwitterTimeline(function(news){ _tryToFinish('twitter', news); });
-      },
+        getFacebookNews(function(news){ _finishIfCompletedBoth('fb', news); });
+        getTwitterTimeline(function(news){ _finishIfCompletedBoth('twitter', news); });
+      }),
       
-      getEvents = function(callback, opts) {
-        opts = (opts || {force_refresh: false});
-        if(!opts.force_refresh && !cacheHasExpired('events')) {
-          return PropertyCache.get('events', callback);
-        }
-        
-        Ti.App.fireEvent('show_activity');
-        
-        FbGraph.getEventsOlderThan2Weeks(FB_PAGE, FB_ID, function(events){
-          PropertyCache.set('events', events);
-          callback(events);
+      getEvents = _apiCallFactory('events', function(finishCall){
+        FbGraph.getEventsOlderThan2Weeks(FB_PAGE, FB_ID, finishCall);
+      }),
+      
+      getPages = _apiCallFactory('pages', function(finishCall){
+        Cloud.Objects.query({classname: 'AboutUsPage', page: 1, per_page: 10}, function(e) {
+          e.success ? finishCall(e.AboutUsPage) : alert("Error getting the pages!");
           Ti.App.fireEvent('hide_activity');
         });
-      },
+      }),
       
-      getPages = function(callback) {
-        if(!cacheHasExpired('pages')) { return PropertyCache.get('pages', callback); }
-        Ti.App.fireEvent('show_activity');
-        Cloud.Objects.query({
-            classname: 'AboutUsPage',
-            page: 1,
-            per_page: 10
-        }, function (e) {
-          if(e.success) {
-            var result = e.AboutUsPage;
-            PropertyCache.set('pages', result);
-            callback(result);
-          } else {
-            alert("Error getting the pages. Please try again.");
-          }
-          Ti.App.fireEvent('hide_activity');
-        });
-      },
-      
-      getPhotos = function(callback) {
-        if(!cacheHasExpired('cloud_photos')) { return PropertyCache.get('cloud_photos', callback); }
-        Ti.App.fireEvent('show_activity');
+      getPhotos = _apiCallFactory('photos', function(finishCall){
         Cloud.Photos.query({page: 1, per_page: 20}, function(e) {
-          if(e.success) {
-            var result = e.photos;
-            PropertyCache.set('cloud_photos', result);
-            callback(result);
-          } else {
-            alert('Error Getting photos!');
-          }
+          e.success ? finishCall(e.photos) : alert('Error Getting photos!');
           Ti.App.fireEvent('hide_activity');
         });
-      },
-  
+      }),
+        
       uploadPhoto = function(media, callback) {
         Ti.App.fireEvent('show_activity');
-        _logInAsGenercUserToAvoidErrorHack(function() {
+        _logInAsGenercAdminToMakeDestructiveCall(function() {
           Cloud.Photos.create({ photo: media }, function(e) {
             e.success ? callback(e) : alert('there was a problem uploading your photo');
             Ti.App.fireEvent('hide_activity');
@@ -109,14 +88,16 @@ module.exports = (function() {
         });
       },
       
-      _getKeyVal = function(name, cb) {
-        Cloud.KeyValues.get({name: name}, function (e) {
-          cb(name, e);
+      _getKeyVal = function(name, callback) {
+        Cloud.KeyValues.get({name: name}, function(e) {
+          callback(name, e);
         });
       },
       
       getTopBarMessageAndLogoAndDonateUrl = function(callback) {
-        var _isDone = function() {
+        var needed_vals = ['donate_url', 'logo_url'],
+        
+            _isDone = function() {
               return needed_vals.reduce(function(b, x){ return !!Cache[x] && b; }, true);
             },
         
@@ -125,15 +106,15 @@ module.exports = (function() {
                 Cache[name] = e.keyvalues[0].value;
                 if(_isDone()) return callback(Cache);
               }
-            },
-            
-            needed_vals = ['donate_url', 'logo_url'];
+            };
             
         if(isIPad) needed_vals.push('topbar_message');
         if(_isDone()) return callback(Cache);
         
-        _logInAsGenercUserToAvoidErrorHack(function() {
-          needed_vals.map(function(name){ _getKeyVal(name, _cacheValue); });
+        _logInAsGenercAdminToMakeDestructiveCall(function() {
+          needed_vals.map(function(name){
+            _getKeyVal(name, _cacheValue);
+          });
         });
       };
   
